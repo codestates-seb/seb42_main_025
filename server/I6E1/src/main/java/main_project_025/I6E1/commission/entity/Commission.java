@@ -27,17 +27,6 @@ public class Commission extends Auditable {
     @Column(columnDefinition = "mediumtext", nullable = false)
     private String content;
 
-    //Global
-   /*
-
-   @Column(name = "created", insertable = false, updatable = false)
-    private LocalDateTime created;
-    @Column(name = "modified", insertable = false)
-    private LocalDateTime modified;
-    @Column(name = "deleted")
-    private boolean deleted = Boolean.FALSE;
-    */
-
     /* 엔티티 미구현
     @ManyToOne(targetEntity = User.class, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "USER_ID")
