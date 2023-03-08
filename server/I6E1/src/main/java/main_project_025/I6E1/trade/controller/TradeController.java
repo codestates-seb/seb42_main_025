@@ -27,7 +27,7 @@ public class TradeController {
     private final TradeRepository tradeRepository;
 
     @PostMapping
-    public ResponseEntity createTrade(@Valid @RequestBody TradePostDto tradePostDto) {
+    public ResponseEntity createTrade(@RequestBody @Valid TradePostDto tradePostDto) {
         Trade trade = tradeMapper.tradePostDtoToTrade(tradePostDto);
         Trade createdTrade = tradeService.createTrade(trade);
         TradeRespondDto tradeRespondDto = tradeMapper.tradeToTradeResponseDto(createdTrade);

@@ -2,6 +2,7 @@ package main_project_025.I6E1.trade.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import main_project_025.I6E1.trade.entity.Status;
 
 import java.time.LocalDateTime;
 
@@ -12,7 +13,7 @@ public class TradeRespondDto {
     private Long commissionId;
     private Long userId;
     private String content;
-//    private String status;
+    private Status status;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 }

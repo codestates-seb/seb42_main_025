@@ -5,6 +5,7 @@ import main_project_025.I6E1.trade.dto.TradePostDto;
 import main_project_025.I6E1.trade.dto.TradeRespondDto;
 import main_project_025.I6E1.trade.entity.Trade;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface TradeMapper {
@@ -13,5 +14,7 @@ public interface TradeMapper {
 
     Trade tradePatchDtoToTrade(TradePatchDto tradePatchDto);
 
+//    @Mapping(source = "Trade.user.userId", target = "userId")
+//    @Mapping(source = "Trade.commissionId", target = "commissionId")
     TradeRespondDto tradeToTradeResponseDto(Trade trade);
 }

@@ -24,10 +24,11 @@ public class TradeService {
 
     public Trade updateTrade(Trade trade) {
         //유저검증
+
         Trade findTrade = findTradeById(trade.getTradeId());
 
         //nullable 고민 후 옵셔널 줄 지 고민
-        return tradeRepository.save(trade);
+        return tradeRepository.save(findTrade);
     }
 
     public Trade readTrade(long tradeId) {

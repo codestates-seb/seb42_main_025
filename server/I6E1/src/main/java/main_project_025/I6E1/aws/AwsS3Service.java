@@ -42,7 +42,7 @@ public class AwsS3Service {
             } catch(IOException e) {
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "이미지 업로드에 실패했습니다.");
             }
-            String urlPath = new StringBuilder().append().append(fileName).toString();
+//            String urlPath = new StringBuilder().append().append(fileName).toString();
             fileNameList.add(fileName);//fileNameList에 업로드된 파일의 이름을 추가
             //db에 파일의 이름을 저장하는 로직을 추가??
         });

@@ -1,4 +1,4 @@
-package main_project_025.I6E1.auditing;
+package main_project_025.I6E1.Auditable;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
@@ -9,17 +9,17 @@ import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 @Getter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public class Auditable {
-
+public abstract class Auditable {
     @CreatedDate
-    @Column(updatable = false, nullable = false)
-    private LocalDateTime createdAt;
+    @Column(name = "created", updatable = false)
+    private LocalDateTime createdAt = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
 
     @LastModifiedDate
-    @Column(nullable = false)
+    @Column(name = "modified")
     private LocalDateTime modifiedAt;
 }
