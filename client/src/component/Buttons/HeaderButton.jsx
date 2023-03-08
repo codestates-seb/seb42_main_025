@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 const S_Container = styled.div`
   ${({ theme }) => {
-    const color = theme.themeColor.milkTeaTwo;
+    const milkTeaTwo = theme.themeColor.milkTeaTwo;
     return css`
       > button {
         padding: 0.5rem;
@@ -12,7 +12,7 @@ const S_Container = styled.div`
         white-space: nowrap;
         font-weight: bolder;
         font-size: 16px;
-        color: ${color};
+        color: ${milkTeaTwo};
         background-color: transparent;
         cursor: pointer;
         :hover {
