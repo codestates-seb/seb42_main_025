@@ -40,14 +40,14 @@ public class Trade extends Auditable {
 
     private boolean deleted = Boolean.FALSE;
 
-//    public void setUser(User user) {//User 양방향 매핑 메소드
+//    public void setUser(User user) {//User
 //        this.user = user;
 //        if (!user.getAnswerList().contains(this)) {
 //            user.getAnswerList().add(this);
 //        }
 //    }
 
-//    public void setCommission(Commission commission) {//Commission 양방향 매핑 메소드
+//    public void setCommission(Commission commission) {//C
 //        this.commission = commission;
 //        if (!commission.getTradeList().contains(this)) {
 //            commission.getTradeList().add(this);
