@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import theme from './style/theme';
 import Home from './page/Home';
 import Signup from './page/Signup';
+import Login from './page/Login';
 import Header from './container/Header';
 
 const S_Container = styled.main`
@@ -27,6 +28,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/Signup" element={<Signup />} />
+              <Route path="/Login" element={<Login />} />
             </Routes>
           </S_Container>
         </ThemeProvider>

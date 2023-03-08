@@ -47,18 +47,29 @@ const InputContainer = styled.div`
   position: relative;
   bottom: 30px;
   text-align: left;
+  border: 1px solid #ddba9d;
   box-shadow: 3px 3px 1px #ddba9d;
 
   input[type='email'],
   input[type='password'],
   input[type='text'] {
-    border: none;
-    text-align: center;
+    text-align: left;
     background-color: #f5e8dd;
-    padding: 0.2rem;
+    padding: 0.76rem 1.2rem;
     outline: none;
     transition: all 0.2s ease-in-out;
     color: #d58c51;
+    border: none;
+    position: relative;
+    left: -10px;
+  }
+  &:focus-within {
+    border-color: #ce8e5b;
+    outline: none;
+  }
+
+  input::placeholder {
+    color: #db9a65;
   }
 
   label {
@@ -74,6 +85,7 @@ const InputContainer = styled.div`
 
 const SignupButton = styled.button`
   background-color: #ddba9d;
+  font-size: 14px;
   color: #fff;
   padding: 0.5rem 1rem;
   border: none;
@@ -85,7 +97,7 @@ const SignupButton = styled.button`
   box-shadow: 5px 5px 1px #f5e8dd;
 
   &:hover {
-    background-color: #ddba9d;
+    background-color: #ce8e5b;
   }
 `;
 
@@ -134,20 +146,32 @@ const Signup = () => {
         </OptionContainer>
         <InputContainer>
           <label>
-            Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="email" value={email} onChange={e => setEmail(e.target.value)} />
+            <input
+              type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              placeholder="Email"
+            />
           </label>
         </InputContainer>
         <InputContainer>
           <label>
-            Password
-            <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
+            <input
+              type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              placeholder="Password"
+            />
           </label>
         </InputContainer>
         <InputContainer>
           <label>
-            Nickname
-            <input type="text" value={nickname} onChange={e => setNickname(e.target.value)} />
+            <input
+              type="text"
+              value={nickname}
+              onChange={e => setNickname(e.target.value)}
+              placeholder="Nickname"
+            />
           </label>
         </InputContainer>
         <SignupButton type="submit" onClick={handleSubmit}>
