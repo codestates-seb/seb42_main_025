@@ -76,6 +76,11 @@ function Header() {
   const handleClickLogo = () => {
     navigate('/');
   };
+
+  const handleClickSignup = () => {
+    navigate('/Signup');
+  };
+
   return (
     <S_container>
       <header className="header__container">
@@ -92,7 +97,7 @@ function Header() {
         </label>
         <div className="button__wrapper">
           <HeaderButton value="로그인" />
-          <HeaderButton value="회원가입" />
+          <HeaderButton value="회원가입" onClick={handleClickSignup} />
         </div>
       </header>
     </S_container>
