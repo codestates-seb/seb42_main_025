@@ -37,7 +37,6 @@ public class Trade extends Auditable {
     @Enumerated(EnumType.STRING)
     private Status status = Status.Waiting_Acceptance;
 
-
     private boolean deleted = Boolean.FALSE;
 
 //    public void setUser(User user) {//User
