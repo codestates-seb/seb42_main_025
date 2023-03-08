@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
 import HeaderButton from 'component/Buttons/HeaderButton';
@@ -6,68 +6,78 @@ import { ReactComponent as MainLogo } from 'assets/mainlogo.svg';
 import { ImSearch } from 'react-icons/im';
 
 const S_container = styled.div`
-  display: flex;
-  height: 70px;
-  width: 100%;
-  justify-content: center;
-  border-bottom: 1px solid #c1c1c1;
-
-  > .header__container {
-    display: flex;
-    width: 1280px;
-    align-items: center;
-
-    > .logo__wrapper {
+  ${({ theme }) => {
+    const headerGray = theme.themeColor.headerGray;
+    const milkTea = theme.themeColor.milkTea;
+    return css`
       display: flex;
-      flex: 1;
+      height: 70px;
+      width: 100%;
       justify-content: center;
+      border-bottom: 1px solid ${headerGray};
 
-      > .logo {
+      > .header__container {
         display: flex;
-        height: fit-content;
-        border: none;
-        background-color: transparent;
-        cursor: pointer;
-      }
-    }
+        width: 1280px;
+        align-items: center;
 
-    > .header-input__Container {
-      display: flex;
-      flex: 8;
-      justify-content: end;
-      margin: 0 2rem;
+        > .logo__wrapper {
+          display: flex;
+          flex: 1;
+          justify-content: center;
 
-      > .header-input__Wrapper {
-        display: flex;
-        width: 40%;
-        flex-direction: row;
-        padding: 0.4rem 0.6rem;
-        border-radius: 5px;
-        border: 1px solid #c1c1c1;
-
-        > .header-input {
-          width: 100%;
-          border: none;
-          outline: none;
-
-          ::placeholder {
-            color: #c1c1c1;
+          > .logo {
+            display: flex;
+            height: fit-content;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
           }
         }
 
-        > .header-input__logo {
-          color: #c1c1c1;
+        > .header-input__Container {
+          display: flex;
+          flex: 8;
+          justify-content: end;
+          margin: 0 2rem;
+
+          > .header-input__Wrapper {
+            display: flex;
+            width: 40%;
+            flex-direction: row;
+            padding: 0.4rem 0.6rem;
+            border-radius: 5px;
+            border: 1px solid ${headerGray};
+            :focus-within {
+              border: 2px solid ${milkTea};
+              box-shadow: 2px 2px 3px ${milkTea};
+            }
+
+            > .header-input {
+              width: 100%;
+              border: none;
+              outline: none;
+
+              ::placeholder {
+                color: ${headerGray};
+              }
+            }
+
+            > .header-input__logo {
+              color: ${headerGray};
+            }
+          }
+        }
+
+        > .button__wrapper {
+          display: flex;
+          flex-direction: row;
+          flex: 2;
+          justify-content: space-around;
         }
       }
-    }
-
-    > .button__wrapper {
-      display: flex;
-      flex-direction: row;
-      flex: 2;
-      justify-content: space-around;
-    }
-  }
+    `;
+  }}
 `;
 
 function Header() {
@@ -91,7 +101,7 @@ function Header() {
         </div>
         <label className="header-input__Container">
           <form className="header-input__Wrapper">
-            <input className="header-input" placeholder="검색어를 입력하세요"></input>
+            <input type="text" className="header-input" placeholder="검색어를 입력하세요"></input>
             <ImSearch className="header-input__logo" />
           </form>
         </label>
