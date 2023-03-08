@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-
 import HeaderButton from 'component/Buttons/HeaderButton';
 import { ReactComponent as MainLogo } from 'assets/mainlogo.svg';
 import { ImSearch } from 'react-icons/im';
@@ -91,6 +90,10 @@ function Header() {
     navigate('/Signup');
   };
 
+  const handleClickLogin = () => {
+    navigate('/Login');
+  };
+
   return (
     <S_container>
       <header className="header__container">
@@ -106,7 +109,7 @@ function Header() {
           </form>
         </label>
         <div className="button__wrapper">
-          <HeaderButton value="로그인" />
+          <HeaderButton value="로그인" onClick={handleClickLogin} />
           <HeaderButton value="회원가입" onClick={handleClickSignup} />
         </div>
       </header>
