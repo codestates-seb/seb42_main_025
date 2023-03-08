@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 const S_Container = styled.div`
   ${({ theme }) => {
-    const milkTeaTwo = theme.themeColor.milkTeaTwo;
+    const milkTea = theme.themeColor.milkTea;
     return css`
       > button {
         padding: 0.5rem;
@@ -10,10 +10,9 @@ const S_Container = styled.div`
         border: none;
         border-radius: 5px;
         white-space: nowrap;
-        font-weight: bolder;
-        font-size: 16px;
-        color: ${milkTeaTwo};
-        background-color: transparent;
+        font-weight: bold;
+        color: #fff;
+        background-color: ${milkTea};
         cursor: pointer;
         :hover {
           filter: brightness(0.9);
@@ -27,12 +26,12 @@ const S_Container = styled.div`
   }}
 `;
 
-function HeaderButton({ value }) {
+function PostButon({ value, onClick }) {
   return (
     <S_Container>
-      <button>{value}</button>
+      <button onClick={onClick}>{value}</button>
     </S_Container>
   );
 }
 
-export default HeaderButton;
+export default PostButon;
