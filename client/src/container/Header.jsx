@@ -2,19 +2,21 @@ import styled, { css } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import HeaderButton from 'component/Buttons/HeaderButton';
 import { ReactComponent as MainLogo } from 'assets/mainlogo.svg';
+// import { ReactComponent as Favicon } from 'assets/MBTfavicon.svg';
 import { ImSearch } from 'react-icons/im';
 
-const S_container = styled.div`
+const S_Container = styled.div`
   ${({ theme }) => {
-    const headerGray = theme.themeColor.headerGray;
-    const milkTea = theme.themeColor.milkTea;
+    const lightGray = theme.themeColor.lightGray;
     return css`
       display: flex;
+      position: fixed;
       height: 70px;
       width: 100%;
+      z-index: 1;
       justify-content: center;
-      border-bottom: 1px solid ${headerGray};
-
+      border-bottom: 1px solid ${lightGray};
+      background-color: #fff;
       > .header__container {
         display: flex;
         width: 1280px;
@@ -46,10 +48,10 @@ const S_container = styled.div`
             flex-direction: row;
             padding: 0.4rem 0.6rem;
             border-radius: 5px;
-            border: 1px solid ${headerGray};
+            border: 1px solid ${lightGray};
             :focus-within {
-              border: 2px solid ${milkTea};
-              box-shadow: 2px 2px 3px ${milkTea};
+              border: 2px solid ${lightGray};
+              box-shadow: 0px 1px 3px ${lightGray};
             }
 
             > .header-input {
@@ -58,12 +60,12 @@ const S_container = styled.div`
               outline: none;
 
               ::placeholder {
-                color: ${headerGray};
+                color: ${lightGray};
               }
             }
 
             > .header-input__logo {
-              color: ${headerGray};
+              color: ${lightGray};
             }
           }
         }
@@ -73,6 +75,23 @@ const S_container = styled.div`
           flex-direction: row;
           flex: 2;
           justify-content: space-around;
+          /* 
+          > .user-button {
+            display: flex;
+            width: 100%;
+            padding: 0;
+            align-items: center;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            :hover {
+              filter: brightness(0.9);
+            }
+            :active {
+              filter: brightness(0.8);
+              transform: translate(0px, 1px);
+            }
+          } */
         }
       }
     `;
@@ -95,7 +114,7 @@ function Header() {
   };
 
   return (
-    <S_container>
+    <S_Container>
       <header className="header__container">
         <div className="logo__wrapper">
           <button className="logo" onClick={handleClickLogo}>
@@ -112,8 +131,15 @@ function Header() {
           <HeaderButton value="로그인" onClick={handleClickLogin} />
           <HeaderButton value="회원가입" onClick={handleClickSignup} />
         </div>
+
+        {/* <div className="button__wrapper">
+          <button className="user-button">
+            <Favicon width={35} height={35} />
+          </button>
+          <HeaderButton value="로그아웃" />
+        </div> */}
       </header>
-    </S_container>
+    </S_Container>
   );
 }
 

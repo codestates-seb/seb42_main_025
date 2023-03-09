@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 
 const S_Container = styled.div`
-  ${({ theme }) => {
-    const milkTeaTwo = theme.themeColor.milkTeaTwo;
+  ${({ theme, color }) => {
+    const selectColor = color || theme.themeColor.milkTeaTwo;
     return css`
       > button {
         padding: 0.5rem;
@@ -12,7 +12,7 @@ const S_Container = styled.div`
         white-space: nowrap;
         font-weight: bolder;
         font-size: 16px;
-        color: ${milkTeaTwo};
+        color: ${selectColor};
         background-color: transparent;
         cursor: pointer;
         :hover {
@@ -27,9 +27,9 @@ const S_Container = styled.div`
   }}
 `;
 
-function HeaderButton({ value, onClick }) {
+function HeaderButton({ value, onClick, propsColor }) {
   return (
-    <S_Container>
+    <S_Container color={propsColor}>
       <button onClick={onClick}>{value}</button>
     </S_Container>
   );
