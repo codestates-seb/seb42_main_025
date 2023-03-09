@@ -27,10 +27,10 @@ const S_Container = styled.div`
   }}
 `;
 
-function HeaderButton({ value }) {
+function HeaderButton({ value, onClick }) {
   return (
     <S_Container>
-      <button>{value}</button>
+      <button onClick={onClick}>{value}</button>
     </S_Container>
   );
 }
