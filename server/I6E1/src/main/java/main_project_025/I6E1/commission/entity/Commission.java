@@ -5,14 +5,18 @@ import lombok.Setter;
 import javax.persistence.*;
 import lombok.NoArgsConstructor;
 import main_project_025.I6E1.global.auditable.Auditable;
+import main_project_025.I6E1.trade.entity.Trade;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
-@Setter @Getter
+@Setter
+@Getter
 @Where(clause = "deleted=false")
 @SQLDelete(sql = "UPDATE commission SET deleted = true WHERE id=?")
 @NoArgsConstructor
@@ -38,4 +42,13 @@ public class Commission extends Auditable {
     private List<Review> reviews = new ArrayList<>();
     */
 
+    @OneToMany(mappedBy = "commission", cascade = {CascadeType.ALL})
+    private List<Trade> trades = new ArrayList<>();
+
+    public void setTrade(Trade trade) {
+        this.getTrades().add(trade);
+        if (trade.getCommission() != this) {
+            trade.setCommission(this);
+        }
+    }
 }

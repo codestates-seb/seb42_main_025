@@ -3,7 +3,9 @@ package main_project_025.I6E1.trade.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import main_project_025.I6E1.Auditable.Auditable;
+import main_project_025.I6E1.Member.entity.Member;
+import main_project_025.I6E1.commission.entity.Commission;
+import main_project_025.I6E1.global.auditable.Auditable;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -22,34 +24,36 @@ public class Trade extends Auditable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tradeId;
 
-//    @ManyToOne
-//    @JoinColumn(name = "commission_id")
-//    private Commission commission;
+    @ManyToOne
+    @JoinColumn(name = "commission_id")
+    private Commission commission;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private User user
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
+
+    private String title;
 
     @Column(columnDefinition = "MEDIUMTEXT")
     private String content;
 
     @NotNull
     @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
     private Status status = Status.Waiting_Acceptance;
 
-    private boolean deleted = Boolean.FALSE;
+    public void setMember(Member member) {
+        this.member = member;
+        if (!member.getTrades().contains(this)) {
+            member.getTrades().add(this);
+        }
+    }
 
-//    public void setUser(User user) {//User
-//        this.user = user;
-//        if (!user.getAnswerList().contains(this)) {
-//            user.getAnswerList().add(this);
-//        }
-//    }
+    public void setCommission(Commission commission) {//C
+        this.commission = commission;
+        if (!commission.getTrades().contains(this)) {
+            commission.getTrades().add(this);
+        }
+    }
 
-//    public void setCommission(Commission commission) {//C
-//        this.commission = commission;
-//        if (!commission.getTradeList().contains(this)) {
-//            commission.getTradeList().add(this);
-//        }
-//    }
 }

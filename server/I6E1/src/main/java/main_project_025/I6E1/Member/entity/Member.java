@@ -2,11 +2,10 @@ package main_project_025.I6E1.Member.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import main_project_025.I6E1.Auditable.Auditable;
+import main_project_025.I6E1.global.auditable.Auditable;
+import main_project_025.I6E1.trade.entity.Trade;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +29,18 @@ public class Member extends Auditable {
     
     //멤버 프로필에 사진이 필요
     //형태가 바뀌면 변경 필요함
-    private Image image;
+//    private Image image;
 
     //멤버 권한
-    private List<String> roles = new ArrayList<>();
+//    private List<String> roles = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", cascade = {CascadeType.ALL})
+    private List<Trade> trades = new ArrayList<>();
+
+    public void setTrade(Trade trade) {
+        this.getTrades().add(trade);
+        if (trade.getMember() != this) {
+            trade.setMember(this);
+        }
+    }
 }

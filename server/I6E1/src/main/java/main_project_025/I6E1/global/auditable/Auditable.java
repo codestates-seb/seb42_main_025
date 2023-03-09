@@ -16,11 +16,12 @@ import java.time.temporal.ChronoUnit;
 @EntityListeners(AuditingEntityListener.class)
 public abstract class Auditable {
     @CreatedDate
-    @Column(name = "created", insertable = false, updatable = false)
+//    @Column(name = "createdAt", updatable = false, nullable = false)
+    @Column(updatable = false, nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
 
     @LastModifiedDate
-    @Column(name = "modified", insertable = false)
+    @Column// insertable = false,
     private LocalDateTime modifiedAt;
 
     @Column(name = "deleted")
