@@ -49,6 +49,7 @@ const InputContainer = styled.div`
   text-align: left;
   border: 1px solid #ddba9d;
   box-shadow: 3px 3px 1px #ddba9d;
+  border-color: ${({ borderColor }) => borderColor};
 
   input[type='email'],
   input[type='password'],
@@ -128,11 +129,16 @@ const ErrorMessage = styled.div`
 const Signup = () => {
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
+  const [emailBorderColor, setEmailBorderColor] = useState('#ddba9d');
 
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [passwordBorderColor, setPasswordBorderColor] = useState('#ddba9d');
 
   const [nickname, setNickname] = useState('');
+  const [nicknameError, setNicknameError] = useState('');
+  const [nicknameBorderColor, setNicknameBorderColor] = useState('#ddba9d');
+
   const [userType, setUserType] = useState('writer');
 
   const navigate = useNavigate();
@@ -140,26 +146,48 @@ const Signup = () => {
   const validateEmail = value => {
     if (!value) {
       setEmailError('이메일을 입력해주세요.');
+      setEmailBorderColor('red');
       return false;
     }
     if (!/\S+@\S+\.\S+/.test(value)) {
       setEmailError('이메일 형식이 올바르지 않습니다.');
+      setEmailBorderColor('red');
       return false;
     }
     setEmailError('');
+    setEmailBorderColor('#ddba9d');
     return true;
   };
 
   const validatePassword = value => {
     if (!value) {
       setPasswordError('비밀번호를 입력해주세요.');
+      setPasswordBorderColor('red');
       return false;
     }
     if (value.length < 8) {
       setPasswordError('비밀번호는 8자리 이상이어야 합니다.');
+      setPasswordBorderColor('red');
       return false;
     }
     setPasswordError('');
+    setPasswordBorderColor('#ddba9d');
+    return true;
+  };
+
+  const validateNickname = value => {
+    if (!value) {
+      setNicknameError('닉네임을 입력해주세요.');
+      setNicknameBorderColor('red');
+      return false;
+    }
+    if (value.length < 2) {
+      setNicknameError('닉네임은 2자리 이상이어야 합니다.');
+      setNicknameBorderColor('red');
+      return false;
+    }
+    setNicknameError('');
+    setNicknameBorderColor('#ddba9d');
     return true;
   };
 
@@ -167,9 +195,9 @@ const Signup = () => {
     event.preventDefault();
     const isEmailValid = validateEmail(email);
     const isPasswordValid = validatePassword(password);
-    // const isNicknameValid = validateNickname(nickname);
+    const isNicknameValid = validateNickname(nickname);
 
-    if (!isEmailValid || !isPasswordValid) {
+    if (!isEmailValid || !isPasswordValid || !isNicknameValid) {
       return;
     }
 
@@ -189,7 +217,7 @@ const Signup = () => {
             </OptionButton>
           </div>
         </OptionContainer>
-        <InputContainer>
+        <InputContainer borderColor={emailBorderColor}>
           <label>
             <input
               type="email"
@@ -201,7 +229,7 @@ const Signup = () => {
           </label>
           {emailError && <ErrorMessage>{emailError}</ErrorMessage>}
         </InputContainer>
-        <InputContainer>
+        <InputContainer borderColor={passwordBorderColor}>
           <label>
             <input
               type="password"
@@ -213,15 +241,17 @@ const Signup = () => {
           </label>
           {passwordError && <ErrorMessage>{passwordError}</ErrorMessage>}
         </InputContainer>
-        <InputContainer>
+        <InputContainer borderColor={nicknameBorderColor}>
           <label>
             <input
               type="text"
               value={nickname}
               onChange={e => setNickname(e.target.value)}
+              onBlur={() => validateNickname(nickname)}
               placeholder="Nickname"
             />
           </label>
+          {nicknameError && <ErrorMessage>{nicknameError}</ErrorMessage>}
         </InputContainer>
         <SignupButton type="submit" onClick={handleSubmit}>
           Signup
