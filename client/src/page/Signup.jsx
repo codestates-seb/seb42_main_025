@@ -16,7 +16,7 @@ const SignupContainer = styled.div`
   align-items: center;
   justify-content: center;
   width: 330px;
-  height: 420px;
+  height: 460px;
   border: 2px solid #ddba9d;
   border-radius: 2rem;
   position: absolute;
@@ -39,7 +39,7 @@ const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   background-color: #f5e8dd;
   width: 240px;
   height: 40px;
@@ -92,7 +92,7 @@ const SignupButton = styled.button`
   border-radius: 0.3rem;
   cursor: pointer;
   position: relative;
-  top: 38px;
+  top: 35px;
   padding: 0.8rem 6.3rem;
   box-shadow: 5px 5px 1px #f5e8dd;
 
@@ -119,15 +119,60 @@ const OptionButton = styled.button`
   }
 `;
 
+const ErrorMessage = styled.div`
+  color: red;
+  font-size: 12px;
+  margin-top: 10px;
+`;
+
 const Signup = () => {
   const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+
   const [password, setPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
   const [nickname, setNickname] = useState('');
   const [userType, setUserType] = useState('writer');
+
   const navigate = useNavigate();
+
+  const validateEmail = value => {
+    if (!value) {
+      setEmailError('이메일을 입력해주세요.');
+      return false;
+    }
+    if (!/\S+@\S+\.\S+/.test(value)) {
+      setEmailError('이메일 형식이 올바르지 않습니다.');
+      return false;
+    }
+    setEmailError('');
+    return true;
+  };
+
+  const validatePassword = value => {
+    if (!value) {
+      setPasswordError('비밀번호를 입력해주세요.');
+      return false;
+    }
+    if (value.length < 8) {
+      setPasswordError('비밀번호는 8자리 이상이어야 합니다.');
+      return false;
+    }
+    setPasswordError('');
+    return true;
+  };
 
   const handleSubmit = event => {
     event.preventDefault();
+    const isEmailValid = validateEmail(email);
+    const isPasswordValid = validatePassword(password);
+    // const isNicknameValid = validateNickname(nickname);
+
+    if (!isEmailValid || !isPasswordValid) {
+      return;
+    }
+
     navigate('/Login');
   };
 
@@ -150,9 +195,11 @@ const Signup = () => {
               type="email"
               value={email}
               onChange={e => setEmail(e.target.value)}
+              onBlur={() => validateEmail(email)}
               placeholder="Email"
             />
           </label>
+          {emailError && <ErrorMessage>{emailError}</ErrorMessage>}
         </InputContainer>
         <InputContainer>
           <label>
@@ -160,9 +207,11 @@ const Signup = () => {
               type="password"
               value={password}
               onChange={e => setPassword(e.target.value)}
+              onBlur={() => validatePassword(password)}
               placeholder="Password"
             />
           </label>
+          {passwordError && <ErrorMessage>{passwordError}</ErrorMessage>}
         </InputContainer>
         <InputContainer>
           <label>
