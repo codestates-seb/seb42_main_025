@@ -7,8 +7,16 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100vh;
+`;
+
+const LoginContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 330px;
-  height: 320px;
+  height: 460px;
   border: 2px solid #ddba9d;
   border-radius: 2rem;
   position: absolute;
@@ -18,111 +26,165 @@ const Container = styled.div`
   box-shadow: 10px 10px 1px #f5e8dd;
 `;
 
-const FormWrapper = styled.form`
+const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
-`;
-
-const Label = styled.label`
-  font-size: 16px;
-  margin-bottom: 5px;
-`;
-
-const Input = styled.input`
-  font-size: 15px;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ddba9d;
-  margin-bottom: 10px;
-  width: 220px;
-  height: 20px;
-  position: relative;
-  bottom: 50px;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
   background-color: #f5e8dd;
+  width: 240px;
+  height: 40px;
+  border-radius: 0.3rem;
+  position: relative;
+  bottom: 30px;
+  text-align: left;
+  border: 1px solid #ddba9d;
   box-shadow: 3px 3px 1px #ddba9d;
-  color: #db9a65;
+  border-color: ${({ borderColor }) => borderColor};
 
-  ::placeholder {
-    color: #db9a65;
+  input[type='email'],
+  input[type='password'],
+  input[type='text'] {
+    text-align: left;
+    background-color: #f5e8dd;
+    padding: 0.76rem 1.2rem;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+    color: #d58c51;
+    border: none;
+    position: relative;
+    left: -10px;
   }
-
-  &:focus {
+  &:focus-within {
     border-color: #ce8e5b;
     outline: none;
   }
+
+  input::placeholder {
+    color: #db9a65;
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    padding-left: 35px;
+    color: #db9a65;
+  }
 `;
 
-const Button = styled.button`
+const LoginButton = styled.button`
   background-color: #ddba9d;
   font-size: 14px;
-  color: white;
+  color: #fff;
+  padding: 0.5rem 1rem;
   border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  position: relative;
-  top: 30px;
-  width: 240px;
-  height: 40px;
-  box-shadow: 5px 5px 1px #f5e8dd;
+  border-radius: 0.3rem;
   cursor: pointer;
+  position: relative;
+  top: 35px;
+  padding: 0.8rem 6.3rem;
+  box-shadow: 5px 5px 1px #f5e8dd;
 
   &:hover {
     background-color: #ce8e5b;
   }
 `;
 
+const ErrorMessage = styled.div`
+  color: red;
+  font-size: 12px;
+  margin-top: 10px;
+`;
+
 const Login = () => {
   const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [emailBorderColor, setEmailBorderColor] = useState('#ddba9d');
+
   const [password, setPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [passwordBorderColor, setPasswordBorderColor] = useState('#ddba9d');
+
   const navigate = useNavigate();
 
-  const handleEmailChange = event => {
-    setEmail(event.target.value);
+  const validateEmail = value => {
+    if (!value) {
+      setEmailError('이메일을 입력해주세요.');
+      setEmailBorderColor('red');
+      return false;
+    }
+    if (!/\S+@\S+\.\S+/.test(value)) {
+      setEmailError('이메일 형식이 올바르지 않습니다.');
+      setEmailBorderColor('red');
+      return false;
+    }
+    setEmailError('');
+    setEmailBorderColor('#ddba9d');
+    return true;
   };
 
-  const handlePasswordChange = event => {
-    setPassword(event.target.value);
+  const validatePassword = value => {
+    if (!value) {
+      setPasswordError('비밀번호를 입력해주세요.');
+      setPasswordBorderColor('red');
+      return false;
+    }
+    if (value.length < 8) {
+      setPasswordError('비밀번호는 8자리 이상이어야 합니다.');
+      setPasswordBorderColor('red');
+      return false;
+    }
+    setPasswordError('');
+    setPasswordBorderColor('#ddba9d');
+    return true;
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-    navigate('/');
+    const isEmailValid = validateEmail(email);
+    const isPasswordValid = validatePassword(password);
 
-    if (email === '' || password === '') {
-      alert('Please fill in all fields');
-    } else {
-      // Handle login submission
+    if (!isEmailValid || !isPasswordValid) {
+      return;
     }
+
+    navigate('/');
   };
 
   return (
     <Container>
-      <FormWrapper onSubmit={handleSubmit}>
-        <Label htmlFor="email"></Label>
-        <Input
-          type="email"
-          id="email"
-          name="email"
-          value={email}
-          onChange={handleEmailChange}
-          placeholder="Email"
-          required
-        />
-        <Label htmlFor="password"></Label>
-        <Input
-          type="password"
-          id="password"
-          name="password"
-          value={password}
-          onChange={handlePasswordChange}
-          placeholder="Password"
-          required
-        />
-        <Button type="submit">Log in</Button>
-      </FormWrapper>
+      <LoginContainer>
+        <InputContainer borderColor={emailBorderColor}>
+          <label>
+            <input
+              type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              onBlur={() => validateEmail(email)}
+              placeholder="Email"
+            />
+          </label>
+          {emailError && <ErrorMessage>{emailError}</ErrorMessage>}
+        </InputContainer>
+        <InputContainer borderColor={passwordBorderColor}>
+          <label>
+            <input
+              type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              onBlur={() => validatePassword(password)}
+              placeholder="Password"
+            />
+          </label>
+          {passwordError && <ErrorMessage>{passwordError}</ErrorMessage>}
+        </InputContainer>
+        <LoginButton type="submit" onClick={handleSubmit}>
+          Login
+        </LoginButton>
+      </LoginContainer>
     </Container>
   );
 };
