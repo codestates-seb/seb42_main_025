@@ -182,7 +182,7 @@ const Login = () => {
           {passwordError && <ErrorMessage>{passwordError}</ErrorMessage>}
         </InputContainer>
         <LoginButton type="submit" onClick={handleSubmit}>
-          Signup
+          Login
         </LoginButton>
       </LoginContainer>
     </Container>
