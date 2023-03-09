@@ -42,7 +42,7 @@ public class Commission extends Auditable {
     private List<Review> reviews = new ArrayList<>();
     */
 
-    @OneToMany(mappedBy = "commission", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "commission")
     private List<Trade> trades = new ArrayList<>();
 
     public void setTrade(Trade trade) {

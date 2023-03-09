@@ -18,6 +18,7 @@ import java.util.List;
 public class Member extends Auditable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//추가
     private Long memberId;
 
     @Column(unique = true)

@@ -13,7 +13,7 @@ public class MemberDto {
         private String password;
         private String name;
         //프로필 사진
-        private String imgUrl;
+//        private String imgUrl;
     }
 
     //이메일 중복 확인
@@ -42,6 +42,6 @@ public class MemberDto {
         private Long memberId;
         private String email;
         private String name;
-        private String imgUrl;
+//        private String imgUrl;
     }
 }

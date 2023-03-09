@@ -14,8 +14,6 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class TradePatchDto {
 
-    private long commissionId;
-    private long memberId;
     @NotNull(message = "요청을 확인해주세요")
     private Status status;
 

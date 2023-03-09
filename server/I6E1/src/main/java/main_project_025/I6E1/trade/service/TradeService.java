@@ -27,9 +27,13 @@ public class TradeService {
 
     public Trade createTrade(Trade trade) {
         //유저검증(사용자 role만 신청 가능할지 둘 다 가능하게 할지?)
-        findCommissionById(trade.getCommission().getCommissionId());//커미션 검증
+        Commission commission = findCommissionById(trade.getCommission().getCommissionId());//커미션 검증
+
+        //유저 검증 로직 받으면 수정
         Member member = new Member();
         member.setMemberId(1L);
+
+        trade.setCommission(commission);
         trade.setMember(member);
         //거래 있는지 확인?? -> 있으면 알림? -> 굳이 할 필요는 없을듯?
         return tradeRepository.save(trade);
@@ -38,10 +42,17 @@ public class TradeService {
     public Trade updateTrade(Trade trade) {
         //유저의 role을 검색해서 작가일 경우에만 수정가능하게?
         Trade findTrade = findTradeById(trade.getTradeId());//거래 검증
-        findCommissionById(findTrade.getCommission().getCommissionId());//커미션 검증
+        Commission commission = findCommissionById(findTrade.getCommission().getCommissionId());//커미션 검증
+        trade.setCommission(commission);
+
+        //유저 검증 로직 받으면 교체
+        Member member = new Member();
+        member.setMemberId(1L);
+        trade.setMember(member);
+
         trade.setContent(findTrade.getContent());
         trade.setTitle(findTrade.getTitle());
-        trade.setStatus(trade.getStatus());
+//        trade.setStatus(trade.getStatus()); 필요없는듯
         return tradeRepository.save(trade);
     }
 

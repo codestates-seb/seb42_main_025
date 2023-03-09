@@ -12,11 +12,11 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface TradeMapper {
 
-    @Mapping(source = "memberId", target = "member.memberId")
+//    @Mapping(source = "memberId", target = "member.memberId")
     @Mapping(source = "commissionId", target = "commission.commissionId")
     Trade tradePostDtoToTrade(TradePostDto tradePostDto);
-    @Mapping(source = "memberId", target = "member.memberId")
-    @Mapping(source = "commissionId", target = "commission.commissionId")
+//    @Mapping(source = "memberId", target = "member.memberId")
+//    @Mapping(source = "commissionId", target = "commission.commissionId")
     Trade tradePatchDtoToTrade(TradePatchDto tradePatchDto);
 
     @Mapping(source = "member.memberId", target = "memberId")
