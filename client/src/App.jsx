@@ -6,7 +6,9 @@ import theme from './style/theme';
 import Home from './page/Home';
 import Signup from './page/Signup';
 import Login from './page/Login';
+import Post from './page/Post';
 import Header from './container/Header';
+import Footer from 'container/Footer';
 
 const S_Container = styled.main`
   display: flex;
@@ -29,8 +31,10 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/Signup" element={<Signup />} />
               <Route path="/Login" element={<Login />} />
+              <Route path="/commission" element={<Post />} />
             </Routes>
           </S_Container>
+          <Footer />
         </ThemeProvider>
       </React.Fragment>
     </BrowserRouter>
