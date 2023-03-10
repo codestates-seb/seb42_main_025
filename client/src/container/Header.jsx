@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import HeaderButton from 'component/Buttons/HeaderButton';
-import { ReactComponent as MainLogo } from 'assets/mainlogo.svg';
+// import { ReactComponent as MainLogo } from 'assets/mainlogo.svg';
+import mainlogo from 'assets/Main_logo.png';
 // import { ReactComponent as Favicon } from 'assets/MBTfavicon.svg';
 import { ImSearch } from 'react-icons/im';
 
@@ -118,7 +119,7 @@ function Header() {
       <header className="header__container">
         <div className="logo__wrapper">
           <button className="logo" onClick={handleClickLogo}>
-            <MainLogo width={100} height={70} />
+            <img src={mainlogo} width={110} alt="mainlogo" />
           </button>
         </div>
         <label className="header-input__Container">

@@ -6,8 +6,7 @@ const S_Container = styled.div`
     const selectBorder = theme.themeColor.lightGray;
     return css`
       > button {
-        padding: 0.7rem 1rem;
-        margin: 0.5rem;
+        padding: 0.3rem 1rem;
         border: 1px solid ${selectBorder};
         border-radius: 30px;
         white-space: nowrap;

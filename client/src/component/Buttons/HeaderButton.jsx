@@ -5,8 +5,7 @@ const S_Container = styled.div`
     const selectColor = color || theme.themeColor.milkTeaTwo;
     return css`
       > button {
-        padding: 0.5rem;
-        margin: 0.5rem;
+        padding: none;
         border: none;
         border-radius: 5px;
         white-space: nowrap;
@@ -27,10 +26,12 @@ const S_Container = styled.div`
   }}
 `;
 
-function HeaderButton({ value, onClick, propsColor }) {
+function HeaderButton({ value, onClick, propsColor, name }) {
   return (
     <S_Container color={propsColor}>
-      <button onClick={onClick}>{value}</button>
+      <button onClick={onClick} className={name}>
+        {value}
+      </button>
     </S_Container>
   );
 }

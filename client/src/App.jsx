@@ -9,6 +9,7 @@ import Login from './page/Login';
 import Post from './page/Post';
 import Header from './container/Header';
 import Footer from 'container/Footer';
+import AuthorMypage from 'page/AuthorMypage';
 
 const S_Container = styled.main`
   display: flex;
@@ -32,6 +33,7 @@ function App() {
               <Route path="/Signup" element={<Signup />} />
               <Route path="/Login" element={<Login />} />
               <Route path="/commission" element={<Post />} />
+              <Route path="/author/:id" element={<AuthorMypage />} />
             </Routes>
           </S_Container>
           <Footer />
