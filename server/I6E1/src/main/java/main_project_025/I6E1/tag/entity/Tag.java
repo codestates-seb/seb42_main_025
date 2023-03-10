@@ -25,6 +25,6 @@ public class Tag {
     @Column(unique = true)
     private String tagName;
 
-    @OneToMany(mappedBy = "tag", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "tag")
     private List<CommissionTag> commissions = new ArrayList<>();
 }
