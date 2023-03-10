@@ -5,6 +5,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import lombok.NoArgsConstructor;
 import main_project_025.I6E1.global.auditable.Auditable;
+import main_project_025.I6E1.tag.entity.CommissionTag;
 import main_project_025.I6E1.trade.entity.Trade;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
@@ -42,8 +43,11 @@ public class Commission extends Auditable {
     private List<Review> reviews = new ArrayList<>();
     */
 
-    @OneToMany(mappedBy = "commission")
+    @OneToMany(mappedBy = "commission")//cascade 추가??
     private List<Trade> trades = new ArrayList<>();
+
+    @OneToMany(mappedBy = "commission")//tag 매핑
+    private List<CommissionTag> tags = new ArrayList<>();
 
     public void setTrade(Trade trade) {
         this.getTrades().add(trade);

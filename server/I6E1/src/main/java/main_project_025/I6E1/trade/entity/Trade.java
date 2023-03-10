@@ -32,9 +32,11 @@ public class Trade extends Auditable {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    @NotNull
     private String title;
 
     @Column(columnDefinition = "MEDIUMTEXT")
+    @NotNull
     private String content;
 
     @NotNull
