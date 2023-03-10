@@ -16,6 +16,5 @@ public interface CommissionMapper {
     @Mapping(source = "member.email", target = "memberEmail")
     CommissionDto.Response commissionToResponse(Commission commission);
 
-
     List<CommissionDto.Response> commissionToResponses(List<Commission> commissions);
 }
