@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import Carousel from 'component/Carousel.jsx';
-import { Container } from 'container/Container';
+// import { Container } from 'container/Container';
 import imgUrl from 'assets/shoes1.jpg';
 
 const Contents = styled.div`
-  height: 100vh;
+  /* height: 100vh; */
+  max-width: 1280px;
 `;
 
 const Commission = styled.div`
@@ -13,8 +14,11 @@ const Commission = styled.div`
 
 const SellContainer = styled.div`
   display: flex;
+  max-width: 1280px;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  line-height: 1.5;
 `;
 
 const SellBox = styled.div`
@@ -22,7 +26,7 @@ const SellBox = styled.div`
 `;
 
 const Tag = styled.div`
-  padding-top: 2px;
+  padding-top: 10px;
 `;
 
 const Image = styled.img`
@@ -31,11 +35,11 @@ const Image = styled.img`
 `;
 
 const Title = styled.div`
-  padding-top: 2px;
+  /* padding-top: 2px; */
 `;
 
 const Author = styled.div`
-  padding-top: 2px;
+  /* padding-top: 2px; */
 `;
 
 const items = [
@@ -44,31 +48,36 @@ const items = [
   { id: 3, url: imgUrl },
   { id: 4, url: imgUrl },
   { id: 5, url: imgUrl },
+  { id: 6, url: imgUrl },
+  { id: 7, url: imgUrl },
+  { id: 8, url: imgUrl },
+  { id: 9, url: imgUrl },
+  { id: 10, url: imgUrl },
 ];
 
 function Home() {
   return (
     <>
-      <Container>
-        <Contents>
-          <Carousel />
-          <Commission>새로운 커미션들</Commission>
-          <SellContainer>
-            {items.map(item => {
-              return (
-                <div key={item.id}>
-                  <SellBox>
-                    <Tag>태그</Tag>
-                    <Image src={item.url}></Image>
-                    <Title>제목</Title>
-                    <Author>작가</Author>
-                  </SellBox>
-                </div>
-              );
-            })}
-          </SellContainer>
-        </Contents>
-      </Container>
+      {/* <Container> */}
+      <Contents>
+        <Carousel />
+        <Commission>새로운 커미션들</Commission>
+        <SellContainer>
+          {items.map(item => {
+            return (
+              <div key={item.id}>
+                <SellBox>
+                  <Tag>오마카세</Tag>
+                  <Image src={item.url}></Image>
+                  <Title>신발 나눔</Title>
+                  <Author>이현동</Author>
+                </SellBox>
+              </div>
+            );
+          })}
+        </SellContainer>
+      </Contents>
+      {/* </Container> */}
     </>
   );
 }
