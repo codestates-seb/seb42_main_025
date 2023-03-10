@@ -9,7 +9,7 @@ const S_container = styled.div`
   margin: 0 auto;
   padding-top: 50px;
   width: 800px;
-  height: 350px;
+  height: 600px;
   overflow: hidden;
   align-items: center;
 `;
@@ -33,9 +33,9 @@ const StyledSlider = styled(Slider)`
 const ImageContainer = styled.div``;
 
 const Image = styled.img`
-  display: flex;
-  width: 700px;
-  height: 300px;
+  width: 800px;
+  height: 600px;
+  object-fit: cover;
 `;
 
 const items = [
@@ -54,8 +54,8 @@ export default class SimpleSlider extends Component {
       arrows: true,
       centerMode: true,
       pauseOnHover: true,
-      autoplay: true,
-      autoplayspeed: 1000,
+      // autoplay: true,
+      // autoplayspeed: 1000,
     };
 
     return (
