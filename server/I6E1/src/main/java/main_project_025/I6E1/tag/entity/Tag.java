@@ -27,4 +27,9 @@ public class Tag {
 
     @OneToMany(mappedBy = "tag")
     private List<CommissionTag> commissions = new ArrayList<>();
+
+    public Tag(String tagName) {
+        this.tagName = tagName;
+        this.commissions = new ArrayList<>();
+    }
 }
