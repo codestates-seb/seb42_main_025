@@ -1,7 +1,11 @@
 import styled from 'styled-components';
-import { Container } from 'container/Container';
 import Carousel from 'component/Carousel';
 import PostButton from 'component/Buttons/PostButton';
+
+const Container = styled.div`
+  margin-top: 100px;
+  max-width: 1280px;
+`;
 
 const Content = styled.div`
   display: flex;
@@ -10,8 +14,7 @@ const Content = styled.div`
   min-width: 1280px;
 `;
 
-const IMGS = styled.div`
-  /* background-color: aqua; */
+const Img = styled.div`
   flex-grow: 1;
 `;
 
@@ -74,6 +77,7 @@ const DetailReviewBox = styled.div`
   font-weight: bold;
   color: #fff;
   height: 50px;
+  margin-top: 30px;
 `;
 
 const Review = styled.div`
@@ -110,9 +114,9 @@ function Post() {
     <Container>
       <div>
         <Content>
-          <IMGS>
+          <Img>
             <Carousel />
-          </IMGS>
+          </Img>
           <Summary>
             <Title>
               <div>제목</div>
