@@ -1,15 +1,19 @@
 import styled from 'styled-components';
 import Carousel from 'component/Carousel.jsx';
-// import { Container } from 'container/Container';
 import imgUrl from 'assets/shoes1.jpg';
 
+const Container = styled.div`
+  margin-top: 71px;
+  max-width: 1280px;
+`;
+
 const Contents = styled.div`
-  /* height: 100vh; */
   max-width: 1280px;
 `;
 
 const Commission = styled.div`
   margin: 70px 0px 18px 0px;
+  width: 100%;
 `;
 
 const SellContainer = styled.div`
@@ -58,26 +62,26 @@ const items = [
 function Home() {
   return (
     <>
-      {/* <Container> */}
-      <Contents>
-        <Carousel />
-        <Commission>새로운 커미션들</Commission>
-        <SellContainer>
-          {items.map(item => {
-            return (
-              <div key={item.id}>
-                <SellBox>
-                  <Tag>오마카세</Tag>
-                  <Image src={item.url}></Image>
-                  <Title>신발 나눔</Title>
-                  <Author>이현동</Author>
-                </SellBox>
-              </div>
-            );
-          })}
-        </SellContainer>
-      </Contents>
-      {/* </Container> */}
+      <Container>
+        <Contents>
+          <Carousel />
+          <SellContainer>
+            <Commission>새로운 커미션들</Commission>
+            {items.map(item => {
+              return (
+                <div key={item.id}>
+                  <SellBox>
+                    <Tag>오마카세</Tag>
+                    <Image src={item.url}></Image>
+                    <Title>신발 나눔</Title>
+                    <Author>이현동</Author>
+                  </SellBox>
+                </div>
+              );
+            })}
+          </SellContainer>
+        </Contents>
+      </Container>
     </>
   );
 }
