@@ -7,8 +7,8 @@ const InputLabel = styled.label`
 `;
 
 const InputField = styled.input`
-  width: 320px;
-  height: 40px;
+  width: 228px;
+  height: 23px;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -16,24 +16,25 @@ const InputField = styled.input`
 `;
 
 const ErrorMessage = styled.div`
-  display: none;
-  margin-top: 8px;
   font-size: 12px;
   color: red;
+  position: relative;
+  top: 5px;
 `;
 
 const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 16px;
+  height: 80px;
 `;
 
-const InputComponent = ({ label, placeholder, value, onChange, onBlur, error }) => {
+const InputComponent = ({ label, placeholder, value, onChange, onBlur, error, type = 'text' }) => {
   return (
     <InputContainer>
       <InputLabel>{label}</InputLabel>
       <InputField
-        type="text"
+        type={type}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
