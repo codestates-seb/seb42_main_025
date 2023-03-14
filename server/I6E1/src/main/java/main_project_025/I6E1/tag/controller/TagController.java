@@ -25,14 +25,6 @@ public class TagController {
     private final TagService tagService;
     private final TagMapper tagMapper;
 
-//    @PostMapping
-//    public ResponseEntity createTag(@RequestBody TagPostDto tagPostDto) {
-//        Tag tag = tagMapper.tagPostDtoToTag(tagPostDto);
-//        Tag createdTag = tagService.createTag(tag);
-//        TagRespondDto tagRespondDto = tagMapper.tagToTagRespondDto(createdTag);
-//        return new ResponseEntity(tagRespondDto, HttpStatus.OK);
-//    }
-
     @GetMapping
     public ResponseEntity readAllTag(Pageable pageable) {
         Page<Tag> tagPage = tagService.readTags(pageable);

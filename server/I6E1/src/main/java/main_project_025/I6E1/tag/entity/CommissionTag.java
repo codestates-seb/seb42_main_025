@@ -7,6 +7,7 @@ import main_project_025.I6E1.commission.entity.Commission;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 @Getter
 @Setter
@@ -26,7 +27,6 @@ public class CommissionTag {
     @JoinColumn(name = "tag_id")
     private Tag tag;
 
-    @NotEmpty
     private String tagName;//Tag 엔티티의 tagName 컬럼의 스냅샷
 
     public CommissionTag(Tag tag) {//tag test

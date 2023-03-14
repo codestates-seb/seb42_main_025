@@ -10,6 +10,7 @@ import org.mapstruct.Named;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
 public interface CommissionMapper {
@@ -22,6 +23,11 @@ public interface CommissionMapper {
         }
         return commissionTags;
     }
+    @Named("tagToString")
+    default List<String> tagToString(List<CommissionTag> tags) {
+        return tags.stream().map(CommissionTag::getTagName).collect(Collectors.toList());
+    }
+
 
     @Mapping(target = "tags", qualifiedByName = "mapTags", source = "tags")//tag test
     Commission commissionPostDtoToCommission(CommissionDto.Post post);
@@ -29,6 +35,7 @@ public interface CommissionMapper {
 
     @Mapping(source = "member.name", target = "memberName")
     @Mapping(source = "member.email", target = "memberEmail")
+    @Mapping(source = "tags", target = "tags", qualifiedByName = "tagToString")
     CommissionDto.Response commissionToResponse(Commission commission);
 
     List<CommissionDto.Response> commissionToResponses(List<Commission> commissions);
