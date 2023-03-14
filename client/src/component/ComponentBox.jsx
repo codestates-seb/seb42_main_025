@@ -3,14 +3,16 @@ import styled, { css } from 'styled-components';
 function ComponentBox({ mode, info }) {
   return (
     <>
-      <StyledSummaryBox mode={mode}>
-        <StyledImg src={info.image} alt={info.title} />
-        <StyledTitle>{info.title}</StyledTitle>
-        <StyledContent>{info.content}</StyledContent>
-        <StyledSubtitle>{info.subtitle}</StyledSubtitle>
-        <StyledWriter>{info.writer}</StyledWriter>
-        <StyledDate>{info.date}</StyledDate>
-      </StyledSummaryBox>
+      {info && (
+        <StyledSummaryBox mode={mode}>
+          <StyledImg src={info.image} alt={info.title} />
+          <StyledTitle>{info.title}</StyledTitle>
+          <StyledContent>{info.content}</StyledContent>
+          <StyledSubtitle>{info.subtitle}</StyledSubtitle>
+          <StyledWriter>{info.writer}</StyledWriter>
+          <StyledDate>{info.date}</StyledDate>
+        </StyledSummaryBox>
+      )}
     </>
   );
 }
