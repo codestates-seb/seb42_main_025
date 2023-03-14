@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import InputComponent from 'component/InputComponent';
 
 const Container = styled.div`
-  display: flex;
+  display: grid;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -12,12 +12,12 @@ const Container = styled.div`
 `;
 
 const LoginContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
   justify-content: center;
+  grid-template-rows: auto auto auto auto;
+  gap: 16px;
   width: 330px;
-  height: 460px;
+  height: 300px;
   border: 2px solid #ddba9d;
   border-radius: 2rem;
   position: absolute;
@@ -25,19 +25,22 @@ const LoginContainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 10px 10px 1px #f5e8dd;
+  padding: 50px 32px 32px 32px;
 `;
 
 const LoginButton = styled.button`
   background-color: #ddba9d;
   font-size: 14px;
   color: #fff;
-  padding: 0.5rem 1rem;
+  padding: 0.1rem 1rem;
   border: none;
   border-radius: 0.3rem;
   cursor: pointer;
   position: relative;
-  top: 35px;
-  padding: 0.8rem 6.6rem;
+  width: 337px;
+  height: 40px;
+  top: 20px;
+
   box-shadow: 5px 5px 1px #f5e8dd;
 
   &:hover {
