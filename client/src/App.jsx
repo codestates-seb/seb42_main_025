@@ -1,24 +1,13 @@
 import * as React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 import { Reset } from 'styled-reset';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import theme from './style/theme';
 import Home from './page/Home';
-import Signup from './page/Signup';
-import Login from './page/Login';
-import Post from './page/Post';
-import Header from './container/Header';
 import Footer from 'container/Footer';
-import AuthorMypage from 'page/AuthorMypage';
-
-const S_Container = styled.main`
-  display: flex;
-  height: max-content;
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  overflow-x: auto;
-`;
+import Login from 'page/Login';
+import Signup from 'page/Signup';
+import ComponentBoxesExamples from 'page/ComponentBoxesExamples';
 
 function App() {
   return (
@@ -26,16 +15,12 @@ function App() {
       <React.Fragment>
         <Reset />
         <ThemeProvider theme={theme}>
-          <Header />
-          <S_Container>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/Signup" element={<Signup />} />
-              <Route path="/Login" element={<Login />} />
-              <Route path="/commission" element={<Post />} />
-              <Route path="/author/:id" element={<AuthorMypage />} />
-            </Routes>
-          </S_Container>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="signup" element={<Signup />} />
+            <Route path="/component-boxes-examples" element={<ComponentBoxesExamples />} />
+          </Routes>
           <Footer />
         </ThemeProvider>
       </React.Fragment>
