@@ -6,9 +6,9 @@ import imgUrl from 'assets/shoes1.jpg';
 import Food from 'assets/1.JPG';
 
 const Container = styled.div`
-  margin: 0 auto;
   padding-bottom: 20px;
   width: 800px;
+  height: fit-content;
   overflow: hidden;
   align-items: center;
 `;
@@ -50,10 +50,10 @@ function Carousel() {
     slidesToShow: 1, // 한번에 몇개의 슬라이드를 보여줄 지
     slidesToScroll: 1, // 한번 스크롤시 몇장의 슬라이드를 넘길지
     arrows: true,
-    // centerMode: true, // 얘가 문제였음..ㅠ
+    // centerMode: true, // 얘가 문제였음..
     pauseOnHover: true,
     // autoplay: true,
-    // autoplayspeed: 1000, //자동으로 슬라이드되게 만들어준다.
+    // autoplaySpeed: 1000, //자동으로 슬라이드되게 만들어준다.
   };
 
   return (
