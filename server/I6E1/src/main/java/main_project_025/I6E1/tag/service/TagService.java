@@ -32,13 +32,13 @@ public class TagService {
         for (CommissionTag tag : commission.getTags()) {
             Tag existingTag = tagRepository.findByTagName(tag.getTagName());
             if (existingTag != null) {
-                tag.setTag(existingTag);
+                tag.setTag(existingTag);//존재하는 태그면 받아와서 저장
             } else {
-                tag.setTag(tagRepository.save(new Tag(tag.getTagName())));
+                tag.setTag(tagRepository.save(new Tag(tag.getTagName())));//존재하지 않는 테이블이면 생성해서 저장
             }
-            tag.setCommission(commission);
-            commissionTags.add(tag);
-            tags.add(tag.getTag());
+            tag.setCommission(commission);//태그 테이블에 커미션 저장
+            commissionTags.add(tag);//중간 테이블 저장
+            tags.add(tag.getTag());// 태그 테이블에 태그 저장
         }
         commission.setTags(commissionTags);
         commissionRepository.save(commission);

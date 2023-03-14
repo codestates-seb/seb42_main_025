@@ -6,6 +6,7 @@ import lombok.Setter;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class CommissionDto {
     @Getter
@@ -19,7 +20,7 @@ public class CommissionDto {
         private String content;
 
         @NotEmpty(message = "태그를 입력해주세요.")
-        private String tagName;//tag test
+        private List<String> tags;//tag test
     }
 
     @Getter
@@ -40,7 +41,7 @@ public class CommissionDto {
         private long commissionId;
         private String title;
         private String content;
-        private String tagName;//tag test
+        private List<String> tags;//tag test
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
         private String memberName;

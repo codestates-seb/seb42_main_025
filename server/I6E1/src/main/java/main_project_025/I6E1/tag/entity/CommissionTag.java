@@ -29,6 +29,9 @@ public class CommissionTag {
     @NotEmpty
     private String tagName;//Tag 엔티티의 tagName 컬럼의 스냅샷
 
+    public CommissionTag(Tag tag) {//tag test
+        this.tag = tag;
+    }
 
     public void setTag(Tag tag) {
         this.tag = tag;
