@@ -3,8 +3,10 @@ package main_project_025.I6E1.Member.service;
 import lombok.RequiredArgsConstructor;
 import main_project_025.I6E1.Member.entity.Member;
 import main_project_025.I6E1.Member.repository.MemberRepository;
+import main_project_025.I6E1.auth.utils.CustomAuthorityUtils;
 import main_project_025.I6E1.global.exception.BusinessException;
 import main_project_025.I6E1.global.exception.ExceptionCode;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +17,8 @@ import java.util.Optional;
 @Service
 public class MemberService {
     private final MemberRepository memberRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final CustomAuthorityUtils authorityUtils;
 
     //1. 회원가입, Create
     public Member create(Member member){
@@ -32,6 +36,11 @@ public class MemberService {
             throw new BusinessException(ExceptionCode.USER_NAME_EXISTS);
         }
 
+        //비밀번호 암호화
+        String encryptedPassword = passwordEncoder.encode(member.getPassword());
+        //암호화된 password를 다시 할당
+        member.setPassword(encryptedPassword);
+
         //회원 프로필 이미지
         //이미지 부분 구현되면 추가로 가져올 예정
 //        Image image = new Image();
@@ -39,7 +48,8 @@ public class MemberService {
 //        member.setImage(image);
 
         //선택한 권한(사용자/작가) 저장
-        //방법을 찾아서 추가 예정
+//        List<String> roles = authorityUtils.createRoles(member.getEmail());
+//        member.setRoles(roles);
 
         return memberRepository.save(member);
     }
@@ -47,6 +57,10 @@ public class MemberService {
     //2. 회원 정보 조회(외부에서 사용 시)
     public Member findById(Long memberId){
         return findVerifyMemberById(memberId);
+    }
+
+    public Member findByEmail(String email){
+        return findVerifyMemberByEmail(email);
     }
 
 
