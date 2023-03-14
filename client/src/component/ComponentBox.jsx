@@ -99,6 +99,7 @@ const StyledSummaryBox = styled.div`
         }
       `;
     }
+
     if (mode === 'REVIEW_LIST') {
       return css`
         grid-template-columns: repeat(12, 1fr);
