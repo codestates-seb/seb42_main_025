@@ -4,7 +4,7 @@ import { Reset } from 'styled-reset';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import theme from './style/theme';
 import Header from 'container/Header';
-import Home from './page/Home';
+import Home from 'page/home/Home';
 import Footer from 'container/Footer';
 import Login from 'page/Login';
 import Signup from 'page/Signup';
