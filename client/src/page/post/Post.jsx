@@ -1,58 +1,27 @@
 import styled from 'styled-components';
-import Carousel from 'component/Carousel';
 import PostButton from 'component/Buttons/PostButton';
+import PostDetail from './PostDetail';
+import Food from 'assets/1.JPG';
 
 const Container = styled.div`
-  margin-top: 100px;
-  max-width: 1280px;
+  padding-top: 5rem;
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(auto-fit);
 `;
 
 const Content = styled.div`
   display: flex;
-  /* justify-content: space-between; */
-  height: 700px;
-  min-width: 1280px;
+  /* display: grid; */
+  width: 1280px;
 `;
 
-const Img = styled.div`
-  flex-grow: 1;
+const ImgBox = styled.div`
+  /* flex-grow: 1; */
 `;
 
-const Summary = styled.div`
-  padding: 50px 0px 50px 0px;
-  /* background-color: #ddba9d; */
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex-grow: 1;
-`;
-
-const Title = styled.div`
-  min-height: 75px;
-  margin: 20px;
-  font-weight: 700;
-  font-size: 25px;
-  line-height: 1.1;
-`;
-
-const Tag = styled.div`
-  margin-left: 40px;
-`;
-
-const PostSummary = styled.div`
-  margin: 20px;
-  height: 250px;
-`;
-
-const Author = styled.div`
-  margin: 20px 0px 0px 40px;
-`;
-
-const Enroll = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+const Img = styled.img`
+  width: 853px;
 `;
 
 const Detail = styled.div`
@@ -70,21 +39,20 @@ const DetailReviewBox = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 100%;
+  /* width: 100%; */
   background-color: #ddba9d;
   border-radius: 5px;
   white-space: nowrap;
   font-weight: bold;
   color: #fff;
   height: 50px;
-  margin-top: 30px;
+  margin-top: 5rem;
 `;
 
 const Review = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
   width: 100%;
   min-height: 100px;
   padding-top: 10px;
@@ -114,22 +82,10 @@ function Post() {
     <Container>
       <div>
         <Content>
-          <Img>
-            <Carousel />
-          </Img>
-          <Summary>
-            <Title>
-              <div>제목</div>
-            </Title>
-            <div>
-              <PostSummary>내용</PostSummary>
-              <Tag>tag</Tag>
-              <Author>작가</Author>
-            </div>
-            <Enroll>
-              <PostButton value="신청하기" />
-            </Enroll>
-          </Summary>
+          <ImgBox>
+            <Img src={Food} alt="navExploreLogo" />
+          </ImgBox>
+          <PostDetail />
         </Content>
         <DetailReviewBox>
           <div>상세설명</div>
