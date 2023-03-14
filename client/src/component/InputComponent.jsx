@@ -20,6 +20,10 @@ const InputField = styled.input`
     outline: none;
     box-shadow: 0 0 0 2px #ddba9d;
   }
+
+  ::placeholder {
+    color: #c1c1c1;
+  }
 `;
 
 const ErrorMessage = styled.div`
