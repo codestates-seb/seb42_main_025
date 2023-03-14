@@ -14,7 +14,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.Optional;
 
 @Service
@@ -29,12 +28,11 @@ public class CommissionService {
     //CREATE
     public Commission createCommission(Commission commission){
         // 멤버 미구현
-
         Member member = getMemberFromId(1l);
         commission.setMember(member);
         return commissionRepository.save(commission);
     }
-
+    //
     private Member getMemberFromId(long memberId){
         return memberRepository.findById(memberId).get();
     }
@@ -45,7 +43,6 @@ public class CommissionService {
     }
 
     // READ ALL
-    // 페이지네이션 미적용
     public Page<Commission> readCommissions(Pageable pageable){
         Pageable pageRequest = PageRequest.of(pageable.getPageNumber()-1, pageable.getPageSize(), pageable.getSort());
         return commissionRepository.findAll(pageRequest);
@@ -72,12 +69,13 @@ public class CommissionService {
         return commission.orElseThrow(()-> new BusinessException(ExceptionCode.COMMISSION_NOT_FOUND));
     }
 
-    // 게시글 작성자 일치 검증
+    // (로그인 멤버 = 작성자) 검증
     private Commission verifyWriter(long commissionId){
         long memberId = 1; /*  Test  */
         Commission commission = existCommission(commissionId);
         if ( /*Test*/  1 != memberId  ){
             throw new BusinessException(ExceptionCode.NOT_AUTHORITY);
-        }return commission;
+        }
+        return commission;
     }
 }
