@@ -3,6 +3,12 @@ package main_project_025.I6E1.Member.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+
+@Getter
+@Setter
 public class MemberDto {
     
     //회원가입
@@ -13,7 +19,7 @@ public class MemberDto {
         private String password;
         private String name;
         //프로필 사진
-        private String imgUrl;
+        //private String imgUrl;
     }
 
     //이메일 중복 확인
@@ -23,7 +29,7 @@ public class MemberDto {
         private String email;
     }
 
-    //전달
+    //회원가입 후 전달
     @Getter
     @Setter
     public static class Response{
@@ -33,6 +39,7 @@ public class MemberDto {
         private String email;
         private String password;
         private String name;
+        private LocalDateTime createdAt;
     }
 
     //단일 회원 조회
@@ -42,6 +49,8 @@ public class MemberDto {
         private Long memberId;
         private String email;
         private String name;
-        private String imgUrl;
+        private LocalDateTime createdAt;
+        private LocalDateTime modifiedAt;
+        //private String imgUrl;
     }
 }

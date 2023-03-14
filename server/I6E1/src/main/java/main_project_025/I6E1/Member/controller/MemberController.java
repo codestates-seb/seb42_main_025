@@ -22,7 +22,7 @@ public class MemberController {
     
     //1. 회원가입
     @PostMapping("/sign-up")
-    public ResponseEntity postMember(@RequestBody MemberDto.Post memberPostDto){
+    public ResponseEntity<Map<String, Long>> postMember(@RequestBody MemberDto.Post memberPostDto){
         Member member =  memberMapper.memberPostToMember(memberPostDto);
         //Member 객체를 저장
         Member savedMember = memberService.create(member);
@@ -31,11 +31,11 @@ public class MemberController {
         Map<String, Long> response = new HashMap<>();
         response.put("memberId", savedMember.getMemberId());
 
-        return new ResponseEntity<>(new SingleResponseDto<>(response), HttpStatus.CREATED);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     //2. 회원 상세 정보 조회
-    @GetMapping("/{memberId}")
+    @GetMapping("/{member-id}")
     public ResponseEntity findMember(@PathVariable("member-id") Long memberId){
         Member findMember = memberService.findById(memberId);
         MemberDto.MemberDetailResponse response = memberMapper.memberToMemberDetailResponse(findMember);
@@ -56,5 +56,6 @@ public class MemberController {
 
         return ResponseEntity.ok(response);
     }
+
 
 }
