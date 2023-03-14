@@ -1,5 +1,6 @@
 package main_project_025.I6E1.global.page;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -18,17 +19,12 @@ public class PageDto<T> {
     }
 
     @Getter
+    @AllArgsConstructor
     private class PageInfo{
         private int pageNumber;
         private int size;
         private int totalPages;
         private long totalElements;
 
-        public PageInfo(int pageNumber, int size, int totalPages, long totalElements) {
-            this.pageNumber = pageNumber;
-            this.size = size;
-            this.totalPages = totalPages;
-            this.totalElements = totalElements;
-        }
     }
 }

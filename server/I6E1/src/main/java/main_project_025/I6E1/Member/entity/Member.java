@@ -37,7 +37,7 @@ public class Member extends Auditable {
     //멤버 권한
 //    private List<String> roles = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)//cascade추가
     private List<Trade> trades = new ArrayList<>();
 
     public void setTrade(Trade trade) {
