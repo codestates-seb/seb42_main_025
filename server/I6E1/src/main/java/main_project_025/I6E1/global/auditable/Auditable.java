@@ -25,5 +25,4 @@ public abstract class Auditable {
 
     @Column(name = "deleted")
     private boolean deleted = Boolean.FALSE;
-
 }

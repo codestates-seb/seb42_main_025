@@ -33,8 +33,17 @@ dependencies {
 	implementation 'org.mapstruct:mapstruct:1.5.1.Final'
 
 	runtimeOnly 'com.mysql:mysql-connector-j'
+
+	//jwt 구현 관련 라이브러리
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	runtimeOnly    'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+	//login(spring security) 구현 관련 라이브러리
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	testImplementation 'org.springframework.security:spring-security-test'
+
+	//자바 오브젝트를 Json으로 변환시켜주는 라이브러리
+	implementation 'com.google.code.gson:gson'
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
-}
