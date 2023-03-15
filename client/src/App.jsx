@@ -8,7 +8,7 @@ import Footer from 'container/Footer';
 import Home from 'page/home/Home';
 import Login from 'page/Login';
 import Signup from 'page/Signup';
-import Post from 'page/post/Post';
+// import Post from 'page/post/Post';
 import Mypage from 'page/mypage/Mypage';
 import CommissionRequest from 'page/CommissionRequest';
 
@@ -26,7 +26,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/component-boxes-examples" element={<ComponentBoxesExamples />} />
             <Route path="/commissionrequest" element={<CommissionRequest />} />
-            <Route path="/commission" element={<Post />} />
+            {/* <Route path="/commission" element={<Post />} /> */}
             <Route path="/mypage" element={<Mypage />} />
           </Routes>
           <Footer />
