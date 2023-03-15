@@ -3,6 +3,24 @@ import Carousel from 'component/Carousel.jsx';
 import Commission from './Commission.jsx';
 import { Container } from 'container/Container.jsx';
 
+function Home() {
+  return (
+    <>
+      <Container>
+        <Contents>
+          <CarouselBox>
+            <Carousel />
+          </CarouselBox>
+          <NewOne>새로운 커미션들</NewOne>
+          <SellContainer>
+            <Commission></Commission>
+          </SellContainer>
+        </Contents>
+      </Container>
+    </>
+  );
+}
+
 const Contents = styled.div`
   display: grid;
   padding-top: 5rem;
@@ -31,23 +49,5 @@ const SellContainer = styled.div`
   flex-wrap: wrap;
   line-height: 1.6;
 `;
-
-function Home() {
-  return (
-    <>
-      <Container>
-        <Contents>
-          <CarouselBox>
-            <Carousel />
-          </CarouselBox>
-          <NewOne>새로운 커미션들</NewOne>
-          <SellContainer>
-            <Commission></Commission>
-          </SellContainer>
-        </Contents>
-      </Container>
-    </>
-  );
-}
 
 export default Home;

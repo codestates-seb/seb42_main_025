@@ -1,33 +1,6 @@
 import styled from 'styled-components';
 import imgUrl from 'assets/shoes1.jpg';
 
-const CommissionBox = styled.div`
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-`;
-
-const SellBox = styled.div`
-  display: grid;
-  margin-left: 1rem;
-`;
-
-const Tag = styled.div`
-  padding-top: 1rem;
-`;
-
-const Image = styled.img`
-  height: 135px;
-  width: 240px;
-`;
-
-const Title = styled.div`
-  /* padding-top: 2px; */
-`;
-
-const Author = styled.div`
-  /* padding-top: 2px; */
-`;
-
 const items = [
   { id: 1, url: imgUrl },
   { id: 2, url: imgUrl },
@@ -59,5 +32,32 @@ function commission() {
     </CommissionBox>
   );
 }
+
+const CommissionBox = styled.div`
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+`;
+
+const SellBox = styled.div`
+  display: grid;
+  margin-left: 1rem;
+`;
+
+const Tag = styled.div`
+  padding-top: 1rem;
+`;
+
+const Image = styled.img`
+  height: 135px;
+  width: 240px;
+`;
+
+const Title = styled.div`
+  /* padding-top: 2px; */
+`;
+
+const Author = styled.div`
+  /* padding-top: 2px; */
+`;
 
 export default commission;
