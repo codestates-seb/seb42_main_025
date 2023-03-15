@@ -55,6 +55,7 @@ public class SecurityConfiguration {
                 .and()
                 .apply(new CustomFilterConfigurer())
                 .and()
+                .logout().disable()
                 .authorizeHttpRequests(authorize -> authorize
                         .anyRequest().permitAll()
                 );
