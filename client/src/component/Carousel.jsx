@@ -20,12 +20,12 @@ const StyledSlider = styled(Slider)`
 
   .slick-next {
     right: 0px;
-    z-index: 10;
+    z-index: 1;
   }
 
   .slick-prev {
     left: 0px;
-    z-index: 10;
+    z-index: 1;
   }
 `;
 

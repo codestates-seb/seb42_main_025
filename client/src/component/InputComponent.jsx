@@ -1,24 +1,46 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { ImSearch } from 'react-icons/im';
+
+const InputContainer = styled.div`
+  display: grid;
+  height: fit-content;
+  width: 100%;
+`;
 
 const InputLabel = styled.label`
-  margin-bottom: 8px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #ddba9d;
+  padding-left: 1rem;
+
+  ${({ label }) => {
+    if (label) {
+      return css`
+        display: grid;
+        grid-row: 1 / span 1;
+        margin-bottom: 0.5rem;
+        font-size: 1.25rem;
+        font-weight: bold;
+      `;
+    }
+  }}
+`;
+
+const InputWrapper = styled.div`
+  display: flex;
+  width: 90%;
+  height: 2.5rem;
+  border-radius: 4px;
+  border: 1px solid black;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  justify-self: center;
+  align-items: center;
 `;
 
 const InputField = styled.input`
-  width: 320px;
-  height: 23px;
-  padding: 8px;
-  border: 1px solid #ddba9d;
-  border-radius: 4px;
-  font-size: 16px;
-
+  border: none;
+  width: 100%;
+  padding-left: 0.5rem;
   &:focus {
-    border-color: #ddba9d;
     outline: none;
-    box-shadow: 0 0 0 2px #ddba9d;
   }
 
   ::placeholder {
@@ -27,33 +49,26 @@ const InputField = styled.input`
 `;
 
 const ErrorMessage = styled.div`
-  display: block;
   font-size: 12px;
+  padding-left: 1rem;
   color: red;
-  position: relative;
-  bottom: 5px;
-`;
-
-const InputContainer = styled.div`
-  display: grid;
-  grid-template-rows: auto auto;
-  gap: 8px;
-  margin-bottom: 16px;
-  height: 70px;
 `;
 
 const InputComponent = ({ label, placeholder, value, onChange, onBlur, error, type = 'text' }) => {
   return (
     <InputContainer>
-      <InputLabel>{label}</InputLabel>
-      <InputField
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        onBlur={onBlur}
-      />
-      {error && <ErrorMessage>{error}</ErrorMessage>}
+      <InputLabel label={label}>{label}</InputLabel>
+      <InputWrapper>
+        {placeholder === '검색' ? <ImSearch /> : null}
+        <InputField
+          type={type}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          onBlur={onBlur}
+        />
+      </InputWrapper>
+      {error && <ErrorMessage visible={'visible'}>{error}</ErrorMessage>}
     </InputContainer>
   );
 };
