@@ -10,7 +10,7 @@
 
   1️⃣ Backend - 김지선
   2️⃣ Backend - 이승배
-  3️⃣ Backend - 정호
+  3️⃣ Backend - 정호준
 
 ⭐ Frontend 부팀장 - 최도경
 
