@@ -9,11 +9,13 @@ import main_project_025.I6E1.commission.entity.Commission;
 import main_project_025.I6E1.commission.repository.CommissionRepository;
 import main_project_025.I6E1.global.exception.BusinessException;
 import main_project_025.I6E1.global.exception.ExceptionCode;
+import main_project_025.I6E1.tag.service.TagService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.Optional;
 
 @Service
@@ -24,12 +26,14 @@ public class CommissionService {
     private CommissionRepository commissionRepository;
     private MemberRepository memberRepository;
     private MemberService memberService;
+    private TagService tagService;//tag test
 
     //CREATE
     public Commission createCommission(Commission commission){
         // 멤버 미구현
         Member member = getMemberFromId(1l);
         commission.setMember(member);
+        tagService.createTag(commission);
         return commissionRepository.save(commission);
     }
     //
