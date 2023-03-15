@@ -18,7 +18,8 @@ import java.util.List;
 public class Member extends Auditable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//추가
+    @Column(name = "member_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberId;
 
     @Column(unique = true)
@@ -32,7 +33,7 @@ public class Member extends Auditable {
     
     //멤버 프로필에 사진이 필요
     //형태가 바뀌면 변경 필요함
-//    private Image image;
+    //private Image image;
 
     //멤버 권한
 //    private List<String> roles = new ArrayList<>();
@@ -46,4 +47,7 @@ public class Member extends Auditable {
             trade.setMember(this);
         }
     }
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles = new ArrayList<>();
+
 }

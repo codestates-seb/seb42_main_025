@@ -26,12 +26,12 @@ public class TagService {
     private final CommissionRepository commissionRepository;
     private final CommissionTagRepository commissionTagRepository;
 
-    public Commission createTag(Commission commission) {// 결국 commission의 리퀘 바디로 들어오니까 Commission을 써야하나? 코드리뷰 받을것
+    public Commission createTag(Commission commission) {
 
-        List<CommissionTag> commissionTags = new ArrayList<>();
-        List<Tag> tags = new ArrayList<>();
+        List<CommissionTag> commissionTags = new ArrayList<>();//commissionTag 리스트 생성
+        List<Tag> tags = new ArrayList<>();//Tag 리스트 생성
         for (CommissionTag tag : commission.getTags()) {
-            Tag existingTag = tagRepository.findByTagName(tag.getTag().getTagName());
+            Tag existingTag = tagRepository.findByTagName(tag.getTag().getTagName());//입력받은 태그가 존재하는지 검색
             if (existingTag != null) {
                 tag.setTag(existingTag);//존재하는 태그면 받아와서 저장
             } else {
@@ -47,11 +47,12 @@ public class TagService {
         return commission;
     }
 
-    public Page<Tag> readTags(Pageable pageable) {//페이지네이션으로 줄지, 리스트로 줄지 대화해볼것
+    public Page<Tag> readTags(Pageable pageable) {
         Pageable pageRequest = PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize(), pageable.getSort());
         return tagRepository.findAll(pageRequest);
     }
 
+    //필요 없으면 삭제
     public Tag findTagById(long tagId) {
         Optional<Tag> optionalTag = tagRepository.findById(tagId);
         Tag tag = optionalTag.orElseThrow(() -> new RuntimeException("존재하지 않는 태그입니다."));

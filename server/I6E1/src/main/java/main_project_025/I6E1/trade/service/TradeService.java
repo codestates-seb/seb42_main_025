@@ -2,15 +2,15 @@ package main_project_025.I6E1.trade.service;
 
 import lombok.RequiredArgsConstructor;
 import main_project_025.I6E1.Member.entity.Member;
+import main_project_025.I6E1.Member.repository.MemberRepository;
 import main_project_025.I6E1.commission.entity.Commission;
 import main_project_025.I6E1.commission.repository.CommissionRepository;
-import main_project_025.I6E1.trade.dto.TradePatchDto;
-import main_project_025.I6E1.trade.dto.TradePostDto;
 import main_project_025.I6E1.trade.entity.Trade;
 import main_project_025.I6E1.trade.repository.TradeRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,19 +23,21 @@ public class TradeService {
 
     private final TradeRepository tradeRepository;
     private final CommissionRepository commissionRepository;
+    private final MemberRepository memberRepository;
 
 
     public Trade createTrade(Trade trade) {
-        //유저검증(사용자 role만 신청 가능할지 둘 다 가능하게 할지?)
         Commission commission = findCommissionById(trade.getCommission().getCommissionId());//커미션 검증
 
-        //유저 검증 로직 받으면 수정
-        Member member = new Member();
-        member.setMemberId(1L);
+        //유저 검증 로직 받으면 수정(사용자 role만 신청 가능)
+//        Member member = new Member();
+//        member.setMemberId(1L);
+        String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        Optional<Member> optionalMember = memberRepository.findByEmail(principal);
+        Member member = optionalMember.orElseThrow(() -> new RuntimeException("거래 신청 권한이 없습니다."));
 
         trade.setCommission(commission);
         trade.setMember(member);
-        //거래 있는지 확인?? -> 있으면 알림? -> 굳이 할 필요는 없을듯?
         return tradeRepository.save(trade);
     }
 
@@ -46,10 +48,14 @@ public class TradeService {
         trade.setCommission(commission);
 
         //유저 검증 로직 받으면 교체
-        Member member = new Member();
-        member.setMemberId(1L);
-        trade.setMember(member);
+//        Member member = new Member();
+//        member.setMemberId(1L);
+//        trade.setMember(member);
+        String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        Optional<Member> optionalMember = memberRepository.findByEmail(principal);
+        Member member = optionalMember.orElseThrow(() -> new RuntimeException("거래 신청 권한이 없습니다."));
 
+        trade.setMember(member);
         trade.setContent(findTrade.getContent());
         trade.setTitle(findTrade.getTitle());
 //        trade.setStatus(trade.getStatus()); 필요없는듯
