@@ -14,7 +14,6 @@ import CreatePost from 'page/CreatePost/CreatePost';
 import Mypage from 'page/mypage/Mypage';
 import CommissionRequest from 'page/CommissionRequest';
 
-import ComponentBoxesExamples from 'page/ComponentBoxesExamples';
 function App() {
   return (
     <BrowserRouter>
@@ -29,6 +28,8 @@ function App() {
             <Route path="/component-boxes-examples" element={<ComponentBoxesExamples />} />
             <Route path="/commissionrequest" element={<CommissionRequest />} />
             <Route path="/commission" element={<Post />} />
+            <Route path="/createcommission" element={<CreatePost />} />
+            <Route path="/mypage" element={<Mypage />} />
           </Routes>
           <Footer />
         </ThemeProvider>
