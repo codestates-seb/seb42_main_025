@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  display: flex;
-  width: 1280px;
-  height: fit-content;
-  padding-top: 75px;
-  overflow: hidden;
+  display: grid;
+  justify-content: center;
+  padding: 10rem 0 5rem 0;
+  overflow-x: hidden;
 `;

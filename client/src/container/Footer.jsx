@@ -1,21 +1,5 @@
 import styled from 'styled-components';
 
-const Main = styled.footer`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 140px;
-  background-color: #ddba9d;
-`;
-
-const Wrapper = styled.div`
-  width: 100%;
-  min-height: 100%;
-`;
-const Contents = styled.div`
-  line-height: 1.5;
-`;
-
 function Footer() {
   return (
     <div>
@@ -30,5 +14,22 @@ function Footer() {
     </div>
   );
 }
+
+const Wrapper = styled.div`
+  width: 100%;
+  min-height: 100%;
+`;
+
+const Main = styled.footer`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10rem;
+  background-color: #ddba9d;
+`;
+
+const Contents = styled.div`
+  line-height: 1.5;
+`;
 
 export default Footer;
