@@ -3,6 +3,7 @@ import Button from 'component/Buttons/Button';
 import PostDetail from './PostDetail';
 import Review from './Review';
 import Commission from 'page/home/Commission';
+import { Container } from 'container/Container';
 import Food from 'assets/1.JPG';
 
 function Post() {
@@ -56,13 +57,7 @@ function Post() {
   );
 }
 
-const Container = styled.div`
-  display: grid;
-  justify-content: center;
-`;
-
 const Content = styled.div`
-  padding-top: 5rem;
   max-width: 1280px;
   display: grid;
   grid-template-columns: repeat(12, 1fr); //repeat(6, 1fr)은 1fr 1fr 1fr 1fr 1fr 1fr과 같아요.
