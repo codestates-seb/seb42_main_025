@@ -49,7 +49,8 @@ const Container = styled.footer`
 `;
 
 const UpDownBox = styled.footer`
-  width: 80%;
+  width: 100%;
+  max-width: 1280px;
 `;
 
 const Up = styled.div`
