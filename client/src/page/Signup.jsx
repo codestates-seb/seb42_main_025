@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import InputComponent from 'component/InputComponent';
+import axios from 'axios';
 
 const Container = styled.div`
   display: grid;
@@ -133,6 +134,23 @@ const Signup = () => {
     return true;
   };
 
+  const handleSignup = async () => {
+    try {
+      const response = await axios.post('https://0bd5-175-120-25-236.jp.ngrok.io/members/sign-up', {
+        email,
+        password,
+        nickname,
+        userType,
+      });
+      if (response && response.data) {
+        console.log(response.data);
+      }
+      navigate('/Login');
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+
   const handleSubmit = event => {
     event.preventDefault();
     const isEmailValid = validateEmail(email);
@@ -143,7 +161,7 @@ const Signup = () => {
       return;
     }
 
-    navigate('/Login');
+    handleSignup();
   };
 
   return (
