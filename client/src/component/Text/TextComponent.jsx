@@ -1,11 +1,25 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-function TextComponent({ text, fontColor }) {
-  return <StyledFont fontColor={fontColor}>{text}</StyledFont>;
+function TextComponent({ text, fontColor, bold, column, row }) {
+  return (
+    <StyledFont fontColor={fontColor} bold={bold} column={column} row={row}>
+      {text}
+    </StyledFont>
+  );
 }
 
 const StyledFont = styled.div`
-  color: ${props => props.fontColor || '#000'};
+  display: grid;
+  font-size: 16px;
+  white-space: nowrap;
+  ${({ fontColor, bold, column, row }) => {
+    return css`
+      color: ${fontColor};
+      font-weight: ${bold};
+      grid-column: ${column};
+      grid-row: ${row};
+    `;
+  }}
 `;
 
 export default TextComponent;

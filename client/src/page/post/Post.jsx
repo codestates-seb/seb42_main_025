@@ -1,45 +1,93 @@
 import styled from 'styled-components';
-import PostButton from 'component/Buttons/PostButton';
+import Button from 'component/Buttons/Button';
 import PostDetail from './PostDetail';
+import Review from './Review';
+import Commission from 'page/home/Commission';
+import { Container } from 'container/Container';
 import Food from 'assets/1.JPG';
 
-const Container = styled.div`
-  padding-top: 5rem;
-  display: grid;
-  place-items: center;
-  grid-template-columns: repeat(auto-fit);
-`;
+function Post() {
+  return (
+    <Container>
+      <Content>
+        <ImgBox>
+          <Img src={Food} alt="navExploreLogo" />
+        </ImgBox>
+        <PostDetailBox>
+          <PostDetail />
+        </PostDetailBox>
+        <DetailBox>
+          <DetailReviewBox>
+            <div>상세설명</div>
+            <RemoveDeco href="#리뷰">리뷰</RemoveDeco>
+          </DetailReviewBox>
+          <Detail>상세설명</Detail>
+        </DetailBox>
+        <Edit>
+          <Edit1>
+            <Button
+              text="수정"
+              addStyle={{
+                padding: '11px',
+                borderRadius: '10px',
+                fontSize: '24px',
+              }}
+            />
+          </Edit1>
+          <Edit2>
+            <Button
+              text="삭제"
+              addStyle={{
+                padding: '11px',
+                borderRadius: '10px',
+                fontSize: '24px',
+              }}
+            />
+          </Edit2>
+        </Edit>
+        <ReviewBox>
+          <Review />
+        </ReviewBox>
+        <CommissionBox>
+          <div>비슷한 커미션들</div>
+          <Commission />
+        </CommissionBox>
+      </Content>
+    </Container>
+  );
+}
 
 const Content = styled.div`
-  display: flex;
-  /* display: grid; */
-  width: 1280px;
+  max-width: 1280px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr); //repeat(6, 1fr)은 1fr 1fr 1fr 1fr 1fr 1fr과 같아요.
+  grid-template-rows: repeat(5, minmax(50px, auto));
+  gap: 1rem;
 `;
 
 const ImgBox = styled.div`
-  /* flex-grow: 1; */
+  grid-column: 1 / span 8;
+  grid-row: 1 / span 1;
 `;
 
 const Img = styled.img`
-  width: 853px;
+  max-width: 853px;
 `;
 
-const Detail = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
+const PostDetailBox = styled.div`
+  grid-column: 9 / span 4;
+  grid-row: 1 / span 1;
 `;
 
-const Edit = styled.div`
-  display: flex;
-  justify-content: flex-end;
+const DetailBox = styled.div`
+  grid-column: 1 / span 12;
+  grid-row: 2 / span 1;
 `;
 
 const DetailReviewBox = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  /* width: 100%; */
   background-color: #ddba9d;
   border-radius: 5px;
   white-space: nowrap;
@@ -49,61 +97,48 @@ const DetailReviewBox = styled.div`
   margin-top: 5rem;
 `;
 
-const Review = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  min-height: 100px;
-  padding-top: 10px;
+const RemoveDeco = styled.a`
+  color: #fff;
+  text-decoration: none;
+  outline: none;
 `;
 
-const ReviewTitle = styled.div`
+const Detail = styled.div`
   display: flex;
   justify-content: center;
-  width: 100%;
-  padding: 10px;
-  border-bottom: 1px solid lightgray;
+  padding: 10px 0px;
+  border-bottom: 1px solid gray;
 `;
 
-const ReviewDetail = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: 100px;
-  padding-top: 10px;
-  border-bottom: 1px solid lightgray;
+const Edit = styled.div`
+  display: grid;
+  grid-column: 11 / span 2;
+  grid-row: 3 / span 1;
+  margin: 5rem 0px 5rem 0px;
 `;
 
-function Post() {
-  return (
-    <Container>
-      <div>
-        <Content>
-          <ImgBox>
-            <Img src={Food} alt="navExploreLogo" />
-          </ImgBox>
-          <PostDetail />
-        </Content>
-        <DetailReviewBox>
-          <div>상세설명</div>
-          <div>리뷰</div>
-        </DetailReviewBox>
-        <Detail>상세설명</Detail>
-        <Edit>
-          <PostButton value="수정" />
-          <PostButton value="삭제" />
-        </Edit>
-        <Review>
-          <ReviewTitle>리뷰</ReviewTitle>
-          <ReviewDetail>아직 작성된 리뷰가 없습니다</ReviewDetail>
-        </Review>
-        <div>다른 커미션들</div>
-      </div>
-    </Container>
-  );
-}
+const Edit1 = styled.div`
+  grid-column: 11 / span 1;
+  grid-row: 3 / span 1;
+`;
+
+const Edit2 = styled.div`
+  grid-column: 12 / span 1;
+  grid-row: 3 / span 1;
+`;
+
+const ReviewBox = styled.div`
+  grid-column: 1 / span 12;
+  grid-row: 4 / span 1;
+  flex-wrap: wrap;
+  line-height: 1.6;
+`;
+
+const CommissionBox = styled.div`
+  grid-column: 1 / span 12;
+  grid-row: 5 / span 1;
+  flex-wrap: wrap;
+  line-height: 1.7;
+`;
 
 export default Post;
