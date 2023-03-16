@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import InputComponent from 'component/InputComponent';
-// import Button from 'component/Buttons/Button';
 import { Container } from 'container/Container';
 import axios from 'axios';
 
@@ -105,12 +104,6 @@ const Login = () => {
           <LoginButton type="submit" onClick={handleSubmit}>
             Login
           </LoginButton>
-          {/* <Button
-            type="submit"
-            text="로그인"
-            onClick={handleSubmit}
-            addStyle={{ width: '373px', height: '40px' }}
-          ></Button> */}
         </LoginContainer>
       </Contents>
     </Container>
