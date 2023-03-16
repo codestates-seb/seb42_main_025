@@ -4,6 +4,7 @@ import { FaGithub } from 'react-icons/fa';
 
 function Footer() {
   return (
+
     <>
       <Container>
         <UpDownBox>
@@ -79,6 +80,7 @@ const Github = styled(FaGithub)`
   font-size: 19px;
   margin: 0px 2px 1px 0px;
 `;
+
 
 const Maker = styled.a`
   margin-left: 6px;
