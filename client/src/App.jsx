@@ -3,16 +3,19 @@ import { ThemeProvider } from 'styled-components';
 import { Reset } from 'styled-reset';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import theme from './style/theme';
+
 import Header from 'container/Header';
-import Home from 'page/home/Home';
 import Footer from 'container/Footer';
+
+import Home from 'page/home/Home';
 import Login from 'page/Login';
 import Signup from 'page/Signup';
 import Post from 'page/post/Post';
-import ComponentBoxesExamples from 'page/ComponentBoxesExamples';
 import CreatePost from 'page/CreatePost/CreatePost';
 import Mypage from 'page/mypage/Mypage';
 import CommissionRequest from 'page/CommissionRequest';
+import ComponentBoxesExamples from 'page/ComponentBoxesExamples';
+import ChatPage from 'page/chat/ChatPage';
 
 function App() {
   return (
@@ -29,7 +32,8 @@ function App() {
             <Route path="/commissionrequest" element={<CommissionRequest />} />
             <Route path="/commission" element={<Post />} />
             <Route path="/createcommission" element={<CreatePost />} />
-            <Route path="/mypage" element={<Mypage />} />
+            <Route path="/mypage/:id" element={<Mypage />} />
+            <Route path="/chat/:id" element={<ChatPage />} />
           </Routes>
           <Footer />
         </ThemeProvider>

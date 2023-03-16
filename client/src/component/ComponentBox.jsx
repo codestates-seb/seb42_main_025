@@ -17,7 +17,8 @@ function ComponentBox({ mode, info }) {
   );
 }
 
-export default ComponentBox;
+// 모드: AUTHOR_COMMISSION_LIST, COMMISSION_SUB, REVIEW_LIST, CHAT_LIST, CHAT_COMMISSION_SUB, CHAT_COMMISSION_INFO
+// 사용 예시: ComponentBoxesExamples.jsx 참고
 
 const StyledImg = styled.img`
   max-width: 6rem;
@@ -30,7 +31,7 @@ const StyledImg = styled.img`
 const StyledTitle = styled.h2`
   grid-column: 1 / span 4;
   grid-row: 1 / span 1;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: bold;
 `;
 
@@ -55,14 +56,16 @@ const StyledDate = styled.div`
 
 const StyledSummaryBox = styled.div`
   display: grid;
+  align-items: center;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  max-width: 20rem;
+  max-width: 21rem;
   max-height: 7.5rem;
   padding: 0.5rem 1rem;
   gap: 0.5rem;
   border-radius: 4px;
   border: 1px solid #000;
+  white-space: nowrap;
 
   ${({ theme, mode }) => {
     console.log(theme);
@@ -201,7 +204,7 @@ const StyledSummaryBox = styled.div`
         ${StyledImg} {
           grid-column: 1 / span 1;
           grid-row: 1 / span 4;
-          max-width: 12.25rem;
+          max-width: 100%;
           max-height: fit-content;
         }
 
@@ -218,8 +221,34 @@ const StyledSummaryBox = styled.div`
         }
       `;
     }
+    if (mode === 'PROGRESS_SUB_LIST') {
+      return css`
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        max-width: 25rem;
+        max-height: 4rem;
+        border: none;
+
+        ${StyledImg} {
+          display: none;
+        }
+
+        ${StyledTitle} {
+          grid-column: 1 / span 1;
+          grid-row: 1 / span 1;
+          max-height: fit-content;
+          font-size: 1.25rem;
+          font-weight: bold;
+        }
+
+        ${StyledContent} {
+          grid-column: 1 / span 1;
+          grid-row: 2 / span 1;
+          max-height: fit-content;
+        }
+      `;
+    }
   }}
 `;
 
-// 모드: AUTHOR_COMMISSION_LIST, COMMISSION_SUB, REVIEW_LIST, CHAT_LIST, CHAT_COMMISSION_SUB, CHAT_COMMISSION_INFO
-// 사용 예시: ComponentBoxesExamples.jsx 참고
+export default ComponentBox;
