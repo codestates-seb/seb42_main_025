@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 // import InputComponent from 'component/InputComponent';
 import Button from 'component/Buttons/Button';
-import DragDrop from './Dropzone';
+import Dropzone from './Dropzone';
+import { Container } from 'container/Container';
 
 function CreatePost() {
   return (
@@ -9,7 +10,7 @@ function CreatePost() {
       <ContentBox>
         <Content>
           <ImgBox>
-            <DragDrop />
+            <Dropzone />
           </ImgBox>
           <PostDetail>
             제목
@@ -37,13 +38,7 @@ function CreatePost() {
   );
 }
 
-const Container = styled.div`
-  display: grid;
-  justify-content: center;
-`;
-
 const ContentBox = styled.div`
-  padding-top: 5rem;
   min-width: 1280px;
   display: grid;
   grid-template-columns: repeat(
@@ -67,8 +62,10 @@ const ImgBox = styled.div`
   grid-column: 1 / span 8;
   grid-row: 1 / span 1;
   /* grid-template-columns: minmax(92px); */
+  max-width: 850px;
   height: 700px;
   /* background-color: coral; */
+  border: 1px dotted gray;
 `;
 
 const PostDetail = styled.div`

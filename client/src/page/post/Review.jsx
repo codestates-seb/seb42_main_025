@@ -12,7 +12,7 @@ function Review() {
   return (
     <div>
       <ReviewBox>
-        <ReviewTitle>리뷰</ReviewTitle>
+        <ReviewTitle name="리뷰">리뷰</ReviewTitle>
         <ReviewDetail>
           {/* 아직 작성된 리뷰가 없습니다 */}
           <ComponentBox mode={'COMMISSION_SUB'} info={info} />
@@ -36,7 +36,7 @@ const ReviewBox = styled.div`
   padding-top: 10px;
 `;
 
-const ReviewTitle = styled.div`
+const ReviewTitle = styled.a`
   display: flex;
   justify-content: center;
   width: 100%;

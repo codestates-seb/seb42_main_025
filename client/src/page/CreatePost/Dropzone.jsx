@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import styled from 'styled-components';
-// import { RxFilePlus } from 'react-icons/rx';
+import { RxFilePlus } from 'react-icons/rx';
 
 function Dropzone() {
   const [files, setFiles] = useState([]);
@@ -15,47 +15,76 @@ function Dropzone() {
     }
   }, []);
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+  const images = files.map(file => <Photo key={file.name} src={file.preview} alt="images" />);
+
+  const { getRootProps, getInputProps } = useDropzone({
     accept: {
       'image/*': [],
     },
     onDrop,
   });
-
-  const images = files.map(file => <Photo key={file.name} src={file.preview} alt="images" />);
-
+  console.log(images);
   return (
     <Container>
-      <div {...getRootProps()}>
+      <Content {...getRootProps()}>
         <input {...getInputProps()} />
-        {isDragActive ? <p>hello</p> : <p>Drag and drop Drag and dropDrag and dropDrag and drop</p>}
-        <ImgBox>
+        {images.length < 1 ? (
+          <IconBox>
+            <Icon>
+              <RxFilePlus size="100" />
+            </Icon>
+          </IconBox>
+        ) : (
+          <ImgBox>
+            <PhotoBox>{images}</PhotoBox>
+          </ImgBox>
+        )}
+        {/* <ImgBox>
           <PhotoBox>{images}</PhotoBox>
-        </ImgBox>
-      </div>
+        </ImgBox> */}
+      </Content>
     </Container>
   );
 }
 
 const Container = styled.div`
   display: grid;
-  grid-column: 1 / span 8; // 한 칸이상으로 그리드가 뚫리면 그 이상으로 공간 먹는거 고치는 법 물어보기
-  grid-row: 1 / span 1;
-  grid-template-columns: minmax(92px);
+`;
+
+const Content = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const IconBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`;
+
+const Icon = styled.div`
+  display: flex;
 `;
 
 const ImgBox = styled.div`
-  flex-wrap: wrap;
+  display: flex;
 `;
 
 const PhotoBox = styled.div`
   display: flex;
+  flex-wrap: wrap;
 `;
 
 const Photo = styled.img`
-  max-width: 150px;
-  max-height: 150px;
+  min-width: 278px;
+  max-width: 278px;
+  min-height: 217px;
+  max-height: 217px;
+  padding: 1rem;
+  margin: 4rem 0px 4rem 4px;
   object-fit: cover;
+  border: 1px solid lightgray;
 `;
 
 export default Dropzone;

@@ -15,7 +15,7 @@ import CreatePost from 'page/CreatePost/CreatePost';
 import Mypage from 'page/mypage/Mypage';
 import CommissionRequest from 'page/CommissionRequest';
 import ComponentBoxesExamples from 'page/ComponentBoxesExamples';
-import ChatPage from 'page/chat/ChatPage';
+// import ChatPage from 'page/chat/ChatPage';
 
 function App() {
   return (
@@ -32,6 +32,7 @@ function App() {
           <Route path="/commission" element={<Post />} />
           <Route path="/createcommission" element={<CreatePost />} />
           <Route path="/mypage" element={<Mypage />} />
+          {/* <Route path="/chat/:id" element={<ChatPage />} /> */}
         </Routes>
         <Footer />
       </ThemeProvider>

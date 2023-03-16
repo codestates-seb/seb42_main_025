@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import imgUrl from 'assets/shoes1.jpg';
+import { Link } from 'react-router-dom';
 
 const items = [
   { id: 1, url: imgUrl },
@@ -20,7 +21,7 @@ function commission() {
       {items.map(item => {
         return (
           <div key={item.id}>
-            <SellBox>
+            <SellBox to="/commission">
               <Tag>오마카세</Tag>
               <Image src={item.url}></Image>
               <Title>신발 나눔</Title>
@@ -38,9 +39,12 @@ const CommissionBox = styled.div`
   grid-template-columns: repeat(5, 1fr);
 `;
 
-const SellBox = styled.div`
+const SellBox = styled(Link)`
   display: grid;
   margin-left: 1rem;
+  color: black;
+  text-decoration: none;
+  outline: none;
 `;
 
 const Tag = styled.div`

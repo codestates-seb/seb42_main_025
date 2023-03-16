@@ -19,7 +19,7 @@ function Post() {
         <DetailBox>
           <DetailReviewBox>
             <div>상세설명</div>
-            <div>리뷰</div>
+            <RemoveDeco href="#리뷰">리뷰</RemoveDeco>
           </DetailReviewBox>
           <Detail>상세설명</Detail>
         </DetailBox>
@@ -97,10 +97,17 @@ const DetailReviewBox = styled.div`
   margin-top: 5rem;
 `;
 
+const RemoveDeco = styled.a`
+  color: #fff;
+  text-decoration: none;
+  outline: none;
+`;
+
 const Detail = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 10px;
+  padding: 10px 0px;
+  border-bottom: 1px solid gray;
 `;
 
 const Edit = styled.div`
