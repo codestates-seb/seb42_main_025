@@ -64,14 +64,18 @@ public class CommissionController {
             return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
         }
     }
+
+    //Search
     @GetMapping("/search")
     public ResponseEntity searchCommissions(@RequestParam(required = false) String title,
                                             @RequestParam(required = false) String name,
                                             @RequestParam(required = false) List<String> tags,
                                             Pageable pageable ) {
+
         Page<Commission> commissionPage = commissionService.searchOptions(pageable, title, name, tags);
-        PageDto<Commission> commissionPageDto = new PageDto<>(commissionPage.getContent(), commissionPage);
-        return new ResponseEntity<>(commissionPageDto, HttpStatus.OK);
+        List<Commission> commissionList = commissionPage.getContent();
+        PageDto pageDto = new PageDto<>(mapper.commissionToResponses(commissionList),commissionPage);
+        return new ResponseEntity<>(pageDto, HttpStatus.OK);
     }
 
     //UPDATE

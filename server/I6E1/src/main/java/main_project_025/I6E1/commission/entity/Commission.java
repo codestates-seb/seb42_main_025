@@ -1,5 +1,7 @@
 package main_project_025.I6E1.commission.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,12 +36,6 @@ public class Commission extends Auditable {
     @ManyToOne(targetEntity = Member.class, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
-
-
-    /*  엔티티 미구현
-    @OneToMany(mappedBy = "review", cascade = CascadeType.PERSIST)
-    private List<Review> reviews = new ArrayList<>();
-    */
 
     @OneToMany(mappedBy = "commission")//cascade 추가??
     private List<Trade> trades = new ArrayList<>();
