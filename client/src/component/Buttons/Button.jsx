@@ -37,6 +37,7 @@ const StyledButton = styled.button`
   font-weight: bold;
   background-color: ${props => props.backgroundColor || '#ececec'};
   grid-row: ${props => props.row || 'inherit'};
+  white-space: nowrap;
 
   cursor: pointer;
 

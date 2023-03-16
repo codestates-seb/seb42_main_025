@@ -113,8 +113,9 @@ const Login = () => {
 const Contents = styled.div`
   display: grid;
   width: 1280px;
-  height: 100%;
+  min-height: 560px;
   gap: 1rem;
+  align-self: center;
   justify-content: center;
 `;
 
@@ -123,7 +124,6 @@ const LoginContainer = styled.div`
   width: 26rem;
   gap: 1rem;
   justify-items: center;
-  align-items: center;
   border: 1px solid #000;
   border-radius: 4px;
   padding: 3rem 0;

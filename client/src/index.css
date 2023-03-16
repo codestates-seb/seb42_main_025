@@ -18,5 +18,5 @@ body,
 .App {
   display: grid;
   justify-items: center;
-  width: 100vw;
+  width: 100%;
 }
