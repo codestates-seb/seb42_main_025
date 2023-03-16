@@ -4,7 +4,6 @@ import { FaGithub } from 'react-icons/fa';
 
 function Footer() {
   return (
-
     <>
       <Container>
         <UpDownBox>
@@ -47,6 +46,7 @@ const Container = styled.footer`
   align-items: center;
   height: 16rem;
   background-color: #ddba9d;
+  width: 100%;
 `;
 
 const UpDownBox = styled.footer`
@@ -81,7 +81,6 @@ const Github = styled(FaGithub)`
   margin: 0px 2px 1px 0px;
 `;
 
-
 const Maker = styled.a`
   margin-left: 6px;
   font-size: 17px;
@@ -94,8 +93,8 @@ const Down = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
-  line-height: 2;
+  margin-top: 30px;
+  line-height: 3;
 `;
 
 const Copyright = styled.div`
