@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import ComponentBox from 'component/ComponentBox';
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import Button from 'component/Buttons/Button';
+import { CommissionRequestBox } from 'component/BoxComponents.jsx';
 
 function CommissionRequest() {
   const info = {
@@ -16,7 +16,7 @@ function CommissionRequest() {
   return (
     <Container>
       <div>COMMISSION_SUB</div>
-      <ComponentBox mode={'COMMISSION_SUB'} info={info} />
+      <CommissionRequestBox info={info} />
       <AdBox>
         <AdLink href="https://picsum.photos/1280/180" target="_blank">
           <AdImage src="https://picsum.photos/1280/180" alt="Ad Image" />

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import ComponentBox from 'component/ComponentBox';
 import TitleComponent from 'component/Text/TitleComponent';
+import { ChatListBox } from 'component/BoxComponents.jsx';
 
 function ChatModule() {
   const info = {
@@ -14,9 +14,9 @@ function ChatModule() {
         <TitleComponent title="채팅 목록" fontSize={'1.5rem'} underbar={'yes'} />
       </StyledTitleContainer>
       <StyledContainer>
-        <ComponentBox mode="CHAT_LIST" info={info} />
-        <ComponentBox mode="CHAT_LIST" info={info} />
-        <ComponentBox mode="CHAT_LIST" info={info} />
+        <ChatListBox info={info} />
+        <ChatListBox info={info} />
+        <ChatListBox info={info} />
       </StyledContainer>
     </>
   );

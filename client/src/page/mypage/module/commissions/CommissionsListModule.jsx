@@ -1,6 +1,6 @@
 import TitleComponent from 'component/Text/TitleComponent';
 import styled from 'styled-components';
-import ComponentBox from 'component/ComponentBox';
+import { CommissionListBox } from 'component/BoxComponents.jsx';
 
 function CommissionsListModule() {
   const info = {
@@ -14,9 +14,7 @@ function CommissionsListModule() {
       {/* <TitleComponent title="커미션 목록" fontSize="1.5rem" underbar="yes" /> */}
       {/* 로그인 x */}
       <StyledContainer>
-        <ComponentBox mode="AUTHOR_COMMISSION_LIST" info={info} />
-        <ComponentBox mode="AUTHOR_COMMISSION_LIST" info={info} />
-        <ComponentBox mode="AUTHOR_COMMISSION_LIST" info={info} />
+        <CommissionListBox info={info} />
       </StyledContainer>
     </>
   );
