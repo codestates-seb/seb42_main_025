@@ -23,7 +23,6 @@ function Home() {
 
 const Contents = styled.div`
   display: grid;
-  padding-top: 5rem;
   max-width: 1280px;
   grid-template-columns: repeat(12, 1fr); //repeat(6, 1fr)은 1fr 1fr 1fr 1fr 1fr 1fr과 같아요.
   grid-template-rows: repeat(3, minmax(100px, auto));
