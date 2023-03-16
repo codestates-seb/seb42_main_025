@@ -4,8 +4,30 @@ import ProgressModule from './module/progress/ProgressModule';
 import ProfileModule from './module/profile/ProfileModule';
 import CommissionsListModule from './module/commissions/CommissionsListModule';
 import ChatModule from './module/chat/ChatModule';
+import customAxios from 'api/baseURL';
+import { useEffect, useState } from 'react';
 
 function Mypage() {
+  const [data, setData] = useState(null);
+
+  const getData = async () => {
+    await customAxios
+      .get(`/data`)
+      .then(res => {
+        setData(res.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  console.log(data);
+  // 멤버 id와 비교 후
+
   return (
     <Container>
       <StyledContents>

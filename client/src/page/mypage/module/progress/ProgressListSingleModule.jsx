@@ -3,8 +3,8 @@ import StateComponent from 'component/StateComponent';
 import TitleComponent from 'component/Text/TitleComponent';
 import SmallTextComponent from 'component/Text/SmallTextComponent';
 import TextComponent from 'component/Text/TextComponent';
-import ComponentBox from 'component/ComponentBox';
 import Button from 'component/Buttons/Button';
+import { ProgressRequestListBox } from 'component/BoxComponents.jsx';
 
 function ProgressListSingleModule() {
   const image = [
@@ -23,10 +23,7 @@ function ProgressListSingleModule() {
           <StyledImg src={el} key={idx} alt={el} />
         ))}
         <StyledCommission>
-          <ComponentBox
-            mode="PROGRESS_SUB_LIST"
-            info={{ title: '신청폼제목', content: '신청폼내용' }}
-          />
+          <ProgressRequestListBox info={{ title: '신청폼제목', content: '신청폼내용' }} />
         </StyledCommission>
         <StyledClient>
           <TextComponent text="신청자" bold="bold" />

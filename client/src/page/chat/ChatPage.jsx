@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Container } from 'container/Container';
-import ComponentBox from 'component/ComponentBox';
+import { ChatCommissionInfoBox } from 'component/BoxComponents.jsx';
 import TitleComponent from 'component/Text/TitleComponent';
 import ChatListModule from './module/chatList/ChatListModule';
 import ChatContentModule from './module/chatContent/ChatContentModule';
@@ -20,7 +20,7 @@ function ChatPage() {
         <ChatListModule />
         <ChatContentModule />
         <StyledCommissionInfo>
-          <ComponentBox mode="CHAT_COMMISSION_INFO" info={info} />
+          <ChatCommissionInfoBox info={info} />
         </StyledCommissionInfo>
       </StyledContents>
     </Container>

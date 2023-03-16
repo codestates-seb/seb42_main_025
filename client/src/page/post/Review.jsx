@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import ComponentBox from 'component/ComponentBox';
+import { ReviewListBox } from 'component/BoxComponents.jsx';
 
 const info = {
   image: 'https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg',
@@ -15,10 +15,10 @@ function Review() {
         <ReviewTitle name="리뷰">리뷰</ReviewTitle>
         <ReviewDetail>
           {/* 아직 작성된 리뷰가 없습니다 */}
-          <ComponentBox mode={'REVIEW_LIST'} info={info} />
+          <ReviewListBox info={info} />
         </ReviewDetail>
         {/* {reviewData.length > 0 ? (
-          <ComponentBox mode={'REVIEW_LIST'} info={info} />
+          <ReviewListBox info={info} />
         ) : (
           <ReviewDetail>아직 작성된 리뷰가 없습니다</ReviewDetail>
         )} */}

@@ -1,5 +1,13 @@
 import styled from 'styled-components';
-import ComponentBox from 'component/ComponentBox';
+import {
+  CommissionListBox,
+  CommissionRequestBox,
+  ChatCommissionInfoBox,
+  ReviewListBox,
+  ChatListBox,
+  ChatCommissionRequestBox,
+  ProgressRequestListBox,
+} from 'component/BoxComponents.jsx';
 
 function ComponentBoxesExamples() {
   const info = {
@@ -14,17 +22,19 @@ function ComponentBoxesExamples() {
   return (
     <Container>
       <div>AUTHOR_COMMISSION_LIST</div>
-      <ComponentBox mode={'AUTHOR_COMMISSION_LIST'} info={info} />
+      <CommissionListBox info={info} />
       <div>COMMISSION_SUB</div>
-      <ComponentBox mode={'COMMISSION_SUB'} info={info} />
+      <CommissionRequestBox info={info} />
       <div>REVIEW_LIST</div>
-      <ComponentBox mode={'REVIEW_LIST'} info={info} />
+      <ReviewListBox info={info} />
       <div>CHAT_LIST</div>
-      <ComponentBox mode={'CHAT_LIST'} info={info} />
+      <ChatListBox info={info} />
       <div>CHAT_COMMISSION_SUB</div>
-      <ComponentBox mode={'CHAT_COMMISSION_SUB'} info={info} />
+      <ChatCommissionRequestBox info={info} />
       <div>CHAT_COMMISSION_INFO</div>
-      <ComponentBox mode={'CHAT_COMMISSION_INFO'} info={info} />
+      <ChatCommissionInfoBox info={info} />
+      <div>PROGRESS_SUB-LIST</div>
+      <ProgressRequestListBox info={info} />
     </Container>
   );
 }
