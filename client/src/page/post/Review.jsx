@@ -15,10 +15,10 @@ function Review() {
         <ReviewTitle name="리뷰">리뷰</ReviewTitle>
         <ReviewDetail>
           {/* 아직 작성된 리뷰가 없습니다 */}
-          <ComponentBox mode={'COMMISSION_SUB'} info={info} />
+          <ComponentBox mode={'REVIEW_LIST'} info={info} />
         </ReviewDetail>
         {/* {reviewData.length > 0 ? (
-          <ComponentBox mode={'COMMISSION_SUB'} info={info} />
+          <ComponentBox mode={'REVIEW_LIST'} info={info} />
         ) : (
           <ReviewDetail>아직 작성된 리뷰가 없습니다</ReviewDetail>
         )} */}

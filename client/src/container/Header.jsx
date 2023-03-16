@@ -42,6 +42,7 @@ function Header() {
 }
 
 const StyledHeaderArea = styled.div`
+  width: 100%;
   justify-content: center;
   ${theme => {
     console.log(theme);
@@ -49,6 +50,7 @@ const StyledHeaderArea = styled.div`
       display: grid;
       position: fixed;
       top: 0;
+      left: 0;
       width: 100%;
       height: 5rem;
       z-index: 2;

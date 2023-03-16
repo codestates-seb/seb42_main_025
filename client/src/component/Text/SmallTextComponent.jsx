@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 
-function SmallTextComponent({ text, column, row }) {
+function SmallTextComponent({ text, start, column, row }) {
   return (
-    <StyledFont column={column} row={row}>
+    <StyledFont column={column} row={row} start={start}>
       {text}
     </StyledFont>
   );
@@ -15,10 +15,11 @@ const StyledFont = styled.div`
   color: #cecece;
   white-space: nowrap;
   justify-items: end;
-  ${({ column, row }) => {
+  ${({ column, row, start }) => {
     return css`
       grid-column: ${column};
       grid-row: ${row};
+      justify-items: ${start};
     `;
   }}
 `;

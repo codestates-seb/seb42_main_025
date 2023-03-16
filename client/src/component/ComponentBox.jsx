@@ -198,12 +198,13 @@ const StyledSummaryBox = styled.div`
         grid-template-rows: repeat(6, 1fr);
         max-width: 12.25rem;
         max-height: fit-content;
+        gap: 1.5rem;
         border: 0;
         padding: 0;
 
         ${StyledImg} {
           grid-column: 1 / span 1;
-          grid-row: 1 / span 4;
+          grid-row: 1 / span 3;
           max-width: 100%;
           max-height: fit-content;
         }
