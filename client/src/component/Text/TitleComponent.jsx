@@ -1,13 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-function TitleComponent({ title, fontSize, underbar }) {
+function TitleComponent({ title, fontSize, underbar, row, column }) {
   return (
-    <StyledFont fontSize={fontSize}>
-      {underbar ? (
-        <StyledUnderbar>{title}</StyledUnderbar>
-      ) : (
-        <StyledNotUnderbar>{title}</StyledNotUnderbar>
-      )}
+    <StyledFont fontSize={fontSize} underbar={underbar} row={row} column={column}>
+      {title}
     </StyledFont>
   );
 }
@@ -15,16 +11,28 @@ function TitleComponent({ title, fontSize, underbar }) {
 const StyledFont = styled.div`
   display: grid;
   align-self: flex-end;
+  width: fit-content;
   height: fit-content;
-  font-size: ${props => props.fontSize || '16px'};
+  font-size: '1rem';
   font-weight: bold;
-`;
+  white-space: nowrap;
 
-const StyledUnderbar = styled.div`
-  padding: 1rem;
-  border-bottom: 1px solid #000;
-`;
+  ${({ underbar }) => {
+    if (underbar) {
+      return css`
+        padding: 1rem;
+        border-bottom: 1px solid #000;
+      `;
+    }
+  }}
 
-const StyledNotUnderbar = styled.div``;
+  ${({ fontSize, row, column }) => {
+    return css`
+      font-size: ${fontSize};
+      grid-row: ${row};
+      grid-column: ${column};
+    `;
+  }}
+`;
 
 export default TitleComponent;
