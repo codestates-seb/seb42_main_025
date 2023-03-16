@@ -13,7 +13,7 @@ function Home() {
           </CarouselBox>
           <NewOne>새로운 커미션들</NewOne>
           <SellContainer>
-            <Commission></Commission>
+            <Commission />
           </SellContainer>
         </Contents>
       </Container>
