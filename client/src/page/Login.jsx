@@ -40,26 +40,16 @@ const Login = () => {
     return true;
   };
 
-  axios.interceptors.request.use(
-    config => {
-      const token = localStorage.getItem('token');
-      if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
-      }
-      return config;
-    },
-    error => Promise.reject(error)
-  );
-
   const handleLogin = async () => {
     try {
-      const response = await axios.post('https://0bd5-175-120-25-236.jp.ngrok.io/login', {
+      const response = await axios.post('https://8029-175-120-25-236.jp.ngrok.io/login', {
         email,
         password,
       });
       console.log(response.data);
       localStorage.setItem('token', response.headers.authorization); // 서버에서 보내준 토큰을 로컬 스토리지에 저장
-      console.log(localStorage.getItem('token')); // 저장된 토큰 값 확인
+      const token = localStorage.getItem('token'); // 로컬 스토리지에서 토큰을 가져옵니다.
+      console.log(token);
       console.log('로그인 성공!');
       navigate('/');
     } catch (error) {
@@ -109,6 +99,17 @@ const Login = () => {
     </Container>
   );
 };
+
+axios.interceptors.request.use(
+  config => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  error => Promise.reject(error)
+);
 
 const Contents = styled.div`
   display: grid;

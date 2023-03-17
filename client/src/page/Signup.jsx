@@ -136,7 +136,7 @@ const Signup = () => {
 
   const handleSignup = async () => {
     try {
-      const response = await axios.post('https://0bd5-175-120-25-236.jp.ngrok.io/members/sign-up', {
+      const response = await axios.post('https://8029-175-120-25-236.jp.ngrok.io/members/sign-up', {
         email,
         password,
         nickname,
