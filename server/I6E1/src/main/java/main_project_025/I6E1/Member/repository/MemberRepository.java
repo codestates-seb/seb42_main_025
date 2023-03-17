@@ -13,5 +13,5 @@ public interface MemberRepository extends JpaRepository<Member,Long> {
 
     //닉네임 확인을 위함
     //나중에 필요없으면 지울 예정
-    Optional<Member> findByName(String name);
+    Optional<Member> findByNickname(String nickname);
 }

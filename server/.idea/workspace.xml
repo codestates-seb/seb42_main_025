@@ -4,12 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="864e1652-b397-4941-ba6c-a36a7ce48eeb" name="Changes" comment="">
+    <list default="true" id="864e1652-b397-4941-ba6c-a36a7ce48eeb" name="Changes" comment=":bug: cors오류 수정, 토큰 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/filter/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/filter/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/jwt/JwtTokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/jwt/JwtTokenizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/utils/CustomAuthorityUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/utils/CustomAuthorityUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/config/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/dto/MemberDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/dto/MemberDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/entity/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/entity/Member.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/repository/MemberRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/repository/MemberRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/service/MemberService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/userdetails/MemberDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/userdetails/MemberDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/commission/dto/CommissionDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/commission/dto/CommissionDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/commission/mapper/CommissionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/commission/mapper/CommissionMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/review/mapper/ReviewMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/review/mapper/ReviewMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/tag/controller/TagController.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/tag/controller/TagController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/trade/controller/TradeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/trade/controller/TradeController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +66,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="fix/cors" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GitToolBoxStore">
@@ -70,6 +81,10 @@
             <RecentBranchesForRepo>
               <option name="branches">
                 <list>
+                  <RecentBranch>
+                    <option name="branchName" value="fix/name" />
+                    <option name="lastUsedInstant" value="1679027651" />
+                  </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="fix/cors" />
                     <option name="lastUsedInstant" value="1679027219" />
@@ -161,6 +176,14 @@
       <option name="presentableId" value="Default" />
       <updated>1678957907327</updated>
     </task>
+    <task id="LOCAL-00001" summary=":bug: cors오류 수정, 토큰 수정">
+      <created>1679027351434</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1679027351434</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -173,5 +196,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value=":bug: cors오류 수정, 토큰 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value=":bug: cors오류 수정, 토큰 수정" />
   </component>
 </project>

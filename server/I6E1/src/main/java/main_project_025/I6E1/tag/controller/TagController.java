@@ -1,7 +1,7 @@
 package main_project_025.I6E1.tag.controller;
 
 import lombok.RequiredArgsConstructor;
-import main_project_025.I6E1.global.page.PageDto;
+import main_project_025.I6E1.global.Page.PageDto;
 import main_project_025.I6E1.tag.entity.Tag;
 import main_project_025.I6E1.tag.mapper.TagMapper;
 import main_project_025.I6E1.tag.service.TagService;

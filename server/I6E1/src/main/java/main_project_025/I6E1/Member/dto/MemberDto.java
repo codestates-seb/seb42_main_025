@@ -17,7 +17,7 @@ public class MemberDto {
     public static class Post{
         private String email;
         private String password;
-        private String name;
+        private String nickname;
         //프로필 사진
         //private String imgUrl;
     }
@@ -38,7 +38,7 @@ public class MemberDto {
         private Long memberId;
         private String email;
         private String password;
-        private String name;
+        private String nickname;
         private LocalDateTime createdAt;
     }
 
@@ -48,7 +48,7 @@ public class MemberDto {
     public static class MemberDetailResponse{
         private Long memberId;
         private String email;
-        private String name;
+        private String nickname;
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
         //private String imgUrl;
