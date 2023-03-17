@@ -4,18 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="864e1652-b397-4941-ba6c-a36a7ce48eeb" name="Changes" comment=":bug: cors오류 수정, 토큰 수정">
+    <list default="true" id="864e1652-b397-4941-ba6c-a36a7ce48eeb" name="Changes" comment=":bug: name명칭 수정, 빠진 dto 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/dto/MemberDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/dto/MemberDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/entity/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/entity/Member.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/repository/MemberRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/repository/MemberRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/service/MemberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/userdetails/MemberDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/userdetails/MemberDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/commission/dto/CommissionDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/commission/dto/CommissionDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/commission/mapper/CommissionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/commission/mapper/CommissionMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/review/mapper/ReviewMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/review/mapper/ReviewMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/tag/controller/TagController.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/tag/controller/TagController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/trade/controller/TradeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/trade/controller/TradeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/config/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/config/WebConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,13 +107,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/Desktop/공부/main-project/코드 백업/0316&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/User/Desktop/공부/main-project/코드 백업/0317"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Gradle.I6E1 [build]">
     <configuration name="I6E1Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main_project_025.I6E1.I6E1Application" />
@@ -183,7 +176,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679027351434</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary=":bug: name명칭 수정, 빠진 dto 수정">
+      <created>1679028752823</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1679028752823</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -199,6 +199,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value=":bug: cors오류 수정, 토큰 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value=":bug: cors오류 수정, 토큰 수정" />
+    <MESSAGE value=":bug: name명칭 수정, 빠진 dto 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value=":bug: name명칭 수정, 빠진 dto 수정" />
   </component>
 </project>
