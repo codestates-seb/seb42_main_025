@@ -45,6 +45,7 @@ const SellBox = styled(Link)`
   color: black;
   text-decoration: none;
   outline: none;
+  line-height: 1.6;
 `;
 
 const Tag = styled.div`

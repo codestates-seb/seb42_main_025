@@ -18,11 +18,16 @@ function Post() {
         </PostDetailBox>
         <DetailBox>
           <DetailReviewBox>
-            <div>상세설명</div>
+            <RemoveDeco href="#상세설명" name="상세설명">
+              상세설명
+            </RemoveDeco>
             <RemoveDeco href="#리뷰">리뷰</RemoveDeco>
           </DetailReviewBox>
           <Detail>상세설명</Detail>
         </DetailBox>
+        <ReviewBox>
+          <Review />
+        </ReviewBox>
         <Edit>
           <Edit1>
             <Button
@@ -30,7 +35,7 @@ function Post() {
               addStyle={{
                 padding: '11px',
                 borderRadius: '10px',
-                fontSize: '24px',
+                fontSize: '16px',
               }}
             />
           </Edit1>
@@ -40,14 +45,11 @@ function Post() {
               addStyle={{
                 padding: '11px',
                 borderRadius: '10px',
-                fontSize: '24px',
+                fontSize: '16px',
               }}
             />
           </Edit2>
         </Edit>
-        <ReviewBox>
-          <Review />
-        </ReviewBox>
         <CommissionBox>
           <div>비슷한 커미션들</div>
           <Commission />
@@ -113,23 +115,23 @@ const Detail = styled.div`
 const Edit = styled.div`
   display: grid;
   grid-column: 11 / span 2;
-  grid-row: 3 / span 1;
+  grid-row: 4 / span 1;
   margin: 5rem 0px 5rem 0px;
 `;
 
 const Edit1 = styled.div`
   grid-column: 11 / span 1;
-  grid-row: 3 / span 1;
+  grid-row: 4 / span 1;
 `;
 
 const Edit2 = styled.div`
   grid-column: 12 / span 1;
-  grid-row: 3 / span 1;
+  grid-row: 4 / span 1;
 `;
 
 const ReviewBox = styled.div`
   grid-column: 1 / span 12;
-  grid-row: 4 / span 1;
+  grid-row: 3 / span 1;
   flex-wrap: wrap;
   line-height: 1.6;
 `;

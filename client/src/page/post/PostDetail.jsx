@@ -19,7 +19,8 @@ function PostDetail() {
             addStyle={{
               padding: '11px',
               borderRadius: '10px',
-              fontSize: '24px',
+              fontSize: '16px',
+              width: '100%',
             }}
           />
         </Enroll>
@@ -41,11 +42,11 @@ const Title = styled.div`
 const Tag = styled.div``;
 
 const PostSummary = styled.div`
-  height: 350px;
+  height: 334px;
 `;
 
 const Author = styled.div`
-  margin-top: 3rem;
+  margin: 4rem 0px 4rem 0px;
 `;
 
 const Enroll = styled.div`
