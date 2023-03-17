@@ -1,16 +1,29 @@
 import styled from 'styled-components';
 import Carousel from 'component/Carousel.jsx';
 import Commission from './Commission.jsx';
+import { Container } from 'container/Container.jsx';
 
-const Container = styled.div`
-  display: grid;
-  justify-content: center;
-`;
+function Home() {
+  return (
+    <>
+      <Container>
+        <Contents>
+          <CarouselBox>
+            <Carousel />
+          </CarouselBox>
+          <NewOne>새로운 커미션들</NewOne>
+          <SellContainer>
+            <Commission />
+          </SellContainer>
+        </Contents>
+      </Container>
+    </>
+  );
+}
 
 const Contents = styled.div`
-  padding-top: 5rem;
-  max-width: 1280px;
   display: grid;
+  max-width: 1280px;
   grid-template-columns: repeat(12, 1fr); //repeat(6, 1fr)은 1fr 1fr 1fr 1fr 1fr 1fr과 같아요.
   grid-template-rows: repeat(3, minmax(100px, auto));
   gap: 1rem;
@@ -35,23 +48,5 @@ const SellContainer = styled.div`
   flex-wrap: wrap;
   line-height: 1.6;
 `;
-
-function Home() {
-  return (
-    <>
-      <Container>
-        <Contents>
-          <CarouselBox>
-            <Carousel />
-          </CarouselBox>
-          <NewOne>새로운 커미션들</NewOne>
-          <SellContainer>
-            <Commission></Commission>
-          </SellContainer>
-        </Contents>
-      </Container>
-    </>
-  );
-}
 
 export default Home;

@@ -1,147 +1,85 @@
 import styled, { css } from 'styled-components';
-import { useNavigate } from 'react-router-dom';
-import HeaderButton from 'component/Buttons/HeaderButton';
-// import { ReactComponent as MainLogo } from 'assets/mainlogo.svg';
 import mainlogo from 'assets/Main_logo.png';
-// import { ReactComponent as Favicon } from 'assets/MBTfavicon.svg';
-import { ImSearch } from 'react-icons/im';
+import InputComponent from 'component/InputComponent';
+import Button from 'component/Buttons/Button';
+import { useNavigate } from 'react-router-dom';
 
-const S_Container = styled.div`
-  ${({ theme }) => {
-    const lightGray = theme.themeColor.lightGray;
+function Header() {
+  const navigate = useNavigate();
+  const handleClickLogo = () => {
+    navigate('/');
+  };
+  return (
+    <StyledHeaderArea>
+      <StyledContainer>
+        <StyledLogo src={mainlogo} width={110} alt="logo" onClick={handleClickLogo} />
+        <StyledInputContainer>
+          <InputComponent placeholder="검색" />
+        </StyledInputContainer>
+        <Button
+          text="로그인"
+          path="/login"
+          addStyle={{
+            width: '5rem',
+            height: '2rem',
+            fontSize: '1rem',
+            backgroundColor: 'transparent',
+          }}
+        />
+        <Button
+          text="회원가입"
+          path="/signup"
+          addStyle={{
+            width: '5rem',
+            height: '2rem',
+            fontSize: '1rem',
+            backgroundColor: 'transparent',
+          }}
+        />
+      </StyledContainer>
+    </StyledHeaderArea>
+  );
+}
+
+const StyledHeaderArea = styled.div`
+  width: 100%;
+  justify-content: center;
+  ${theme => {
+    console.log(theme);
     return css`
-      display: flex;
+      display: grid;
       position: fixed;
-      height: 70px;
+      top: 0;
+      left: 0;
       width: 100%;
-      z-index: 1;
-      justify-content: center;
-      border-bottom: 1px solid ${lightGray};
+      height: 5rem;
+      z-index: 2;
+      border-bottom: 1px solid #000;
       background-color: #fff;
-      > .header__container {
-        display: flex;
-        width: 1280px;
-        align-items: center;
-
-        > .logo__wrapper {
-          display: flex;
-          flex: 1;
-          justify-content: center;
-
-          > .logo {
-            display: flex;
-            height: fit-content;
-            border: none;
-            background-color: transparent;
-            cursor: pointer;
-          }
-        }
-
-        > .header-input__Container {
-          display: flex;
-          flex: 8;
-          justify-content: end;
-          margin: 0 2rem;
-
-          > .header-input__Wrapper {
-            display: flex;
-            width: 40%;
-            flex-direction: row;
-            padding: 0.4rem 0.6rem;
-            border-radius: 5px;
-            border: 1px solid ${lightGray};
-            :focus-within {
-              border: 2px solid ${lightGray};
-              box-shadow: 0px 1px 3px ${lightGray};
-            }
-
-            > .header-input {
-              width: 100%;
-              border: none;
-              outline: none;
-
-              ::placeholder {
-                color: ${lightGray};
-              }
-            }
-
-            > .header-input__logo {
-              color: ${lightGray};
-            }
-          }
-        }
-
-        > .button__wrapper {
-          display: flex;
-          flex-direction: row;
-          flex: 2;
-          justify-content: space-around;
-          /* 
-          > .user-button {
-            display: flex;
-            width: 100%;
-            padding: 0;
-            align-items: center;
-            border: none;
-            background-color: transparent;
-            cursor: pointer;
-            :hover {
-              filter: brightness(0.9);
-            }
-            :active {
-              filter: brightness(0.8);
-              transform: translate(0px, 1px);
-            }
-          } */
-        }
-      }
     `;
   }}
 `;
 
-function Header() {
-  const navigate = useNavigate();
+const StyledContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.25rem;
+  max-width: 80rem;
+  max-height: 100%;
+  align-items: center;
+`;
 
-  const handleClickLogo = () => {
-    navigate('/');
-  };
+const StyledLogo = styled.img`
+  display: grid;
+  grid-column: 1 / span 1;
+  cursor: pointer;
+`;
 
-  const handleClickSignup = () => {
-    navigate('/Signup');
-  };
-
-  const handleClickLogin = () => {
-    navigate('/Login');
-  };
-
-  return (
-    <S_Container>
-      <header className="header__container">
-        <div className="logo__wrapper">
-          <button className="logo" onClick={handleClickLogo}>
-            <img src={mainlogo} width={110} alt="mainlogo" />
-          </button>
-        </div>
-        <label className="header-input__Container">
-          <form className="header-input__Wrapper">
-            <input type="text" className="header-input" placeholder="검색어를 입력하세요"></input>
-            <ImSearch className="header-input__logo" />
-          </form>
-        </label>
-        <div className="button__wrapper">
-          <HeaderButton value="로그인" onClick={handleClickLogin} />
-          <HeaderButton value="회원가입" onClick={handleClickSignup} />
-        </div>
-
-        {/* <div className="button__wrapper">
-          <button className="user-button">
-            <Favicon width={35} height={35} />
-          </button>
-          <HeaderButton value="로그아웃" />
-        </div> */}
-      </header>
-    </S_Container>
-  );
-}
+const StyledInputContainer = styled.div`
+  display: grid;
+  grid-column: 5 / span 6;
+  max-height: 100%;
+  cursor: text;
+`;
 
 export default Header;
