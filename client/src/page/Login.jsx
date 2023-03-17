@@ -48,7 +48,7 @@ const Login = () => {
       });
       console.log(response.data);
       localStorage.setItem('token', response.headers.authorization); // 서버에서 보내준 토큰을 로컬 스토리지에 저장
-      const token = localStorage.getItem('token'); // 로컬 스토리지에서 토큰을 가져옵니다.
+      const token = localStorage.getItem('token'); // 로컬 스토리지에서 토큰을 가져옴
       console.log(token);
       console.log('로그인 성공!');
       navigate('/');
