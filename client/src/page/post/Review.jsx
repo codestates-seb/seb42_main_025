@@ -12,7 +12,12 @@ function Review() {
   return (
     <div>
       <ReviewBox>
-        <ReviewTitle name="리뷰">리뷰</ReviewTitle>
+        <DetailReviewBox>
+          <RemoveDeco href="#상세설명">상세설명</RemoveDeco>
+          <RemoveDeco href="#리뷰" name="리뷰">
+            리뷰
+          </RemoveDeco>
+        </DetailReviewBox>
         <ReviewDetail>
           {/* 아직 작성된 리뷰가 없습니다 */}
           <ReviewListBox info={info} />
@@ -36,12 +41,32 @@ const ReviewBox = styled.div`
   padding-top: 10px;
 `;
 
-const ReviewTitle = styled.a`
+// const ReviewTitle = styled.a`
+//   display: flex;
+//   justify-content: center;
+//   width: 100%;
+//   padding: 10px;
+//   border-bottom: 1px solid lightgray;
+// `;
+
+const DetailReviewBox = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #ddba9d;
+  border-radius: 5px;
+  white-space: nowrap;
+  font-weight: bold;
+  color: #fff;
+  height: 50px;
   width: 100%;
-  padding: 10px;
-  border-bottom: 1px solid lightgray;
+  margin-top: 5rem;
+`;
+
+const RemoveDeco = styled.a`
+  color: #fff;
+  text-decoration: none;
+  outline: none;
 `;
 
 const ReviewDetail = styled.div`
