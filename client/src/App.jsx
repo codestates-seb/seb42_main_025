@@ -16,6 +16,7 @@ import Mypage from 'page/mypage/Mypage';
 import CommissionRequest from 'page/CommissionRequest';
 import ComponentBoxesExamples from 'page/ComponentBoxesExamples';
 import ChatPage from 'page/chat/ChatPage';
+import SearchPage from 'page/SearchPage/SearchPage';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/createcommission" element={<CreatePost />} />
           <Route path="/mypage/:id" element={<Mypage />} />
           <Route path="/chat/:id" element={<ChatPage />} />
+          <Route path="/searchpage" element={<SearchPage />} />
         </Routes>
         <Footer />
       </ThemeProvider>

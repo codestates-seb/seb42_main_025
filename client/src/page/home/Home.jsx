@@ -46,7 +46,6 @@ const SellContainer = styled.div`
   grid-column: 1 / span 12;
   grid-row: 3 / span 1;
   flex-wrap: wrap;
-  line-height: 1.6;
 `;
 
 export default Home;
