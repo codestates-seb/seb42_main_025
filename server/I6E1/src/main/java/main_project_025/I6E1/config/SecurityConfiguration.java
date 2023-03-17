@@ -40,14 +40,11 @@ public class SecurityConfiguration {
                 .headers().frameOptions().sameOrigin()
                 .and()
                 .csrf().disable()
-                //CSRF공격에 대한 설정을 비활성화
                 .cors(withDefaults())
-                //세션을 생성하지 않도록 설정
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                //JSON포맷으로 Username과 Password를 전송하는 방식을 사용 예정으로 비활성화
                 .formLogin().disable()
-                //HTTP Header에 실어서 인증을 하는 방식 비활성화
+                .logout().disable()
                 .httpBasic().disable()
                 .exceptionHandling()
                 .authenticationEntryPoint(new MemberAuthenticationEntryPoint())
@@ -65,19 +62,6 @@ public class SecurityConfiguration {
     @Bean
     public PasswordEncoder passwordEncoder(){
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }
-
-    //구체적인 CORS 정책 설정
-    @Bean
-    CorsConfigurationSource corsConfigurationSource(){
-        CorsConfiguration configuration = new CorsConfiguration();
-        //모든 출처(Origin)에 대해 스크립트 기반의 HTTP 통신 허용
-        configuration.setAllowedOrigins(Arrays.asList("*"));
-        configuration.setAllowedMethods(Arrays.asList("GET","POST", "PATCH", "DELETE"));
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**",configuration);
-        return source;
     }
 
     //JwtAuthenticationFilter를 등록하는 역할

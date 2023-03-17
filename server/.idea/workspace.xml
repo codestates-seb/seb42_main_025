@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="864e1652-b397-4941-ba6c-a36a7ce48eeb" name="Changes" comment="" />
+    <list default="true" id="864e1652-b397-4941-ba6c-a36a7ce48eeb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/filter/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/filter/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/jwt/JwtTokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/jwt/JwtTokenizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/utils/CustomAuthorityUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/utils/CustomAuthorityUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/config/SecurityConfiguration.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,6 +62,31 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="fix/cors" />
+                    <option name="lastUsedInstant" value="1679027219" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="feat/be02" />
+                    <option name="lastUsedInstant" value="1679027218" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$/.." />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
   </component>
@@ -68,13 +99,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/User/Desktop/공부/main-project/코드 백업/0316"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/Desktop/공부/main-project/코드 백업/0316&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Gradle.I6E1 [build]">
     <configuration name="I6E1Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main_project_025.I6E1.I6E1Application" />
