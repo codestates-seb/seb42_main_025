@@ -25,7 +25,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     //로그인 인증 정보를 받아서 인증여부 판단
     private final AuthenticationManager authenticationManager;
     private final JwtTokenizer jwtTokenizer;
-    
+
     @SneakyThrows
     @Override
     //메서드 내부에서 인증을 시도하는 로직 구현
@@ -51,8 +51,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         String accessToken = delegateAccessToken(member);
         String refreshToken = delegateRefreshToken(member);
+        response.setHeader("Authorization",accessToken);
 
-        response.setHeader("Authorization","Bearer" + accessToken);
         response.setHeader("Refresh",refreshToken);
 
         this.getSuccessHandler().onAuthenticationSuccess(request, response, authResult);
@@ -88,5 +88,4 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         return refreshToken;
     }
-
 }
