@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import { Editor } from '@toast-ui/react-editor';
-import '@toast-ui/editor/dist/toastui-editor.css';
 import Button from 'component/Buttons/Button';
 import { CommissionRequestBox } from 'component/BoxComponents.jsx';
 
@@ -11,7 +9,7 @@ function CommissionRequest() {
     content: 'content',
   };
 
-  const editorInitialValue = '내용을 입력하세요.';
+  // const editorInitialValue = '내용을 입력하세요.';
 
   return (
     <Container>
@@ -25,13 +23,13 @@ function CommissionRequest() {
       <TitleLabel>제목</TitleLabel>
       <TitleInput type="text" placeholder="제목을 입력하세요." />
       <FormBox>
-        <Editor
+        {/* <Editor
           height="496px"
           initialValue={editorInitialValue}
           viewer={true}
           initialEditType="wysiwyg"
           usageStatistics={false}
-        />
+        /> */}
       </FormBox>
       <Button
         type="submit"
