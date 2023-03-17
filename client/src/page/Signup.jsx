@@ -4,80 +4,6 @@ import styled from 'styled-components';
 import InputComponent from 'component/InputComponent';
 import axios from 'axios';
 
-const Container = styled.div`
-  display: grid;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100vh;
-`;
-
-const SignupContainer = styled.div`
-  display: grid;
-  align-items: center;
-  justify-content: center;
-  grid-template-rows: auto auto auto auto;
-  gap: 10px;
-  width: 330px;
-  height: 550px;
-  border: 2px solid #ddba9d;
-  border-radius: 2rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 10px 10px 1px #f5e8dd;
-  padding: 32px 32px 32px 32px;
-`;
-
-const OptionContainer = styled.div`
-  display: grid;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 1rem;
-  position: relative;
-  bottom: 10px;
-`;
-
-const SignupButton = styled.button`
-  background-color: #ddba9d;
-  font-size: 14px;
-  color: #fff;
-  padding: 0.1rem 1rem;
-  border: none;
-  border-radius: 0.3rem;
-  cursor: pointer;
-  position: relative;
-  width: 337px;
-  height: 40px;
-  top: 10px;
-
-  box-shadow: 5px 5px 1px #f5e8dd;
-
-  &:hover {
-    background-color: #ce8e5b;
-  }
-`;
-
-const OptionButton = styled.button`
-  background-color: ${({ active }) => (active ? '#DDBA9D' : '#fff')};
-  color: ${({ active }) => (active ? '#fff' : '#DDBA9D')};
-  border: ${({ active }) => (active ? 'none' : '1px solid #DDBA9D')};
-  padding: 0.8rem 2rem;
-  border-radius: 0.3rem;
-  cursor: pointer;
-  margin-right: 3rem;
-  position: relative;
-  left: 25px;
-  box-shadow: 5px 5px 1px #f5e8dd;
-
-  &:hover {
-    background-color: #ce8e5b;
-    color: #fff;
-  }
-`;
-
 const Signup = () => {
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -136,7 +62,7 @@ const Signup = () => {
 
   const handleSignup = async () => {
     try {
-      const response = await axios.post('https://0bd5-175-120-25-236.jp.ngrok.io/members/sign-up', {
+      const response = await axios.post('https://8029-175-120-25-236.jp.ngrok.io/members/sign-up', {
         email,
         password,
         nickname,
@@ -211,3 +137,77 @@ const Signup = () => {
 };
 
 export default Signup;
+
+const Container = styled.div`
+  display: grid;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vh;
+`;
+
+const SignupContainer = styled.div`
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-rows: auto auto auto auto;
+  gap: 10px;
+  width: 350px;
+  height: 550px;
+  border: 2px solid #ddba9d;
+  border-radius: 2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 10px 10px 1px #f5e8dd;
+  padding: 32px 32px 32px 32px;
+`;
+
+const OptionContainer = styled.div`
+  display: grid;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  position: relative;
+  bottom: 10px;
+`;
+
+const SignupButton = styled.button`
+  background-color: #ddba9d;
+  font-size: 14px;
+  color: #fff;
+  padding: 0.1rem 1rem;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  position: relative;
+  width: 337px;
+  height: 40px;
+  top: 10px;
+
+  box-shadow: 5px 5px 1px #f5e8dd;
+
+  &:hover {
+    background-color: #ce8e5b;
+  }
+`;
+
+const OptionButton = styled.button`
+  background-color: ${({ active }) => (active ? '#DDBA9D' : '#fff')};
+  color: ${({ active }) => (active ? '#fff' : '#DDBA9D')};
+  border: ${({ active }) => (active ? 'none' : '1px solid #DDBA9D')};
+  padding: 0.8rem 2rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  margin-right: 3rem;
+  position: relative;
+  left: 25px;
+  box-shadow: 5px 5px 1px #f5e8dd;
+
+  &:hover {
+    background-color: #ce8e5b;
+    color: #fff;
+  }
+`;
