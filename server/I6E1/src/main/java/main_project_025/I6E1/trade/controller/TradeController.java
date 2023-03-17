@@ -5,7 +5,7 @@ import main_project_025.I6E1.Member.entity.Member;
 import main_project_025.I6E1.Member.repository.MemberRepository;
 import main_project_025.I6E1.commission.entity.Commission;
 import main_project_025.I6E1.commission.repository.CommissionRepository;
-import main_project_025.I6E1.global.page.PageDto;
+import main_project_025.I6E1.global.Page.PageDto;
 import main_project_025.I6E1.trade.dto.TradePatchDto;
 import main_project_025.I6E1.trade.dto.TradePostDto;
 import main_project_025.I6E1.trade.dto.TradeRespondDto;

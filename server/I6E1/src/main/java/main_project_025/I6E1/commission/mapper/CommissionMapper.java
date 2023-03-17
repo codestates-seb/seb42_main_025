@@ -33,7 +33,7 @@ public interface CommissionMapper {
     Commission commissionPostDtoToCommission(CommissionDto.Post post);
     Commission commissionPatchDtoToCommission(CommissionDto.Patch patch);
 
-    @Mapping(source = "member.name", target = "memberName")
+    @Mapping(source = "member.nickname", target = "memberName")
     @Mapping(source = "member.email", target = "memberEmail")
     @Mapping(source = "tags", target = "tags", qualifiedByName = "tagToString")
     CommissionDto.Response commissionToResponse(Commission commission);

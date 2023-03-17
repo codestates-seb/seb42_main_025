@@ -28,7 +28,7 @@ public class Member extends Auditable {
     private String password;
 
     @Column(unique = true)
-    private String name;
+    private String nickname;
     
     //멤버 프로필에 사진이 필요
     //형태가 바뀌면 변경 필요함
@@ -46,7 +46,7 @@ public class Member extends Auditable {
             trade.setMember(this);
         }
     }
+
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
-
 }

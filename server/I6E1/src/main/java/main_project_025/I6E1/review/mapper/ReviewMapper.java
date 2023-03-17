@@ -12,7 +12,7 @@ public interface ReviewMapper {
     Review reviewPostDtoToReview(ReviewDto.Post post);
     Review reviewPatchDtoToReview(ReviewDto.Patch patch);
 
-    @Mapping(source = "member.name", target = "memberName")
+    @Mapping(source = "member.nickname", target = "memberName")
     @Mapping(source = "member.email", target = "memberEmail")
     ReviewDto.Response reviewToResponse(Review review);
     List<ReviewDto.Response> reviewToResponses(List<Review> reviews);
