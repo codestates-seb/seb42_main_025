@@ -1,0 +1,44 @@
+{
+  "data": [
+    {
+      "tradeId": 3,
+      "commissionId": 1,
+      "memberId": 1,
+      "title": "test",
+      "content": "test1",
+      "status": "수락대기",
+      "createdAt": "2023-03-09T18:07:04.8987826",
+      "modifiedAt": "2023-03-09T18:07:04.8987826"
+    },
+    {
+      "tradeId": 4,
+      "commissionId": 1,
+      "memberId": 1,
+      "title": "test",
+      "content": "test1",
+      "status": "수락대기",
+      "createdAt": "2023-03-09T18:07:04.8987826",
+      "modifiedAt": "2023-03-09T18:07:04.8987826"
+    },
+    {
+      "tradeId": 5,
+      "commissionId": 1,
+      "memberId": 1,
+      "title": "test",
+      "content": "test1",
+      "status": "수락대기",
+      "createdAt": "2023-03-09T18:07:04.8987826",
+      "modifiedAt": "2023-03-09T18:07:04.8987826"
+    },
+    {
+      "tradeId": 6,
+      "commissionId": 1,
+      "memberId": 1,
+      "title": "test",
+      "content": "test1",
+      "status": "수락대기",
+      "createdAt": "2023-03-09T18:07:04.8987826",
+      "modifiedAt": "2023-03-09T18:07:04.8987826"
+    }
+  ]
+}

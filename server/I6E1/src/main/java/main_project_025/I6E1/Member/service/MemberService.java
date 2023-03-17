@@ -25,7 +25,7 @@ public class MemberService {
         //이미 해당 이메일을 사용하고 있는 회원이 있는지 확인
         Boolean checkEmailResult = checkEmail(member.getEmail());
         //이미 해당 닉네임을 사용하고 있는 회원이 있는지 확인
-        Boolean checkNameResult = checkName(member.getName());
+        Boolean checkNameResult = checkNickname(member.getNickname());
 
         //checkEmailResult가 false인 경우
         if(!checkEmailResult){
@@ -73,8 +73,8 @@ public class MemberService {
     }
 
     //닉네임 중복 확인
-    public Boolean checkName(String name){
-        Optional<Member> optionalMembers = memberRepository.findByName(name);
+    public Boolean checkNickname(String nickname){
+        Optional<Member> optionalMembers = memberRepository.findByNickname(nickname);
 
         return optionalMembers.isEmpty();
     }
