@@ -8,7 +8,7 @@ import org.mapstruct.ReportingPolicy;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface MemberMapper {
 
-    //회원가입을 위함
+    //회원가입을 위함z
     Member memberPostToMember(MemberDto.Post memberPostDto);
 
     //멤버 조회

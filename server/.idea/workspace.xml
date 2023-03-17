@@ -4,11 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="864e1652-b397-4941-ba6c-a36a7ce48eeb" name="Changes" comment=":bug: name명칭 수정, 빠진 dto 수정">
+    <list default="true" id="1a128000-20ac-40a8-be37-b0c4917ce41e" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/enums/Roles.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/userdetails/AuthMember.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/config/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/I6E1Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/I6E1Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/controller/MemberController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/dto/MemberDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/dto/MemberDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/entity/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/entity/Member.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/mapper/MemberMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/mapper/MemberMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/service/MemberService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/dto/LoginDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/dto/LoginDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/jwt/JwtTokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/jwt/JwtTokenizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/userdetails/MemberDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/userdetails/MemberDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/utils/CustomAuthorityUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/utils/CustomAuthorityUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/utils/ErrorResponder.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/utils/ErrorResponder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/handler/config/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/handler/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/global/exception/ExceptionCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/global/exception/ExceptionCode.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +67,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -95,6 +109,9 @@
       </RecentBranches>
     </option>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/I6E1Application.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
   </component>
@@ -111,11 +128,17 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/User/Desktop/공부/main-project/코드 백업/0317"
+    "last_opened_file_path": "C:/Users/User/Desktop/공부/main-project/코드 백업/0317",
+    "project.structure.last.edited": "모듈",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
 }]]></component>
-  <component name="RunManager" selected="Gradle.I6E1 [build]">
+  <component name="RunManager" selected="애플리케이션.I6E1Application">
     <configuration name="I6E1Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <envs>
+        <env name="server.port" value="8081" />
+      </envs>
       <option name="MAIN_CLASS_NAME" value="main_project_025.I6E1.I6E1Application" />
       <module name="I6E1.main" />
       <option name="PROGRAM_PARAMETERS" value="-Dspring.profiles.active=local" />
@@ -151,14 +174,9 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.I6E1Application" />
       <item itemvalue="Gradle.I6E1 [build]" />
+      <item itemvalue="애플리케이션.I6E1Application" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.I6E1Application" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
