@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AuthMember extends Member implements UserDetails {
+public class AuthMember implements UserDetails {
     private Long memberId;
     private String email;
     private String password;
@@ -22,7 +22,7 @@ public class AuthMember extends Member implements UserDetails {
     }
 
     private AuthMember(Long id, String email, List<String> roles) {
-        this.memberId = memberId;
+        this.memberId = id;
         this.email = email;
         this.password = "";
         this.roles = roles;
@@ -34,6 +34,10 @@ public class AuthMember extends Member implements UserDetails {
 
     public static AuthMember of(Long id, String email, List<String> roles) {
         return new AuthMember(id, email, roles);
+    }
+
+    public Long getMemberId() {
+        return memberId;
     }
 
     @Override
@@ -49,7 +53,7 @@ public class AuthMember extends Member implements UserDetails {
     }
     @Override
     public String getUsername(){
-        return getEmail();
+        return email;
     }
 
     @Override

@@ -4,12 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a128000-20ac-40a8-be37-b0c4917ce41e" name="변경" comment=":sparkles: member 권한 부여 구현">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-03-17_PM_1_16__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-03-17_PM_1_16__Changes_.xml" afterDir="false" />
+    <list default="true" id="1a128000-20ac-40a8-be37-b0c4917ce41e" name="변경" comment=":bug: 권한 부여 에러 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/handler/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/config/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/handler/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/controller/MemberController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/dto/MemberDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/dto/MemberDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/entity/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/entity/Member.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/mapper/MemberMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/mapper/MemberMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/repository/MemberRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/repository/MemberRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/response/SingleResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/global/response/SingleResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/Member/service/MemberService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/enums/Roles.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/enums/Roles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/filter/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/filter/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/filter/JwtVerificationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/filter/JwtVerificationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/handler/MemberAuthenticationEntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/handler/MemberAuthenticationEntryPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/handler/MemberAuthenticationFailureHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/handler/MemberAuthenticationFailureHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/handler/MemberAuthenticationSuccessHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/handler/MemberAuthenticationSuccessHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/jwt/JwtTokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/jwt/JwtTokenizer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/userdetails/AuthMember.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/userdetails/AuthMember.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/userdetails/MemberDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/userdetails/MemberDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/utils/CustomAuthorityUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/utils/CustomAuthorityUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/config/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/global/exception/ExceptionCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/global/exception/ExceptionCode.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +80,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="feat/authority" />
+        <entry key="$PROJECT_DIR$/.." value="feat/be03" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -203,7 +220,28 @@
       <option name="project" value="LOCAL" />
       <updated>1679049612793</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary=":bug: 로그인 실행 오류 수정">
+      <created>1679111930557</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1679111930557</updated>
+    </task>
+    <task id="LOCAL-00005" summary=":art: 권한 부여 구현">
+      <created>1679128516689</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1679128516689</updated>
+    </task>
+    <task id="LOCAL-00006" summary=":bug: 권한 부여 에러 수정">
+      <created>1679147833075</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1679147833075</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -221,17 +259,9 @@
     <MESSAGE value=":bug: cors오류 수정, 토큰 수정" />
     <MESSAGE value=":bug: name명칭 수정, 빠진 dto 수정" />
     <MESSAGE value=":sparkles: member 권한 부여 구현" />
-    <option name="LAST_COMMIT_MESSAGE" value=":sparkles: member 권한 부여 구현" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/I6E1/src/main/java/main_project_025/I6E1/auth/filter/JwtAuthenticationFilter.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value=":bug: 로그인 실행 오류 수정" />
+    <MESSAGE value=":art: 권한 부여 구현" />
+    <MESSAGE value=":bug: 권한 부여 에러 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value=":bug: 권한 부여 에러 수정" />
   </component>
 </project>

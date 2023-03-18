@@ -12,9 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-// SignatureException, ExpiredJwtException 등 Exception 발생으로 인해
-// SecurityContext 에 Authentication 이 저장되지 않을 경우 등
-// AuthenticationException 이 발생할 때 호출되는 핸들러 같은 역할
 @Slf4j
 @Component
 public class MemberAuthenticationEntryPoint implements AuthenticationEntryPoint {
@@ -26,7 +23,6 @@ public class MemberAuthenticationEntryPoint implements AuthenticationEntryPoint 
         Exception exception = (Exception) request.getAttribute("exception");
         ErrorResponder.sendErrorResponse(response, HttpStatus.UNAUTHORIZED);
 
-        //로그 기록
         logExceptionMessage(authException, exception);
     }
 

@@ -1,4 +1,4 @@
-package main_project_025.I6E1.Member.response;
+package main_project_025.I6E1.global.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
