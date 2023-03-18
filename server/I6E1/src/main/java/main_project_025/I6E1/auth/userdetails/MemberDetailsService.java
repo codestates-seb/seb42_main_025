@@ -27,6 +27,10 @@ public class MemberDetailsService implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+//        var member = memberRepository.findByEmail(email)
+//                .map(this::createUserDetails)
+//                .orElseThrow(() -> new UsernameNotFoundException("유저 정보가 없습니다."));
+//        return member;
         return memberRepository.findByEmail(email)
                 .map(this::createUserDetails)
                 .orElseThrow(() -> new UsernameNotFoundException("유저 정보가 없습니다."));

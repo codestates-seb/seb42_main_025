@@ -25,7 +25,7 @@ public class MemberDto {
         private String nickname;
         //프로필 사진
         //private String imgUrl;
-        private String role;
+        private List<String> roles;
     }
 
     //이메일 중복 확인
@@ -59,7 +59,6 @@ public class MemberDto {
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
         //private String imgUrl;
-        private String role;
 
 //        @Builder
 //        public MemberDetailResponse(Long memberId, String email,

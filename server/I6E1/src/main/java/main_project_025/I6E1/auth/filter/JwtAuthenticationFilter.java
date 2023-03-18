@@ -6,6 +6,7 @@ import lombok.SneakyThrows;
 import main_project_025.I6E1.Member.entity.Member;
 import main_project_025.I6E1.auth.dto.LoginDto;
 import main_project_025.I6E1.auth.jwt.JwtTokenizer;
+import main_project_025.I6E1.auth.userdetails.AuthMember;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -47,25 +48,25 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             FilterChain chain,
                                             Authentication authResult)throws ServletException, IOException {
         //member엔티티 클래스의 객체를 얻음
-        Member member = (Member) authResult.getPrincipal();
+        AuthMember member = (AuthMember) authResult.getPrincipal();
 
         String accessToken = delegateAccessToken(member);
         String refreshToken = delegateRefreshToken(member);
-        response.setHeader("Authorization",accessToken);
+        response.setHeader("Authorization", accessToken);
 
-        response.setHeader("Refresh",refreshToken);
+        response.setHeader("Refresh", refreshToken);
 
         this.getSuccessHandler().onAuthenticationSuccess(request, response, authResult);
     }
 
-    private String delegateAccessToken(Member member){
+    private String delegateAccessToken(AuthMember member){
         Map<String,Object> claims = new HashMap<>();
 
         claims.put("memberId",member.getMemberId());
-        claims.put("username" , member.getEmail());
-        claims.put("roles", member.getRoles());
+        claims.put("username" , member.getUsername());
+        claims.put("roles", member.getAuthorities());
 
-        String subject = member.getEmail();
+        String subject = member.getUsername();
         Date expiration = jwtTokenizer.getTokenExpiration(jwtTokenizer.getAccessTokenExpirationMinutes());
 
         String base64EncodedSecretKey
@@ -77,8 +78,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         return accessToken;
     }
 
-    private String delegateRefreshToken(Member member){
-        String subject = member.getEmail();
+    private String delegateRefreshToken(AuthMember member){
+        String subject = member.getUsername(); //authMember로 수정하면서 getemail -> username으로 변경
         Date expiration = jwtTokenizer.getTokenExpiration(jwtTokenizer.getRefreshTokenExpirationMinutes());
         String base64EncodedSecretKey =
                 jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());

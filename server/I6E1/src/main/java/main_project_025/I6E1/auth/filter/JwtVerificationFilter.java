@@ -5,6 +5,7 @@ import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.security.SignatureException;
 import lombok.RequiredArgsConstructor;
 import main_project_025.I6E1.auth.jwt.JwtTokenizer;
+import main_project_025.I6E1.auth.userdetails.AuthMember;
 import main_project_025.I6E1.auth.utils.CustomAuthorityUtils;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -72,13 +73,17 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
 
     private void setAuthenticationToContext(Map<String, Object> claims){
         //JWT에서 파싱한 claims에서 username를 얻음
-        String name = (String) claims.get("name");
+        Long id = (Long) claims.get("memberId"); //claims 키 null로 들어가서 추가해줌
+        String name = (String) claims.get("username");
+        List<String> roles = (List<String>) claims.get("roles");
 
         //Claims 의 권한정보를 기반으로 List<GrantedAuthority> 생성
         List<GrantedAuthority> authorities =
                 customAuthorityUtils.createAuthorities((List)claims.get("roles"));
+
+        var authMember = AuthMember.of(id, name, roles);
         Authentication authentication
-                = new UsernamePasswordAuthenticationToken(name, null, authorities);
+                = new UsernamePasswordAuthenticationToken(authMember, null, authorities); //name이 아닌 authMember 객체 필요
         // SecurityContext에 Authentication 객체를 저장
         SecurityContextHolder.getContext().setAuthentication(authentication);
 

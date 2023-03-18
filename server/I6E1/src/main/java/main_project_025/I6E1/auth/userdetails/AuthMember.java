@@ -8,9 +8,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AuthMember extends Member implements UserDetails {
+//authMember가 member 엔티티까지 영향 줄 수 있어서 extends 삭제하는게 좋음
+public class AuthMember implements UserDetails {
     private Long memberId;
     private String email;
+    //private String nickname; //임시로 nickname 받는 부분 생성
     private String password;
     private List<String> roles;
 
@@ -22,11 +24,17 @@ public class AuthMember extends Member implements UserDetails {
     }
 
     private AuthMember(Long id, String email, List<String> roles) {
-        this.memberId = memberId;
+        this.memberId = id;
         this.email = email;
         this.password = "";
         this.roles = roles;
     }
+
+    //임시로 nickname 받는 부분 생성
+//    private AuthMember(String nickname, List<String> roles) {
+//        this.nickname = nickname;
+//        this.roles = roles;
+//    }
 
     public static AuthMember of(Member member) {
         return new AuthMember(member);
@@ -36,6 +44,16 @@ public class AuthMember extends Member implements UserDetails {
         return new AuthMember(id, email, roles);
     }
 
+//    //임시로 nickname 받는 부분 생성
+//    public static AuthMember of(String nickname, List<String> roles){
+//        return new AuthMember(nickname, roles);
+//    }
+
+    //테이블 설계가 memberId 기반이기 때문에 생성해줌
+    public Long getMemberId() {
+        return memberId;
+    }
+
     @Override
     public List<GrantedAuthority> getAuthorities() {
         return roles.stream()
@@ -43,13 +61,13 @@ public class AuthMember extends Member implements UserDetails {
                 .collect(Collectors.toList());
     }
 
-    @Override
+    @Override //password 받아오지 못하는 오류로 인해 추가
     public String getPassword() {
         return password;
     }
     @Override
     public String getUsername(){
-        return getEmail();
+        return email; //member가 아닌 authMember 받아오려고 getEmail -> email 수정
     }
 
     @Override
