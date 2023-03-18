@@ -1,6 +1,8 @@
 package main_project_025.I6E1.auth.filter;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.security.SignatureException;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +12,7 @@ import main_project_025.I6E1.auth.utils.CustomAuthorityUtils;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -18,8 +21,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 @RequiredArgsConstructor
@@ -71,19 +76,23 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
         return claims;
     }
 
-    private void setAuthenticationToContext(Map<String, Object> claims){
+    private void setAuthenticationToContext(Map<String, Object> claims) throws JsonProcessingException {
+        ObjectMapper objectMapper= new ObjectMapper();
         //JWT에서 파싱한 claims에서 username를 얻음
-        Long id = (Long) claims.get("memberId"); //claims 키 null로 들어가서 추가해줌
+        Long id = Long.valueOf(String.valueOf(claims.get("memberId"))); //claims 키 null로 들어가서 추가해줌
         String name = (String) claims.get("username");
-        List<String> roles = (List<String>) claims.get("roles");
+        List<String> roles = ((List<LinkedHashMap<String, String>>) claims.get("roles")).stream()
+                .map(role -> role.get("authority"))
+                .collect(Collectors.toList());
 
         //Claims 의 권한정보를 기반으로 List<GrantedAuthority> 생성
-        List<GrantedAuthority> authorities =
-                customAuthorityUtils.createAuthorities((List)claims.get("roles"));
+//        List<GrantedAuthority> authorities =
+//                customAuthorityUtils.createAuthorities((List)claims.get("roles"));
 
         var authMember = AuthMember.of(id, name, roles);
         Authentication authentication
-                = new UsernamePasswordAuthenticationToken(authMember, null, authorities); //name이 아닌 authMember 객체 필요
+                = new UsernamePasswordAuthenticationToken(authMember, null,
+                roles.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList())); //name이 아닌 authMember 객체 필요
         // SecurityContext에 Authentication 객체를 저장
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
