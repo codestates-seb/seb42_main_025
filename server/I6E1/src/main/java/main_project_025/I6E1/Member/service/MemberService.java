@@ -1,6 +1,7 @@
 package main_project_025.I6E1.Member.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import main_project_025.I6E1.Member.entity.Member;
 import main_project_025.I6E1.Member.repository.MemberRepository;
 import main_project_025.I6E1.auth.utils.CustomAuthorityUtils;
@@ -10,8 +11,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Transactional
 @RequiredArgsConstructor
 @Service
@@ -25,7 +28,7 @@ public class MemberService {
         //이미 해당 이메일을 사용하고 있는 회원이 있는지 확인
         Boolean checkEmailResult = checkEmail(member.getEmail());
         //이미 해당 닉네임을 사용하고 있는 회원이 있는지 확인
-        Boolean checkNameResult = checkName(member.getName());
+        Boolean checkNameResult = checkNickname(member.getNickname());
 
         //checkEmailResult가 false인 경우
         if(!checkEmailResult){
@@ -50,6 +53,7 @@ public class MemberService {
         //선택한 권한(사용자/작가) 저장
 //        List<String> roles = authorityUtils.createRoles(member.getEmail());
 //        member.setRoles(roles);
+        //createRoles(member);
 
         return memberRepository.save(member);
     }
@@ -73,8 +77,8 @@ public class MemberService {
     }
 
     //닉네임 중복 확인
-    public Boolean checkName(String name){
-        Optional<Member> optionalMembers = memberRepository.findByName(name);
+    public Boolean checkNickname(String nickname){
+        Optional<Member> optionalMembers = memberRepository.findByNickname(nickname);
 
         return optionalMembers.isEmpty();
     }
@@ -104,4 +108,13 @@ public class MemberService {
         //찾는 값이 있을 경우 가져옴
         return optionalMembers.get();
     }
+
+    //권한
+//    private void createRoles(Member member) {
+//        List<String> roles = authorityUtils.createRoles(member.getRoles().get(0));
+//        if(roles == null){
+//            throw new BusinessException(ExceptionCode.MEMBER_ROLE_DOES_NOT_HAVE);
+//        }
+//        member.setRoles(roles);
+//    }
 }

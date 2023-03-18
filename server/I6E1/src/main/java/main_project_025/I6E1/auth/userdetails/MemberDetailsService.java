@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -21,59 +22,72 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MemberDetailsService implements UserDetailsService {
     private final MemberRepository memberRepository;
-    private final CustomAuthorityUtils customAuthorityUtils;
+    //private final CustomAuthorityUtils customAuthorityUtils;
 
-    //사용자의 크리덴셜을 DB 에서 조회한 후 AuthenticationManager 에게 사용자의 UserDetails 를 전달
     @Override
+    @Transactional
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<Member> optionalMember = memberRepository.findByEmail(email);
-        Member findMember = optionalMember.orElseThrow(
-                () -> new BusinessException(ExceptionCode.USER_NOT_FOUND));
-
-        return new MemberDetails(findMember);
+        return memberRepository.findByEmail(email)
+                .map(this::createUserDetails)
+                .orElseThrow(() -> new UsernameNotFoundException("유저 정보가 없습니다."));
     }
 
-    //User 정보로 변환하는 과정과 User의 권한 정보를 생성하는 과정을 캡슐화
-    private final class MemberDetails extends Member implements UserDetails{
-
-        MemberDetails(Member member){
-            setMemberId(member.getMemberId());
-            setEmail(member.getEmail());
-            setPassword(member.getPassword());
-            setName(member.getName());
-            setRoles(member.getRoles());
-        }
-
-        @Override
-        public Collection<? extends GrantedAuthority> getAuthorities(){
-            //User의 권한 정보를 생성
-            return customAuthorityUtils.createAuthorities(getRoles());
-        }
-
-        @Override
-        public String getUsername(){
-            return getEmail();
-        }
-
-        @Override
-        public boolean isAccountNonExpired(){
-            return true;
-        }
-
-        @Override
-        public boolean isAccountNonLocked() {
-            return true;
-        }
-
-        @Override
-        public boolean isCredentialsNonExpired() {
-            return true;
-        }
-
-        @Override
-        public boolean isEnabled() {
-            return true;
-        }
-
+    private UserDetails createUserDetails(Member member) {
+        return AuthMember.of(member);
     }
+
+
+//    //사용자의 크리덴셜을 DB 에서 조회한 후 AuthenticationManager 에게 사용자의 UserDetails 를 전달
+//    @Override
+//    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+//        Optional<Member> optionalMember = memberRepository.findByEmail(email);
+//        Member findMember = optionalMember.orElseThrow(
+//                () -> new BusinessException(ExceptionCode.USER_NOT_FOUND));
+//
+//        return new MemberDetails(findMember);
+//    }
+//
+//    //User 정보로 변환하는 과정과 User의 권한 정보를 생성하는 과정을 캡슐화
+//    private final class MemberDetails extends Member implements UserDetails{
+//
+//        MemberDetails(Member member){
+//            setMemberId(member.getMemberId());
+//            setEmail(member.getEmail());
+//            setPassword(member.getPassword());
+//            setNickname(member.getNickname());
+//            setRoles(member.getRoles());
+//        }
+//
+//        @Override
+//        public Collection<? extends GrantedAuthority> getAuthorities(){
+//            //User의 권한 정보를 생성
+//            return customAuthorityUtils.createAuthorities(getRoles());
+//        }
+//
+//        @Override
+//        public String getUsername(){
+//            return getEmail();
+//        }
+//
+//        @Override
+//        public boolean isAccountNonExpired(){
+//            return true;
+//        }
+//
+//        @Override
+//        public boolean isAccountNonLocked() {
+//            return true;
+//        }
+//
+//        @Override
+//        public boolean isCredentialsNonExpired() {
+//            return true;
+//        }
+//
+//        @Override
+//        public boolean isEnabled() {
+//            return true;
+//        }
+//
+//    }
 }

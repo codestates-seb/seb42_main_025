@@ -1,0 +1,71 @@
+Index: .idea/workspace.xml
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -4,7 +4,7 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="864e1652-b397-4941-ba6c-a36a7ce48eeb" name="Changes" comment="" />
++    <list default="true" id="864e1652-b397-4941-ba6c-a36a7ce48eeb" name="Changes" comment=":bug: cors이슈 수정, nickname으로 변경" />
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -55,6 +55,31 @@
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
++  </component>
++  <component name="GitToolBoxStore">
++    <option name="recentBranches">
++      <RecentBranches>
++        <option name="branchesForRepo">
++          <list>
++            <RecentBranchesForRepo>
++              <option name="branches">
++                <list>
++                  <RecentBranch>
++                    <option name="branchName" value="fix/cors" />
++                    <option name="lastUsedInstant" value="1679026058" />
++                  </RecentBranch>
++                  <RecentBranch>
++                    <option name="branchName" value="feat/be02" />
++                    <option name="lastUsedInstant" value="1679026057" />
++                  </RecentBranch>
++                </list>
++              </option>
++              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$/.." />
++            </RecentBranchesForRepo>
++          </list>
++        </option>
++      </RecentBranches>
++    </option>
+   </component>
+   <component name="JpbToolWindowState">
+     <option name="isToolWindowVisible" value="false" />
+@@ -130,6 +155,14 @@
+       <option name="presentableId" value="Default" />
+       <updated>1678957907327</updated>
+     </task>
++    <task id="LOCAL-00001" summary=":bug: cors이슈 수정, nickname으로 변경">
++      <created>1679026503375</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1679026503375</updated>
++    </task>
++    <option name="localTasksCounter" value="2" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -143,4 +176,8 @@
+       </map>
+     </option>
+   </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value=":bug: cors이슈 수정, nickname으로 변경" />
++    <option name="LAST_COMMIT_MESSAGE" value=":bug: cors이슈 수정, nickname으로 변경" />
++  </component>
+ </project>
+\ No newline at end of file

@@ -17,6 +17,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 @Component
@@ -64,7 +65,7 @@ public class JwtTokenizer {
                 //JWT를 생성하고 직렬화
                 .compact();
 
-        return accessTokenResponse;
+        return "Bearer " + accessTokenResponse;
     }
 
     //Access Token이 만료되었을 경우,
@@ -79,7 +80,7 @@ public class JwtTokenizer {
                 .signWith(key)
                 .compact();
 
-        return refreshTokenResponse;
+        return "Bearer " + refreshTokenResponse;
     }
 
     // 검증 후, Claims을 반환 하는 용도
