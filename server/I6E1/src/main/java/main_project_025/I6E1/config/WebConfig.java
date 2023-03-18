@@ -1,4 +1,4 @@
-package main_project_025.I6E1.auth.handler.config;
+package main_project_025.I6E1.config;
 
 
 import org.springframework.context.annotation.Configuration;

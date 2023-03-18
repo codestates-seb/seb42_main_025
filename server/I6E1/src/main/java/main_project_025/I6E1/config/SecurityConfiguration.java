@@ -1,4 +1,4 @@
-package main_project_025.I6E1.auth.handler.config;
+package main_project_025.I6E1.config;
 
 import lombok.RequiredArgsConstructor;
 import main_project_025.I6E1.auth.filter.JwtAuthenticationFilter;
