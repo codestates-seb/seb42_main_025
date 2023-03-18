@@ -3,7 +3,6 @@ package main_project_025.I6E1.auth.filter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import main_project_025.I6E1.Member.entity.Member;
 import main_project_025.I6E1.auth.dto.LoginDto;
 import main_project_025.I6E1.auth.jwt.JwtTokenizer;
 import main_project_025.I6E1.auth.userdetails.AuthMember;
@@ -23,13 +22,11 @@ import java.util.Map;
 
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
-    //로그인 인증 정보를 받아서 인증여부 판단
     private final AuthenticationManager authenticationManager;
     private final JwtTokenizer jwtTokenizer;
 
     @SneakyThrows
     @Override
-    //메서드 내부에서 인증을 시도하는 로직 구현
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -42,12 +39,11 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     }
 
     @Override
-    //클라이언트의 인증 정보를 이용해 인증에 성공할 경우 호출됨
     protected void successfulAuthentication(HttpServletRequest request,
                                             HttpServletResponse response,
                                             FilterChain chain,
                                             Authentication authResult)throws ServletException, IOException {
-        //member엔티티 클래스의 객체를 얻음
+
         AuthMember member = (AuthMember) authResult.getPrincipal();
 
         String accessToken = delegateAccessToken(member);
@@ -78,7 +74,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     }
 
     private String delegateRefreshToken(AuthMember member){
-        String subject = member.getUsername(); //authMember로 수정하면서 getemail -> username으로 변경
+        String subject = member.getUsername();
         Date expiration = jwtTokenizer.getTokenExpiration(jwtTokenizer.getRefreshTokenExpirationMinutes());
         String base64EncodedSecretKey =
                 jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());

@@ -28,35 +28,15 @@ public class Member extends Auditable {
 
     @Column(unique = true)
     private String nickname;
-    
-    //멤버 프로필에 사진이 필요
-    //형태가 바뀌면 변경 필요함
-    //private Image image;
 
-    //멤버 권한
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
 
-//    @Builder
-//    public Member(Long memberId, String email, String password, String roles) {
-//        this.memberId = memberId;
-//        this.email = email;
-//        this.password = password;
-//        this.roles.add(roles);
-//    }
-//
-//    public Member(Long memberId, String email, String password, List<String> roles) {
-//        this.memberId = memberId;
-//        this.email = email;
-//        this.password = password;
-//        this.roles = roles;
-//    }
-//
     public void setRoles(List<String> roles) {
         this.roles = roles;
     }
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)//cascade추가
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Trade> trades = new ArrayList<>();
 
     public void setTrade(Trade trade) {

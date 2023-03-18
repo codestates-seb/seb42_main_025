@@ -2,7 +2,6 @@ package main_project_025.I6E1.global.exception;
 
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 public enum ExceptionCode {
 
