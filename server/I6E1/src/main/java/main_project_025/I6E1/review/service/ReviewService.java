@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import main_project_025.I6E1.Member.entity.Member;
 import main_project_025.I6E1.Member.repository.MemberRepository;
 import main_project_025.I6E1.Member.service.MemberService;
+import main_project_025.I6E1.auth.userdetails.AuthMember;
 import main_project_025.I6E1.commission.entity.Commission;
 import main_project_025.I6E1.commission.repository.CommissionRepository;
 import main_project_025.I6E1.global.exception.BusinessException;
@@ -14,6 +15,7 @@ import main_project_025.I6E1.review.repository.ReviewRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,9 +35,13 @@ public class ReviewService {
     public Review createReview(Review review){
         //존재하는 커미션인지 검증
         existCommission(review.getCommissionId());
-        //멤버 미구현
-        Member member = getMemberFromId(1l);
-        review.setMember(member);
+
+        AuthMember loginMember = (AuthMember) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long memberId = loginMember.getMemberId();
+
+        Member verifyMember = getMemberFromId(memberId);
+
+        review.setMember(verifyMember);
         return reviewRepository.save(review);
     }
 
@@ -81,11 +87,11 @@ public class ReviewService {
 
     // (로그인 멤버 = 작성자) 검증
     private Review verifyWriter(long reviewId){
-        //멤버 미구현
-        //long memberId = memberService.getLoginMember().getMemberId();
-        long memberId = 1; /*  Test  */
+        AuthMember loginMember = (AuthMember) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long memberId = loginMember.getMemberId();
+
         Review review = existReview(reviewId);
-        if (/*  Test  */ 1 != memberId){
+        if ( review.getMember().getMemberId() != memberId){
             throw new BusinessException(ExceptionCode.NOT_AUTHORITY);
         }
         return review;

@@ -8,7 +8,7 @@ import main_project_025.I6E1.commission.entity.Commission;
 import main_project_025.I6E1.commission.mapper.CommissionMapper;
 import main_project_025.I6E1.commission.service.CommissionService;
 import main_project_025.I6E1.global.exception.BusinessException;
-import main_project_025.I6E1.global.page.PageDto;
+import main_project_025.I6E1.global.Page.PageDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

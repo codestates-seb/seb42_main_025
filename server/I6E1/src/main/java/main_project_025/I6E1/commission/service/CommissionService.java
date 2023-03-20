@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import main_project_025.I6E1.Member.entity.Member;
 import main_project_025.I6E1.Member.repository.MemberRepository;
 import main_project_025.I6E1.Member.service.MemberService;
+import main_project_025.I6E1.auth.userdetails.AuthMember;
 import main_project_025.I6E1.commission.dto.CommissionDto;
 import main_project_025.I6E1.commission.entity.Commission;
 import main_project_025.I6E1.commission.repository.CommissionRepository;
@@ -15,6 +16,7 @@ import main_project_025.I6E1.tag.service.TagService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,22 +30,22 @@ import java.util.Optional;
 public class CommissionService {
     private CommissionRepository commissionRepository;
     private MemberRepository memberRepository;
-    private MemberService memberService;
     private TagService tagService;//tag test
     private CommissionRepositoryImpl commissionRepositoryImpl;
 
     //CREATE
     public Commission createCommission(Commission commission){
-        // 멤버 미구현
-        Member member = getMemberFromId(1l);
-        commission.setMember(member);
+        //
+        AuthMember loginMember = (AuthMember) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long memberId = loginMember.getMemberId();
+
+        Member verifyMember = getMemberFromId(memberId);
+
+        commission.setMember(verifyMember);
         tagService.createTag(commission);
         return commissionRepository.save(commission);
     }
-    //
-    private Member getMemberFromId(long memberId){
-        return memberRepository.findById(memberId).get();
-    }
+
 
     // READ
     public Commission readCommission(long commissionId){
@@ -85,11 +87,17 @@ public class CommissionService {
 
     // (로그인 멤버 = 작성자) 검증
     private Commission verifyWriter(long commissionId){
-        long memberId = 1; /*  Test  */
+        AuthMember loginMember = (AuthMember) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long memberId = loginMember.getMemberId();
+
         Commission commission = existCommission(commissionId);
-        if ( /*Test*/  1 != memberId  ){
+        if ( commission.getMember().getMemberId()  != memberId  ){
             throw new BusinessException(ExceptionCode.NOT_AUTHORITY);
         }
         return commission;
+    }
+
+    private Member getMemberFromId(long memberId){
+        return memberRepository.findById(memberId).get();
     }
 }
