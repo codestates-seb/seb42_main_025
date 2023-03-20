@@ -19,7 +19,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/review")
+@RequestMapping("/review")
 @Validated
 @AllArgsConstructor
 public class ReviewController {

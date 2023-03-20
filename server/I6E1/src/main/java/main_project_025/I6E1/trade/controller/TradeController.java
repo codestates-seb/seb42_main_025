@@ -47,7 +47,7 @@ public class TradeController {
     }
 
     @PatchMapping("/{tradeId}")
-    @PreAuthorize("hasRole('ROLE_USER','ROLE_AUTHOR')")
+    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_AUTHOR')")
     public ResponseEntity updateTrade(@Valid @RequestBody TradePatchDto tradePatchDto,
                                       @PathVariable("tradeId") @Positive long tradeId) {
         Trade trade = tradeMapper.tradePatchDtoToTrade(tradePatchDto);
@@ -58,14 +58,13 @@ public class TradeController {
     }
 
     @GetMapping("/{tradeId}")
-    @PreAuthorize("hasRole('ROLE_USER','ROLE_AUTHOR')")
+    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_AUTHOR')")
     public ResponseEntity readTrade(@PathVariable("tradeId") @Positive long tradeId) {
         Trade trade = tradeService.readTrade(tradeId);
         return new ResponseEntity(tradeMapper.tradeToTradeResponseDto(trade), HttpStatus.OK);
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('ROLE_USER','ROLE_AUTHOR')")
     public ResponseEntity readAllTrade(Pageable pageable) {
         Page<Trade> tradePage = tradeService.readTrades(pageable);
         List<Trade> tradeList = tradePage.getContent();
@@ -73,7 +72,7 @@ public class TradeController {
     }
 
     @DeleteMapping("/{tradeId}")
-    @PreAuthorize("hasRole('ROLE_USER','ROLE_AUTHOR')")
+    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_AUTHOR')")
     public ResponseEntity deleteTrade(@PathVariable("tradeId") @Positive long tradeId) {
         tradeService.deleteTrade(tradeId);
         return new ResponseEntity(HttpStatus.OK);
