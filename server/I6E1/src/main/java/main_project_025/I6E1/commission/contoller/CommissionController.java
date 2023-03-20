@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +31,7 @@ public class CommissionController {
 
     //CREATE
     @PostMapping
+    @PreAuthorize("hasRole('ROLE_AUTHOR')")
     public ResponseEntity postCommission(@Valid @RequestBody CommissionDto.Post post){
         Commission commission = commissionService.createCommission(mapper.commissionPostDtoToCommission(post));
 
@@ -80,6 +82,7 @@ public class CommissionController {
 
     //UPDATE
     @PatchMapping("/{commission-id}")
+    @PreAuthorize("hasRole('ROLE_AUTHOR')")
     public ResponseEntity patchCommission(@PathVariable("commission-id")long commissionId,
                                           @Valid @RequestBody CommissionDto.Patch patch) throws BusinessException{
         try {
@@ -95,6 +98,7 @@ public class CommissionController {
     //Delete
     //Soft Delete
     @DeleteMapping("/{commission-id}")
+    @PreAuthorize("hasRole('ROLE_AUTHOR')")
     public ResponseEntity deleteCommission(@PathVariable("commission-id")long commissionId)throws BusinessException{
         try {
             commissionService.deleteCommission(commissionId);
