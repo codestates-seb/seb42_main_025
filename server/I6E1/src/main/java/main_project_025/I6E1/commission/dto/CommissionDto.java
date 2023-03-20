@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class CommissionDto {
     @Getter
@@ -16,6 +18,9 @@ public class CommissionDto {
 
         @NotBlank(message = "내용을 입력해주세요.")
         private String content;
+
+        @NotEmpty(message = "태그를 입력해주세요.")
+        private List<String> tags;//tag test
     }
 
     @Getter
@@ -40,6 +45,7 @@ public class CommissionDto {
         private LocalDateTime modifiedAt;
         private String memberName;
         private String memberEmail;
+        private List<String> tags;
 
         //private List<ReviewResponseDto> reviews;
     }

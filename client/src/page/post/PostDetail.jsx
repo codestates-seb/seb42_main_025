@@ -1,40 +1,5 @@
 import styled from 'styled-components';
-import PostButton from 'component/Buttons/PostButton';
-
-const Summary = styled.div`
-  padding: 30px 30px 0px 30px;
-  width: 310px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex-grow: 1;
-`;
-
-const Title = styled.div`
-  min-height: 75px;
-  font-weight: 700;
-  font-size: 25px;
-`;
-
-const Tag = styled.div``;
-
-const PostSummary = styled.div`
-  display: flex;
-  /* align-items: center; */
-  /* background-color: #ddba9d; */
-  justify-content: center;
-  height: 350px;
-`;
-
-const Author = styled.div`
-  margin-top: 3rem;
-`;
-
-const Enroll = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+import Button from 'component/Buttons/Button';
 
 function PostDetail() {
   return (
@@ -49,11 +14,45 @@ function PostDetail() {
           <Author>작가</Author>
         </div>
         <Enroll>
-          <PostButton value="신청하기" />
+          <Button
+            text="신청하기"
+            addStyle={{
+              padding: '11px',
+              borderRadius: '10px',
+              fontSize: '16px',
+              width: '100%',
+            }}
+          />
         </Enroll>
       </Summary>
     </>
   );
 }
+
+const Summary = styled.div`
+  padding: 30px 30px 0px 30px;
+`;
+
+const Title = styled.div`
+  min-height: 75px;
+  font-weight: 700;
+  font-size: 25px;
+`;
+
+const Tag = styled.div``;
+
+const PostSummary = styled.div`
+  height: 334px;
+`;
+
+const Author = styled.div`
+  margin: 4rem 0px 4rem 0px;
+`;
+
+const Enroll = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 export default PostDetail;

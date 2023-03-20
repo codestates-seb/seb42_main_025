@@ -3,9 +3,9 @@ package main_project_025.I6E1.auth.filter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import main_project_025.I6E1.Member.entity.Member;
 import main_project_025.I6E1.auth.dto.LoginDto;
 import main_project_025.I6E1.auth.jwt.JwtTokenizer;
+import main_project_025.I6E1.auth.userdetails.AuthMember;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -22,13 +22,11 @@ import java.util.Map;
 
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
-    //로그인 인증 정보를 받아서 인증여부 판단
     private final AuthenticationManager authenticationManager;
     private final JwtTokenizer jwtTokenizer;
-    
+
     @SneakyThrows
     @Override
-    //메서드 내부에서 인증을 시도하는 로직 구현
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -41,31 +39,29 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     }
 
     @Override
-    //클라이언트의 인증 정보를 이용해 인증에 성공할 경우 호출됨
     protected void successfulAuthentication(HttpServletRequest request,
                                             HttpServletResponse response,
                                             FilterChain chain,
                                             Authentication authResult)throws ServletException, IOException {
-        //member엔티티 클래스의 객체를 얻음
-        Member member = (Member) authResult.getPrincipal();
+
+        AuthMember member = (AuthMember) authResult.getPrincipal();
 
         String accessToken = delegateAccessToken(member);
         String refreshToken = delegateRefreshToken(member);
-
-        response.setHeader("Authorization","Bearer" + accessToken);
-        response.setHeader("Refresh",refreshToken);
+        response.setHeader("Authorization", accessToken);
+        response.setHeader("Refresh", refreshToken);
 
         this.getSuccessHandler().onAuthenticationSuccess(request, response, authResult);
     }
 
-    private String delegateAccessToken(Member member){
+    private String delegateAccessToken(AuthMember member){
         Map<String,Object> claims = new HashMap<>();
 
         claims.put("memberId",member.getMemberId());
-        claims.put("username" , member.getEmail());
-        claims.put("roles", member.getRoles());
+        claims.put("username" , member.getUsername());
+        claims.put("roles", member.getAuthorities());
 
-        String subject = member.getEmail();
+        String subject = member.getUsername();
         Date expiration = jwtTokenizer.getTokenExpiration(jwtTokenizer.getAccessTokenExpirationMinutes());
 
         String base64EncodedSecretKey
@@ -77,8 +73,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         return accessToken;
     }
 
-    private String delegateRefreshToken(Member member){
-        String subject = member.getEmail();
+    private String delegateRefreshToken(AuthMember member){
+        String subject = member.getUsername();
         Date expiration = jwtTokenizer.getTokenExpiration(jwtTokenizer.getRefreshTokenExpirationMinutes());
         String base64EncodedSecretKey =
                 jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
@@ -88,5 +84,4 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         return refreshToken;
     }
-
 }

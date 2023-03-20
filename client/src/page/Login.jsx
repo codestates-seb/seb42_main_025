@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import InputComponent from 'component/InputComponent';
-import Button from 'component/Buttons/Button';
 import { Container } from 'container/Container';
+import axios from 'axios';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -40,7 +40,28 @@ const Login = () => {
     return true;
   };
 
-  const handleSubmit = event => {
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post('https://8029-175-120-25-236.jp.ngrok.io/login', {
+        email,
+        password,
+      });
+
+      // console.log(response.headers);
+
+      localStorage.setItem('authorization', response.headers.get('authorization')); // 서버에서 보내준 토큰을 로컬 스토리지에 저장
+
+      // const token = localStorage.getItem('authorization'); // 로컬 스토리지에서 토큰을 가져옴
+      // console.log(token);
+      console.log('로그인 성공!');
+      navigate('/');
+    } catch (error) {
+      console.log(error.response.data);
+      console.log('로그인 실패!');
+    }
+  };
+
+  const handleSubmit = async event => {
     event.preventDefault();
     const isEmailValid = validateEmail(email);
     const isPasswordValid = validatePassword(password);
@@ -49,7 +70,7 @@ const Login = () => {
       return;
     }
 
-    navigate('/');
+    handleLogin();
   };
 
   return (
@@ -73,23 +94,32 @@ const Login = () => {
             error={passwordError}
             type="password"
           />
-          <Button
-            type="submit"
-            text="로그인"
-            onClick={handleSubmit}
-            addStyle={{ width: '373px', height: '40px' }}
-          ></Button>
+          <LoginButton type="submit" onClick={handleSubmit}>
+            Login
+          </LoginButton>
         </LoginContainer>
       </Contents>
     </Container>
   );
 };
 
+axios.interceptors.request.use(
+  config => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  error => Promise.reject(error)
+);
+
 const Contents = styled.div`
   display: grid;
   width: 1280px;
-  height: 100%;
+  min-height: 560px;
   gap: 1rem;
+  align-self: center;
   justify-content: center;
 `;
 
@@ -98,10 +128,29 @@ const LoginContainer = styled.div`
   width: 26rem;
   gap: 1rem;
   justify-items: center;
-  align-items: center;
   border: 1px solid #000;
   border-radius: 4px;
   padding: 3rem 0;
+`;
+
+const LoginButton = styled.button`
+  background-color: #ddba9d;
+  font-size: 14px;
+  color: #fff;
+  padding: 0.1rem 1rem;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  position: relative;
+  width: 337px;
+  height: 40px;
+  top: 10px;
+
+  box-shadow: 5px 5px 1px #f5e8dd;
+
+  &:hover {
+    background-color: #ce8e5b;
+  }
 `;
 
 export default Login;
