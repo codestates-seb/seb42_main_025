@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +28,7 @@ public class ReviewController {
 
     // CREATE
     @PostMapping
+    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity postReview(@Valid @RequestBody ReviewDto.Post post) {
         Review review = reviewService.createReview(mapper.reviewPostDtoToReview(post));
 
@@ -63,6 +65,7 @@ public class ReviewController {
 
     //UPDATE
     @PatchMapping("/{review-id}")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity patchReview(@PathVariable("review-id") long reviewId,
                                       @Valid @RequestBody ReviewDto.Patch patch) throws BusinessException {
         try {
@@ -76,6 +79,7 @@ public class ReviewController {
     }
 
     @DeleteMapping("/{review-id}")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity deleteReview(@PathVariable("review-id") long reviewId) throws BusinessException {
         try {
             reviewService.deleteReview(reviewId);

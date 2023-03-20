@@ -17,6 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,6 +38,7 @@ public class TradeController {
     private final CommissionRepository commissionRepository;//test용
 
     @PostMapping
+    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity createTrade(@RequestBody @Valid TradePostDto tradePostDto) {
         Trade trade = tradeMapper.tradePostDtoToTrade(tradePostDto);
         Trade createdTrade = tradeService.createTrade(trade);
@@ -45,6 +47,7 @@ public class TradeController {
     }
 
     @PatchMapping("/{tradeId}")
+    @PreAuthorize("hasRole('ROLE_USER','ROLE_AUTHOR')")
     public ResponseEntity updateTrade(@Valid @RequestBody TradePatchDto tradePatchDto,
                                       @PathVariable("tradeId") @Positive long tradeId) {
         Trade trade = tradeMapper.tradePatchDtoToTrade(tradePatchDto);
@@ -55,12 +58,14 @@ public class TradeController {
     }
 
     @GetMapping("/{tradeId}")
+    @PreAuthorize("hasRole('ROLE_USER','ROLE_AUTHOR')")
     public ResponseEntity readTrade(@PathVariable("tradeId") @Positive long tradeId) {
         Trade trade = tradeService.readTrade(tradeId);
         return new ResponseEntity(tradeMapper.tradeToTradeResponseDto(trade), HttpStatus.OK);
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('ROLE_USER','ROLE_AUTHOR')")
     public ResponseEntity readAllTrade(Pageable pageable) {
         Page<Trade> tradePage = tradeService.readTrades(pageable);
         List<Trade> tradeList = tradePage.getContent();
@@ -68,6 +73,7 @@ public class TradeController {
     }
 
     @DeleteMapping("/{tradeId}")
+    @PreAuthorize("hasRole('ROLE_USER','ROLE_AUTHOR')")
     public ResponseEntity deleteTrade(@PathVariable("tradeId") @Positive long tradeId) {
         tradeService.deleteTrade(tradeId);
         return new ResponseEntity(HttpStatus.OK);
