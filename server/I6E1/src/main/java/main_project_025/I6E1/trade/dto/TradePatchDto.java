@@ -22,23 +22,4 @@ public class TradePatchDto {
             this.status = Status.from(status);
         }
     }
-//    @JsonProperty("status")
-//    public void setStatus(String status) {
-//        if (status != null) {
-//            switch (status) {
-//                case "완료":
-//                    this.status = Status.Done;
-//                    break;
-//                case "수락대기":
-//                    this.status = Status.Waiting_Acceptance;
-//                    break;
-//                case "진행 중":
-//                    this.status = Status.In_Progress;
-//                    break;
-//                default:
-//                    this.status = Status.from(status);
-//                    break;
-//            }
-//        }
-//    }
 }

@@ -3,6 +3,7 @@ package main_project_025.I6E1.trade.service;
 import lombok.RequiredArgsConstructor;
 import main_project_025.I6E1.Member.entity.Member;
 import main_project_025.I6E1.Member.repository.MemberRepository;
+import main_project_025.I6E1.auth.userdetails.AuthMember;
 import main_project_025.I6E1.commission.entity.Commission;
 import main_project_025.I6E1.commission.repository.CommissionRepository;
 import main_project_025.I6E1.trade.entity.Trade;
@@ -29,11 +30,10 @@ public class TradeService {
     public Trade createTrade(Trade trade) {
         Commission commission = findCommissionById(trade.getCommission().getCommissionId());//커미션 검증
 
-        //유저 검증 로직 받으면 수정(사용자 role만 신청 가능)
-//        Member member = new Member();
-//        member.setMemberId(1L);
-        String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
-        Optional<Member> optionalMember = memberRepository.findByEmail(principal);
+        AuthMember authMember = (AuthMember) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userEmail = authMember.getUsername();
+
+        Optional<Member> optionalMember = memberRepository.findByEmail(userEmail);
         Member member = optionalMember.orElseThrow(() -> new RuntimeException("거래 신청 권한이 없습니다."));
 
         trade.setCommission(commission);
@@ -42,34 +42,28 @@ public class TradeService {
     }
 
     public Trade updateTrade(Trade trade) {
-        //유저의 role을 검색해서 작가일 경우에만 수정가능하게?
         Trade findTrade = findTradeById(trade.getTradeId());//거래 검증
         Commission commission = findCommissionById(findTrade.getCommission().getCommissionId());//커미션 검증
         trade.setCommission(commission);
 
-        //유저 검증 로직 받으면 교체
-//        Member member = new Member();
-//        member.setMemberId(1L);
-//        trade.setMember(member);
-        String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
-        Optional<Member> optionalMember = memberRepository.findByEmail(principal);
+        AuthMember authMember = (AuthMember) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userEmail = authMember.getUsername();
+
+        Optional<Member> optionalMember = memberRepository.findByEmail(userEmail);
         Member member = optionalMember.orElseThrow(() -> new RuntimeException("거래 신청 권한이 없습니다."));
 
         trade.setMember(member);
         trade.setContent(findTrade.getContent());
         trade.setTitle(findTrade.getTitle());
-//        trade.setStatus(trade.getStatus()); 필요없는듯
         return tradeRepository.save(trade);
     }
 
     public Trade readTrade(long tradeId) {
-        //유저 검증 필요할듯
         Trade findTrade = findTradeById(tradeId);
         return findTrade;
     }
 
     public Page<Trade> readTrades(Pageable pageable) {
-        //유저 검증 필요할듯
         Pageable pageRequest = PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize(), pageable.getSort());
         return tradeRepository.findAll(pageRequest);
     }

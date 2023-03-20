@@ -7,9 +7,10 @@ import main_project_025.I6E1.commission.dto.CommissionDto;
 import main_project_025.I6E1.commission.entity.Commission;
 import main_project_025.I6E1.commission.mapper.CommissionMapper;
 import main_project_025.I6E1.commission.service.CommissionService;
-import main_project_025.I6E1.global.Page.PageDto;
 import main_project_025.I6E1.global.exception.BusinessException;
+import main_project_025.I6E1.global.page.PageDto;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -64,6 +65,19 @@ public class CommissionController {
         }
     }
 
+    //Search
+    @GetMapping("/search")
+    public ResponseEntity searchCommissions(@RequestParam(required = false) String title,
+                                            @RequestParam(required = false) String name,
+                                            @RequestParam(required = false) List<String> tags,
+                                            Pageable pageable ) {
+
+        Page<Commission> commissionPage = commissionService.searchOptions(pageable, title, name, tags);
+        List<Commission> commissionList = commissionPage.getContent();
+        PageDto pageDto = new PageDto<>(mapper.commissionToResponses(commissionList),commissionPage);
+        return new ResponseEntity<>(pageDto, HttpStatus.OK);
+    }
+
     //UPDATE
     @PatchMapping("/{commission-id}")
     public ResponseEntity patchCommission(@PathVariable("commission-id")long commissionId,
@@ -100,5 +114,4 @@ public class CommissionController {
 
         return new ResponseEntity(HttpStatus.OK);
     }
-
 }
