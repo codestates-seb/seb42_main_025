@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import InputComponent from 'component/InputComponent';
-import { Container } from 'container/Container';
 import axios from 'axios';
 import { useRecoilState } from 'recoil';
 import { isLoggedInState } from './atom';
+import Button from 'component/Buttons/Button';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -84,30 +84,35 @@ const Login = () => {
 
   return (
     <Container>
-      <Contents>
-        <LoginContainer>
-          <InputComponent
-            label="Email"
-            placeholder="이메일을 입력하세요."
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            onBlur={() => validateEmail(email)}
-            error={emailError}
-          />
-          <InputComponent
-            label="Password"
-            placeholder="비밀번호를 입력하세요."
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            onBlur={() => validatePassword(password)}
-            error={passwordError}
-            type="password"
-          />
-          <LoginButton type="submit" onClick={handleSubmit}>
+      <LoginContainer>
+        <InputComponent
+          label="Email"
+          placeholder="이메일을 입력하세요."
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          onBlur={() => validateEmail(email)}
+          error={emailError}
+        />
+        <InputComponent
+          label="Password"
+          placeholder="비밀번호를 입력하세요."
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          onBlur={() => validatePassword(password)}
+          error={passwordError}
+          type="password"
+        />
+        {/* <LoginButton type="submit" onClick={handleSubmit}>
             Login
-          </LoginButton>
-        </LoginContainer>
-      </Contents>
+          </LoginButton> */}
+
+        <Button
+          text="로그인"
+          buttonType="submit"
+          handleClick={handleSubmit}
+          addStyle={{ width: 'w_xxxxl', height: 'h_l', backgroundColor: 'tea_1' }}
+        />
+      </LoginContainer>
     </Container>
   );
 };
@@ -123,43 +128,43 @@ axios.interceptors.request.use(
   error => Promise.reject(error)
 );
 
-const Contents = styled.div`
+const Container = styled.div`
   display: grid;
-  width: 1280px;
-  min-height: 560px;
-  gap: 1rem;
-  align-self: center;
-  justify-content: center;
+  width: 100%;
+  max-width: 420px;
+  min-height: 100vh;
+  padding: 10rem 0 5rem 0;
+  overflow-x: hidden;
 `;
 
 const LoginContainer = styled.div`
   display: grid;
-  width: 26rem;
+  width: 100%;
+  height: 30rem;
   gap: 1rem;
-  justify-items: center;
   border: 1px solid #000;
-  border-radius: 4px;
-  padding: 3rem 0;
+  border-radius: 0.25rem;
+  padding: 2rem;
 `;
 
-const LoginButton = styled.button`
-  background-color: #ddba9d;
-  font-size: 14px;
-  color: #fff;
-  padding: 0.1rem 1rem;
-  border: none;
-  border-radius: 0.3rem;
-  cursor: pointer;
-  position: relative;
-  width: 337px;
-  height: 40px;
-  top: 10px;
+// const LoginButton = styled.button`
+//   background-color: #ddba9d;
+//   font-size: 14px;
+//   color: #fff;
+//   padding: 0.1rem 1rem;
+//   border: none;
+//   border-radius: 0.3rem;
+//   cursor: pointer;
+//   position: relative;
+//   width: 337px;
+//   height: 40px;
+//   top: 10px;
 
-  box-shadow: 5px 5px 1px #f5e8dd;
+//   box-shadow: 5px 5px 1px #f5e8dd;
 
-  &:hover {
-    background-color: #ce8e5b;
-  }
-`;
+//   &:hover {
+//     background-color: #ce8e5b;
+//   }
+// `;
 
 export default Login;

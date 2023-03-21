@@ -1,9 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-function Button({ text, path = '', handleClick, addStyle = {} }) {
+function Button({ buttonType, text, path = '', handleClick, addStyle = {} }) {
   const navigate = useNavigate();
-  const { padding, margin, width, borderRadius, fontSize, height, backgroundColor, row } = addStyle;
 
   const goTo = path => {
     navigate(path);
@@ -11,33 +10,45 @@ function Button({ text, path = '', handleClick, addStyle = {} }) {
 
   return (
     <StyledButton
-      width={width}
-      height={height}
-      padding={padding}
-      margin={margin}
-      borderRadius={borderRadius}
-      fontSize={fontSize}
-      row={row}
-      backgroundColor={backgroundColor}
+      type={buttonType}
       onClick={path ? () => goTo(path) : handleClick}
+      addStyle={addStyle}
     >
       {text}
     </StyledButton>
   );
 }
 
-const StyledButton = styled.button`
-  width: ${props => props.width || 'inherit'};
-  height: ${props => props.height || 'inherit'};
-  padding: ${props => props.padding || '0.25rem 0.5rem'};
-  margin: ${props => props.margin || 'none'};
-  border: ${props => (props.bdColor ? 'solid 1px' : 'none')};
-  border-radius: ${props => props.borderRadius || '4px'};
-  font-size: ${props => props.fontSize || '16px'};
-  font-weight: bold;
-  background-color: ${props => props.backgroundColor || '#ececec'};
+const StyledButton = styled.button.attrs(props => ({
+  width: props.addStyle.width,
+  height: props.addStyle.height,
+  border: props.addStyle.border,
+  borderRadius: props.addStyle.borderRadius,
+  fontSize: props.addStyle.fontSize,
+  backgroundColor: props.addStyle.backgroundColor,
+  color: props.addStyle.color,
+  row: props.addStyle.row,
+  margin: props.addStyle.margin,
+  padding: props.addStyle.padding,
+  borderColor: props.addStyle.borderColor,
+}))`
+  width: ${props => props.theme.percent[props.width] || 'inherit'};
+  max-width: ${props => props.theme.sizes[props.width] || 'inherit'};
+  height: ${props => props.theme.sizes[props.height]};
+  border-radius: ${props => props.theme.radiuses[props.borderRadius] || '0.25rem'};
+  font-size: ${props => props.theme.fontSizes[props.fontSize]};
+  background-color: ${props => props.theme.colors[props.backgroundColor] || '#ececec'};
   grid-row: ${props => props.row || 'inherit'};
+  border: ${props => (props.border ? 'solid 1px' : 'none')};
+  border-color: ${props => props.theme.colors[props.borderColor]};
+  color: ${props => props.theme.colors[props.color]};
+  margin: ${props => props.margin};
+  padding: ${props => props.padding};
+  font-weight: bold;
   white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   cursor: pointer;
 
@@ -51,17 +62,3 @@ const StyledButton = styled.button`
 `;
 
 export default Button;
-
-// 사용 예시
-
-{
-  /* <Button
-text='수정' // 텍스트 값
-path='/commission' // 클릭시 이동하는 경로
-addStyle={{
-  padding: '11px',  // 값에 ''를 붙여줘야함
-  borderRadius: '10px',
-  fontSize: '24px'
-}}
-/> */
-}

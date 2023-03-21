@@ -19,9 +19,8 @@ const StyledSummaryBox = styled.div`
   max-height: 7.5rem;
   padding: 0.5rem 1rem;
   gap: 0.5rem;
-  border-radius: 4px;
-  border: 1px solid #000;
   white-space: nowrap;
+  background-color: #fff;
 `;
 
 const StyledImg = styled.img`

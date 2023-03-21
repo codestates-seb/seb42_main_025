@@ -3,87 +3,89 @@ import Button from 'component/Buttons/Button';
 import PostDetail from './PostDetail';
 import Review from './Review';
 import Commission from 'page/home/Commission';
-import { Container } from 'container/Container';
 import Food from 'assets/1.JPG';
+import { Container } from 'container/Container';
+import ImageComponent from 'component/ImageComponent';
+import Typography from 'component/Text/Typography';
 
 function Post() {
   return (
     <Container>
-      <Content>
-        <ImgBox>
-          <Img src={Food} alt="navExploreLogo" />
-        </ImgBox>
-        <PostDetailBox>
-          <PostDetail />
-        </PostDetailBox>
-        <DetailBox>
-          <DetailReviewBox>
-            <RemoveDeco href="#상세설명" name="상세설명">
-              상세설명
-            </RemoveDeco>
-            <RemoveDeco href="#리뷰">리뷰</RemoveDeco>
-          </DetailReviewBox>
-          <Detail>상세설명</Detail>
-        </DetailBox>
-        <ReviewBox>
-          <Review />
-        </ReviewBox>
-        <Edit>
-          <Edit1>
-            <Button
-              text="수정"
-              addStyle={{
-                padding: '11px',
-                borderRadius: '10px',
-                fontSize: '16px',
-              }}
-            />
-          </Edit1>
-          <Edit2>
-            <Button
-              text="삭제"
-              addStyle={{
-                padding: '11px',
-                borderRadius: '10px',
-                fontSize: '16px',
-              }}
-            />
-          </Edit2>
-        </Edit>
-        <CommissionBox>
-          <div>비슷한 커미션들</div>
-          <Commission />
-        </CommissionBox>
-      </Content>
+      <PostDetailBox>
+        <ImageComponent
+          src={Food}
+          alt="navExploreLogo"
+          width="xxl"
+          imgStyle="commission"
+          flex={1}
+        />
+        <PostDetail flex={1} />
+      </PostDetailBox>
+      <DetailBox>
+        <DetailReviewBox>
+          <RemoveDeco href="#상세설명" name="상세설명">
+            상세설명
+          </RemoveDeco>
+          <RemoveDeco href="#리뷰">리뷰</RemoveDeco>
+        </DetailReviewBox>
+        <Detail>상세설명</Detail>
+      </DetailBox>
+      <ReviewBox>
+        <Review />
+      </ReviewBox>
+      <Edit>
+        <EditButton>
+          <Button
+            text="수정"
+            addStyle={{
+              width: 'w_xl',
+              height: 'h_m',
+              radius: 'base',
+              padding: '1rem',
+            }}
+          />
+        </EditButton>
+        <EditButton>
+          <Button
+            text="삭제"
+            addStyle={{
+              width: 'w_xl',
+              height: 'h_m',
+              radius: 'base',
+              padding: '1rem',
+            }}
+          />
+        </EditButton>
+      </Edit>
+      <CommissionBox>
+        <Typography
+          variant="h2"
+          text="비슷한 커미션"
+          size="xl"
+          bold="bold"
+          column="1 / span 5"
+          space="nowrap"
+          color="tea_2"
+          margin="s"
+        />
+        <Commission />
+      </CommissionBox>
     </Container>
   );
 }
 
-const Content = styled.div`
-  max-width: 1280px;
-  display: grid;
-  grid-template-columns: repeat(12, 1fr); //repeat(6, 1fr)은 1fr 1fr 1fr 1fr 1fr 1fr과 같아요.
-  grid-template-rows: repeat(5, minmax(50px, auto));
-  gap: 1rem;
-`;
-
-const ImgBox = styled.div`
-  grid-column: 1 / span 8;
-  grid-row: 1 / span 1;
-`;
-
-const Img = styled.img`
-  max-width: 853px;
-`;
-
 const PostDetailBox = styled.div`
-  grid-column: 9 / span 4;
-  grid-row: 1 / span 1;
+  display: flex;
+  width: 100%;
+  max-width: 1280px;
+  gap: 1rem;
+  margin: 0 auto;
+  position: relative;
 `;
 
 const DetailBox = styled.div`
-  grid-column: 1 / span 12;
-  grid-row: 2 / span 1;
+  width: 100%;
+  height: 100%;
 `;
 
 const DetailReviewBox = styled.div`
@@ -108,37 +110,29 @@ const RemoveDeco = styled.a`
 const Detail = styled.div`
   display: flex;
   justify-content: center;
-  padding: 10px 0px;
+  padding: 1rem 0px;
   border-bottom: 1px solid gray;
 `;
 
 const Edit = styled.div`
-  display: grid;
-  grid-column: 11 / span 2;
-  grid-row: 4 / span 1;
-  margin: 5rem 0px 5rem 0px;
+  display: flex;
+  justify-content: end;
+  padding: 3rem 0;
+  border-bottom: 1px solid #cecece;
 `;
 
-const Edit1 = styled.div`
-  grid-column: 11 / span 1;
-  grid-row: 4 / span 1;
-`;
-
-const Edit2 = styled.div`
-  grid-column: 12 / span 1;
-  grid-row: 4 / span 1;
+const EditButton = styled.div`
+  margin: 0.5rem;
 `;
 
 const ReviewBox = styled.div`
-  grid-column: 1 / span 12;
-  grid-row: 3 / span 1;
-  flex-wrap: wrap;
+  width: 100%;
   line-height: 1.6;
 `;
 
 const CommissionBox = styled.div`
-  grid-column: 1 / span 12;
-  grid-row: 5 / span 1;
+  width: 100%;
+  margin-top: 5rem;
   flex-wrap: wrap;
   line-height: 1.7;
 `;

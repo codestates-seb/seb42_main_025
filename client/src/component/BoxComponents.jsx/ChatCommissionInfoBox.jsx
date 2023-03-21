@@ -1,48 +1,39 @@
 import styled from 'styled-components';
+import ImageComponent from 'component/ImageComponent';
+import Typography from 'component/Text/Typography';
 
 function ChatCommissionInfoBox({ info }) {
   return (
     <StyledSummaryBox>
-      <StyledImg src={info.image} alt={info.title} />
-      <StyledTitle>{info.title}</StyledTitle>
-      <StyledContent>{info.content}</StyledContent>
+      <ImageComponent src={info.image} alt={info.title} width="l" imgStyle="commission" />
+      <Typography
+        text={info.title}
+        variant="h2"
+        bold="bold"
+        size="l"
+        line={2}
+        height="h_l"
+        space="normal"
+        margin="xs"
+        lineHeight="xl"
+      />
+      <Typography
+        text={info.content}
+        variant="a"
+        line={12}
+        height="h_xxxl"
+        space="normal"
+        margin="xs"
+        lineHeight="l"
+      />
     </StyledSummaryBox>
   );
 }
 
 const StyledSummaryBox = styled.div`
-  display: grid;
-  align-items: center;
-  grid-template-columns: repeat(1, 1fr);
-  grid-template-rows: repeat(6, 1fr);
-  max-width: 12.25rem;
-  max-height: fit-content;
-  gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
   white-space: nowrap;
-`;
-
-const StyledImg = styled.img`
-  max-width: 100%;
-  max-height: fit-content;
-  grid-column: 1 / span 1;
-  grid-row: 1 / span 3;
-  align-self: center;
-`;
-
-const StyledTitle = styled.h2`
-  grid-column: 1 / span 1;
-  grid-row: 5 / span 1;
-  max-height: fit-content;
-  font-size: 1.25rem;
-  font-weight: bold;
-`;
-
-const StyledContent = styled.div`
-  grid-column: 1 / span 1;
-  grid-row: 6 / span 1;
-  max-height: fit-content;
-  padding-left: 0.5rem;
-  font-size: 1rem;
 `;
 
 export default ChatCommissionInfoBox;

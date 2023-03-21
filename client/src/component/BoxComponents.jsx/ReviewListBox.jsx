@@ -1,10 +1,12 @@
+import ImageComponent from 'component/ImageComponent';
+import Typography from 'component/Text/Typography';
 import styled from 'styled-components';
 
 function ReviewListBox({ info }) {
   return (
     <StyledSummaryBox>
-      <StyledImg src={info.image} alt={info.title} />
-      <StyledContent>{info.content}</StyledContent>
+      <Typography text={info.content} variant="p" flex={19} line={1} height="h_s" />
+      <ImageComponent src={info.image} alt={info.title} width="xs" imgStyles="user" />
       <StyledWriter>{info.writer}</StyledWriter>
       <StyledDate>{info.date}</StyledDate>
     </StyledSummaryBox>
@@ -12,46 +14,24 @@ function ReviewListBox({ info }) {
 }
 
 const StyledSummaryBox = styled.div`
-  display: grid;
+  display: flex;
   align-items: center;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  max-width: 72rem;
-  max-height: 5rem;
+  width: 90%;
   padding: 0.5rem 1rem;
-  gap: 0.5rem;
-  border-radius: 4px;
+  gap: 1rem;
+  border-radius: 0.25rem;
   border: 1px solid #000;
   white-space: nowrap;
 `;
 
-const StyledImg = styled.img`
-  max-width: 4rem;
-  max-height: 4rem;
-  grid-column: 1 / span 2;
-  grid-row: 1 / span 4;
-  align-self: center;
-`;
-
-const StyledContent = styled.div`
-  grid-column: 2 / span 8;
-  grid-row: 1 / span 4;
-  padding-left: 1rem;
-  font-weight: bold;
-  font-size: 1rem;
-  border-left: 1px solid #000;
-`;
-
 const StyledWriter = styled.div`
-  display: grid;
-  grid-column: 11 / span 1;
-  grid-row: 1 / span 4;
+  display: flex;
+  flex: 2;
 `;
 
 const StyledDate = styled.div`
-  display: grid;
-  grid-column: 12 / span 1;
-  grid-row: 1 / span 4;
+  display: flex;
+  flex: 2;
 `;
 
 export default ReviewListBox;

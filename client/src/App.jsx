@@ -14,9 +14,9 @@ import Post from 'page/post/Post';
 import CreatePost from 'page/CreatePost/CreatePost';
 import Mypage from 'page/mypage/Mypage';
 import CommissionRequest from 'page/CommissionRequest';
-import ComponentBoxesExamples from 'page/ComponentBoxesExamples';
 import ChatPage from 'page/chat/ChatPage';
-import SearchPage from 'page/SearchPage/SearchPage';
+import SearchPage from 'page/SearchPage';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -28,14 +28,14 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/component-boxes-examples" element={<ComponentBoxesExamples />} />
-          <Route path="/commissionrequest" element={<CommissionRequest />} />
+          <Route path="/searchpage" element={<SearchPage />} />
           <Route path="/commission" element={<Post />} />
+          <Route path="/commissionrequest" element={<CommissionRequest />} />
           <Route path="/createcommission" element={<CreatePost />} />
           <Route path="/mypage/:id" element={<Mypage />} />
           <Route path="/chat/:id" element={<ChatPage />} />
-          <Route path="/searchpage" element={<SearchPage />} />
         </Routes>
+        <ToastContainer />
         <Footer />
       </ThemeProvider>
     </React.Fragment>

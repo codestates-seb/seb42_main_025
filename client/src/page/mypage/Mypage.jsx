@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { Container } from 'container/Container';
-import ProgressModule from './module/progress/ProgressModule';
-import ProfileModule from './module/profile/ProfileModule';
-import CommissionsListModule from './module/commissions/CommissionsListModule';
-import ChatModule from './module/chat/ChatModule';
+import ProgressModule from './module/Progress/ProgressModule';
+import ProfileModule from './module/Profile/ProfileModule';
+import CommissionsListModule from './module/Commissions/CommissionsListModule';
+import ChatModule from './module/Chat/ChatModule';
 import customAxios from 'api/baseURL';
 import { useEffect, useState } from 'react';
 
@@ -45,10 +45,9 @@ function Mypage() {
 
 const StyledContents = styled.section`
   display: grid;
-  max-width: 1280px;
   grid-template-columns: repeat(12, 1fr);
-  grid-auto-rows: minmax(4rem, auto);
-  gap: 3rem;
+  grid-auto-rows: minmax(6rem, auto);
+  gap: 5rem 2rem;
 `;
 
 export default Mypage;
