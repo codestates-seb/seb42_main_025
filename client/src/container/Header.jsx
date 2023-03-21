@@ -63,7 +63,6 @@ function Header() {
             </StyledLink>
             <Button
               text="로그아웃"
-              path="/"
               handleClick={handleLogout}
               addStyle={{
                 width: 'w_m',
@@ -77,7 +76,6 @@ function Header() {
           <>
             <Button
               text="로그인"
-              path="/login"
               handleClick={handleClickLogin}
               addStyle={{
                 width: 'w_m',
@@ -88,7 +86,6 @@ function Header() {
             />
             <Button
               text="회원가입"
-              path="/signup"
               handleClick={handleClickSignup}
               addStyle={{
                 width: 'w_m',

@@ -1,19 +1,8 @@
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-function Button({ buttonType, text, path = '', handleClick, addStyle = {} }) {
-  const navigate = useNavigate();
-
-  const goTo = path => {
-    navigate(path);
-  };
-
+function Button({ buttonType, text, handleClick, addStyle = {} }) {
   return (
-    <StyledButton
-      type={buttonType}
-      onClick={path ? () => goTo(path) : handleClick}
-      addStyle={addStyle}
-    >
+    <StyledButton type={buttonType} onClick={handleClick} addStyle={addStyle}>
       {text}
     </StyledButton>
   );
