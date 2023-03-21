@@ -1,26 +1,45 @@
 import styled from 'styled-components';
 import ProgressListModule from './ProgressListModule';
-import TitleComponent from 'component/Text/TitleComponent';
+import Typography from 'component/Text/Typography';
 
 function ProgressModule() {
   return (
-    <>
-      <TitleComponent title="진행 목록" fontSize={'1.5rem'} underbar={'yes'} />
+    <StyledContainer>
+      <TitleContainer>
+        <Typography
+          variant="h2"
+          text="진행목록"
+          size="xl"
+          bold="bold"
+          space="nowrap"
+          color="tea_2"
+          margin="s"
+          height="h_s"
+        />
+      </TitleContainer>
       <StyledListContainer>
         <ProgressListModule />
         <ProgressListModule />
         <ProgressListModule />
       </StyledListContainer>
-    </>
+    </StyledContainer>
   );
 }
 
-const StyledListContainer = styled.ul`
+const StyledContainer = styled.div`
   display: grid;
   grid-column: 1 / span 8;
   grid-row: span 3;
+`;
+
+const StyledListContainer = styled.ul`
   padding: 1rem;
-  border: 1px solid #000;
   list-style: none;
 `;
+
+const TitleContainer = styled.div`
+  display: flex;
+  align-items: flex-end;
+`;
+
 export default ProgressModule;

@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import StateComponent from 'component/StateComponent';
-import TitleComponent from 'component/Text/TitleComponent';
-import SmallTextComponent from 'component/Text/SmallTextComponent';
-import TextComponent from 'component/Text/TextComponent';
+import Typography from 'component/Text/Typography';
 import Button from 'component/Buttons/Button';
 import { ProgressRequestListBox } from 'component/BoxComponents.jsx';
 
@@ -17,53 +15,70 @@ function ProgressListSingleModule() {
       <StyledContainer>
         <StateComponent state="red" column="1 / span 1" row="1 / span 3" />
         <StyledTitleContainer>
-          <TitleComponent title="커미션 제목" />
+          <Typography text="커미션 제목커미션 제목제목" bold="bold" line={1} />
         </StyledTitleContainer>
         {image.map((el, idx) => (
           <StyledImg src={el} key={idx} alt={el} />
         ))}
         <StyledCommission>
-          <ProgressRequestListBox info={{ title: '신청폼제목', content: '신청폼내용' }} />
+          <ProgressRequestListBox
+            info={{
+              title: '신청폼제목',
+              content: '신청폼내용',
+            }}
+          />
         </StyledCommission>
         <StyledClient>
-          <TextComponent text="신청자" bold="bold" />
+          <Typography text="신청자" bold="bold" line={1} />
         </StyledClient>
-        <SmallTextComponent text="2023-03-15" column="11 / span 2" row="3 / span 1" />
+        <Typography size="0.75" text="2023-03-15" column="11 / span 2" row="3 / span 1" />
       </StyledContainer>
       <StyledButtonContainer>
         <Button
           text="채팅"
           addStyle={{
-            borderRadius: '5rem',
-            width: 'fit-content',
-            height: 'fit-content',
+            borderRadius: 'half',
+            padding: '0.5rem 1rem',
+            margin: '0.5rem',
+            backgroundColor: 'tea_2',
+            border: '1px',
+            borderColor: 'tea_1',
+            color: 'white',
           }}
         />
         <StyledRigntButtons>
           <Button
             text="수락"
             addStyle={{
-              borderRadius: '5rem',
-              width: 'fit-content',
-              height: 'fit-content',
-              margin: '0 0.5rem',
+              borderRadius: 'half',
+              padding: '0.5rem 1rem',
+              margin: '0.5rem',
+              backgroundColor: 'tea_2',
+              border: '1px',
+              borderColor: 'tea_1',
+              color: 'white',
             }}
           />
           <Button
             text="거절"
             addStyle={{
-              borderRadius: '5rem',
-              width: 'fit-content',
-              height: 'fit-content',
-              margin: '0 0.5rem',
+              borderRadius: 'half',
+              padding: '0.5rem 1rem',
+              margin: '0.5rem',
+              border: '1px',
+              borderColor: 'black',
             }}
           />
           {/* <Button
             text="리뷰작성"
             addStyle={{
-              borderRadius: '5rem',
-              width: 'fit-content',
-              height: 'fit-content',
+              borderRadius: 'half',
+              padding: '0.5rem 1rem',
+              margin: '0.5rem',
+              backgroundColor: 'tea_2',
+              border: '1px',
+              borderColor: 'tea_1',
+              color: 'white',
             }}
           /> */}
         </StyledRigntButtons>
@@ -83,7 +98,7 @@ const StyledContainer = styled.div`
 `;
 
 const StyledTitleContainer = styled.div`
-  grid-column: 2 / span 2;
+  grid-column: 2 / span 3;
 `;
 
 const StyledImg = styled.img`
@@ -109,5 +124,7 @@ const StyledButtonContainer = styled.div`
   justify-content: space-between;
 `;
 
-const StyledRigntButtons = styled.div``;
+const StyledRigntButtons = styled.div`
+  display: flex;
+`;
 export default ProgressListSingleModule;

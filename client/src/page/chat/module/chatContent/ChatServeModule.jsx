@@ -1,5 +1,4 @@
-import SmallTextComponent from 'component/Text/SmallTextComponent';
-import TextComponent from 'component/Text/TextComponent';
+import Typography from 'component/Text/Typography';
 import styled, { css } from 'styled-components';
 
 function ChatServeModule({ chat, yourChat }) {
@@ -7,10 +6,10 @@ function ChatServeModule({ chat, yourChat }) {
     <StyledContainer yourChat={yourChat}>
       <StyeldChatContainer>
         <StyeldNameContainer>
-          <TextComponent text={yourChat && '상대 이름'} />
+          <Typography text={yourChat && '상대 이름'} size="m" margin="xxs" />
         </StyeldNameContainer>
         <StyeldChatContent>{chat}</StyeldChatContent>
-        <SmallTextComponent text="시간" start={yourChat && 'start'} />
+        <Typography size="s" color="gray_1" text="시간" start={yourChat && 'start'} />
       </StyeldChatContainer>
     </StyledContainer>
   );

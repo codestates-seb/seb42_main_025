@@ -1,4 +1,4 @@
-import TitleComponent from 'component/Text/TitleComponent';
+import Typography from 'component/Text/Typography';
 import styled from 'styled-components';
 import { CommissionListBox } from 'component/BoxComponents.jsx';
 
@@ -9,25 +9,49 @@ function CommissionsListModule() {
     content: '커미션 내용',
   };
   return (
-    <>
-      <TitleComponent title="커미션 목록" fontSize="1.5rem" underbar="yes" row="5 / span 1" />
-      {/* <TitleComponent title="커미션 목록" fontSize="1.5rem" underbar="yes" /> */}
+    <StyledContainer>
+      <TitleContainer>
+        <Typography
+          variant="h2"
+          text="커미션 목록"
+          size="xl"
+          bold="bold"
+          space="nowrap"
+          color="tea_2"
+          margin="s"
+          height="h_s"
+          row="5 / span 1"
+        />
+      </TitleContainer>
+      {/* <TitleTypography text="커미션 목록"/> */}
       {/* 로그인 x */}
-      <StyledContainer>
+      <CommissionListContainer>
         <CommissionListBox info={info} />
-      </StyledContainer>
-    </>
+        <CommissionListBox info={info} />
+        <CommissionListBox info={info} />
+      </CommissionListContainer>
+    </StyledContainer>
   );
 }
 
 const StyledContainer = styled.article`
-  display: grid;
+  display: flex;
+  flex-direction: column;
   grid-column: 1 / span 7;
+`;
+
+const TitleContainer = styled.div`
+  display: flex;
+  align-items: flex-end;
+`;
+
+const CommissionListContainer = styled.div`
+  display: flex;
   justify-items: center;
   padding: 2rem;
   gap: 1rem;
-  border: 1px solid #000;
   grid-template-columns: repeat(2, 1fr);
+  background-color: #ececec;
 `;
 
 export default CommissionsListModule;

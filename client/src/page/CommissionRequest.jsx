@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Button from 'component/Buttons/Button';
 import { CommissionRequestBox } from 'component/BoxComponents.jsx';
+import TextEditor from 'component/Editor';
 
 function CommissionRequest() {
   const info = {
@@ -13,29 +14,15 @@ function CommissionRequest() {
 
   return (
     <Container>
-      <div>COMMISSION_SUB</div>
       <CommissionRequestBox info={info} />
-      <AdBox>
-        <AdLink href="https://picsum.photos/1280/180" target="_blank">
-          <AdImage src="https://picsum.photos/1280/180" alt="Ad Image" />
-        </AdLink>
-      </AdBox>
       <TitleLabel>제목</TitleLabel>
       <TitleInput type="text" placeholder="제목을 입력하세요." />
-      <FormBox>
-        {/* <Editor
-          height="496px"
-          initialValue={editorInitialValue}
-          viewer={true}
-          initialEditType="wysiwyg"
-          usageStatistics={false}
-        /> */}
-      </FormBox>
+      <TextEditor editorHeight={'10rem'} />
       <Button
         type="submit"
         text="신청하기"
         // onClick={handleSubmit}
-        addStyle={{ width: '53%', height: '40px' }}
+        addStyle={{ width: 'half', height: 'h_s' }}
       ></Button>
       <FormSpacer />
     </Container>
@@ -48,31 +35,6 @@ const Container = styled.div`
   align-items: center;
   justify-items: center;
   position: relative;
-`;
-
-const AdBox = styled.div`
-  grid-row: 3;
-  width: 1280px;
-  height: 180px;
-  border: 1px solid black;
-`;
-
-const AdImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`;
-
-const AdLink = styled.a`
-  display: block;
-  width: 100%;
-  height: 100%;
-`;
-
-const FormBox = styled.div`
-  width: 53%;
-  height: 100%;
-  margin-top: -7rem;
 `;
 
 const FormSpacer = styled.div`

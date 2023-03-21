@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import imgUrl from 'assets/shoes1.jpg';
 import { Link } from 'react-router-dom';
+import TagComponent from 'component/TagComponent';
+import Typography from 'component/Text/Typography';
+import ImageComponent from 'component/ImageComponent';
 
 const items = [
   { id: 1, url: imgUrl },
@@ -21,11 +24,11 @@ function commission() {
       {items.map(item => {
         return (
           <div key={item.id}>
+            <TagComponent text="오마카세" />
             <SellBox to="/commission">
-              <Tag>오마카세</Tag>
-              <Image src={item.url}></Image>
-              <Title>신발 나눔</Title>
-              <Author>이현동</Author>
+              <ImageComponent src={item.url} alt={item.url} imgStyle="commission" width="xl" />
+              <Typography text="신발나눔" bold="bold" />
+              <Typography text="이현동" size="s" />
             </SellBox>
           </div>
         );
@@ -37,32 +40,16 @@ function commission() {
 const CommissionBox = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  max-width: 100%;
 `;
 
 const SellBox = styled(Link)`
   display: grid;
-  margin-left: 1rem;
   color: black;
   text-decoration: none;
   outline: none;
   line-height: 1.6;
-`;
-
-const Tag = styled.div`
-  padding-top: 1rem;
-`;
-
-const Image = styled.img`
-  height: 135px;
-  width: 240px;
-`;
-
-const Title = styled.div`
-  /* padding-top: 2px; */
-`;
-
-const Author = styled.div`
-  /* padding-top: 2px; */
 `;
 
 export default commission;

@@ -69,7 +69,7 @@ const Logo = styled.div`
 const MakerBox = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 3px;
+  margin-top: 0.25rem;
 `;
 
 const GithubLink = styled.a`
@@ -77,31 +77,35 @@ const GithubLink = styled.a`
 `;
 
 const Github = styled(FaGithub)`
-  font-size: 19px;
-  margin: 0px 2px 1px 0px;
+  font-size: 1rem;
 `;
 
 const Maker = styled.a`
-  margin-left: 6px;
-  font-size: 17px;
+  margin-left: 0.25rem;
+  font-size: 0.75rem;
   color: black;
   text-decoration: none;
   outline: none;
+  white-space: nowrap;
 `;
 
 const Down = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 2rem;
   line-height: 3;
+  white-space: normal;
+  background-color: #ddba9d;
 `;
 
 const Copyright = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
   align-items: center;
+  font-size: 0.75rem;
 `;
 
 export default Footer;

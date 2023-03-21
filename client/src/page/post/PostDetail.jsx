@@ -1,58 +1,68 @@
 import styled from 'styled-components';
 import Button from 'component/Buttons/Button';
+import Typography from 'component/Text/Typography';
+import TagComponent from 'component/TagComponent';
 
-function PostDetail() {
+function PostDetail({ flex }) {
   return (
     <>
-      <Summary>
-        <Title>
-          <div>제목</div>
-        </Title>
-        <div>
-          <PostSummary>내용</PostSummary>
-          <Tag>tag</Tag>
-          <Author>작가</Author>
-        </div>
-        <Enroll>
-          <Button
-            text="신청하기"
-            addStyle={{
-              padding: '11px',
-              borderRadius: '10px',
-              fontSize: '16px',
-              width: '100%',
-            }}
-          />
-        </Enroll>
+      <Summary flex={flex}>
+        <Typography
+          text="제목"
+          variant="h1"
+          size="xxl"
+          bold="bold"
+          margin="xs"
+          height="h_zl"
+          width="w_xxxxxl"
+          lineHeight="xxxl"
+          line={2}
+        />
+        <Typography
+          text="내용"
+          variant="p"
+          size="l"
+          margin="xs"
+          height="h_zzl"
+          width="w_xxxxxl"
+          lineHeight="xxl"
+          line={9}
+        />
+        <TagContainer>
+          <TagComponent text="그림" />
+          <TagComponent text="그림" />
+        </TagContainer>
+        <Typography text="작가" size="l" bold="bold" padding="xs" flex={2} color="tea_2" />
+        <Button
+          text="신청하기"
+          addStyle={{
+            radius: 'base',
+            height: 'h_s',
+            width: 'full',
+          }}
+        />
       </Summary>
     </>
   );
 }
 
-const Summary = styled.div`
-  padding: 30px 30px 0px 30px;
-`;
-
-const Title = styled.div`
-  min-height: 75px;
-  font-weight: 700;
-  font-size: 25px;
-`;
-
-const Tag = styled.div``;
-
-const PostSummary = styled.div`
-  height: 334px;
-`;
-
-const Author = styled.div`
-  margin: 4rem 0px 4rem 0px;
-`;
-
-const Enroll = styled.div`
+const Summary = styled.div.attrs(props => ({
+  flex: props.flex,
+}))`
   display: flex;
+  flex-direction: column;
+  flex: ${props => props.flex};
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  height: auto;
+`;
+
+const TagContainer = styled.div`
+  display: flex;
+  flex: 2;
   align-items: center;
-  justify-content: center;
+  overflow: hidden;
 `;
 
 export default PostDetail;

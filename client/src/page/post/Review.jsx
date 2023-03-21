@@ -3,7 +3,8 @@ import { ReviewListBox } from 'component/BoxComponents.jsx';
 
 const info = {
   image: 'https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg',
-  content: 'content',
+  content:
+    'contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent',
   writer: 'writer',
   date: 'date',
 };
@@ -38,7 +39,7 @@ const ReviewBox = styled.div`
   align-items: center;
   width: 100%;
   min-height: 100px;
-  padding-top: 10px;
+  padding-top: 1rem;
 `;
 
 // const ReviewTitle = styled.a`
@@ -54,11 +55,11 @@ const DetailReviewBox = styled.div`
   justify-content: space-around;
   align-items: center;
   background-color: #ddba9d;
-  border-radius: 5px;
+  border-radius: 0.25rem;
   white-space: nowrap;
   font-weight: bold;
   color: #fff;
-  height: 50px;
+  height: 3rem;
   width: 100%;
   margin-top: 5rem;
 `;
@@ -75,8 +76,8 @@ const ReviewDetail = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 100px;
-  padding: 10px 0px 10px 0px;
+  min-height: 6rem;
+  padding: 1rem 0px 1rem 0px;
   border-bottom: 1px solid lightgray;
 `;
 

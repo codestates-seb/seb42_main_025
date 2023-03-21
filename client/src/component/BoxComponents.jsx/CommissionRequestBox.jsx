@@ -1,50 +1,53 @@
+import Typography from 'component/Text/Typography';
 import styled from 'styled-components';
 
 function CommissionRequestBox({ info }) {
   return (
     <StyledSummaryBox>
       <StyledImg src={info.image} alt={info.title} />
-      <StyledTitle>{info.title}</StyledTitle>
-      <StyledContent>{info.content}</StyledContent>
+      <StyledContentContainer>
+        <Typography
+          text={info.title}
+          variant="h2"
+          bold="bold"
+          size="xxl"
+          line={1}
+          height="h_s"
+          width="w_xxxxl"
+        />
+        <Typography
+          text={info.content}
+          line={4}
+          variant="a"
+          height="h_xl"
+          width="w_xxxxl"
+          lineHeight="base"
+        />
+      </StyledContentContainer>
     </StyledSummaryBox>
   );
 }
 
 const StyledSummaryBox = styled.div`
-  display: grid;
-  align-items: center;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  max-width: 64rem;
-  max-height: 13rem;
-  padding: 1rem 2rem;
-  column-gap: 2rem;
-  row-gap: 1rem;
-  border-radius: 4px;
-  border: 1px solid #000;
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+  border-bottom: 1rem solid #f0d8ba;
   white-space: nowrap;
 `;
 
 const StyledImg = styled.img`
-  max-width: 15rem;
-  max-height: 11.25rem;
-  grid-column: 1 / span 1;
-  grid-row: 1 / span 4;
+  max-width: 10rem;
+  height: auto;
+  aspect-ratio: 4 / 3;
   align-self: center;
 `;
 
-const StyledTitle = styled.h2`
-  grid-column: 2 / span 4;
-  grid-row: 1 / span 1;
-  font-size: 3rem;
-  font-weight: bold;
-`;
-
-const StyledContent = styled.div`
-  grid-column: 2 / span 4;
-  grid-row: 2 / span 3;
-  padding-left: 0.5rem;
-  font-size: 1.5rem;
+const StyledContentContainer = styled.div`
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  margin-left: 1.5rem;
 `;
 
 export default CommissionRequestBox;

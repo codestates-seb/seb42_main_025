@@ -15,7 +15,7 @@ function ChatContentModule() {
       </StyledChatContainer>
       <StyledInputContainer>
         <InputComponent />
-        <Button text="보내기" addStyle={{ width: '5rem', height: '2.5rem', padding: '0.5rem' }} />
+        <Button text="보내기" addStyle={{ width: 'w_m', height: 'h_m', margin: '0 0 0 1rem' }} />
       </StyledInputContainer>
     </StyledContainer>
   );
@@ -44,7 +44,6 @@ const StyledInputContainer = styled.div`
   width: 100%;
   align-items: center;
   margin-top: 1rem;
-  padding-right: 1.5rem;
   background-color: #fff;
 `;
 

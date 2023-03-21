@@ -138,8 +138,6 @@ const Signup = () => {
   );
 };
 
-export default Signup;
-
 const Container = styled.div`
   display: grid;
   flex-direction: column;
@@ -151,20 +149,13 @@ const Container = styled.div`
 
 const SignupContainer = styled.div`
   display: grid;
-  align-items: center;
-  justify-content: center;
-  grid-template-rows: auto auto auto auto;
-  gap: 10px;
-  width: 350px;
-  height: 550px;
-  border: 2px solid #ddba9d;
-  border-radius: 2rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 10px 10px 1px #f5e8dd;
-  padding: 32px 32px 32px 32px;
+  width: 100%;
+  max-width: 420px;
+  height: 40rem;
+  gap: 1rem;
+  border: 1px solid #000;
+  border-radius: 0.25rem;
+  padding: 2rem;
 `;
 
 const OptionContainer = styled.div`
@@ -202,9 +193,9 @@ const SignupButton = styled.button`
 `;
 
 const OptionButton = styled.button`
-  background-color: ${({ active }) => (active ? '#DDBA9D' : '#fff')};
-  color: ${({ active }) => (active ? '#fff' : '#DDBA9D')};
-  border: ${({ active }) => (active ? 'none' : '1px solid #DDBA9D')};
+  background-color: ${({ active }) => (active ? '#ce8e5b' : '#fff')};
+  color: ${({ active }) => (active ? '#fff' : '#ce8e5b')};
+  border: ${({ active }) => (active ? 'none' : '1px solid #ce8e5b')};
   padding: 0.8rem 2rem;
   border-radius: 0.3rem;
   margin-right: 2rem;
@@ -212,7 +203,8 @@ const OptionButton = styled.button`
   box-shadow: 5px 5px 1px #f5e8dd;
 
   &:hover {
-    background-color: #ce8e5b;
-    color: #fff;
+    opacity: 0.6;
   }
 `;
+
+export default Signup;

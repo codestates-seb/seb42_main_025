@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import ProgressListSingleModule from './ProgressListSingleModule';
-import TitleComponent from 'component/Text/TitleComponent';
-import TextComponent from 'component/Text/TextComponent';
+import Typography from 'component/Text/Typography';
 import Button from 'component/Buttons/Button';
 import { useState } from 'react';
 
@@ -15,8 +14,8 @@ function ProgressListModule() {
   return (
     <StyledContainer>
       <StyeldHeaderArea>
-        <TitleComponent title="신청 의뢰" fontSize={'1.25rem'} />
-        <TextComponent text={'2'} />
+        <Typography text="신청 의뢰" variant="h3" size="l" bold="bold" />
+        <div>{3}</div>
       </StyeldHeaderArea>
       <StyledListBox>
         <ProgressListSingleModule />
@@ -39,8 +38,6 @@ function ProgressListModule() {
             text="더보기"
             handleClick={moreClicked}
             addStyle={{
-              width: 'fit-content',
-              height: 'fit-content',
               padding: 'none',
               backgroundColor: 'transparent',
             }}
@@ -55,13 +52,15 @@ const StyledContainer = styled.li`
   display: grid;
   grid-column: 1 / span 8;
   width: 100%;
-  padding: 1rem;
+  padding: 2rem 1rem;
   list-style: none;
+  border-bottom: 1px solid #cecece;
 `;
 
 const StyeldHeaderArea = styled.div`
   display: flex;
   justify-content: space-between;
+  width: 100%;
 `;
 
 const StyledListBox = styled.ul``;

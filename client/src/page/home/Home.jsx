@@ -1,51 +1,121 @@
 import styled from 'styled-components';
 import Carousel from 'component/Carousel.jsx';
 import Commission from './Commission.jsx';
-import { Container } from 'container/Container.jsx';
+import Typography from 'component/Text/Typography';
+import AdComponent from 'component/AdComponent.jsx';
+import { useState } from 'react';
+import imgUrl from 'assets/shoes1.jpg';
+import Food from 'assets/1.JPG';
+
+const items = [
+  { id: 1, url: Food },
+  { id: 2, url: imgUrl },
+];
 
 function Home() {
+  const [carouselBackground, setCarouselBackground] = useState(items[0].url);
+
+  const changeaCarouselImage = target => {
+    setCarouselBackground(target);
+  };
+
   return (
     <>
-      <Container>
+      <StyledContainer>
         <Contents>
           <CarouselBox>
-            <Carousel />
+            <Carousel items={items} changeaCarouselImage={changeaCarouselImage} />
           </CarouselBox>
-          <NewOne>새로운 커미션들</NewOne>
+          <CarouselBoxBackground url={carouselBackground} />
+          <Typography
+            variant="h2"
+            text="새로운 커미션"
+            size="xl"
+            bold="bold"
+            column="1 / span 5"
+            space="nowrap"
+            color="tea_2"
+            margin="s"
+          />
+          <SellContainer>
+            <Commission />
+          </SellContainer>
+          <AdComponent />
+          <Typography
+            variant="h2"
+            text="인기 커미션"
+            size="xl"
+            bold="bold"
+            column="1 / span 5"
+            space="nowrap"
+            color="tea_2"
+            margin="s"
+          />
+          <SellContainer>
+            <Commission />
+          </SellContainer>
+          <Typography
+            variant="h2"
+            text="추천 커미션"
+            size="xl"
+            bold="bold"
+            column="1 / span 5"
+            space="nowrap"
+            color="tea_2"
+            margin="s"
+          />
           <SellContainer>
             <Commission />
           </SellContainer>
         </Contents>
-      </Container>
+      </StyledContainer>
     </>
   );
 }
 
-const Contents = styled.div`
+const StyledContainer = styled.div`
   display: grid;
   max-width: 1280px;
+  min-height: 100vh;
+  justify-content: center;
+  padding: 5rem 0;
+  overflow-x: hidden;
+`;
+
+const Contents = styled.div`
+  display: grid;
   grid-template-columns: repeat(12, 1fr); //repeat(6, 1fr)은 1fr 1fr 1fr 1fr 1fr 1fr과 같아요.
-  grid-template-rows: repeat(3, minmax(100px, auto));
+  grid-template-rows: repeat(8, minmax(3.5rem, auto));
   gap: 1rem;
 `;
 
 const CarouselBox = styled.div`
   display: grid;
   justify-content: center;
-  grid-column: 2 / span 10;
+  padding: 5rem 0 3rem 0;
+  grid-column: 1 / span 12;
   grid-row: 1 / span 1;
 `;
 
-const NewOne = styled.div`
-  grid-column: 1 / span 2;
-  grid-row: 2 / span 1;
-  margin: 70px 0px 18px 0px;
+const CarouselBoxBackground = styled.div.attrs(props => ({
+  url: props.url,
+}))`
+  background-image: url(${props => props.url});
+  background-repeat: no-repeat;
+  background-size: cover;
+  grid-column: 1 / span 12;
+  grid-row: 1 / span 1;
+  margin-bottom: 3rem;
+  filter: blur(2rem);
+  z-index: -2;
 `;
 
 const SellContainer = styled.div`
+  display: flex;
+  justify-content: center;
   grid-column: 1 / span 12;
-  grid-row: 3 / span 1;
   flex-wrap: wrap;
+  padding-bottom: 3rem;
 `;
 
 export default Home;
