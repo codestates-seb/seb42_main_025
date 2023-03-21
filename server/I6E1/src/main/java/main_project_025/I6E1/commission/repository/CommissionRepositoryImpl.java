@@ -35,7 +35,7 @@ public Page<Commission> findBySearchOption(Pageable pageable, String title, Stri
     }
 
     if (!ObjectUtils.isEmpty(name)) {
-        builder.and(commission.member.name.containsIgnoreCase(name));
+        builder.and(commission.member.nickname.containsIgnoreCase(name));
     }
 
     if (tags != null && !tags.isEmpty()) {

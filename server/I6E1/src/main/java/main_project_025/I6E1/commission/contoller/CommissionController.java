@@ -22,7 +22,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/commission")
+@RequestMapping("/commission")
 @Validated
 @AllArgsConstructor
 public class CommissionController {
