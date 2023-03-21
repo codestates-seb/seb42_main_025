@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import { RecoilRoot } from 'recoil';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import ScrollToTop from 'page/ScrollTop';
@@ -11,7 +12,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <ScrollToTop />
-      <App />
+      <RecoilRoot>
+        <App />
+      </RecoilRoot>
     </BrowserRouter>
   </React.StrictMode>
 );
