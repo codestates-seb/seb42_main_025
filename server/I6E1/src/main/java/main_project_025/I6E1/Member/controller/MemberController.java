@@ -47,7 +47,7 @@ public class MemberController {
     public ResponseEntity checkEmail(@RequestBody MemberDto.CheckEmail email){
         boolean check = memberService.checkEmail(email.getEmail());
         Map<String,Boolean> response = new HashMap<>();
-        response.put("can-use",check);
+        response.put("email",check);
 
         return ResponseEntity.ok(response);
     }
