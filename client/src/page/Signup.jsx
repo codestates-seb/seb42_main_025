@@ -62,7 +62,7 @@ const Signup = () => {
 
   const handleSignup = async () => {
     try {
-      const response = await axios.post('https://8029-175-120-25-236.jp.ngrok.io/members/sign-up', {
+      const response = await axios.post('https://f420-175-120-25-236.jp.ngrok.io/members/sign-up', {
         email,
         password,
         nickname,
@@ -183,7 +183,7 @@ const SignupButton = styled.button`
   border-radius: 0.3rem;
   cursor: pointer;
   position: relative;
-  width: 337px;
+  width: 300px;
   height: 40px;
   top: 10px;
 

@@ -1,14 +1,34 @@
 import styled, { css } from 'styled-components';
 import mainlogo from 'assets/Main_logo.png';
 import InputComponent from 'component/InputComponent';
-import Button from 'component/Buttons/Button';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { isLoggedInState } from 'page/atom';
 
 function Header() {
   const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
+
   const handleClickLogo = () => {
     navigate('/');
   };
+
+  const handleClickLogin = () => {
+    navigate('/login');
+  };
+
+  const handleClickSignup = () => {
+    navigate('/Signup');
+  };
+
+  const handleLogout = () => {
+    if (localStorage.getItem('authorization')) {
+      localStorage.removeItem('authorization');
+      setIsLoggedIn(false);
+      console.log('로그아웃 되었습니다.');
+    }
+  };
+
   return (
     <StyledHeaderArea>
       <StyledContainer>
@@ -16,26 +36,20 @@ function Header() {
         <StyledInputContainer>
           <InputComponent placeholder="검색" />
         </StyledInputContainer>
-        <Button
-          text="로그인"
-          path="/login"
-          addStyle={{
-            width: '5rem',
-            height: '2rem',
-            fontSize: '1rem',
-            backgroundColor: 'transparent',
-          }}
-        />
-        <Button
-          text="회원가입"
-          path="/signup"
-          addStyle={{
-            width: '5rem',
-            height: '2rem',
-            fontSize: '1rem',
-            backgroundColor: 'transparent',
-          }}
-        />
+        {isLoggedIn ? (
+          <Button onClick={handleLogout} path="/">
+            로그아웃
+          </Button>
+        ) : (
+          <>
+            <Button onClick={handleClickLogin} path="/login">
+              로그인
+            </Button>
+            <Button onClick={handleClickSignup} path="/signup">
+              회원가입
+            </Button>
+          </>
+        )}
       </StyledContainer>
     </StyledHeaderArea>
   );
@@ -80,6 +94,25 @@ const StyledInputContainer = styled.div`
   grid-column: 5 / span 6;
   max-height: 100%;
   cursor: text;
+`;
+
+const Button = styled.button`
+  background-color: #ddba9d;
+  font-size: 14px;
+  color: #000;
+  padding: 0.1rem 1rem;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  position: relative;
+  width: 100px;
+  height: 40px;
+
+  box-shadow: 5px 5px 1px #f5e8dd;
+
+  &:hover {
+    background-color: #ce8e5b;
+  }
 `;
 
 export default Header;

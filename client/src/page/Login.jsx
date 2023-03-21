@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import InputComponent from 'component/InputComponent';
 import { Container } from 'container/Container';
 import axios from 'axios';
+import { useRecoilState } from 'recoil';
+import { isLoggedInState } from './atom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -13,6 +15,7 @@ const Login = () => {
   const [passwordError, setPasswordError] = useState('');
 
   const navigate = useNavigate();
+  const [, setIsLoggedIn] = useRecoilState(isLoggedInState);
 
   const validateEmail = value => {
     if (!value) {
@@ -42,7 +45,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('https://8029-175-120-25-236.jp.ngrok.io/login', {
+      const response = await axios.post('https://f420-175-120-25-236.jp.ngrok.io/login', {
         email,
         password,
       });
@@ -53,10 +56,16 @@ const Login = () => {
 
       // const token = localStorage.getItem('authorization'); // 로컬 스토리지에서 토큰을 가져옴
       // console.log(token);
+      setIsLoggedIn(true);
       console.log('로그인 성공!');
       navigate('/');
     } catch (error) {
-      console.log(error.response.data);
+      const response = error.response;
+      if (response) {
+        console.log(response.data);
+      } else {
+        console.log(error);
+      }
       console.log('로그인 실패!');
     }
   };
@@ -105,7 +114,7 @@ const Login = () => {
 
 axios.interceptors.request.use(
   config => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('authorization');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
