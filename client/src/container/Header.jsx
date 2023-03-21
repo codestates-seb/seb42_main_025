@@ -4,10 +4,17 @@ import InputComponent from 'component/InputComponent';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { isLoggedInState } from 'page/atom';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 function Header() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
+
+  useEffect(() => {
+    const isLoggedInValue = localStorage.getItem('isLoggedIn') === 'true';
+    setIsLoggedIn(isLoggedInValue);
+  }, [setIsLoggedIn]);
 
   const handleClickLogo = () => {
     navigate('/');
@@ -21,13 +28,22 @@ function Header() {
     navigate('/Signup');
   };
 
-  const handleLogout = () => {
-    if (localStorage.getItem('authorization')) {
+  const handleLogout = async () => {
+    try {
+      await axios.get('http://3.37.139.165/logout');
       localStorage.removeItem('authorization');
+      localStorage.setItem('isLoggedIn', 'false');
       setIsLoggedIn(false);
       console.log('로그아웃 되었습니다.');
+      navigate('/');
+    } catch (error) {
+      console.error(error);
     }
   };
+
+  useEffect(() => {
+    localStorage.setItem('isLoggedIn', isLoggedIn.toString());
+  }, [isLoggedIn]);
 
   return (
     <StyledHeaderArea>
@@ -37,17 +53,11 @@ function Header() {
           <InputComponent placeholder="검색" />
         </StyledInputContainer>
         {isLoggedIn ? (
-          <Button onClick={handleLogout} path="/">
-            로그아웃
-          </Button>
+          <Button onClick={handleLogout}>로그아웃</Button>
         ) : (
           <>
-            <Button onClick={handleClickLogin} path="/login">
-              로그인
-            </Button>
-            <Button onClick={handleClickSignup} path="/signup">
-              회원가입
-            </Button>
+            <Button onClick={handleClickLogin}>로그인</Button>
+            <Button onClick={handleClickSignup}>회원가입</Button>
           </>
         )}
       </StyledContainer>

@@ -45,7 +45,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('https://f420-175-120-25-236.jp.ngrok.io/login', {
+      const response = await axios.post('http://3.37.139.165/login', {
         email,
         password,
       });

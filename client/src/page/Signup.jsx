@@ -62,7 +62,7 @@ const Signup = () => {
 
   const handleSignup = async () => {
     try {
-      const response = await axios.post('https://f420-175-120-25-236.jp.ngrok.io/members/sign-up', {
+      const response = await axios.post('http://3.37.139.165/members/sign-up', {
         email,
         password,
         nickname,
@@ -128,9 +128,11 @@ const Signup = () => {
           onBlur={() => validateNickname(nickname)}
           error={NicknameError}
         />
-        <SignupButton type="submit" onClick={handleSubmit}>
-          Signup
-        </SignupButton>
+        <SignupButtonWrapper>
+          <SignupButton type="submit" onClick={handleSubmit}>
+            Signup
+          </SignupButton>
+        </SignupButtonWrapper>
       </SignupContainer>
     </Container>
   );
@@ -144,6 +146,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   width: 100vh;
+  min-height: 100vh;
 `;
 
 const SignupContainer = styled.div`
@@ -165,13 +168,17 @@ const SignupContainer = styled.div`
 `;
 
 const OptionContainer = styled.div`
-  display: grid;
-  flex-direction: column;
+  display: flex;
   justify-content: center;
-  align-items: center;
   margin-bottom: 1rem;
   position: relative;
   bottom: 10px;
+`;
+
+const SignupButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 `;
 
 const SignupButton = styled.button`
@@ -183,7 +190,7 @@ const SignupButton = styled.button`
   border-radius: 0.3rem;
   cursor: pointer;
   position: relative;
-  width: 300px;
+  width: 90%;
   height: 40px;
   top: 10px;
 
@@ -200,10 +207,8 @@ const OptionButton = styled.button`
   border: ${({ active }) => (active ? 'none' : '1px solid #DDBA9D')};
   padding: 0.8rem 2rem;
   border-radius: 0.3rem;
+  margin-right: 2rem;
   cursor: pointer;
-  margin-right: 3rem;
-  position: relative;
-  left: 25px;
   box-shadow: 5px 5px 1px #f5e8dd;
 
   &:hover {
