@@ -68,17 +68,17 @@ public class CommissionController {
     }
 
     //Search
-    @GetMapping("/search")
-    public ResponseEntity searchCommissions(@RequestParam(required = false) String title,
-                                            @RequestParam(required = false) String name,
-                                            @RequestParam(required = false) List<String> tags,
-                                            Pageable pageable ) {
-
-        Page<Commission> commissionPage = commissionService.searchOptions(pageable, title, name, tags);
-        List<Commission> commissionList = commissionPage.getContent();
-        PageDto pageDto = new PageDto<>(mapper.commissionToResponses(commissionList),commissionPage);
-        return new ResponseEntity<>(pageDto, HttpStatus.OK);
-    }
+//    @GetMapping("/search")
+//    public ResponseEntity searchCommissions(@RequestParam(required = false) String title,
+//                                            @RequestParam(required = false) String name,
+//                                            @RequestParam(required = false) List<String> tags,
+//                                            Pageable pageable ) {
+//
+//        Page<Commission> commissionPage = commissionService.searchOptions(pageable, title, name, tags);
+//        List<Commission> commissionList = commissionPage.getContent();
+//        PageDto pageDto = new PageDto<>(mapper.commissionToResponses(commissionList),commissionPage);
+//        return new ResponseEntity<>(pageDto, HttpStatus.OK);
+//    }
 
     //UPDATE
     @PatchMapping("/{commission-id}")

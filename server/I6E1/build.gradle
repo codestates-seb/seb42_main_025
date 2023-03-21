@@ -9,7 +9,7 @@ plugins {
 	id 'org.springframework.boot' version '2.7.9'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 	// querydsl 플러그인 추가
-	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
+//	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 }
 
 group = 'main_project_025'
@@ -21,7 +21,7 @@ configurations {
 		extendsFrom annotationProcessor
 	}
 	//querydsl이 compileClassPath를 상속하도록 설정
-	querydsl.extendsFrom compileClasspath
+//	querydsl.extendsFrom compileClasspath
 }
 
 repositories {
@@ -60,26 +60,26 @@ dependencies {
 //	implementation 'io.springfox:springfox-swagger-ui:2.6.1'
 //	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
 	//커미션 검색을 위한 QueryDSL
-	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
-	implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
+//	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+//	implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
 }
 
-// querydsl에서 사용할 경로 설정(현재 지정한 부분은 .gitignore에 포함됨)
-def querydslDir = "$buildDir/generated/querydsl"
-
-// JPA 사용 여부 및 사용할 경로 설정
-querydsl {
-	jpa = true
-	querydslSourcesDir = querydslDir
-}
-
-// build 시 사용할 sourceSet 추가 설정
-sourceSets {
-	main.java.srcDir querydslDir
-}
-
-// querydsl 컴파일 시 사용할 옵션 설정
-compileQuerydsl{
-	options.annotationProcessorPath = configurations.querydsl
-}
-
+//// querydsl에서 사용할 경로 설정(현재 지정한 부분은 .gitignore에 포함됨)
+//def querydslDir = "$buildDir/generated/querydsl"
+//
+//// JPA 사용 여부 및 사용할 경로 설정
+//querydsl {
+//	jpa = true
+//	querydslSourcesDir = querydslDir
+//}
+//
+//// build 시 사용할 sourceSet 추가 설정
+//sourceSets {
+//	main.java.srcDir querydslDir
+//}
+//
+//// querydsl 컴파일 시 사용할 옵션 설정
+//compileQuerydsl{
+//	options.annotationProcessorPath = configurations.querydsl
+//}
+//
