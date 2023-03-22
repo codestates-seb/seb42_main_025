@@ -6,7 +6,11 @@ const InputComponent = ({ label, placeholder, value, onChange, onBlur, error, ty
     <InputContainer>
       <InputLabel label={label}>{label}</InputLabel>
       <InputWrapper error={error}>
-        {placeholder === '검색' ? <ImSearch /> : null}
+        {placeholder === '검색' ? (
+          <IconWrapper>
+            <ImSearch />
+          </IconWrapper>
+        ) : null}
         <InputField
           type={type}
           placeholder={placeholder}
@@ -46,11 +50,16 @@ const InputWrapper = styled.div`
   width: 100%;
   height: 2.5rem;
   border-radius: 0.25rem;
-  border: 1px solid ${({ error }) => (error ? 'red' : '#ce8e5b')};
+  border: 1px solid ${({ error }) => (error ? 'red' : '#cecece')};
   padding: 0.5rem 1rem;
   margin: 0.5rem 0;
   justify-self: center;
   align-items: center;
+  box-shadow: inset 0 0 5px 0 #ececec;
+  :focus-within {
+    border: 1px solid #ce8e5b;
+    box-shadow: inset 0 0 5px 0 #ce8e5b;
+  }
   transition: border-color 0.3s ease-in-out;
 
   ${({ error }) =>
@@ -63,8 +72,8 @@ const InputWrapper = styled.div`
 const InputField = styled.input`
   border: none;
   width: 100%;
-  padding-left: 0.5rem;
-  color: #ce8e5b;
+  /* padding-left: 0.5rem;
+  color: #ce8e5b; */
   &:focus {
     outline: none;
   }
@@ -73,6 +82,10 @@ const InputField = styled.input`
     color: #c1c1c1;
   }
   background-color: #fff;
+`;
+
+const IconWrapper = styled.div`
+  margin-right: 0.5rem;
 `;
 
 const ErrorMessage = styled.div`

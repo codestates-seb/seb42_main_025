@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import StateComponent from 'component/StateComponent';
 import Typography from 'component/Text/Typography';
 import Button from 'component/Buttons/Button';
-import { ProgressRequestListBox } from 'component/BoxComponents.jsx';
+import ProgressRequestListModule from './ProgressRequestListModule';
+import ImageComponent from 'component/ImageComponent';
 
 function ProgressListSingleModule() {
   const image = [
@@ -13,25 +14,28 @@ function ProgressListSingleModule() {
   return (
     <>
       <StyledContainer>
-        <StateComponent state="red" column="1 / span 1" row="1 / span 3" />
-        <StyledTitleContainer>
-          <Typography text="커미션 제목커미션 제목제목" bold="bold" line={1} />
-        </StyledTitleContainer>
-        {image.map((el, idx) => (
-          <StyledImg src={el} key={idx} alt={el} />
-        ))}
+        <StateComponent state="red" />
+        <StyledCommissionContainer>
+          <Typography text="커미션 제목커미션 제목제목" bold="bold" line={1} margin="xxs" />
+          <StyeldImgContainer>
+            {image.map((el, idx) =>
+              idx < 2 ? <ImageComponent src={el} key={idx} width="s" alt={el} /> : null
+            )}
+          </StyeldImgContainer>
+        </StyledCommissionContainer>
         <StyledCommission>
-          <ProgressRequestListBox
+          <ProgressRequestListModule
             info={{
               title: '신청폼제목',
-              content: '신청폼내용',
+              content:
+                '신청폼내용신청폼내용신청폼내용신청폼내용신청폼내용신청폼내용신청폼내용신청폼내용신청폼내용신청폼내용신청폼내용신청폼내용신청폼내용신청폼내용신청폼내용',
             }}
           />
         </StyledCommission>
         <StyledClient>
-          <Typography text="신청자" bold="bold" line={1} />
+          <Typography text="신청자" bold="bold" line={1} padding="xxs" space="nowrap" />
+          <Typography text="2023-03-15" size="m" color="gray_3" space="nowrap" />
         </StyledClient>
-        <Typography size="0.75" text="2023-03-15" column="11 / span 2" row="3 / span 1" />
       </StyledContainer>
       <StyledButtonContainer>
         <Button
@@ -88,35 +92,39 @@ function ProgressListSingleModule() {
 }
 
 const StyledContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  display: flex;
+  align-items: center;
   gap: 0.5rem;
-  border: 1px solid #000;
-  margin: 1rem 0 0.5rem;
+  border: 1px solid #cecece;
+  border-radius: 0.25rem;
+  margin-top: 1rem;
   padding: 0.5rem;
 `;
 
-const StyledTitleContainer = styled.div`
-  grid-column: 2 / span 3;
+const StyledCommissionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 3;
+  padding-right: 0.5rem;
 `;
 
-const StyledImg = styled.img`
-  max-width: 3.5rem;
-  grid-row: 2 / span 2;
+const StyeldImgContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
 `;
 
 const StyledCommission = styled.div`
-  grid-column: 5 / span 6;
-  grid-row: 1 / span 3;
+  display: flex;
+  flex: 10;
 `;
 
 const StyledClient = styled.div`
-  display: grid;
-  grid-column: 11 / span 2;
-  grid-row: 1 / span 2;
-  align-items: center;
-  font-weight: bold;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  flex: 3;
+  gap: 1rem;
 `;
 
 const StyledButtonContainer = styled.div`
