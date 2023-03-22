@@ -5,6 +5,7 @@ import InputComponent from 'component/InputComponent';
 import axios from 'axios';
 import { useRecoilState } from 'recoil';
 import { isLoggedInState } from './atom';
+import mainlogo from 'assets/Main_logo.png';
 import Button from 'component/Buttons/Button';
 
 const Login = () => {
@@ -83,37 +84,42 @@ const Login = () => {
   };
 
   return (
-    <Container>
-      <LoginContainer>
-        <InputComponent
-          label="Email"
-          placeholder="이메일을 입력하세요."
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          onBlur={() => validateEmail(email)}
-          error={emailError}
-        />
-        <InputComponent
-          label="Password"
-          placeholder="비밀번호를 입력하세요."
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          onBlur={() => validatePassword(password)}
-          error={passwordError}
-          type="password"
-        />
-        {/* <LoginButton type="submit" onClick={handleSubmit}>
-            Login
-          </LoginButton> */}
+    <StyeldContainer>
+      <Container>
+        <LoginContainer>
+          <StyledLogo src={mainlogo} width={110} alt="logo" />
+          <InputComponent
+            label="Email"
+            placeholder="이메일을 입력하세요."
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            onBlur={() => validateEmail(email)}
+            error={emailError}
+          />
+          <InputComponent
+            label="Password"
+            placeholder="비밀번호를 입력하세요."
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            onBlur={() => validatePassword(password)}
+            error={passwordError}
+            type="password"
+          />
 
-        <Button
-          text="로그인"
-          buttonType="submit"
-          handleClick={handleSubmit}
-          addStyle={{ width: 'w_xxxxl', height: 'h_l', backgroundColor: 'tea_1' }}
-        />
-      </LoginContainer>
-    </Container>
+          <Button
+            text="로그인"
+            buttonType="submit"
+            handleClick={handleSubmit}
+            addStyle={{
+              percent: 'w_xxxxl',
+              height: 'h_l',
+              backgroundColor: 'tea_1',
+              color: 'white',
+            }}
+          />
+        </LoginContainer>
+      </Container>
+    </StyeldContainer>
   );
 };
 
@@ -128,43 +134,40 @@ axios.interceptors.request.use(
   error => Promise.reject(error)
 );
 
+const StyeldContainer = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  background-color: #f6f6f6;
+`;
+
 const Container = styled.div`
   display: grid;
   width: 100%;
   max-width: 420px;
   min-height: 100vh;
-  padding: 10rem 0 5rem 0;
+  padding: 10rem 0.5rem 5rem 0.5rem;
   overflow-x: hidden;
 `;
 
 const LoginContainer = styled.div`
   display: grid;
   width: 100%;
-  height: 30rem;
+  max-width: 420px;
+  height: 40rem;
   gap: 1rem;
-  border: 1px solid #000;
+  border: 1px solid #ce8e5b;
   border-radius: 0.25rem;
+  box-shadow: 5px 5px 1px #f5e8dd;
   padding: 2rem;
+  background-color: #fff;
 `;
 
-// const LoginButton = styled.button`
-//   background-color: #ddba9d;
-//   font-size: 14px;
-//   color: #fff;
-//   padding: 0.1rem 1rem;
-//   border: none;
-//   border-radius: 0.3rem;
-//   cursor: pointer;
-//   position: relative;
-//   width: 337px;
-//   height: 40px;
-//   top: 10px;
-
-//   box-shadow: 5px 5px 1px #f5e8dd;
-
-//   &:hover {
-//     background-color: #ce8e5b;
-//   }
-// `;
+const StyledLogo = styled.img`
+  display: flex;
+  justify-self: center;
+  width: 150px;
+`;
 
 export default Login;

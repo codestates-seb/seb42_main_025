@@ -5,22 +5,33 @@ import styled from 'styled-components';
 function ChatSingleListModule() {
   return (
     <StyledChatList>
-      <StateComponent state="blue" column="1 / span 1" row="1 / span 2" />
-      <Typography text="이름" bold="bold" line={1} column="2 / span 7" row="1 / span 1" />
-      <Typography text="최근 채팅" line={1} column="2 / span 11" row="2 / span 1" />
-      <Typography size="s" text="2023-03-15" column="9 / span 4" row="1 / span 2" />
+      <StateComponent state="blue" />
+      <ChatInfoContainer>
+        <Typography text="이름" bold="bold" line={1} />
+        <Typography text="최근 채팅" line={1} />
+      </ChatInfoContainer>
+      <Typography size="s" text="2023-03-15" bold="bold" color="gray_3" flex={1} />
     </StyledChatList>
   );
 }
 
 const StyledChatList = styled.li`
-  display: grid;
-  height: fit-content;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(2, auto);
+  display: flex;
+  width: 100%;
   gap: 0.5rem;
   padding: 0.5rem;
+  margin-bottom: 0.5rem;
   list-style: none;
+  border-radius: 0.25rem;
+  background-color: #fff;
+  box-shadow: 0 0 0.5rem 0 #999999;
+`;
+
+const ChatInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 2;
 `;
 
 export default ChatSingleListModule;

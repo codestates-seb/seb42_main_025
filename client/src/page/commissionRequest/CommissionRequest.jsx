@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Button from 'component/Buttons/Button';
-import { CommissionRequestBox } from 'component/BoxComponents.jsx';
+import CommissionRequestModule from './Module/CommissionRequestBox';
 import TextEditor from 'component/Editor';
 
 function CommissionRequest() {
@@ -14,7 +14,7 @@ function CommissionRequest() {
 
   return (
     <Container>
-      <CommissionRequestBox info={info} />
+      <CommissionRequestModule info={info} />
       <TitleLabel>제목</TitleLabel>
       <TitleInput type="text" placeholder="제목을 입력하세요." />
       <TextEditor editorHeight={'10rem'} />
@@ -30,11 +30,10 @@ function CommissionRequest() {
 }
 
 const Container = styled.div`
-  display: grid;
-  grid-gap: 5rem;
   align-items: center;
   justify-items: center;
   position: relative;
+  padding: 10rem 0 5rem 0;
 `;
 
 const FormSpacer = styled.div`

@@ -1,7 +1,7 @@
 import Typography from 'component/Text/Typography';
 import styled from 'styled-components';
 
-function CommissionRequestBox({ info }) {
+function CommissionRequestModule({ info }) {
   return (
     <StyledSummaryBox>
       <StyledImg src={info.image} alt={info.title} />
@@ -18,7 +18,7 @@ function CommissionRequestBox({ info }) {
         <Typography
           text={info.content}
           line={4}
-          variant="a"
+          variant="p"
           height="h_xl"
           width="w_xxxxl"
           lineHeight="base"
@@ -50,4 +50,4 @@ const StyledContentContainer = styled.div`
   margin-left: 1.5rem;
 `;
 
-export default CommissionRequestBox;
+export default CommissionRequestModule;

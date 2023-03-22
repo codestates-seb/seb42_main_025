@@ -55,7 +55,6 @@ const Summary = styled.div.attrs(props => ({
   width: 100%;
   max-width: 640px;
   margin: 0 auto;
-  height: auto;
 `;
 
 const TagContainer = styled.div`

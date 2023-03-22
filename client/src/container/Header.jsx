@@ -81,6 +81,8 @@ function Header() {
                 width: 'w_m',
                 margin: '0 1rem',
                 height: 'h_xxs',
+                color: 'tea_2',
+                fontSize: 'm',
                 backgroundColor: 'transparent',
               }}
             />
@@ -91,6 +93,7 @@ function Header() {
                 width: 'w_m',
                 height: 'h_xxs',
                 margin: '0 1rem',
+                fontSize: 'm',
                 backgroundColor: 'transparent',
               }}
             />
@@ -110,7 +113,8 @@ const StyledHeaderArea = styled.div`
   justify-content: center;
   height: 5rem;
   z-index: 10;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #cecece;
+  box-shadow: 0 0 5px 0 #999999;
   background-color: #fff;
 `;
 

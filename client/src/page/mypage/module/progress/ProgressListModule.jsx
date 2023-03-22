@@ -54,7 +54,7 @@ const StyledContainer = styled.li`
   width: 100%;
   padding: 2rem 1rem;
   list-style: none;
-  border-bottom: 1px solid #cecece;
+  border-bottom: 1px solid #444444;
 `;
 
 const StyeldHeaderArea = styled.div`

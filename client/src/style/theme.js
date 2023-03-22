@@ -1,5 +1,17 @@
 const calcRem = size => `${size / 16}rem`;
 
+const deviceSizes = {
+  mobile: '375px',
+  tablet: '768px',
+  laptop: '1024px',
+};
+
+const device = {
+  mobile: `screen and (max-width: ${deviceSizes.mobile})`,
+  tablet: `screen and (max-width: ${deviceSizes.tablet})`,
+  laptop: `screen and (max-width: ${deviceSizes.laptop})`,
+};
+
 const fontSizes = {
   xxs: calcRem(4),
   xs: calcRem(8),
@@ -84,6 +96,8 @@ const colors = {
   white: '#fff',
   gray_1: '#cecece',
   gray_2: '#ececec',
+  gray_3: '#999999',
+  gray_4: '#666666',
   tea_1: '#ddba9d',
   tea_2: '#ce8e5b',
   tea_3: '#f5e8dd',
@@ -107,6 +121,7 @@ const theme = {
   radiuses,
   sizes,
   percent,
+  device,
 };
 
 export default theme;

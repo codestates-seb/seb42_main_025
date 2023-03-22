@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Container } from 'container/Container';
-import { ChatCommissionInfoBox } from 'component/BoxComponents.jsx';
+import ChatCommissionInfoModule from './module/ChatCommissionInfoModule';
 import Typography from 'component/Text/Typography';
 import ChatListModule from './module/ChatList/ChatListModule';
 import ChatContentModule from './module/ChatContent/ChatContentModule';
@@ -21,8 +21,9 @@ function ChatPage() {
           variant="h2"
           bold="bold"
           column="1 / span 3"
-          margin="m"
+          padding="m"
           space="nowrap"
+          color="tea_2"
         />
         <Typography
           text="대화 내용"
@@ -30,8 +31,9 @@ function ChatPage() {
           variant="h2"
           bold="bold"
           column="4 / span 6"
-          margin="m"
+          padding="m"
           space="nowrap"
+          color="tea_2"
         />
         <Typography
           text="커미션 정보"
@@ -39,13 +41,14 @@ function ChatPage() {
           variant="h2"
           bold="bold"
           column="11 / span 2"
-          margin="m"
+          padding="m"
           space="nowrap"
+          color="tea_2"
         />
         <ChatListModule />
         <ChatContentModule />
         <StyledCommissionInfo>
-          <ChatCommissionInfoBox info={info} />
+          <ChatCommissionInfoModule info={info} />
         </StyledCommissionInfo>
       </StyledContents>
     </Container>

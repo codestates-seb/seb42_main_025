@@ -13,7 +13,7 @@ import Signup from 'page/Signup';
 import Post from 'page/post/Post';
 import CreatePost from 'page/CreatePost/CreatePost';
 import Mypage from 'page/mypage/Mypage';
-import CommissionRequest from 'page/CommissionRequest';
+import CommissionRequest from 'page/commissionRequest/CommissionRequest';
 import ChatPage from 'page/chat/ChatPage';
 import SearchPage from 'page/SearchPage';
 import { ToastContainer } from 'react-toastify';
