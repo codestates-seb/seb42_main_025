@@ -14,7 +14,6 @@ function Carousel({ items, changeaCarouselImage }) {
     // centerMode: true, // 얘가 문제였음..
     pauseOnHover: true,
     beforeChange: (_current, next) => {
-      console.log(_current, next);
       changeaCarouselImage(items[next].url);
     },
     // autoplay: true,

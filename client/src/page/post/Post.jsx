@@ -12,14 +12,12 @@ function Post() {
   return (
     <Container>
       <PostDetailBox>
-        <ImageComponent
-          src={Food}
-          alt="navExploreLogo"
-          width="xxl"
-          imgStyle="commission"
-          flex={1}
-        />
-        <PostDetail flex={1} />
+        <ImageWrapper>
+          <ImageComponent src={Food} alt="navExploreLogo" width="xxl" imgStyle="commission" />
+        </ImageWrapper>
+        <PostDetailWrapper>
+          <PostDetail />
+        </PostDetailWrapper>
       </PostDetailBox>
       <DetailBox>
         <DetailReviewBox>
@@ -77,10 +75,21 @@ function Post() {
 const PostDetailBox = styled.div`
   display: flex;
   width: 100%;
-  max-width: 1280px;
   gap: 1rem;
   margin: 0 auto;
   position: relative;
+`;
+
+const ImageWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  flex: 1;
+`;
+
+const PostDetailWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  flex: 1;
 `;
 
 const DetailBox = styled.div`
@@ -97,7 +106,7 @@ const DetailReviewBox = styled.div`
   white-space: nowrap;
   font-weight: bold;
   color: #fff;
-  height: 50px;
+  height: 3rem;
   margin-top: 5rem;
 `;
 

@@ -1,16 +1,27 @@
 import Typography from 'component/Text/Typography';
 import styled, { css } from 'styled-components';
+import ChatCommissionRequestModule from './ChatCommissionRequestModule';
 
-function ChatServeModule({ chat, yourChat }) {
+function ChatServeModule({ chat, yourChat, trade }) {
   return (
     <StyledContainer yourChat={yourChat}>
-      <StyeldChatContainer>
-        <StyeldNameContainer>
-          <Typography text={yourChat && '상대 이름'} size="m" margin="xxs" />
-        </StyeldNameContainer>
-        <StyeldChatContent>{chat}</StyeldChatContent>
-        <Typography size="s" color="gray_1" text="시간" start={yourChat && 'start'} />
-      </StyeldChatContainer>
+      {trade ? (
+        <StyeldChatContainer>
+          <StyeldNameContainer>
+            <Typography text={yourChat && '상대 이름'} size="m" margin="xxs" />
+          </StyeldNameContainer>
+          <ChatCommissionRequestModule info={trade} />
+          <Typography size="s" bold="bold" color="gray_3" text="시간" start={yourChat && 'start'} />
+        </StyeldChatContainer>
+      ) : (
+        <StyeldChatContainer>
+          <StyeldNameContainer>
+            <Typography text={yourChat && '상대 이름'} size="m" margin="xxs" />
+          </StyeldNameContainer>
+          <StyeldChatContent>{chat}</StyeldChatContent>
+          <Typography size="s" bold="bold" color="gray_3" text="시간" start={yourChat && 'start'} />
+        </StyeldChatContainer>
+      )}
     </StyledContainer>
   );
 }
@@ -31,7 +42,7 @@ const StyledContainer = styled.div`
 const StyeldChatContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: fit-content;
+  max-width: 70%;
 `;
 
 const StyeldChatContent = styled.span`

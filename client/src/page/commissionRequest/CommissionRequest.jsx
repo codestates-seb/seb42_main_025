@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Button from 'component/Buttons/Button';
-import { CommissionRequestBox } from 'component/BoxComponents.jsx';
+import CommissionRequestModule from './Module/CommissionRequestBox';
 import TextEditor from 'component/Editor';
 
 function CommissionRequest() {
@@ -14,15 +14,15 @@ function CommissionRequest() {
 
   return (
     <Container>
-      <CommissionRequestBox info={info} />
+      <CommissionRequestModule info={info} />
       <TitleLabel>제목</TitleLabel>
       <TitleInput type="text" placeholder="제목을 입력하세요." />
-      <TextEditor editorHeight={'25rem'} />
+      <TextEditor editorHeight={'10rem'} />
       <Button
         type="submit"
         text="신청하기"
         // onClick={handleSubmit}
-        addStyle={{ width: 'half', height: 'h_s', backgroundColor: '#F0D8BA' }}
+        addStyle={{ width: 'half', height: 'h_s' }}
       ></Button>
       <FormSpacer />
     </Container>
@@ -30,12 +30,10 @@ function CommissionRequest() {
 }
 
 const Container = styled.div`
-  display: grid;
-  grid-gap: 5rem;
   align-items: center;
   justify-items: center;
   position: relative;
-  margin-top: 10rem;
+  padding: 10rem 0 5rem 0;
 `;
 
 const FormSpacer = styled.div`
@@ -47,13 +45,12 @@ const TitleLabel = styled.label`
   width: 53%;
   margin-top: 5rem;
   margin-bottom: -13rem;
-  justify-self: start;
 `;
 
 const TitleInput = styled.input`
   font-size: 1rem;
-  width: 100%;
-  margin-bottom: -3rem;
+  width: 53%;
+  margin-bottom: 1rem;
   padding: 0.5rem;
   border: 1px solid #dadde6;
   margin-top: 5rem;

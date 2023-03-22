@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Typography from 'component/Text/Typography';
-import { ChatListBox } from 'component/BoxComponents.jsx';
+import ChatListModule from './ChatListModule';
 
 function ChatModule() {
   const info = {
@@ -24,9 +24,9 @@ function ChatModule() {
         />
       </TitleContainer>
       <StyledChatListBoxContainer>
-        <ChatListBox info={info} />
-        <ChatListBox info={info} />
-        <ChatListBox info={info} />
+        <ChatListModule info={info} />
+        <ChatListModule info={info} />
+        <ChatListModule info={info} />
       </StyledChatListBoxContainer>
     </StyledContainer>
   );

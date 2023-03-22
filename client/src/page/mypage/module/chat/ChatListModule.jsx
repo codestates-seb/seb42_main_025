@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import Typography from 'component/Text/Typography';
+import ImageComponent from 'component/ImageComponent';
 
-function ChatListBox({ info }) {
+function ChatListModule({ info }) {
   return (
     <StyledSummaryBox>
-      <StyledImg src={info.image} alt={info.title} />
+      <ImageComponent src={info.image} alt={info.title} imgStyle="user" width="s" />
       <ContentContainer>
         <Typography text={info.writer} margin="xxs" line={1} bold="bold" />
         <Typography text={info.content} margin="xxs" line={1} />
@@ -23,16 +24,10 @@ const StyledSummaryBox = styled.div`
   white-space: nowrap;
   background-color: #fff;
   margin-bottom: 1rem;
-`;
-
-const StyledImg = styled.img`
-  max-width: 4rem;
-  max-height: 4rem;
-  grid-column: 1 / span 1;
-  grid-row: 1 / span 4;
-  align-self: center;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 0.5rem 0 #999999;
 `;
 
 const ContentContainer = styled.div``;
 
-export default ChatListBox;
+export default ChatListModule;

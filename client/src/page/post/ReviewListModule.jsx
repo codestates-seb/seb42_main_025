@@ -2,7 +2,7 @@ import ImageComponent from 'component/ImageComponent';
 import Typography from 'component/Text/Typography';
 import styled from 'styled-components';
 
-function ReviewListBox({ info }) {
+function ReviewListModule({ info }) {
   return (
     <StyledSummaryBox>
       <Typography text={info.content} variant="p" flex={19} line={1} height="h_s" />
@@ -34,4 +34,4 @@ const StyledDate = styled.div`
   flex: 2;
 `;
 
-export default ReviewListBox;
+export default ReviewListModule;
