@@ -5,7 +5,8 @@ import InputComponent from 'component/InputComponent';
 import axios from 'axios';
 import { useRecoilState } from 'recoil';
 import { isLoggedInState } from './atom';
-import Button from 'component/Buttons/Button';
+import mainlogo from 'assets/Main_logo.png';
+// import Button from 'component/Buttons/Button';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -85,6 +86,7 @@ const Login = () => {
   return (
     <Container>
       <LoginContainer>
+        <StyledLogo src={mainlogo} width={110} alt="logo" />
         <InputComponent
           label="Email"
           placeholder="이메일을 입력하세요."
@@ -102,16 +104,16 @@ const Login = () => {
           error={passwordError}
           type="password"
         />
-        {/* <LoginButton type="submit" onClick={handleSubmit}>
-            Login
-          </LoginButton> */}
+        <LoginButton type="submit" onClick={handleSubmit}>
+          Login
+        </LoginButton>
 
-        <Button
+        {/* <Button
           text="로그인"
           buttonType="submit"
           handleClick={handleSubmit}
           addStyle={{ width: 'w_xxxxl', height: 'h_l', backgroundColor: 'tea_1' }}
-        />
+        /> */}
       </LoginContainer>
     </Container>
   );
@@ -130,41 +132,49 @@ axios.interceptors.request.use(
 
 const Container = styled.div`
   display: grid;
-  width: 100%;
-  max-width: 420px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vh;
   min-height: 100vh;
-  padding: 10rem 0 5rem 0;
-  overflow-x: hidden;
 `;
 
 const LoginContainer = styled.div`
   display: grid;
   width: 100%;
-  height: 30rem;
+  max-width: 420px;
+  height: 40rem;
   gap: 1rem;
-  border: 1px solid #000;
+  border: 1px solid #ce8e5b;
   border-radius: 0.25rem;
-  padding: 2rem;
+  padding: 10rem 2rem 5rem 2rem;
+  box-shadow: 5px 5px 1px #f5e8dd;
 `;
 
-// const LoginButton = styled.button`
-//   background-color: #ddba9d;
-//   font-size: 14px;
-//   color: #fff;
-//   padding: 0.1rem 1rem;
-//   border: none;
-//   border-radius: 0.3rem;
-//   cursor: pointer;
-//   position: relative;
-//   width: 337px;
-//   height: 40px;
-//   top: 10px;
+const LoginButton = styled.button`
+  background-color: #ddba9d;
+  font-size: 14px;
+  color: #fff;
+  padding: 0.1rem 1rem;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  position: relative;
+  width: 320px;
+  height: 40px;
+  top: 65px;
 
-//   box-shadow: 5px 5px 1px #f5e8dd;
+  box-shadow: 5px 5px 1px #f5e8dd;
 
-//   &:hover {
-//     background-color: #ce8e5b;
-//   }
-// `;
+  &:hover {
+    background-color: #ce8e5b;
+  }
+`;
+
+const StyledLogo = styled.img`
+  display: flex;
+  margin: -30% auto;
+  width: 150px;
+`;
 
 export default Login;

@@ -94,14 +94,12 @@ const Signup = () => {
     <Container>
       <SignupContainer>
         <OptionContainer>
-          <div>
-            <OptionButton active={userType === 'writer'} onClick={() => setUserType('writer')}>
-              Writer
-            </OptionButton>
-            <OptionButton active={userType === 'user'} onClick={() => setUserType('user')}>
-              User
-            </OptionButton>
-          </div>
+          <WriteButton active={userType === 'writer'} onClick={() => setUserType('writer')}>
+            Writer
+          </WriteButton>
+          <UserButton active={userType === 'user'} onClick={() => setUserType('user')}>
+            User
+          </UserButton>
         </OptionContainer>
         <InputComponent
           label="Email"
@@ -153,17 +151,17 @@ const SignupContainer = styled.div`
   max-width: 420px;
   height: 40rem;
   gap: 1rem;
-  border: 1px solid #000;
+  border: 1px solid #ce8e5b;
   border-radius: 0.25rem;
   padding: 2rem;
+  box-shadow: 5px 5px 1px #f5e8dd;
 `;
 
 const OptionContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 1rem;
-  position: relative;
-  bottom: 10px;
 `;
 
 const SignupButtonWrapper = styled.div`
@@ -181,7 +179,7 @@ const SignupButton = styled.button`
   border-radius: 0.3rem;
   cursor: pointer;
   position: relative;
-  width: 90%;
+  width: 100%;
   height: 40px;
   top: 10px;
 
@@ -192,7 +190,7 @@ const SignupButton = styled.button`
   }
 `;
 
-const OptionButton = styled.button`
+const WriteButton = styled.button`
   background-color: ${({ active }) => (active ? '#ce8e5b' : '#fff')};
   color: ${({ active }) => (active ? '#fff' : '#ce8e5b')};
   border: ${({ active }) => (active ? 'none' : '1px solid #ce8e5b')};
@@ -201,6 +199,23 @@ const OptionButton = styled.button`
   margin-right: 2rem;
   cursor: pointer;
   box-shadow: 5px 5px 1px #f5e8dd;
+  width: 9rem;
+
+  &:hover {
+    opacity: 0.6;
+  }
+`;
+
+const UserButton = styled.button`
+  background-color: ${({ active }) => (active ? '#ce8e5b' : '#fff')};
+  color: ${({ active }) => (active ? '#fff' : '#ce8e5b')};
+  border: ${({ active }) => (active ? 'none' : '1px solid #ce8e5b')};
+  padding: 0.8rem 2rem;
+  border-radius: 0.3rem;
+  margin-right: 0rem;
+  cursor: pointer;
+  box-shadow: 5px 5px 1px #f5e8dd;
+  width: 9rem;
 
   &:hover {
     opacity: 0.6;
