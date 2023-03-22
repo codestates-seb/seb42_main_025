@@ -5,7 +5,7 @@ const TextEditor = ({ editorRef, editorValue, editorHeight, onEditorChange }) =>
   return (
     <Editor
       ref={editorRef} // DOM 선택용 useRef
-      placeholder="please write here..."
+      // placeholder="please write here..."
       // previewStyle="vertical" // 미리보기 스타일 지정
       height={editorHeight} // 에디터 창 높이
       initialEditType="markdown"

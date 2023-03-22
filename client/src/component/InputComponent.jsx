@@ -5,7 +5,7 @@ const InputComponent = ({ label, placeholder, value, onChange, onBlur, error, ty
   return (
     <InputContainer>
       <InputLabel label={label}>{label}</InputLabel>
-      <InputWrapper>
+      <InputWrapper error={error}>
         {placeholder === '검색' ? <ImSearch /> : null}
         <InputField
           type={type}
@@ -35,6 +35,7 @@ const InputLabel = styled.label`
         margin-bottom: 0.5rem;
         font-size: 1.25rem;
         font-weight: bold;
+        color: #ce8e5b;
       `;
     }
   }}
@@ -45,17 +46,25 @@ const InputWrapper = styled.div`
   width: 100%;
   height: 2.5rem;
   border-radius: 0.25rem;
-  border: 1px solid black;
+  border: 1px solid ${({ error }) => (error ? 'red' : '#ce8e5b')};
   padding: 0.5rem 1rem;
   margin: 0.5rem 0;
   justify-self: center;
   align-items: center;
+  transition: border-color 0.3s ease-in-out;
+
+  ${({ error }) =>
+    error &&
+    css`
+      box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.2);
+    `}
 `;
 
 const InputField = styled.input`
   border: none;
   width: 100%;
   padding-left: 0.5rem;
+  color: #ce8e5b;
   &:focus {
     outline: none;
   }
@@ -63,6 +72,7 @@ const InputField = styled.input`
   ::placeholder {
     color: #c1c1c1;
   }
+  background-color: #fff;
 `;
 
 const ErrorMessage = styled.div`

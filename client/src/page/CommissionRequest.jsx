@@ -17,12 +17,12 @@ function CommissionRequest() {
       <CommissionRequestBox info={info} />
       <TitleLabel>제목</TitleLabel>
       <TitleInput type="text" placeholder="제목을 입력하세요." />
-      <TextEditor editorHeight={'10rem'} />
+      <TextEditor editorHeight={'25rem'} />
       <Button
         type="submit"
         text="신청하기"
         // onClick={handleSubmit}
-        addStyle={{ width: 'half', height: 'h_s' }}
+        addStyle={{ width: 'half', height: 'h_s', backgroundColor: '#F0D8BA' }}
       ></Button>
       <FormSpacer />
     </Container>
@@ -35,6 +35,7 @@ const Container = styled.div`
   align-items: center;
   justify-items: center;
   position: relative;
+  margin-top: 10rem;
 `;
 
 const FormSpacer = styled.div`
@@ -46,12 +47,13 @@ const TitleLabel = styled.label`
   width: 53%;
   margin-top: 5rem;
   margin-bottom: -13rem;
+  justify-self: start;
 `;
 
 const TitleInput = styled.input`
   font-size: 1rem;
-  width: 53%;
-  margin-bottom: 1rem;
+  width: 100%;
+  margin-bottom: -3rem;
   padding: 0.5rem;
   border: 1px solid #dadde6;
   margin-top: 5rem;
