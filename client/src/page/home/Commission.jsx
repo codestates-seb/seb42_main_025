@@ -19,13 +19,18 @@ const items = [
 ];
 
 function commission() {
+  // const navigate = useNavigate()
+  const handleClick = id => {
+    console.log(id);
+    // navigate(`/commission/`)
+  };
   return (
     <CommissionBox>
       {items.map(item => {
         return (
           <div key={item.id}>
             <TagComponent text="오마카세" />
-            <SellBox to="/commission">
+            <SellBox to="/commission" onClick={() => handleClick(item.id)}>
               <ImageComponent src={item.url} alt={item.url} imgStyle="commission" width="xl" />
               <Typography text="신발나눔" bold="bold" />
               <Typography text="이현동" size="s" />
@@ -50,6 +55,9 @@ const SellBox = styled(Link)`
   text-decoration: none;
   outline: none;
   line-height: 1.6;
+  border: none;
+  background-color: transparent;
+  justify-content: start;
 `;
 
 export default commission;

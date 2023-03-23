@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import InputComponent from 'component/InputComponent';
 import Button from 'component/Button';
 import axios from 'axios';
+import { emailValidate, passwordValidate, nicknameValidate } from '../utils/validata';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -19,51 +20,9 @@ const Signup = () => {
 
   const navigate = useNavigate();
 
-  const validateEmail = value => {
-    if (!value) {
-      setEmailError('이메일을 입력해주세요.');
-
-      return false;
-    }
-    if (!/\S+@\S+\.\S+/.test(value)) {
-      setEmailError('이메일 형식이 올바르지 않습니다.');
-
-      return false;
-    }
-    setEmailError('');
-
-    return true;
-  };
-
-  const validatePassword = value => {
-    if (!value) {
-      setPasswordError('비밀번호를 입력해주세요.');
-      return false;
-    }
-    if (value.length < 8) {
-      setPasswordError('비밀번호는 8자리 이상이어야 합니다.');
-      return false;
-    }
-    setPasswordError('');
-    return true;
-  };
-
-  const validateNickname = value => {
-    if (!value) {
-      setNicknameError('닉네임을 입력해주세요.');
-      return false;
-    }
-    if (value.length < 2) {
-      setNicknameError('닉네임은 2자리 이상이어야 합니다.');
-      return false;
-    }
-    setNicknameError('');
-    return true;
-  };
-
   const handleSignup = async () => {
     try {
-      const response = await axios.post('http://3.37.139.165/members/sign-up', {
+      const response = await axios.post('http://3.37.139.165:8080/members/sign-up', {
         email,
         password,
         nickname,
@@ -80,9 +39,9 @@ const Signup = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    const isEmailValid = validateEmail(email);
-    const isPasswordValid = validatePassword(password);
-    const isNicknameValid = validateNickname(nickname);
+    const isEmailValid = emailValidate(email, setEmailError);
+    const isPasswordValid = passwordValidate(password, setPasswordError);
+    const isNicknameValid = nicknameValidate(nickname, setNicknameError);
 
     if (!isEmailValid || !isPasswordValid || !isNicknameValid) {
       return;
@@ -108,7 +67,7 @@ const Signup = () => {
             placeholder="이메일을 입력하세요."
             value={email}
             onChange={e => setEmail(e.target.value)}
-            onBlur={() => validateEmail(email)}
+            onBlur={() => emailValidate(email, setEmailError)}
             error={emailError}
           />
           <InputComponent
@@ -116,7 +75,7 @@ const Signup = () => {
             placeholder="비밀번호를 입력하세요."
             value={password}
             onChange={e => setPassword(e.target.value)}
-            onBlur={() => validatePassword(password)}
+            onBlur={() => passwordValidate(password, setPasswordError)}
             error={passwordError}
             type="password"
           />
@@ -125,7 +84,7 @@ const Signup = () => {
             placeholder="닉네임을 입력하세요."
             value={nickname}
             onChange={e => setNickname(e.target.value)}
-            onBlur={() => validateNickname(nickname)}
+            onBlur={() => nicknameValidate(nickname, setNicknameError)}
             error={NicknameError}
           />
           <Button

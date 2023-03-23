@@ -1,11 +1,14 @@
 import styled from 'styled-components';
-import Carousel from 'component/Carousel.jsx';
-import Commission from './Commission.jsx';
+import Carousel from 'component/Carousel';
+import Commission from './Commission';
 import Typography from 'component/Typography';
-import AdComponent from 'component/AdComponent.jsx';
-import { useState } from 'react';
+import AdComponent from 'component/AdComponent';
+import { useEffect, useState } from 'react';
 import imgUrl from 'assets/shoes1.jpg';
 import Food from 'assets/1.JPG';
+import { getCommissions } from 'apis/api/commissions';
+import { useRecoilState } from 'recoil';
+import { currentCommissions } from 'state';
 
 const items = [
   { id: 1, url: Food },
@@ -13,11 +16,21 @@ const items = [
 ];
 
 function Home() {
+  const [commissions, setCommissions] = useRecoilState(currentCommissions);
   const [carouselBackground, setCarouselBackground] = useState(items[0].url);
 
   const changeaCarouselImage = target => {
     setCarouselBackground(target);
   };
+
+  useEffect(() => {
+    (async () => {
+      const data = await getCommissions();
+      setCommissions(data);
+    })();
+  }, [setCommissions]);
+
+  console.log(commissions);
 
   return (
     <>

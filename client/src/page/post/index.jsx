@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useEffect } from 'react';
 import Button from 'component/Button';
 import PostDetail from './PostDetail';
 import Review from './Review';
@@ -7,8 +8,22 @@ import Food from 'assets/1.JPG';
 import { Container } from 'container/Container';
 import ImageComponent from 'component/ImageComponent';
 import Typography from 'component/Typography';
+import { getCommission } from 'apis/api/commission';
+import { useRecoilState } from 'recoil';
+import { currentCommission } from 'state';
 
 function Post() {
+  const [commission, setCommission] = useRecoilState(currentCommission);
+
+  useEffect(() => {
+    (async () => {
+      const data = await getCommission('1'); // id값 수정해야함
+      setCommission(data);
+    })();
+  }, [setCommission]);
+
+  console.log(commission);
+
   return (
     <Container>
       <PostDetailBox>

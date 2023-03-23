@@ -89,8 +89,9 @@ const IconBox = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 200px;
-  border: 1px dotted black;
+  height: 180px;
+  border-radius: 0.25rem;
+  border: 1px dotted #ce8e5b;
 `;
 
 const Drop = styled.div`
@@ -100,8 +101,12 @@ const Drop = styled.div`
 
 const ImgBox = styled.div`
   display: flex;
-  min-height: 470px;
-  border: 1px solid black;
+  min-height: 450px;
+  min-width: 800px;
+  max-width: 800px;
+  border: 1px solid #ce8e5b;
+  border-radius: 0.25rem;
+  overflow: auto;
 `;
 
 const PhotoBox = styled.div`
@@ -126,11 +131,12 @@ const Remove = styled.button`
 `;
 
 const Photo = styled.img`
-  min-width: 273px;
-  max-width: 273px;
-  min-height: 217px;
-  max-height: 217px;
-  margin: 11px 1px 0px 3px;
+  min-width: 250px;
+  max-width: 250px;
+  min-height: 208px;
+  max-height: 208px;
+  margin: 10px 0px 5px 10px;
   object-fit: contain;
   border: 1px solid black;
+  border-radius: 0.25rem;
 `;
