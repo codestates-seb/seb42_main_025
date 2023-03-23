@@ -3,15 +3,13 @@ import * as React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { Routes, Route } from 'react-router-dom';
 import theme from './style/theme';
-
 import Header from 'container/Header';
 import Footer from 'container/Footer';
-
-import Home from 'page/home/Home';
+import Home from 'page/home';
 import Login from 'page/Login';
 import Signup from 'page/Signup';
-import Post from 'page/post/Post';
-import CreatePost from 'page/CreatePost/CreatePost';
+import Post from 'page/post';
+import CreatePost from 'page/CreatePost';
 import Mypage from 'page/mypage/Mypage';
 import CommissionRequest from 'page/commissionRequest/CommissionRequest';
 import ChatPage from 'page/chat/ChatPage';
