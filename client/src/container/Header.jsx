@@ -1,16 +1,17 @@
 import styled from 'styled-components';
 import mainlogo from 'assets/Main_logo.png';
 import InputComponent from 'component/InputComponent';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { isLoggedInState } from 'page/atom';
+import { isLoggedInState, currentMemberId } from 'state';
 import { useEffect } from 'react';
 import axios from 'axios';
-import Button from 'component/Buttons/Button';
+import Button from 'component/Button';
 
 function Header() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
+  const [memberId] = useRecoilState(currentMemberId);
 
   useEffect(() => {
     const isLoggedInValue = localStorage.getItem('isLoggedIn') === 'true';
@@ -26,6 +27,10 @@ function Header() {
 
   const handleClickSignup = () => {
     navigate('/Signup');
+  };
+
+  const handledClickMember = () => {
+    navigate(`/mypage/${memberId}`);
   };
 
   const handleLogout = async () => {
@@ -54,20 +59,20 @@ function Header() {
         </StyledInputContainer>
         {isLoggedIn ? (
           <>
-            <StyledLink to="/mypage/1">
+            <StyledMypage onClick={handledClickMember}>
               <img
                 src="https://fastly.picsum.photos/id/905/600/600.jpg?hmac=DvIKicBZ45DEZoZFwdZ62VbmaCwkK4Sv7rwYzUvwweU"
                 alt="profile"
                 width={40}
               />
-            </StyledLink>
+            </StyledMypage>
             <Button
               text="로그아웃"
               handleClick={handleLogout}
               addStyle={{
                 width: 'w_m',
                 height: 'h_xxs',
-                margin: '0 1rem',
+                margin: '0 1rem 0 0',
                 backgroundColor: 'transparent',
               }}
             />
@@ -92,7 +97,7 @@ function Header() {
               addStyle={{
                 width: 'w_m',
                 height: 'h_xxs',
-                margin: '0 1rem',
+                margin: '0 1rem 0 0',
                 fontSize: 'm',
                 backgroundColor: 'transparent',
               }}
@@ -142,10 +147,19 @@ const StyledInputContainer = styled.div`
   cursor: text;
 `;
 
-const StyledLink = styled(Link)`
+const StyledMypage = styled.button`
   width: 2.5rem;
   height: 2.5rem;
   justify-self: center;
+  border: none;
+
+  &:hover {
+    filter: brightness(90%);
+  }
+  &:active {
+    filter: brightness(70%);
+    transform: translate(0, 1px);
+  }
 `;
 
 export default Header;

@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import InputComponent from 'component/InputComponent';
+import Button from 'component/Button';
 import axios from 'axios';
-import Button from 'component/Buttons/Button';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -63,14 +63,14 @@ const Signup = () => {
 
   const handleSignup = async () => {
     try {
-      const response = await axios.post('https://f420-175-120-25-236.jp.ngrok.io/members/sign-up', {
+      const response = await axios.post('http://3.37.139.165/members/sign-up', {
         email,
         password,
         nickname,
         userType,
       });
       if (response && response.data) {
-        console.log(response.data);
+        console.log(response);
       }
       navigate('/Login');
     } catch (error) {

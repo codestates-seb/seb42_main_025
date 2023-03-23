@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 // import InputComponent from 'component/InputComponent';
-import Button from 'component/Buttons/Button';
+import Button from 'component/Button';
 import Dropzone from './Dropzone';
 import { Container } from 'container/Container';
 

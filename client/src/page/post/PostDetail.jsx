@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Button from 'component/Buttons/Button';
-import Typography from 'component/Text/Typography';
+import Button from 'component/Button';
+import Typography from 'component/Typography';
 import TagComponent from 'component/TagComponent';
 
 function PostDetail({ flex }) {

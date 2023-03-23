@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Carousel from 'component/Carousel.jsx';
 import Commission from './Commission.jsx';
-import Typography from 'component/Text/Typography';
+import Typography from 'component/Typography';
 import AdComponent from 'component/AdComponent.jsx';
 import { useState } from 'react';
 import imgUrl from 'assets/shoes1.jpg';
@@ -27,44 +27,43 @@ function Home() {
             <Carousel items={items} changeaCarouselImage={changeaCarouselImage} />
           </CarouselBox>
           <CarouselBoxBackground url={carouselBackground} />
-          <Typography
-            variant="h2"
-            text="새로운 커미션"
-            size="xl"
-            bold="bold"
-            column="1 / span 5"
-            space="nowrap"
-            color="tea_2"
-            margin="s"
-          />
+
           <SellContainer>
+            <Typography
+              variant="h2"
+              text="새로운 커미션"
+              size="xl"
+              bold="bold"
+              space="nowrap"
+              color="tea_2"
+              padding="m"
+            />
             <Commission />
           </SellContainer>
           <AdComponent />
-          <Typography
-            variant="h2"
-            text="인기 커미션"
-            size="xl"
-            bold="bold"
-            column="1 / span 5"
-            space="nowrap"
-            color="tea_2"
-            margin="s"
-          />
           <SellContainer>
+            <Typography
+              variant="h2"
+              text="인기 커미션"
+              size="xl"
+              bold="bold"
+              space="nowrap"
+              color="tea_2"
+              padding="m"
+            />
             <Commission />
           </SellContainer>
-          <Typography
-            variant="h2"
-            text="추천 커미션"
-            size="xl"
-            bold="bold"
-            column="1 / span 5"
-            space="nowrap"
-            color="tea_2"
-            margin="s"
-          />
+
           <SellContainer>
+            <Typography
+              variant="h2"
+              text="추천 커미션"
+              size="xl"
+              bold="bold"
+              space="nowrap"
+              color="tea_2"
+              padding="m"
+            />
             <Commission />
           </SellContainer>
         </Contents>

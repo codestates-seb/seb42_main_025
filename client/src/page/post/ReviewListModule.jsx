@@ -1,5 +1,5 @@
 import ImageComponent from 'component/ImageComponent';
-import Typography from 'component/Text/Typography';
+import Typography from 'component/Typography';
 import styled from 'styled-components';
 
 function ReviewListModule({ info }) {

@@ -1,4 +1,4 @@
-import Typography from 'component/Text/Typography';
+import Typography from 'component/Typography';
 import styled from 'styled-components';
 import CommissionListSingleModule from './CommissionListSingleModule';
 
@@ -32,19 +32,15 @@ function CommissionsListModule() {
   ];
   return (
     <StyledContainer>
-      <TitleContainer>
-        <Typography
-          variant="h2"
-          text="커미션 목록"
-          size="xl"
-          bold="bold"
-          space="nowrap"
-          color="tea_2"
-          margin="s"
-          height="h_s"
-          row="5 / span 1"
-        />
-      </TitleContainer>
+      <Typography
+        variant="h2"
+        text="커미션 목록"
+        size="xl"
+        bold="bold"
+        space="nowrap"
+        color="tea_2"
+        padding="m"
+      />
       {/* <TitleTypography text="커미션 목록"/> */}
       {/* 로그인 x */}
       <CommissionListContainer>
@@ -62,18 +58,12 @@ const StyledContainer = styled.article`
   grid-column: 1 / span 7;
 `;
 
-const TitleContainer = styled.div`
-  display: flex;
-  align-items: flex-end;
-`;
-
 const CommissionListContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-items: center;
   padding: 2rem;
   gap: 1rem;
-  grid-template-columns: repeat(2, 1fr);
   background-color: #ececec;
 `;
 

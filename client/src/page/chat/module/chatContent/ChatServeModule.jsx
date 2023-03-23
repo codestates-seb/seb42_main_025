@@ -1,4 +1,4 @@
-import Typography from 'component/Text/Typography';
+import Typography from 'component/Typography';
 import styled, { css } from 'styled-components';
 import ChatCommissionRequestModule from './ChatCommissionRequestModule';
 

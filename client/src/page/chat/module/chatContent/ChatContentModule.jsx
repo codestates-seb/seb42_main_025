@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import Button from 'component/Buttons/Button';
+import Button from 'component/Button';
 import InputComponent from 'component/InputComponent';
 import ChatServeModule from './ChatServeModule';
+import Typography from 'component/Typography';
 
 function ChatContentModule() {
   const info = {
@@ -13,6 +14,15 @@ function ChatContentModule() {
   };
   return (
     <StyledContainer>
+      <Typography
+        text="대화 내용"
+        size="xl"
+        variant="h2"
+        bold="bold"
+        padding="m"
+        space="nowrap"
+        color="tea_2"
+      />
       <StyledChatContainer>
         <ChatServeModule chat={'mychat'} />
         <ChatServeModule

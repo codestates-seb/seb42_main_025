@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-function ImageComponent({ src, alt, imgStyle, width, margin, column, flex, key }) {
+function ImageComponent({ src, alt, imgStyle, width }) {
   return (
-    <StyledContainer key={key} width={width} margin={margin} column={column} flex={flex}>
+    <StyledContainer width={width}>
       <StyledImg src={src} alt={alt} imgStyle={imgStyle} />
     </StyledContainer>
   );
