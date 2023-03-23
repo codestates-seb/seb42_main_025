@@ -51,7 +51,6 @@ const ContentBox = styled.div`
 
 const Content = styled.div`
   display: grid;
-  /* justify-content: center; */
   grid-column: 1 / span 12;
   grid-row: 1 / span 1;
   gap: 1rem;
@@ -61,9 +60,8 @@ const ImgBox = styled.div`
   display: grid;
   grid-column: 1 / span 8;
   grid-row: 1 / span 1;
-  /* grid-template-columns: minmax(92px); */
   max-width: 850px;
-  height: 700px;
+  min-height: 700px;
   /* background-color: coral; */
   border: 1px dotted gray;
 `;

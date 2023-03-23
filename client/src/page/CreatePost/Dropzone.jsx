@@ -6,23 +6,25 @@ import { RxFilePlus, RxCross2, RxCheckCircled } from 'react-icons/rx';
 export default function Dropzone() {
   const [files, setFiles] = useState([]);
 
-  const onDrop = useCallback(acceptedFiles => {
-    // files, acceptedFiles 비교후 같은게 있는지보고 같은부분이 있다면 그 부분 이용해서 죽이기
-    // for문 고차함수(map, filter) 등으로 바꿔서 작성하기
-    let i = 0;
-    for (i = 0; i < acceptedFiles.name; i++) {
-      if (acceptedFiles.name === files.name) {
-        removeFile(acceptedFiles.name);
+  const onDrop = useCallback(
+    acceptedFiles => {
+      // 파일 이름으로 중복 체크하여 이미 있는 파일은 제거하기
+      const newFiles = acceptedFiles.filter(newFile => {
+        const isDuplicate = files.some(
+          existingFile => existingFile.name === newFile.name && existingFile.size === newFile.size
+        );
+        return !isDuplicate;
+      });
+
+      if (newFiles?.length) {
+        setFiles(previousFiles => [
+          ...previousFiles,
+          ...newFiles.map(file => Object.assign(file, { preview: URL.createObjectURL(file) })),
+        ]);
       }
-    }
-    console.log(acceptedFiles);
-    if (acceptedFiles?.length) {
-      setFiles(previousFiles => [
-        ...previousFiles,
-        ...acceptedFiles.map(file => Object.assign(file, { preview: URL.createObjectURL(file) })),
-      ]);
-    }
-  }, []);
+    },
+    [files]
+  );
 
   useEffect(() => {
     // Revoke the data uris to avoid memory leaks
@@ -47,7 +49,7 @@ export default function Dropzone() {
       'image/*': [],
     },
     maxFiles: 6,
-    timeout: 300000,
+    timeout: 5000,
     addRemoveLinks: true,
     dictRemoveFile: '삭제',
     noDragEventsBubbling: true,
@@ -59,7 +61,6 @@ export default function Dropzone() {
     <Container>
       <div {...getRootProps()}>
         <input {...getInputProps()} />
-
         <IconBox>
           {isDragActive ? (
             <RxCheckCircled size="100" color="green" />
@@ -93,13 +94,13 @@ const IconBox = styled.div`
 `;
 
 const Drop = styled.div`
-  margin-left: 13px;
+  margin-left: 14px;
   font-weight: 800;
 `;
 
 const ImgBox = styled.div`
   display: flex;
-  height: 470px;
+  min-height: 470px;
   border: 1px solid black;
 `;
 
