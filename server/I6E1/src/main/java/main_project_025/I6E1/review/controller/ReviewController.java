@@ -39,13 +39,9 @@ public class ReviewController {
     // READ
     @GetMapping("/{review-id}")
     public ResponseEntity getReview(@PathVariable("review-id") long reviewId) throws BusinessException {
-        try {
             Review review = reviewService.readReview(reviewId);
             ReviewDto.Response response = mapper.reviewToResponse(review);
             return new ResponseEntity<>(response, HttpStatus.OK);
-        } catch (BusinessException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
     }
 
     // READ ALL
@@ -68,24 +64,18 @@ public class ReviewController {
     @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity patchReview(@PathVariable("review-id") long reviewId,
                                       @Valid @RequestBody ReviewDto.Patch patch) throws BusinessException {
-        try {
             Review review = reviewService.updateReview(reviewId, mapper.reviewPatchDtoToReview(patch));
 
             ReviewDto.Response response = mapper.reviewToResponse(review);
             return new ResponseEntity<>(response, HttpStatus.OK);
-        } catch (BusinessException e) {
-            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
     }
 
     @DeleteMapping("/{review-id}")
     @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity deleteReview(@PathVariable("review-id") long reviewId) throws BusinessException {
-        try {
+
             reviewService.deleteReview(reviewId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }catch (BusinessException e){
-            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
+
     }
 }

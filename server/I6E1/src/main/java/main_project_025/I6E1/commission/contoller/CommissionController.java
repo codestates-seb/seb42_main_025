@@ -42,29 +42,20 @@ public class CommissionController {
     //READ
     @GetMapping("/{commission-id}")
     public ResponseEntity getCommission(@PathVariable("commission-id")long commissionId) throws BusinessException {
-
-        try {
             Commission commission = commissionService.readCommission(commissionId);
             CommissionDto.Response response = mapper.commissionToResponse(commission);
             return new ResponseEntity<>(response, HttpStatus.OK);
-        }catch (BusinessException e){
-            return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
-        }
+
     }
     //READ ALL
     //페이지네이션 적용
     @GetMapping
     public ResponseEntity getCommissions(Pageable pageable){
-        try {
             Page<Commission> commissionPage = commissionService.readCommissions(pageable);
             List<Commission> commissionList = commissionPage.getContent();
 
             PageDto pageDto = new PageDto<>(mapper.commissionToResponses(commissionList),commissionPage);
             return new ResponseEntity<>(pageDto, HttpStatus.OK);
-
-        }catch (BusinessException e){
-            return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
-        }
     }
 
     //Search
@@ -84,28 +75,20 @@ public class CommissionController {
     @PatchMapping("/{commission-id}")
     @PreAuthorize("hasRole('ROLE_AUTHOR')")
     public ResponseEntity patchCommission(@PathVariable("commission-id")long commissionId,
-                                          @Valid @RequestBody CommissionDto.Patch patch) throws BusinessException{
-        try {
+                                          @Valid @RequestBody CommissionDto.Patch patch){
             Commission commission = commissionService.updateCommission(commissionId, mapper.commissionPatchDtoToCommission(patch));
 
             CommissionDto.Response response = mapper.commissionToResponse(commission);
             return new ResponseEntity<>(response, HttpStatus.OK);
-        }catch (BusinessException e){
-            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
     }
 
     //Delete
     //Soft Delete
     @DeleteMapping("/{commission-id}")
     @PreAuthorize("hasRole('ROLE_AUTHOR')")
-    public ResponseEntity deleteCommission(@PathVariable("commission-id")long commissionId)throws BusinessException{
-        try {
+    public ResponseEntity deleteCommission(@PathVariable("commission-id")long commissionId){
             commissionService.deleteCommission(commissionId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }catch (BusinessException e){
-            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
     }
 
     private final MemberRepository memberRepository;
