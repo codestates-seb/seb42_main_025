@@ -8,7 +8,6 @@ function Typography({
   bold,
   column,
   row,
-  justify,
   padding,
   flex,
   height,
@@ -21,7 +20,6 @@ function Typography({
   return (
     <StyledFont
       as={variant}
-      justify={justify}
       size={size}
       color={color}
       bold={bold}
@@ -47,7 +45,6 @@ const StyledFont = styled.span.attrs(props => ({
   bold: props.bold,
   column: props.column,
   row: props.row,
-  justify: props.justify,
   padding: props.padding,
   margin: props.margin,
   flex: props.flex,
@@ -66,7 +63,6 @@ const StyledFont = styled.span.attrs(props => ({
   -webkit-line-clamp: ${props => props.line};
   height: ${props => props.theme.sizes[props.height]};
   max-width: ${props => props.theme.sizes[props.width]};
-  justify-content: ${props => props.justify};
   font-size: ${props => props.theme.fontSizes[props.size]};
   padding: ${props => props.theme.paddings[props.padding]};
   margin: ${props => props.theme.margins[props.margin]};

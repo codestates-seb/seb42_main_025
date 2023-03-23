@@ -1,6 +1,6 @@
-import Button from 'component/Buttons/Button';
+import Button from 'component/Button';
 import ImageComponent from 'component/ImageComponent';
-import Typography from 'component/Text/Typography';
+import Typography from 'component/Typography';
 import styled from 'styled-components';
 
 function ProfileModule() {
@@ -34,8 +34,9 @@ const StyledContainer = styled.aside`
   grid-column: 9 / span 4;
   padding: 1rem;
   gap: 2rem;
-  background-color: #ececec;
+  background-color: #f5e8dd;
   border-radius: 0.25rem;
+  margin-top: 6rem;
 `;
 
 export default ProfileModule;

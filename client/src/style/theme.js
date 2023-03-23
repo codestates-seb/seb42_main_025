@@ -80,12 +80,6 @@ const sizes = {
   h_xxxxl: calcRem(256),
 };
 
-const percent = {
-  full: '100%',
-  half: '50%',
-  zero: '0%',
-};
-
 const imgStyles = {
   user: '1 / 1',
   commission: '4 / 3',
@@ -111,7 +105,12 @@ const radiuses = {
   l: '1rem',
 };
 
+const fontStyles = {
+  title: { 'font-size': '1.5rem' },
+};
+
 const theme = {
+  fontStyles,
   fontSizes,
   paddings,
   margins,
@@ -120,7 +119,6 @@ const theme = {
   colors,
   radiuses,
   sizes,
-  percent,
   device,
 };
 

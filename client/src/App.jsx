@@ -1,7 +1,6 @@
 // App.js
 import * as React from 'react';
 import { ThemeProvider } from 'styled-components';
-import { Reset } from 'styled-reset';
 import { Routes, Route } from 'react-router-dom';
 import theme from './style/theme';
 
@@ -18,13 +17,17 @@ import CommissionRequest from 'page/commissionRequest/CommissionRequest';
 import ChatPage from 'page/chat/ChatPage';
 import SearchPage from 'page/SearchPage';
 import { ToastContainer } from 'react-toastify';
+import { isLoggedInState } from 'state';
+import { useRecoilState } from 'recoil';
 
 // import UserInfo from 'component/UserInfo';
 
 function App() {
+  const [isLogin] = useRecoilState(isLoggedInState);
+  console.log(isLogin);
+
   return (
     <React.Fragment>
-      <Reset />
       <ThemeProvider theme={theme}>
         <Header />
         <Routes>
@@ -35,10 +38,8 @@ function App() {
           <Route path="/commission" element={<Post />} />
           <Route path="/commissionrequest" element={<CommissionRequest />} />
           <Route path="/createcommission" element={<CreatePost />} />
-          <Route path="/mypage/:id" element={<Mypage />} />
           <Route path="/chat/:id" element={<ChatPage />} />
-
-          {/* <Route path="/userinfo" element={<UserInfo />} /> */}
+          <Route path="/mypage/:id" element={<Mypage />} />
         </Routes>
         <ToastContainer />
         <Footer />

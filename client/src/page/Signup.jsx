@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import InputComponent from 'component/InputComponent';
-import axios from 'axios';
-import Button from 'component/Buttons/Button';
+import customAxios from 'api/baseURL';
+import Button from 'component/Button';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -70,7 +70,7 @@ const Signup = () => {
         userType,
       });
       if (response && response.data) {
-        console.log(response.data);
+        console.log(response);
       }
       navigate('/Login');
     } catch (error) {

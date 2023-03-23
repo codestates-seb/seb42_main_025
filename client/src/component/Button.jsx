@@ -21,7 +21,6 @@ const StyledButton = styled.button.attrs(props => ({
   padding: props.addStyle.padding,
   borderColor: props.addStyle.borderColor,
 }))`
-  width: ${props => props.theme.percent[props.width] || 'inherit'};
   max-width: ${props => props.theme.sizes[props.width] || 'inherit'};
   height: ${props => props.theme.sizes[props.height]};
   border-radius: ${props => props.theme.radiuses[props.borderRadius] || '0.25rem'};

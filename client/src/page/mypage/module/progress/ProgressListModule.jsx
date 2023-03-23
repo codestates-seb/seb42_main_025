@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import ProgressListSingleModule from './ProgressListSingleModule';
-import Typography from 'component/Text/Typography';
-import Button from 'component/Buttons/Button';
+import Typography from 'component/Typography';
+import Button from 'component/Button';
 import { useState } from 'react';
 
 function ProgressListModule() {
