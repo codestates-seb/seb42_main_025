@@ -23,16 +23,16 @@ import java.util.Map;
 public class MemberController {
     private final MemberService memberService;
     private final MemberMapper memberMapper;
-    
+
     //1. 회원가입
     @PostMapping("/sign-up")
-    public ResponseEntity<Map<String, Long>> postMember(@Valid @RequestBody MemberDto.Post memberPostDto){
+    public ResponseEntity postMember(@Valid @RequestBody MemberDto.Post memberPostDto){
         Member member =  memberMapper.memberPostToMember(memberPostDto);
         Member savedMember = memberService.create(member);
-        Map<String, Long> response = new HashMap<>();
-        response.put("memberId", savedMember.getMemberId());
 
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+        MemberDto.MemberDetailResponse response = memberMapper.memberToMemberDetailResponse(savedMember);
+
+        return new ResponseEntity<>(new SingleResponseDto<>(response), HttpStatus.CREATED);
     }
 
     @GetMapping("/{member-id}")
@@ -51,6 +51,4 @@ public class MemberController {
 
         return ResponseEntity.ok(response);
     }
-
-
 }

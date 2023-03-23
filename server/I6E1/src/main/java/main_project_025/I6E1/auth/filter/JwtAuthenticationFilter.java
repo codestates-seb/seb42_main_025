@@ -1,11 +1,14 @@
 package main_project_025.I6E1.auth.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import main_project_025.I6E1.auth.dto.LoginDto;
 import main_project_025.I6E1.auth.jwt.JwtTokenizer;
 import main_project_025.I6E1.auth.userdetails.AuthMember;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -50,6 +53,14 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         String refreshToken = delegateRefreshToken(member);
         response.setHeader("Authorization", accessToken);
         response.setHeader("Refresh", refreshToken);
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("memberId", member.getMemberId());
+
+        Gson gson = new Gson();
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        response.setStatus(HttpStatus.OK.value());
+        response.getWriter().write(gson.toJson(body, Map.class));
 
         this.getSuccessHandler().onAuthenticationSuccess(request, response, authResult);
     }
