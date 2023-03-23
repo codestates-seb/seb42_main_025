@@ -1,3 +1,4 @@
+// App.js
 import * as React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { Reset } from 'styled-reset';
@@ -18,6 +19,8 @@ import ChatPage from 'page/chat/ChatPage';
 import SearchPage from 'page/SearchPage';
 import { ToastContainer } from 'react-toastify';
 
+// import UserInfo from 'component/UserInfo';
+
 function App() {
   return (
     <React.Fragment>
@@ -34,6 +37,8 @@ function App() {
           <Route path="/createcommission" element={<CreatePost />} />
           <Route path="/mypage/:id" element={<Mypage />} />
           <Route path="/chat/:id" element={<ChatPage />} />
+
+          {/* <Route path="/userinfo" element={<UserInfo />} /> */}
         </Routes>
         <ToastContainer />
         <Footer />
