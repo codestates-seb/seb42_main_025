@@ -44,7 +44,7 @@ public class TradeService {
     public Trade updateTrade(Trade trade) {
         Trade findTrade = findTradeById(trade.getTradeId());//거래 검증
         Commission commission = findCommissionById(findTrade.getCommission().getCommissionId());//커미션 검증
-        trade.setCommission(commission);
+        findTrade.setCommission(commission);
 
         AuthMember authMember = (AuthMember) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String userEmail = authMember.getUsername();
@@ -52,10 +52,11 @@ public class TradeService {
         Optional<Member> optionalMember = memberRepository.findByEmail(userEmail);
         Member member = optionalMember.orElseThrow(() -> new RuntimeException("거래 신청 권한이 없습니다."));
 
-        trade.setMember(member);
-        trade.setContent(findTrade.getContent());
-        trade.setTitle(findTrade.getTitle());
-        return tradeRepository.save(trade);
+        findTrade.setMember(member);
+        findTrade.setContent(findTrade.getContent());
+        findTrade.setTitle(findTrade.getTitle());
+        findTrade.setStatus(trade.getStatus());
+        return findTrade;
     }
 
     public Trade readTrade(long tradeId) {
