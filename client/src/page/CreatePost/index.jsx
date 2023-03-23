@@ -4,8 +4,13 @@ import Button from 'component/Button';
 import Dropzone from './Dropzone';
 import { Container } from 'container/Container';
 import TextEditor from 'component/Editor';
+// import { useRecoilValue } from 'recoil';
+// import { currentCommissionId } from 'state';
+// import { postCommissions } from 'apis/api/commissions';
 
 function CreatePost() {
+  // const commissionId = useRecoilValue(currentCommissionId);
+  // console.log(commissionId);
   return (
     <Container>
       <ContentBox>

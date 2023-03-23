@@ -7,6 +7,7 @@ import { isLoggedInState, currentMemberId } from 'state';
 import mainlogo from 'assets/Main_logo.png';
 import InputComponent from 'component/InputComponent';
 import Button from 'component/Button';
+import { emailValidate, passwordValidate } from '../utils/validata';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -15,51 +16,24 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
-  const navigate = useNavigate();
   const [, setIsLoggedIn] = useRecoilState(isLoggedInState);
   const [, setIsMemberId] = useRecoilState(currentMemberId);
 
-  const validateEmail = value => {
-    if (!value) {
-      setEmailError('이메일을 입력해주세요.');
-      return false;
-    }
-    if (!/\S+@\S+\.\S+/.test(value)) {
-      setEmailError('이메일 형식이 올바르지 않습니다.');
-      return false;
-    }
-    setEmailError('');
-    return true;
-  };
-
-  const validatePassword = value => {
-    if (!value) {
-      setPasswordError('비밀번호를 입력해주세요.');
-      return false;
-    }
-    if (value.length < 8) {
-      setPasswordError('비밀번호는 8자리 이상이어야 합니다.');
-      return false;
-    }
-    setPasswordError('');
-    return true;
-  };
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://3.37.139.165/login', {
+      const response = await axios.post('http://3.37.139.165:8080/login', {
         email,
         password,
       });
 
-      // console.log(response.headers); // 콘솔에 응답헤더부분 토큰 확인
-      // console.log(response.config.data); // 콘솔창에 아이디 비번 확인
+      localStorage.setItem('authorization', response.headers.get('authorization'));
+      localStorage.setItem('memberId', response.data.memberId);
 
-      localStorage.setItem('authorization', response.headers.get('authorization')); // 서버에서 보내준 토큰을 로컬 스토리지에 저장
-      // const token = localStorage.getItem('authorization'); // 로컬 스토리지에서 토큰을 가져옴
-      // console.log(token);
       setIsLoggedIn(true);
       setIsMemberId(response.data.memberId);
+
       console.log('로그인 성공!');
       navigate('/');
     } catch (error) {
@@ -75,8 +49,8 @@ const Login = () => {
 
   const handleSubmit = async event => {
     event.preventDefault();
-    const isEmailValid = validateEmail(email);
-    const isPasswordValid = validatePassword(password);
+    const isEmailValid = emailValidate(email, setEmailError);
+    const isPasswordValid = passwordValidate(password, setPasswordError);
 
     if (!isEmailValid || !isPasswordValid) {
       return;
@@ -95,7 +69,7 @@ const Login = () => {
             placeholder="이메일을 입력하세요."
             value={email}
             onChange={e => setEmail(e.target.value)}
-            onBlur={() => validateEmail(email)}
+            onBlur={() => emailValidate(email, setEmailError)}
             error={emailError}
           />
           <InputComponent
@@ -103,7 +77,7 @@ const Login = () => {
             placeholder="비밀번호를 입력하세요."
             value={password}
             onChange={e => setPassword(e.target.value)}
-            onBlur={() => validatePassword(password)}
+            onBlur={() => passwordValidate(password, setPasswordError)}
             error={passwordError}
             type="password"
           />

@@ -27,10 +27,8 @@ function ProgressListModule() {
             text="줄이기"
             handleClick={moreClicked}
             addStyle={{
-              width: 'fit-content',
-              height: 'fit-content',
-              padding: 'none',
               backgroundColor: 'transparent',
+              margin: '1.5rem 0 0 0 ',
             }}
           />
         ) : (
@@ -38,8 +36,8 @@ function ProgressListModule() {
             text="더보기"
             handleClick={moreClicked}
             addStyle={{
-              padding: 'none',
               backgroundColor: 'transparent',
+              margin: '1.5rem 0 0 0 ',
             }}
           />
         )}

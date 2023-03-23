@@ -1,8 +1,11 @@
+import Button from 'component/Button';
 import Typography from 'component/Typography';
+import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import CommissionListSingleModule from './CommissionListSingleModule';
 
 function CommissionsListModule() {
+  const navigate = useNavigate();
   const info = [
     {
       image: 'https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg',
@@ -30,17 +33,33 @@ function CommissionsListModule() {
       content: '커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용',
     },
   ];
+
+  const handleClick = () => {
+    navigate('/createcommission');
+  };
   return (
     <StyledContainer>
-      <Typography
-        variant="h2"
-        text="커미션 목록"
-        size="xl"
-        bold="bold"
-        space="nowrap"
-        color="tea_2"
-        padding="m"
-      />
+      <StyledHeader>
+        <Typography
+          variant="h2"
+          text="커미션 목록"
+          size="xl"
+          bold="bold"
+          space="nowrap"
+          color="tea_2"
+          padding="m"
+        />
+        <Button
+          text="커미션등록"
+          handleClick={handleClick}
+          addStyle={{
+            padding: '0.5rem 1rem',
+            backgroundColor: 'tea_1',
+            height: 'h_s',
+            color: 'white',
+          }}
+        />
+      </StyledHeader>
       {/* <TitleTypography text="커미션 목록"/> */}
       {/* 로그인 x */}
       <CommissionListContainer>
@@ -56,6 +75,12 @@ const StyledContainer = styled.article`
   display: flex;
   flex-direction: column;
   grid-column: 1 / span 7;
+`;
+
+const StyledHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 
 const CommissionListContainer = styled.div`

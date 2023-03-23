@@ -1,19 +1,17 @@
 import styled from 'styled-components';
+import { useEffect, useState } from 'react';
 import { Container } from 'container/Container';
 import ProgressModule from './module/Progress/ProgressModule';
 import ProfileModule from './module/Profile/ProfileModule';
 import CommissionsListModule from './module/Commissions/CommissionsListModule';
 import ChatModule from './module/Chat/ChatModule';
-import { useEffect, useState } from 'react';
 import { getUserInfo } from 'apis/api/user';
-import { useRecoilState } from 'recoil';
-import { currentMemberId } from 'state';
 
 function Mypage() {
-  const [memberId] = useRecoilState(currentMemberId);
   const [data, setData] = useState(null);
 
   useEffect(() => {
+    const memberId = localStorage.getItem('memberId');
     setData(getUserInfo(memberId));
   }, []);
 

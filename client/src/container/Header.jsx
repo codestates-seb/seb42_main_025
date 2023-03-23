@@ -35,7 +35,7 @@ function Header() {
 
   const handleLogout = async () => {
     try {
-      await axios.get('http://3.37.139.165/logout');
+      await axios.get('http://3.37.139.165:8080/logout');
       localStorage.removeItem('authorization');
       localStorage.setItem('isLoggedIn', 'false');
       setIsLoggedIn(false);
@@ -72,7 +72,7 @@ function Header() {
               addStyle={{
                 width: 'w_m',
                 height: 'h_xxs',
-                margin: '0 1rem 0 0',
+                margin: '0 2rem 0 0',
                 backgroundColor: 'transparent',
               }}
             />
@@ -97,7 +97,7 @@ function Header() {
               addStyle={{
                 width: 'w_m',
                 height: 'h_xxs',
-                margin: '0 1rem 0 0',
+                margin: '0 2rem 0 0',
                 fontSize: 'm',
                 backgroundColor: 'transparent',
               }}
@@ -153,6 +153,7 @@ const StyledMypage = styled.button`
   justify-self: center;
   border: none;
 
+  cursor: pointer;
   &:hover {
     filter: brightness(90%);
   }
