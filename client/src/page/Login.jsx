@@ -51,7 +51,8 @@ const Login = () => {
         password,
       });
 
-      // console.log(response.headers);
+      // console.log(response.headers); // 콘솔에 응답헤더부분 토큰 확인
+      // console.log(response.config.data); // 콘솔창에 아이디 비번 확인
 
       localStorage.setItem('authorization', response.headers.get('authorization')); // 서버에서 보내준 토큰을 로컬 스토리지에 저장
 

@@ -63,7 +63,7 @@ const Signup = () => {
 
   const handleSignup = async () => {
     try {
-      const response = await axios.post('https://f420-175-120-25-236.jp.ngrok.io/members/sign-up', {
+      const response = await axios.post('http://3.37.139.165/members/sign-up', {
         email,
         password,
         nickname,
