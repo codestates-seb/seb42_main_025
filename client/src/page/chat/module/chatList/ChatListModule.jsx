@@ -1,9 +1,19 @@
 import styled from 'styled-components';
 import ChatSingleListModule from './ChatSingleListModule';
+import Typography from 'component/Typography';
 
 function ChatListModule() {
   return (
     <StyledContainer>
+      <Typography
+        text="대화 목록"
+        size="xl"
+        variant="h2"
+        bold="bold"
+        padding="m"
+        space="nowrap"
+        color="tea_2"
+      />
       <ChatSingleListModulesContainer>
         <ChatSingleListModule />
         <ChatSingleListModule />
@@ -18,7 +28,6 @@ const StyledContainer = styled.ul`
   align-items: flex-start;
   padding: 1rem;
   grid-column: 1 / span 3;
-  grid-row: 2 / span 1;
   border-right: 1px solid #cecece;
 `;
 

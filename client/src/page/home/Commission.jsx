@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import imgUrl from 'assets/shoes1.jpg';
 import { Link } from 'react-router-dom';
 import TagComponent from 'component/TagComponent';
-import Typography from 'component/Text/Typography';
+import Typography from 'component/Typography';
 import ImageComponent from 'component/ImageComponent';
 
 const items = [

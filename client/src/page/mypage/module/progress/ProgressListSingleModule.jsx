@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import StateComponent from 'component/StateComponent';
-import Typography from 'component/Text/Typography';
-import Button from 'component/Buttons/Button';
+import Typography from 'component/Typography';
+import Button from 'component/Button';
 import ProgressRequestListModule from './ProgressRequestListModule';
 import ImageComponent from 'component/ImageComponent';
+import { useState } from 'react';
+import ReviewModal from './ReviewModal';
 
 function ProgressListSingleModule() {
   const image = [
@@ -11,6 +13,11 @@ function ProgressListSingleModule() {
     'https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg',
     'https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg',
   ];
+
+  const [isOpen, setIsOpen] = useState(false);
+  const openReviewrHandler = () => {
+    setIsOpen(!isOpen);
+  };
   return (
     <>
       <StyledContainer>
@@ -73,8 +80,9 @@ function ProgressListSingleModule() {
               borderColor: 'black',
             }}
           />
-          {/* <Button
+          <Button
             text="리뷰작성"
+            handleClick={openReviewrHandler}
             addStyle={{
               borderRadius: 'half',
               padding: '0.5rem 1rem',
@@ -84,7 +92,8 @@ function ProgressListSingleModule() {
               borderColor: 'tea_1',
               color: 'white',
             }}
-          /> */}
+          />
+          {isOpen === true ? <ReviewModal openReviewrHandler={openReviewrHandler} /> : null}
         </StyledRigntButtons>
       </StyledButtonContainer>
     </>
@@ -135,4 +144,5 @@ const StyledButtonContainer = styled.div`
 const StyledRigntButtons = styled.div`
   display: flex;
 `;
+
 export default ProgressListSingleModule;

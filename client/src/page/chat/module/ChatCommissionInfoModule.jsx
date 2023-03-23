@@ -1,14 +1,23 @@
 import styled from 'styled-components';
 import ImageComponent from 'component/ImageComponent';
-import Typography from 'component/Text/Typography';
+import Typography from 'component/Typography';
 
 function ChatCommissionInfoModule({ info }) {
   return (
     <StyledSummaryBox>
+      <Typography
+        text="커미션 정보"
+        size="xl"
+        variant="h2"
+        bold="bold"
+        padding="m"
+        space="nowrap"
+        color="tea_2"
+      />
       <ImageComponent src={info.image} alt={info.title} width="l" imgStyle="commission" />
       <Typography
         text={info.title}
-        variant="h2"
+        variant="h3"
         bold="bold"
         size="l"
         line={2}

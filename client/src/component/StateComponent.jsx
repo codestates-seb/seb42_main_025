@@ -9,20 +9,14 @@ function StateComponent({ state, column, row }) {
 }
 
 const StyledContainer = styled.div`
-  display: grid;
+  display: flex;
   height: 100%;
   justify-items: center;
   align-items: center;
-  ${({ column, row }) => {
-    return css`
-      grid-column: ${column};
-      grid-row: ${row};
-    `;
-  }}
 `;
 
 const StateSign = styled.div`
-  display: grid;
+  display: flex;
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;

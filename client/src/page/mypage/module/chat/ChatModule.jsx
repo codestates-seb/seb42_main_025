@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Typography from 'component/Text/Typography';
+import Typography from 'component/Typography';
 import ChatListModule from './ChatListModule';
 
 function ChatModule() {
@@ -10,19 +10,15 @@ function ChatModule() {
   };
   return (
     <StyledContainer>
-      <TitleContainer>
-        <Typography
-          variant="h2"
-          text="채팅목록"
-          size="xl"
-          bold="bold"
-          space="nowrap"
-          color="tea_2"
-          margin="s"
-          height="h_s"
-          row="5 / span 1"
-        />
-      </TitleContainer>
+      <Typography
+        variant="h2"
+        text="채팅목록"
+        size="xl"
+        bold="bold"
+        space="nowrap"
+        color="tea_2"
+        padding="m"
+      />
       <StyledChatListBoxContainer>
         <ChatListModule info={info} />
         <ChatListModule info={info} />
@@ -38,18 +34,9 @@ const StyledContainer = styled.aside`
   grid-column: 8 / span 5;
 `;
 
-const TitleContainer = styled.div`
-  display: flex;
-  align-items: flex-end;
-  /* grid-column: 9 / span 1; */ // 유저
-  grid-row: 5 / span 1;
-`;
-
 const StyledChatListBoxContainer = styled.div`
-  /* grid-column: 9 / span 4; */ // 유저
   padding: 2rem;
   gap: 1rem;
-  grid-template-rows: repeat(4, max(fit-content));
   background-color: #ececec;
 `;
 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import Button from 'component/Buttons/Button';
+import Button from 'component/Button';
 import CommissionRequestModule from './Module/CommissionRequestBox';
 import TextEditor from 'component/Editor';
 import axios from 'axios';

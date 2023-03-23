@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import InputComponent from 'component/InputComponent';
 import axios from 'axios';
 import { useRecoilState } from 'recoil';
-import { isLoggedInState } from './atom';
+import { isLoggedInState, currentMemberId } from 'state';
 import mainlogo from 'assets/Main_logo.png';
-import Button from 'component/Buttons/Button';
+import InputComponent from 'component/InputComponent';
+import Button from 'component/Button';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -17,6 +17,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const [, setIsLoggedIn] = useRecoilState(isLoggedInState);
+  const [, setIsMemberId] = useRecoilState(currentMemberId);
 
   const validateEmail = value => {
     if (!value) {
@@ -55,10 +56,10 @@ const Login = () => {
       // console.log(response.config.data); // 콘솔창에 아이디 비번 확인
 
       localStorage.setItem('authorization', response.headers.get('authorization')); // 서버에서 보내준 토큰을 로컬 스토리지에 저장
-
       // const token = localStorage.getItem('authorization'); // 로컬 스토리지에서 토큰을 가져옴
       // console.log(token);
       setIsLoggedIn(true);
+      setIsMemberId(response.data.memberId);
       console.log('로그인 성공!');
       navigate('/');
     } catch (error) {
@@ -112,7 +113,7 @@ const Login = () => {
             buttonType="submit"
             handleClick={handleSubmit}
             addStyle={{
-              percent: 'w_xxxxl',
+              width: 'w_xxxxl',
               height: 'h_l',
               backgroundColor: 'tea_1',
               color: 'white',
@@ -124,16 +125,16 @@ const Login = () => {
   );
 };
 
-axios.interceptors.request.use(
-  config => {
-    const token = localStorage.getItem('authorization');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  error => Promise.reject(error)
-);
+// axios.interceptors.request.use(
+//   config => {
+//     const token = localStorage.getItem('authorization');
+//     if (token) {
+//       config.headers.Authorization = `Bearer ${token}`;
+//     }
+//     return config;
+//   },
+//   error => Promise.reject(error)
+// );
 
 const StyeldContainer = styled.div`
   display: flex;

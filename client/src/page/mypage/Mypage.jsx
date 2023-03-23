@@ -4,25 +4,17 @@ import ProgressModule from './module/progress/ProgressModule';
 import ProfileModule from './module/profile/ProfileModule';
 import CommissionsListModule from './module/commissions/CommissionsListModule';
 import ChatModule from './module/chat/ChatModule';
-import customAxios from 'api/baseURL';
 import { useEffect, useState } from 'react';
+import { getUserInfo } from 'apis/api/user';
+import { useRecoilState } from 'recoil';
+import { currentMemberId } from 'state';
 
 function Mypage() {
+  const [memberId] = useRecoilState(currentMemberId);
   const [data, setData] = useState(null);
 
-  const getData = async () => {
-    await customAxios
-      .get(`/data`)
-      .then(res => {
-        setData(res.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
-
   useEffect(() => {
-    getData();
+    setData(getUserInfo(memberId));
   }, []);
 
   console.log(data);

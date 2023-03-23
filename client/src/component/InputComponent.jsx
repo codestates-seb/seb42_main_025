@@ -25,7 +25,8 @@ const InputComponent = ({ label, placeholder, value, onChange, onBlur, error, ty
 };
 
 const InputContainer = styled.div`
-  display: grid;
+  display: flex;
+  flex-direction: column;
   height: fit-content;
   width: 100%;
 `;
@@ -34,8 +35,7 @@ const InputLabel = styled.label`
   ${({ label }) => {
     if (label) {
       return css`
-        display: grid;
-        grid-row: 1 / span 1;
+        display: flex;
         margin-bottom: 0.5rem;
         font-size: 1.25rem;
         font-weight: bold;

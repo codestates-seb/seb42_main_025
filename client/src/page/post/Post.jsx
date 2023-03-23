@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import Button from 'component/Buttons/Button';
+import Button from 'component/Button';
 import PostDetail from './PostDetail';
 import Review from './Review';
 import Commission from 'page/home/Commission';
 import Food from 'assets/1.JPG';
 import { Container } from 'container/Container';
 import ImageComponent from 'component/ImageComponent';
-import Typography from 'component/Text/Typography';
+import Typography from 'component/Typography';
 
 function Post() {
   return (
@@ -61,10 +61,9 @@ function Post() {
           text="비슷한 커미션"
           size="xl"
           bold="bold"
-          column="1 / span 5"
           space="nowrap"
           color="tea_2"
-          margin="s"
+          padding="m"
         />
         <Commission />
       </CommissionBox>

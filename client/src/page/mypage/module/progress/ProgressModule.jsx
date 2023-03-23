@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import ProgressListModule from './ProgressListModule';
-import Typography from 'component/Text/Typography';
+import Typography from 'component/Typography';
 
 function ProgressModule() {
   return (
@@ -13,8 +13,7 @@ function ProgressModule() {
           bold="bold"
           space="nowrap"
           color="tea_2"
-          margin="s"
-          height="h_s"
+          padding="m"
         />
       </TitleContainer>
       <StyledListContainer>
