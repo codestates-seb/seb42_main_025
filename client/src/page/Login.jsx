@@ -2,9 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
-import { useRecoilState } from 'recoil';
-import { isLoggedInState, currentMemberId } from 'state';
-import mainlogo from 'assets/Main_logo.png';
+import mainLogo from 'assets/Main_logo.png';
 import InputComponent from 'component/InputComponent';
 import Button from 'component/Button';
 import { emailValidate, passwordValidate } from '../utils/validata';
@@ -16,9 +14,6 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
-  const [, setIsLoggedIn] = useRecoilState(isLoggedInState);
-  const [, setIsMemberId] = useRecoilState(currentMemberId);
-
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -28,11 +23,7 @@ const Login = () => {
         password,
       });
 
-      localStorage.setItem('authorization', response.headers.get('authorization'));
       localStorage.setItem('memberId', response.data.memberId);
-
-      setIsLoggedIn(true);
-      setIsMemberId(response.data.memberId);
 
       console.log('로그인 성공!');
       navigate('/');
@@ -60,10 +51,10 @@ const Login = () => {
   };
 
   return (
-    <StyeldContainer>
+    <StyledContainer>
       <Container>
         <LoginContainer>
-          <StyledLogo src={mainlogo} width={110} alt="logo" />
+          <StyledLogo src={mainLogo} width={110} alt="logo" />
           <InputComponent
             label="Email"
             placeholder="이메일을 입력하세요."
@@ -95,7 +86,7 @@ const Login = () => {
           />
         </LoginContainer>
       </Container>
-    </StyeldContainer>
+    </StyledContainer>
   );
 };
 
@@ -110,7 +101,7 @@ const Login = () => {
 //   error => Promise.reject(error)
 // );
 
-const StyeldContainer = styled.div`
+const StyledContainer = styled.div`
   display: flex;
   width: 100%;
   height: 100%;

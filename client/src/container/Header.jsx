@@ -1,22 +1,16 @@
 import styled from 'styled-components';
-import mainlogo from 'assets/Main_logo.png';
+import mainLogo from 'assets/Main_logo.png';
 import InputComponent from 'component/InputComponent';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import { isLoggedInState, currentMemberId } from 'state';
-import { useEffect } from 'react';
 import axios from 'axios';
 import Button from 'component/Button';
+import { useState } from 'react';
 
 function Header() {
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
-  const [memberId] = useRecoilState(currentMemberId);
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
 
-  useEffect(() => {
-    const isLoggedInValue = localStorage.getItem('isLoggedIn') === 'true';
-    setIsLoggedIn(isLoggedInValue);
-  }, [setIsLoggedIn]);
+  const memberId = localStorage.getItem('memberId');
 
   const handleClickLogo = () => {
     navigate('/');
@@ -25,12 +19,12 @@ function Header() {
     navigate('/login');
   };
 
-  const handleClickSignup = () => {
-    navigate('/Signup');
+  const handleClickSignUp = () => {
+    navigate('/signUp');
   };
 
   const handledClickMember = () => {
-    navigate(`/mypage/${memberId}`);
+    navigate(`/myPage/${memberId}`);
   };
 
   const handleLogout = async () => {
@@ -46,26 +40,22 @@ function Header() {
     }
   };
 
-  useEffect(() => {
-    localStorage.setItem('isLoggedIn', isLoggedIn.toString());
-  }, [isLoggedIn]);
-
   return (
     <StyledHeaderArea>
       <StyledContainer>
-        <StyledLogo src={mainlogo} width={110} alt="logo" onClick={handleClickLogo} />
+        <StyledLogo src={mainLogo} width={110} alt="logo" onClick={handleClickLogo} />
         <StyledInputContainer>
           <InputComponent placeholder="검색" />
         </StyledInputContainer>
         {isLoggedIn ? (
           <>
-            <StyledMypage onClick={handledClickMember}>
+            <StyledMyPage onClick={handledClickMember}>
               <img
                 src="https://fastly.picsum.photos/id/905/600/600.jpg?hmac=DvIKicBZ45DEZoZFwdZ62VbmaCwkK4Sv7rwYzUvwweU"
                 alt="profile"
                 width={40}
               />
-            </StyledMypage>
+            </StyledMyPage>
             <Button
               text="로그아웃"
               handleClick={handleLogout}
@@ -93,7 +83,7 @@ function Header() {
             />
             <Button
               text="회원가입"
-              handleClick={handleClickSignup}
+              handleClick={handleClickSignUp}
               addStyle={{
                 width: 'w_m',
                 height: 'h_xxs',
@@ -147,7 +137,7 @@ const StyledInputContainer = styled.div`
   cursor: text;
 `;
 
-const StyledMypage = styled.button`
+const StyledMyPage = styled.button`
   width: 2.5rem;
   height: 2.5rem;
   justify-self: center;

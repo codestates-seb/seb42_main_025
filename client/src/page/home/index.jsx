@@ -4,19 +4,12 @@ import Commission from './Commission';
 import Typography from 'component/Typography';
 import AdComponent from 'component/AdComponent';
 import { useEffect, useState } from 'react';
-import imgUrl from 'assets/shoes1.jpg';
-import Food from 'assets/1.JPG';
 import { getCommissions } from 'apis/api/commissions';
-import { useRecoilState } from 'recoil';
-import { currentCommissions } from 'state';
 
-const items = [
-  { id: 1, url: Food },
-  { id: 2, url: imgUrl },
-];
+const items = [{ id: 'dd', url: 'dd' }];
 
 function Home() {
-  const [commissions, setCommissions] = useRecoilState(currentCommissions);
+  const [commissions, setCommissions] = useState(null);
   const [carouselBackground, setCarouselBackground] = useState(items[0].url);
 
   const changeaCarouselImage = target => {
@@ -24,11 +17,12 @@ function Home() {
   };
 
   useEffect(() => {
-    (async () => {
+    const fetch = async () => {
       const data = await getCommissions();
       setCommissions(data);
-    })();
-  }, [setCommissions]);
+    };
+    fetch();
+  }, []);
 
   console.log(commissions);
 
@@ -37,7 +31,7 @@ function Home() {
       <StyledContainer>
         <Contents>
           <CarouselBox>
-            <Carousel items={items} changeaCarouselImage={changeaCarouselImage} />
+            <Carousel items={commissions} changeaCarouselImage={changeaCarouselImage} />
           </CarouselBox>
           <CarouselBoxBackground url={carouselBackground} />
 
@@ -51,7 +45,7 @@ function Home() {
               color="tea_2"
               padding="m"
             />
-            <Commission />
+            <Commission items={commissions} />
           </SellContainer>
           <AdComponent />
           <SellContainer>
@@ -64,7 +58,7 @@ function Home() {
               color="tea_2"
               padding="m"
             />
-            <Commission />
+            <Commission items={commissions} />
           </SellContainer>
 
           <SellContainer>
@@ -77,7 +71,7 @@ function Home() {
               color="tea_2"
               padding="m"
             />
-            <Commission />
+            <Commission items={commissions} />
           </SellContainer>
         </Contents>
       </StyledContainer>

@@ -5,11 +5,11 @@ import Typography from 'component/Typography';
 function ChatCommissionRequestModule({ info }) {
   return (
     <StyledSummaryBox>
-      <StyeldCommissionContainer>
+      <StyledCommissionContainer>
         <Typography text={info.title} bold="bold" line={1} size="l" variant="h3" width="w_xl" />
         <ImageComponent src={info.image} alt={info.title} width="m" imgStyle="commission" />
-      </StyeldCommissionContainer>
-      <StyeldTradeContainer>
+      </StyledCommissionContainer>
+      <StyledTradeContainer>
         <Typography
           text={info.subtitle}
           line={2}
@@ -28,7 +28,7 @@ function ChatCommissionRequestModule({ info }) {
           lineHeight="xl"
           width="w_xxl"
         />
-      </StyeldTradeContainer>
+      </StyledTradeContainer>
     </StyledSummaryBox>
   );
 }
@@ -44,14 +44,14 @@ const StyledSummaryBox = styled.div`
   margin-bottom: 0.25rem;
 `;
 
-const StyeldCommissionContainer = styled.div`
+const StyledCommissionContainer = styled.div`
   display: flex;
   width: 35%;
   flex-direction: column;
   gap: 0.5rem;
 `;
 
-const StyeldTradeContainer = styled.div`
+const StyledTradeContainer = styled.div`
   display: flex;
   width: 60%;
   flex-direction: column;

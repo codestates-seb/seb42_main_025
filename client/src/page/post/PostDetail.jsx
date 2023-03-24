@@ -2,12 +2,8 @@ import styled from 'styled-components';
 import Button from 'component/Button';
 import Typography from 'component/Typography';
 import TagComponent from 'component/TagComponent';
-import { currentCommission } from 'state';
-import { useRecoilState } from 'recoil';
 
-function PostDetail() {
-  const [commission] = useRecoilState(currentCommission);
-
+function PostDetail({ commission }) {
   return (
     <>
       {commission && (

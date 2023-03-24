@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import styled from 'styled-components';
 import Button from 'component/Button';
 import CommissionRequestModule from './Module/CommissionRequestBox';
@@ -7,6 +7,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function CommissionRequest() {
+  const editorRef = useRef('');
   const info = {
     image: 'https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg',
     title: 'title',
@@ -14,18 +15,20 @@ function CommissionRequest() {
   };
 
   const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
 
   const navigate = useNavigate();
 
   const handleSubmit = async event => {
+    let newHtml = editorRef.current?.getInstance().getHTML();
+    let newMarkdown = editorRef.current?.getInstance().getMarkdown();
+    console.log(newHtml, newMarkdown);
     event.preventDefault();
 
     try {
       // 입력한 데이터를 서버로 전송
       const response = await axios.post('http://3.37.139.165/trade', {
         title,
-        content,
+        newHtml,
       });
       console.log(response.data);
 
@@ -46,7 +49,7 @@ function CommissionRequest() {
         value={title}
         onChange={event => setTitle(event.target.value)}
       />
-      <TextEditor editorHeight={'25rem'} value={content} onChange={setContent} />
+      <TextEditor editorHeight={'25rem'} editorValue={info.content} editorRef={editorRef} />
       <FormSpacer />
       <form
         onSubmit={handleSubmit}

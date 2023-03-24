@@ -2,16 +2,16 @@ import styled from 'styled-components';
 import TextEditor from 'component/Editor';
 import Button from 'component/Button';
 
-function ReviewModal({ openReviewrHandler }) {
+function ReviewModal({ openReviewerHandler }) {
   return (
-    <StyledContainer onClick={openReviewrHandler}>
+    <StyledContainer onClick={openReviewerHandler}>
       <ModalView onClick={e => e.stopPropagation()}>
-        <StyeldContent>
-          <StyledModalButton onClick={openReviewrHandler}>{'x'}</StyledModalButton>
-          <StyeldMain>
+        <StyledContent>
+          <StyledModalButton onClick={openReviewerHandler}>{'x'}</StyledModalButton>
+          <StyledMain>
             <TextEditor />
-          </StyeldMain>
-          <StyeldSubButton>
+          </StyledMain>
+          <StyledSubButton>
             <Button
               text="리뷰 등록"
               addStyle={{
@@ -21,14 +21,12 @@ function ReviewModal({ openReviewrHandler }) {
                 color: 'white',
               }}
             />
-          </StyeldSubButton>
-        </StyeldContent>
+          </StyledSubButton>
+        </StyledContent>
       </ModalView>
     </StyledContainer>
   );
 }
-
-export default ReviewModal;
 
 const StyledContainer = styled.div`
   position: fixed;
@@ -62,14 +60,14 @@ const StyledModalButton = styled.div`
   flex: 1;
 `;
 
-const StyeldContent = styled.div`
+const StyledContent = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
 `;
 
-const StyeldMain = styled.div`
+const StyledMain = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
@@ -77,10 +75,12 @@ const StyeldMain = styled.div`
   flex: 9;
 `;
 
-const StyeldSubButton = styled.div`
+const StyledSubButton = styled.div`
   display: flex;
   width: 100%;
   margin-top: 1rem;
   justify-content: center;
   flex: 2;
 `;
+
+export default ReviewModal;

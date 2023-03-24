@@ -1,43 +1,33 @@
 import styled from 'styled-components';
-import imgUrl from 'assets/shoes1.jpg';
-import { Link } from 'react-router-dom';
 import TagComponent from 'component/TagComponent';
 import Typography from 'component/Typography';
 import ImageComponent from 'component/ImageComponent';
+import { useNavigate } from 'react-router-dom';
 
-const items = [
-  { id: 1, url: imgUrl },
-  { id: 2, url: imgUrl },
-  { id: 3, url: imgUrl },
-  { id: 4, url: imgUrl },
-  { id: 5, url: imgUrl },
-  { id: 6, url: imgUrl },
-  { id: 7, url: imgUrl },
-  { id: 8, url: imgUrl },
-  { id: 9, url: imgUrl },
-  { id: 10, url: imgUrl },
-];
+function commission({ items }) {
+  const navigate = useNavigate();
 
-function commission() {
-  // const navigate = useNavigate()
   const handleClick = id => {
-    console.log(id);
-    // navigate(`/commission/`)
+    navigate(`/commission/${id}`);
   };
+
+  console.log(items);
+
   return (
     <CommissionBox>
-      {items.map(item => {
-        return (
-          <div key={item.id}>
-            <TagComponent text="오마카세" />
-            <SellBox to="/commission" onClick={() => handleClick(item.id)}>
-              <ImageComponent src={item.url} alt={item.url} imgStyle="commission" width="xl" />
-              <Typography text="신발나눔" bold="bold" />
-              <Typography text="이현동" size="s" />
-            </SellBox>
-          </div>
-        );
-      })}
+      {items &&
+        items.map(item => {
+          return (
+            <div key={item.commissionId}>
+              <TagComponent text="오마카세" />
+              <SellBox onClick={() => handleClick(item.commissionId)}>
+                <ImageComponent src={item.url} alt={item.url} imgStyle="commission" width="xl" />
+                <Typography text="신발나눔" bold="bold" />
+                <Typography text="이현동" size="s" />
+              </SellBox>
+            </div>
+          );
+        })}
     </CommissionBox>
   );
 }
@@ -49,7 +39,7 @@ const CommissionBox = styled.div`
   max-width: 100%;
 `;
 
-const SellBox = styled(Link)`
+const SellBox = styled.div`
   display: grid;
   color: black;
   text-decoration: none;

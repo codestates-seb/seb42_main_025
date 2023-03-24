@@ -7,3 +7,5 @@ export const instance = axios.create({
 });
 
 instance.defaults.timeout = 5000;
+
+// axios.defaults.headers.Authorization = response.headers.get('authorization');
