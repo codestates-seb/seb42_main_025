@@ -29,7 +29,6 @@ public class ReviewService {
     private ReviewRepository reviewRepository;
     private MemberRepository memberRepository;
     private CommissionRepository commissionRepository;
-    private MemberService memberService;
 
     //CREATE
     public Review createReview(Review review){
@@ -54,10 +53,11 @@ public class ReviewService {
         return existReview(reviewId);
     }
 
-    // READ ALL
-    public Page<Review> readReviews(Pageable pageable){
+    // READ ALL BY commissionID
+    public Page<Review> readReviews(Pageable pageable,long commissionId){
         Pageable pageRequest = PageRequest.of(pageable.getPageNumber()-1, pageable.getPageSize(), pageable.getSort());
-        return reviewRepository.findAll(pageRequest);
+
+        return reviewRepository.findByCommissionId(commissionId, pageRequest);
     }
     //UPDATE
     public Review updateReview(long reviewId, Review review){

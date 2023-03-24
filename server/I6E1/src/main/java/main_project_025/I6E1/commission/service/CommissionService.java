@@ -6,9 +6,11 @@ import main_project_025.I6E1.Member.entity.Member;
 import main_project_025.I6E1.Member.repository.MemberRepository;
 import main_project_025.I6E1.Member.service.MemberService;
 import main_project_025.I6E1.auth.userdetails.AuthMember;
+import main_project_025.I6E1.aws.AwsS3Service;
 import main_project_025.I6E1.commission.dto.CommissionDto;
 import main_project_025.I6E1.commission.entity.Commission;
 import main_project_025.I6E1.commission.repository.CommissionRepository;
+import main_project_025.I6E1.commission.repository.CommissionRepositoryImpl;
 import main_project_025.I6E1.global.exception.BusinessException;
 import main_project_025.I6E1.global.exception.ExceptionCode;
 import main_project_025.I6E1.tag.service.TagService;
@@ -18,6 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,26 +32,31 @@ import java.util.Optional;
 public class CommissionService {
     private CommissionRepository commissionRepository;
     private MemberRepository memberRepository;
-    private TagService tagService;//tag test
-//    private CommissionRepositoryImpl commissionRepositoryImpl;
+    private TagService tagService;
+    private AwsS3Service awsS3Service;
+    private CommissionRepositoryImpl commissionRepositoryImpl;
 
     //CREATE
-    public Commission createCommission(Commission commission){
-        //
+    public Commission createCommission(Commission commission, List<MultipartFile> multipartFile){
+
         AuthMember loginMember = (AuthMember) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long memberId = loginMember.getMemberId();
 
         Member verifyMember = getMemberFromId(memberId);
-
         commission.setMember(verifyMember);
+
         tagService.createTag(commission);
+        List<String> imageUrl = awsS3Service.uploadThumbnail(multipartFile);//수정부분
+        commission.setImageUrl(imageUrl);
         return commissionRepository.save(commission);
     }
 
-
     // READ
     public Commission readCommission(long commissionId){
-        return existCommission(commissionId);
+        Commission commission = existCommission(commissionId);
+
+        commission.setViewCount(commission.getViewCount() +1 );
+        return commissionRepository.save(commission);
     }
 
     // READ ALL
@@ -57,11 +65,11 @@ public class CommissionService {
         return commissionRepository.findAll(pageRequest);
     }
 
-    //검색 기능
-//    public Page<Commission> searchOptions(Pageable pageable, String title, String name, List<String> tags) {
-//        Pageable pageRequest = PageRequest.of(pageable.getPageNumber()-1, pageable.getPageSize(), pageable.getSort());
-//        return commissionRepositoryImpl.findBySearchOption(pageRequest, title, name, tags);
-//    }
+  //검색 기능
+    public Page<Commission> searchOptions(Pageable pageable, String title, String name, List<String> tags) {
+        Pageable pageRequest = PageRequest.of(pageable.getPageNumber()-1, pageable.getPageSize(), pageable.getSort());
+        return commissionRepositoryImpl.findBySearchOption(pageRequest, title, name, tags);
+    }
 
     // UPDATE
     public Commission updateCommission(long commissionId, Commission commission){
@@ -69,6 +77,8 @@ public class CommissionService {
 
         verifyCommission.setTitle(commission.getTitle());
         verifyCommission.setContent(commission.getContent());
+        verifyCommission.setSubContent(commission.getSubContent());
+
 
         return commissionRepository.save(verifyCommission);
     }

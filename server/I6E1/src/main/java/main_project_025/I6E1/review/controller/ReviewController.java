@@ -39,28 +39,20 @@ public class ReviewController {
     // READ
     @GetMapping("/{review-id}")
     public ResponseEntity getReview(@PathVariable("review-id") long reviewId) throws BusinessException {
-        try {
             Review review = reviewService.readReview(reviewId);
             ReviewDto.Response response = mapper.reviewToResponse(review);
             return new ResponseEntity<>(response, HttpStatus.OK);
-        } catch (BusinessException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
     }
 
-    // READ ALL
+    // READ ALL BY commissionID
     // 페이지네이션
     @GetMapping
-    public ResponseEntity getReviews(Pageable pageable) {
-        try {
-            Page<Review> reviewPage = reviewService.readReviews(pageable);
+    public ResponseEntity getReviews(Pageable pageable,long commissionId) {
+            Page<Review> reviewPage = reviewService.readReviews(pageable, commissionId);
             List<Review> reviewList = reviewPage.getContent();
 
             PageDto pageDto = new PageDto<>(mapper.reviewToResponses(reviewList), reviewPage);
             return new ResponseEntity<>(pageDto, HttpStatus.OK);
-        } catch (BusinessException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
     }
 
     //UPDATE
@@ -68,24 +60,18 @@ public class ReviewController {
     @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity patchReview(@PathVariable("review-id") long reviewId,
                                       @Valid @RequestBody ReviewDto.Patch patch) throws BusinessException {
-        try {
             Review review = reviewService.updateReview(reviewId, mapper.reviewPatchDtoToReview(patch));
 
             ReviewDto.Response response = mapper.reviewToResponse(review);
             return new ResponseEntity<>(response, HttpStatus.OK);
-        } catch (BusinessException e) {
-            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
     }
 
     @DeleteMapping("/{review-id}")
     @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity deleteReview(@PathVariable("review-id") long reviewId) throws BusinessException {
-        try {
+
             reviewService.deleteReview(reviewId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }catch (BusinessException e){
-            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
+
     }
 }

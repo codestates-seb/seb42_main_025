@@ -33,6 +33,12 @@ public class Commission extends Auditable {
     @Column(columnDefinition = "mediumtext", nullable = false)
     private String content;
 
+    @Column(columnDefinition = "mediumtext", nullable = false)
+    private String subContent;
+
+    @Column(nullable = false)
+    private int viewCount = 0;
+
     @ManyToOne(targetEntity = Member.class, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
@@ -42,6 +48,9 @@ public class Commission extends Auditable {
 
     @OneToMany(mappedBy = "commission")//tag 매핑
     private List<CommissionTag> tags = new ArrayList<>();
+
+    @ElementCollection
+    private List<String> imageUrl;
 
     public void setTrade(Trade trade) {
         this.getTrades().add(trade);
