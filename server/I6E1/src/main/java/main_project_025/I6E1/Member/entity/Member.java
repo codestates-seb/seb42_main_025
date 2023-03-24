@@ -1,6 +1,7 @@
 package main_project_025.I6E1.Member.entity;
 
 import lombok.*;
+import main_project_025.I6E1.chat.entity.ChatRoom;
 import main_project_025.I6E1.global.auditable.Auditable;
 import main_project_025.I6E1.trade.entity.Trade;
 
@@ -38,6 +39,9 @@ public class Member extends Auditable {
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Trade> trades = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<ChatRoom> chatRooms = new ArrayList<>();
 
     public void setTrade(Trade trade) {
         this.getTrades().add(trade);

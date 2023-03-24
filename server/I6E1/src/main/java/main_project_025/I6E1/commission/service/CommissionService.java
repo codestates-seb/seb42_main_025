@@ -79,7 +79,7 @@ public class CommissionService {
         verifyCommission.setContent(commission.getContent());
         verifyCommission.setSubContent(commission.getSubContent());
 
-
+        //태그, 이미지 수정 미구현
         return commissionRepository.save(verifyCommission);
     }
 
