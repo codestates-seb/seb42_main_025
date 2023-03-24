@@ -3,6 +3,7 @@ import TagComponent from 'component/TagComponent';
 import Typography from 'component/Typography';
 import ImageComponent from 'component/ImageComponent';
 import { useNavigate } from 'react-router-dom';
+import shoes1 from '../../assets/shoes1.jpg';
 
 function commission({ items }) {
   const navigate = useNavigate();
@@ -19,11 +20,16 @@ function commission({ items }) {
         items.map(item => {
           return (
             <div key={item.commissionId}>
-              <TagComponent text="오마카세" />
+              <TagBox>
+                {item &&
+                  item.tags.map(tag => {
+                    return <TagComponent key={tag} text={tag} />;
+                  })}
+              </TagBox>
               <SellBox onClick={() => handleClick(item.commissionId)}>
-                <ImageComponent src={item.url} alt={item.url} imgStyle="commission" width="xl" />
-                <Typography text="신발나눔" bold="bold" />
-                <Typography text="이현동" size="s" />
+                <ImageComponent src={shoes1} alt={item.imageUrl} imgStyle="commission" width="xl" />
+                <Typography text={item.title} bold="bold" />
+                <Typography text={item.memberName} size="s" />
               </SellBox>
             </div>
           );
@@ -39,6 +45,10 @@ const CommissionBox = styled.div`
   max-width: 100%;
 `;
 
+const TagBox = styled.div`
+  display: flex;
+`;
+
 const SellBox = styled.div`
   display: grid;
   color: black;
@@ -48,6 +58,14 @@ const SellBox = styled.div`
   border: none;
   background-color: transparent;
   justify-content: start;
+  cursor: pointer;
+  &:hover {
+    filter: brightness(90%);
+  }
+  &:active {
+    filter: brightness(70%);
+    transform: translate(0, 1px);
+  }
 `;
 
 export default commission;

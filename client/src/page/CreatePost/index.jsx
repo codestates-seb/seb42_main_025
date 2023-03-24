@@ -4,11 +4,29 @@ import Button from 'component/Button';
 import Dropzone from './Dropzone';
 import { Container } from 'container/Container';
 import TextEditor from 'component/Editor';
+import InputText from './InputText';
 // import { useRecoilValue } from 'recoil';
 // import { postCommissions } from 'apis/api/commissions';
 
 function CreatePost() {
   // console.log(commissionId);
+
+  // const handleSubmit = async e => {
+  //   e.preventDefault();
+
+  //   const formData = new FormData();
+  //   files.forEach(file => formData.append('file', file));
+  //   formData.append('upload_preset', 'friendsbook');
+
+  //   const URL = process.env.NEXT_PUBLIC_CLOUDINARY_URL;
+  //   const data = await fetch(URL, {
+  //     method: 'POST',
+  //     body: formData,
+  //   }).then(res => res.json());
+
+  //   console.log(data);
+  // };
+
   return (
     <Container>
       <ContentBox>
@@ -17,15 +35,9 @@ function CreatePost() {
             <Dropzone />
           </ImgBox>
           <PostDetail>
-            <div>
-              제목
-              <InputComponent />
-            </div>
-            <TextEditor editorHeight={'20rem'} />
-            <div>
-              태그
-              <InputComponent />
-            </div>
+            <InputComponent label="제목" placeholder="제목을 입력하세요." />
+            <InputText label="소개글" />
+            <InputComponent label="태그" placeholder="태그를 입력하세요." />
           </PostDetail>
         </Content>
         <Toast>
@@ -35,6 +47,7 @@ function CreatePost() {
           <Button
             text="등록"
             path="/commission"
+            // onclick={handleSubmit}
             addStyle={{
               width: 'w_xl',
               height: 'h_m',
