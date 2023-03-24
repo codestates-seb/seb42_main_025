@@ -53,6 +53,6 @@ public class CommissionDto {
         private String memberName;
         private String memberEmail;
         private List<String> tags;
-
+        //private List<ReviewResponseDto> reviews;
     }
 }
