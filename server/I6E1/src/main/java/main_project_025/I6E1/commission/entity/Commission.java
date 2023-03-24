@@ -33,6 +33,9 @@ public class Commission extends Auditable {
     @Column(columnDefinition = "mediumtext", nullable = false)
     private String content;
 
+    @Column(columnDefinition = "mediumtext", nullable = false)
+    private String subContent;
+
     @ManyToOne(targetEntity = Member.class, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
