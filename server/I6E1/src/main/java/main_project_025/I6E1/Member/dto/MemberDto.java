@@ -47,5 +47,6 @@ public class MemberDto {
         private String nickname;
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
+        private List<String> roles;
     }
 }
