@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-function ImageComponent({ src, alt, imgStyle, width, margin, column, flex }) {
+function ImageComponent({ src, alt, imgStyle, width }) {
   return (
-    <StyledContainer imgStyle={imgStyle} width={width} margin={margin} column={column} flex={flex}>
-      <StyledImg src={src} alt={alt} />
+    <StyledContainer width={width}>
+      <StyledImg src={src} alt={alt} imgStyle={imgStyle} />
     </StyledContainer>
   );
 }
@@ -25,7 +25,13 @@ const StyledContainer = styled.div.attrs(props => ({
   height: auto;
 `;
 
-const StyledImg = styled.img`
+const StyledImg = styled.img.attrs(props => ({
+  imgStyle: props.imgStyle,
+}))`
+  display: flex;
   width: 100%;
+  height: auto;
+  aspect-ratio: ${props => props.theme.imgStyles[props.imgStyle]};
 `;
+
 export default ImageComponent;

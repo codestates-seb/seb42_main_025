@@ -1,6 +1,6 @@
-import Button from 'component/Buttons/Button';
-import Typography from 'component/Text/Typography';
-import TitleTypography from 'component/Text/TitleTypography';
+import Button from 'component/Button';
+import ImageComponent from 'component/ImageComponent';
+import Typography from 'component/Typography';
 import styled from 'styled-components';
 
 function ProfileModule() {
@@ -17,9 +17,13 @@ function ProfileModule() {
           border: '1px',
         }}
       />
-      <StyledImg src="https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg" />
-      <TitleTypography text="닉네임" row="3 / span 1" />
-      <Typography text="자기소개" />
+      <ImageComponent
+        src="https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg"
+        alt="프로필 사진"
+        width="l"
+      />
+      <Typography text="닉네임" size="xl" bold="bold" />
+      <Typography text="자기소개" line={25} lineHeight="l" />
     </StyledContainer>
   );
 }
@@ -29,15 +33,10 @@ const StyledContainer = styled.aside`
   height: fit-content;
   grid-column: 9 / span 4;
   padding: 1rem;
-  grid-template-rows: repeat(4, max(fit-content));
   gap: 2rem;
-  background-color: #f6f6f6;
+  background-color: #f5e8dd;
   border-radius: 0.25rem;
-`;
-
-const StyledImg = styled.img`
-  grid-row: 2 / span 1;
-  max-width: 100%;
+  margin-top: 6rem;
 `;
 
 export default ProfileModule;

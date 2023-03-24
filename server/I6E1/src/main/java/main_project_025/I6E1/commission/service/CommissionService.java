@@ -6,6 +6,7 @@ import main_project_025.I6E1.Member.entity.Member;
 import main_project_025.I6E1.Member.repository.MemberRepository;
 import main_project_025.I6E1.Member.service.MemberService;
 import main_project_025.I6E1.auth.userdetails.AuthMember;
+import main_project_025.I6E1.aws.AwsS3Service;
 import main_project_025.I6E1.commission.dto.CommissionDto;
 import main_project_025.I6E1.commission.entity.Commission;
 import main_project_025.I6E1.commission.repository.CommissionRepository;
@@ -19,6 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,22 +32,24 @@ import java.util.Optional;
 public class CommissionService {
     private CommissionRepository commissionRepository;
     private MemberRepository memberRepository;
-    private TagService tagService;//tag test
+    private TagService tagService;
+    private AwsS3Service awsS3Service;
     private CommissionRepositoryImpl commissionRepositoryImpl;
 
     //CREATE
-    public Commission createCommission(Commission commission){
-        //
+    public Commission createCommission(Commission commission, List<MultipartFile> multipartFile){
+
         AuthMember loginMember = (AuthMember) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long memberId = loginMember.getMemberId();
 
         Member verifyMember = getMemberFromId(memberId);
-
         commission.setMember(verifyMember);
+
         tagService.createTag(commission);
+        List<String> imageUrl = awsS3Service.uploadThumbnail(multipartFile);//수정부분
+        commission.setImageUrl(imageUrl);
         return commissionRepository.save(commission);
     }
-
 
     // READ
     public Commission readCommission(long commissionId){

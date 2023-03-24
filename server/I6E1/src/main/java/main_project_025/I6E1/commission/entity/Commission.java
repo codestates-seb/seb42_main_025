@@ -49,6 +49,9 @@ public class Commission extends Auditable {
     @OneToMany(mappedBy = "commission")//tag 매핑
     private List<CommissionTag> tags = new ArrayList<>();
 
+    @ElementCollection
+    private List<String> imageUrl;
+
     public void setTrade(Trade trade) {
         this.getTrades().add(trade);
         if (trade.getCommission() != this) {

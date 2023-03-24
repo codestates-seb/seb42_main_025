@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Container } from 'container/Container';
-import { ChatCommissionInfoBox } from 'component/BoxComponents.jsx';
-import Typography from 'component/Text/Typography';
+import ChatCommissionInfoModule from './module/ChatCommissionInfoModule';
 import ChatListModule from './module/ChatList/ChatListModule';
 import ChatContentModule from './module/ChatContent/ChatContentModule';
 
@@ -14,45 +13,18 @@ function ChatPage() {
   };
   return (
     <Container>
-      <StyledContents>
-        <Typography
-          text="대화 목록"
-          size="xl"
-          variant="h2"
-          bold="bold"
-          column="1 / span 3"
-          margin="m"
-          space="nowrap"
-        />
-        <Typography
-          text="대화 내용"
-          size="xl"
-          variant="h2"
-          bold="bold"
-          column="4 / span 6"
-          margin="m"
-          space="nowrap"
-        />
-        <Typography
-          text="커미션 정보"
-          size="xl"
-          variant="h2"
-          bold="bold"
-          column="11 / span 2"
-          margin="m"
-          space="nowrap"
-        />
+      <StyledContainer>
         <ChatListModule />
         <ChatContentModule />
         <StyledCommissionInfo>
-          <ChatCommissionInfoBox info={info} />
+          <ChatCommissionInfoModule info={info} />
         </StyledCommissionInfo>
-      </StyledContents>
+      </StyledContainer>
     </Container>
   );
 }
 
-const StyledContents = styled.section`
+const StyledContainer = styled.section`
   display: grid;
   width: 100%;
   grid-template-columns: repeat(12, 1fr);
@@ -61,10 +33,10 @@ const StyledContents = styled.section`
 `;
 
 const StyledCommissionInfo = styled.aside`
+  display: grid;
   width: 100%;
   grid-column: 11 / span 2;
-  grid-row: 2 / span 1;
-  padding: 1rem 0 0 1rem;
+  padding: 1rem 1rem 0 1rem;
   border-left: 1px solid #cecece;
 `;
 

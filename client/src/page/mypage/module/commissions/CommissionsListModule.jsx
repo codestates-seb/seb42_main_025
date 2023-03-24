@@ -1,16 +1,45 @@
-import Typography from 'component/Text/Typography';
+import Button from 'component/Button';
+import Typography from 'component/Typography';
+import { useNavigate } from 'react-router';
 import styled from 'styled-components';
-import { CommissionListBox } from 'component/BoxComponents.jsx';
+import CommissionListSingleModule from './CommissionListSingleModule';
 
 function CommissionsListModule() {
-  const info = {
-    image: 'https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg',
-    title: '커미션 제목',
-    content: '커미션 내용',
+  const navigate = useNavigate();
+  const info = [
+    {
+      image: 'https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg',
+      title: '커미션 제목커미션 제목커미션 제목',
+      content: '커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용',
+    },
+    {
+      image: 'https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg',
+      title: '커미션 제목커미션 제목커미션 제목',
+      content: '커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용',
+    },
+    {
+      image: 'https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg',
+      title: '커미션 제목커미션 제목커미션 제목',
+      content: '커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용',
+    },
+    {
+      image: 'https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg',
+      title: '커미션 제목커미션 제목커미션 제목',
+      content: '커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용',
+    },
+    {
+      image: 'https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg',
+      title: '커미션 제목커미션 제목커미션 제목',
+      content: '커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용',
+    },
+  ];
+
+  const handleClick = () => {
+    navigate('/createcommission');
   };
   return (
     <StyledContainer>
-      <TitleContainer>
+      <StyledHeader>
         <Typography
           variant="h2"
           text="커미션 목록"
@@ -18,17 +47,25 @@ function CommissionsListModule() {
           bold="bold"
           space="nowrap"
           color="tea_2"
-          margin="s"
-          height="h_s"
-          row="5 / span 1"
+          padding="m"
         />
-      </TitleContainer>
+        <Button
+          text="커미션등록"
+          handleClick={handleClick}
+          addStyle={{
+            padding: '0.5rem 1rem',
+            backgroundColor: 'tea_1',
+            height: 'h_s',
+            color: 'white',
+          }}
+        />
+      </StyledHeader>
       {/* <TitleTypography text="커미션 목록"/> */}
       {/* 로그인 x */}
       <CommissionListContainer>
-        <CommissionListBox info={info} />
-        <CommissionListBox info={info} />
-        <CommissionListBox info={info} />
+        {info.map((el, idx) => (
+          <CommissionListSingleModule key={idx} info={el} />
+        ))}
       </CommissionListContainer>
     </StyledContainer>
   );
@@ -40,17 +77,18 @@ const StyledContainer = styled.article`
   grid-column: 1 / span 7;
 `;
 
-const TitleContainer = styled.div`
+const StyledHeader = styled.div`
   display: flex;
-  align-items: flex-end;
+  flex-direction: row;
+  align-items: center;
 `;
 
 const CommissionListContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-items: center;
   padding: 2rem;
   gap: 1rem;
-  grid-template-columns: repeat(2, 1fr);
   background-color: #ececec;
 `;
 

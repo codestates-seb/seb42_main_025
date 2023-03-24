@@ -8,6 +8,7 @@ import lombok.Getter;
 public enum Status {
     Waiting_Acceptance("수락대기"),
     In_Progress("진행 중"),
+    Rejected("거절"),
     Done("완료");
 
     @Getter

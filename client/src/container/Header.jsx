@@ -1,16 +1,17 @@
 import styled from 'styled-components';
 import mainlogo from 'assets/Main_logo.png';
 import InputComponent from 'component/InputComponent';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { isLoggedInState } from 'page/atom';
+import { isLoggedInState, currentMemberId } from 'state';
 import { useEffect } from 'react';
 import axios from 'axios';
-import Button from 'component/Buttons/Button';
+import Button from 'component/Button';
 
 function Header() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
+  const [memberId] = useRecoilState(currentMemberId);
 
   useEffect(() => {
     const isLoggedInValue = localStorage.getItem('isLoggedIn') === 'true';
@@ -28,9 +29,13 @@ function Header() {
     navigate('/Signup');
   };
 
+  const handledClickMember = () => {
+    navigate(`/mypage/${memberId}`);
+  };
+
   const handleLogout = async () => {
     try {
-      await axios.get('http://3.37.139.165/logout');
+      await axios.get('http://3.37.139.165:8080/logout');
       localStorage.removeItem('authorization');
       localStorage.setItem('isLoggedIn', 'false');
       setIsLoggedIn(false);
@@ -54,20 +59,20 @@ function Header() {
         </StyledInputContainer>
         {isLoggedIn ? (
           <>
-            <StyledLink to="/mypage/1">
+            <StyledMypage onClick={handledClickMember}>
               <img
                 src="https://fastly.picsum.photos/id/905/600/600.jpg?hmac=DvIKicBZ45DEZoZFwdZ62VbmaCwkK4Sv7rwYzUvwweU"
                 alt="profile"
                 width={40}
               />
-            </StyledLink>
+            </StyledMypage>
             <Button
               text="로그아웃"
               handleClick={handleLogout}
               addStyle={{
                 width: 'w_m',
                 height: 'h_xxs',
-                margin: '0 1rem',
+                margin: '0 2rem 0 0',
                 backgroundColor: 'transparent',
               }}
             />
@@ -81,6 +86,8 @@ function Header() {
                 width: 'w_m',
                 margin: '0 1rem',
                 height: 'h_xxs',
+                color: 'tea_2',
+                fontSize: 'm',
                 backgroundColor: 'transparent',
               }}
             />
@@ -90,7 +97,8 @@ function Header() {
               addStyle={{
                 width: 'w_m',
                 height: 'h_xxs',
-                margin: '0 1rem',
+                margin: '0 2rem 0 0',
+                fontSize: 'm',
                 backgroundColor: 'transparent',
               }}
             />
@@ -110,7 +118,8 @@ const StyledHeaderArea = styled.div`
   justify-content: center;
   height: 5rem;
   z-index: 10;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #cecece;
+  box-shadow: 0 0 5px 0 #999999;
   background-color: #fff;
 `;
 
@@ -138,10 +147,20 @@ const StyledInputContainer = styled.div`
   cursor: text;
 `;
 
-const StyledLink = styled(Link)`
+const StyledMypage = styled.button`
   width: 2.5rem;
   height: 2.5rem;
   justify-self: center;
+  border: none;
+
+  cursor: pointer;
+  &:hover {
+    filter: brightness(90%);
+  }
+  &:active {
+    filter: brightness(70%);
+    transform: translate(0, 1px);
+  }
 `;
 
 export default Header;

@@ -1,28 +1,18 @@
 import styled from 'styled-components';
+import { useEffect, useState } from 'react';
 import { Container } from 'container/Container';
 import ProgressModule from './module/Progress/ProgressModule';
 import ProfileModule from './module/Profile/ProfileModule';
 import CommissionsListModule from './module/Commissions/CommissionsListModule';
 import ChatModule from './module/Chat/ChatModule';
-import customAxios from 'api/baseURL';
-import { useEffect, useState } from 'react';
+import { getUserInfo } from 'apis/api/user';
 
 function Mypage() {
   const [data, setData] = useState(null);
 
-  const getData = async () => {
-    await customAxios
-      .get(`/data`)
-      .then(res => {
-        setData(res.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
-
   useEffect(() => {
-    getData();
+    const memberId = localStorage.getItem('memberId');
+    setData(getUserInfo(memberId));
   }, []);
 
   console.log(data);

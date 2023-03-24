@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import ProgressListSingleModule from './ProgressListSingleModule';
-import Typography from 'component/Text/Typography';
-import Button from 'component/Buttons/Button';
+import Typography from 'component/Typography';
+import Button from 'component/Button';
 import { useState } from 'react';
 
 function ProgressListModule() {
@@ -27,10 +27,8 @@ function ProgressListModule() {
             text="줄이기"
             handleClick={moreClicked}
             addStyle={{
-              width: 'fit-content',
-              height: 'fit-content',
-              padding: 'none',
               backgroundColor: 'transparent',
+              margin: '1.5rem 0 0 0 ',
             }}
           />
         ) : (
@@ -38,8 +36,8 @@ function ProgressListModule() {
             text="더보기"
             handleClick={moreClicked}
             addStyle={{
-              padding: 'none',
               backgroundColor: 'transparent',
+              margin: '1.5rem 0 0 0 ',
             }}
           />
         )}
@@ -54,7 +52,7 @@ const StyledContainer = styled.li`
   width: 100%;
   padding: 2rem 1rem;
   list-style: none;
-  border-bottom: 1px solid #cecece;
+  border-bottom: 1px solid #444444;
 `;
 
 const StyeldHeaderArea = styled.div`
