@@ -32,6 +32,15 @@ spring:
           springframework:
             orm:
               jpa: DEBUG
+cloud:
+  aws:
+    s3:
+      bucket: seungbaelee
+    stack.auto: false
+    region.static: ap-northeast-2
+    credentials:
+      accessKey: AKIAUERPV3O4L32Z3X67
+      secretKey: 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
 mail:
   address:
     admin: admin@gmail.com
