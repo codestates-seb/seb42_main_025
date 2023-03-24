@@ -21,6 +21,8 @@ public class CommissionDto {
 
         @NotEmpty(message = "태그를 입력해주세요.")
         private List<String> tags;//tag test
+
+        private List<String> imageUrl;
     }
 
     @Getter
@@ -46,7 +48,6 @@ public class CommissionDto {
         private String memberName;
         private String memberEmail;
         private List<String> tags;
-
-        //private List<ReviewResponseDto> reviews;
+        private List<String> imageUrl;
     }
 }
