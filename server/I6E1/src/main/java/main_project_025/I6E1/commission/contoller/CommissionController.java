@@ -3,9 +3,11 @@ package main_project_025.I6E1.commission.contoller;
 import lombok.AllArgsConstructor;
 import main_project_025.I6E1.Member.entity.Member;
 import main_project_025.I6E1.Member.repository.MemberRepository;
+import main_project_025.I6E1.aws.AwsS3Service;
 import main_project_025.I6E1.commission.dto.CommissionDto;
 import main_project_025.I6E1.commission.entity.Commission;
 import main_project_025.I6E1.commission.mapper.CommissionMapper;
+import main_project_025.I6E1.commission.repository.CommissionRepository;
 import main_project_025.I6E1.commission.service.CommissionService;
 import main_project_025.I6E1.global.exception.BusinessException;
 import main_project_025.I6E1.global.Page.PageDto;
@@ -17,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -28,16 +31,19 @@ import java.util.List;
 public class CommissionController {
     private final CommissionService commissionService;
     private final CommissionMapper mapper;
+    private final AwsS3Service awsS3Service;
+    private final CommissionRepository commissionRepository;//test
 
-    //CREATE
+
+
     @PostMapping
     @PreAuthorize("hasRole('ROLE_AUTHOR')")
-    public ResponseEntity postCommission(@Valid @RequestBody CommissionDto.Post post){
-        Commission commission = commissionService.createCommission(mapper.commissionPostDtoToCommission(post));
-
+    public ResponseEntity postCommission(@Valid CommissionDto.Post post, List<MultipartFile> multipartFile){
+        Commission commission = commissionService.createCommission(mapper.commissionPostDtoToCommission(post), multipartFile);
         CommissionDto.Response response = mapper.commissionToResponse(commission);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
+
 
     //READ
     @GetMapping("/{commission-id}")
