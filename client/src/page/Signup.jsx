@@ -51,7 +51,7 @@ const Signup = () => {
   };
 
   return (
-    <StyeldContainer>
+    <StyledContainer>
       <Container>
         <SignupContainer>
           <OptionContainer>
@@ -95,11 +95,11 @@ const Signup = () => {
           />
         </SignupContainer>
       </Container>
-    </StyeldContainer>
+    </StyledContainer>
   );
 };
 
-const StyeldContainer = styled.div`
+const StyledContainer = styled.div`
   display: flex;
   width: 100%;
   height: 100%;

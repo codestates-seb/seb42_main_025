@@ -43,7 +43,7 @@ export const routerList = [
   {
     id: 6,
     path: '/commissionrequest/:id',
-    isPrivate: true,
+    isPrivate: false, //ture
     element: <CommissionRequest />,
   },
   {

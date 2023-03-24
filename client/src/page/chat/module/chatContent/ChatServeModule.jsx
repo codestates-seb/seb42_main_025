@@ -6,21 +6,21 @@ function ChatServeModule({ chat, yourChat, trade }) {
   return (
     <StyledContainer yourChat={yourChat}>
       {trade ? (
-        <StyeldChatContainer>
-          <StyeldNameContainer>
+        <StyledChatContainer>
+          <StyledNameContainer>
             <Typography text={yourChat && '상대 이름'} size="m" margin="xxs" />
-          </StyeldNameContainer>
+          </StyledNameContainer>
           <ChatCommissionRequestModule info={trade} />
           <Typography size="s" bold="bold" color="gray_3" text="시간" start={yourChat && 'start'} />
-        </StyeldChatContainer>
+        </StyledChatContainer>
       ) : (
-        <StyeldChatContainer>
-          <StyeldNameContainer>
+        <StyledChatContainer>
+          <StyledNameContainer>
             <Typography text={yourChat && '상대 이름'} size="m" margin="xxs" />
-          </StyeldNameContainer>
-          <StyeldChatContent>{chat}</StyeldChatContent>
+          </StyledNameContainer>
+          <StyledChatContent>{chat}</StyledChatContent>
           <Typography size="s" bold="bold" color="gray_3" text="시간" start={yourChat && 'start'} />
-        </StyeldChatContainer>
+        </StyledChatContainer>
       )}
     </StyledContainer>
   );
@@ -39,13 +39,13 @@ const StyledContainer = styled.div`
   }}
 `;
 
-const StyeldChatContainer = styled.div`
+const StyledChatContainer = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 70%;
 `;
 
-const StyeldChatContent = styled.span`
+const StyledChatContent = styled.span`
   display: flex;
   width: fit-content;
   height: fit-content;
@@ -54,7 +54,7 @@ const StyeldChatContent = styled.span`
   background-color: #fff;
 `;
 
-const StyeldNameContainer = styled.span`
+const StyledNameContainer = styled.span`
   display: flex;
   justify-content: end;
 `;

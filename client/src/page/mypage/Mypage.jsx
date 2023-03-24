@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Container } from 'container/Container';
 import ProgressModule from './module/Progress/ProgressModule';
 import ProfileModule from './module/Profile/ProfileModule';
@@ -8,14 +8,12 @@ import ChatModule from './module/Chat/ChatModule';
 import { getUserInfo } from 'apis/api/user';
 
 function Mypage() {
-  const [data, setData] = useState(null);
+  const memberId = localStorage.getItem('memberId');
 
   useEffect(() => {
-    const memberId = localStorage.getItem('memberId');
-    setData(getUserInfo(memberId));
+    setMember(getUserInfo(memberId));
   }, []);
 
-  console.log(data);
   // 멤버 id와 비교 후
 
   return (

@@ -13,10 +13,10 @@ function ProgressListModule() {
 
   return (
     <StyledContainer>
-      <StyeldHeaderArea>
+      <StyledHeaderArea>
         <Typography text="신청 의뢰" variant="h3" size="l" bold="bold" />
         <div>{3}</div>
-      </StyeldHeaderArea>
+      </StyledHeaderArea>
       <StyledListBox>
         <ProgressListSingleModule />
         <ProgressListSingleModule />
@@ -55,7 +55,7 @@ const StyledContainer = styled.li`
   border-bottom: 1px solid #444444;
 `;
 
-const StyeldHeaderArea = styled.div`
+const StyledHeaderArea = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;

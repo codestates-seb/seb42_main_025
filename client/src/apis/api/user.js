@@ -2,7 +2,6 @@ import { instance } from 'apis/utils';
 
 export const getUserInfo = async id => {
   const token = localStorage.getItem('authorization');
-  console.log(id);
   try {
     const res = await instance.get(`/members/${id}`, { headers: { Authorization: token } });
     console.log(res.data.data);

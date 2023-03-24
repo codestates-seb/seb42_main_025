@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Button from 'component/Button';
 import PostDetail from './PostDetail';
 import Review from './Review';
@@ -9,17 +9,18 @@ import { Container } from 'container/Container';
 import ImageComponent from 'component/ImageComponent';
 import Typography from 'component/Typography';
 import { getCommission } from 'apis/api/commission';
-import { useRecoilState } from 'recoil';
-import { currentCommission } from 'state';
+import { useParams } from 'react-router-dom';
 
 function Post() {
-  const [commission, setCommission] = useRecoilState(currentCommission);
+  const [commission, setCommission] = useState(null);
+  const params = useParams();
 
   useEffect(() => {
-    (async () => {
-      const data = await getCommission('1'); // id값 수정해야함
+    const fetch = async () => {
+      const data = await getCommission(params.id);
       setCommission(data);
-    })();
+    };
+    fetch();
   }, [setCommission]);
 
   console.log(commission);
@@ -31,7 +32,7 @@ function Post() {
           <ImageComponent src={Food} alt="navExploreLogo" width="xxl" imgStyle="commission" />
         </ImageWrapper>
         <PostDetailWrapper>
-          <PostDetail />
+          <PostDetail commission={commission} />
         </PostDetailWrapper>
       </PostDetailBox>
       <DetailBox>

@@ -15,7 +15,7 @@ function ProgressListSingleModule() {
   ];
 
   const [isOpen, setIsOpen] = useState(false);
-  const openReviewrHandler = () => {
+  const openReviewerHandler = () => {
     setIsOpen(!isOpen);
   };
   return (
@@ -24,11 +24,11 @@ function ProgressListSingleModule() {
         <StateComponent state="red" />
         <StyledCommissionContainer>
           <Typography text="커미션 제목커미션 제목제목" bold="bold" line={1} margin="xxs" />
-          <StyeldImgContainer>
+          <StyledImgContainer>
             {image.map((el, idx) =>
               idx < 2 ? <ImageComponent src={el} key={idx} width="s" alt={el} /> : null
             )}
-          </StyeldImgContainer>
+          </StyledImgContainer>
         </StyledCommissionContainer>
         <StyledCommission>
           <ProgressRequestListModule
@@ -82,7 +82,7 @@ function ProgressListSingleModule() {
           />
           <Button
             text="리뷰작성"
-            handleClick={openReviewrHandler}
+            handleClick={openReviewerHandler}
             addStyle={{
               borderRadius: 'half',
               padding: '0.5rem 1rem',
@@ -93,7 +93,7 @@ function ProgressListSingleModule() {
               color: 'white',
             }}
           />
-          {isOpen === true ? <ReviewModal openReviewrHandler={openReviewrHandler} /> : null}
+          {isOpen === true ? <ReviewModal openReviewerHandler={openReviewerHandler} /> : null}
         </StyledRigntButtons>
       </StyledButtonContainer>
     </>
@@ -117,7 +117,7 @@ const StyledCommissionContainer = styled.div`
   padding-right: 0.5rem;
 `;
 
-const StyeldImgContainer = styled.div`
+const StyledImgContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 0.5rem;

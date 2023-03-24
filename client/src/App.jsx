@@ -6,16 +6,13 @@ import theme from './style/theme';
 import Header from 'container/Header';
 import Footer from 'container/Footer';
 import { ToastContainer } from 'react-toastify';
-import { isLoggedInState } from 'state';
-import { useRecoilState } from 'recoil';
 import { routerList } from 'utils/Routers';
 import PrivateRoute from 'utils/PrivateRoute';
 
 // import UserInfo from 'component/UserInfo';
 
 function App() {
-  const [isLogin] = useRecoilState(isLoggedInState);
-  console.log(isLogin);
+  const isLogin = localStorage.getItem('isLoggined'); /** 수정 필요 */
 
   return (
     <React.Fragment>
