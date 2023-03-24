@@ -53,7 +53,10 @@ public class CommissionService {
 
     // READ
     public Commission readCommission(long commissionId){
-        return existCommission(commissionId);
+        Commission commission = existCommission(commissionId);
+
+        commission.setViewCount(commission.getViewCount() +1 );
+        return commissionRepository.save(commission);
     }
 
     // READ ALL

@@ -49,6 +49,7 @@ public class CommissionDto {
         private String title;
         private String content;
         private String subContent;
+        private int viewCount;
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
         private String memberName;
