@@ -39,6 +39,9 @@ public class CommissionDto {
 
         @NotBlank(message = "내용을 입력해주세요.")
         private String content;
+
+        @NotBlank(message = "내용을 입력해주세요.")
+        private String subContent;
     }
 
     @Getter

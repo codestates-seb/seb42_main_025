@@ -44,19 +44,15 @@ public class ReviewController {
             return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    // READ ALL
+    // READ ALL BY commissionID
     // 페이지네이션
     @GetMapping
-    public ResponseEntity getReviews(Pageable pageable) {
-        try {
-            Page<Review> reviewPage = reviewService.readReviews(pageable);
+    public ResponseEntity getReviews(Pageable pageable,long commissionId) {
+            Page<Review> reviewPage = reviewService.readReviews(pageable, commissionId);
             List<Review> reviewList = reviewPage.getContent();
 
             PageDto pageDto = new PageDto<>(mapper.reviewToResponses(reviewList), reviewPage);
             return new ResponseEntity<>(pageDto, HttpStatus.OK);
-        } catch (BusinessException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
     }
 
     //UPDATE
