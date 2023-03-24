@@ -47,12 +47,12 @@ public class CommissionDto {
         private String title;
         private String content;
         private String subContent;
+        private int viewCount;
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
         private String memberName;
         private String memberEmail;
         private List<String> tags;
 
-        //private List<ReviewResponseDto> reviews;
     }
 }
