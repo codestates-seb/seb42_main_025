@@ -8,7 +8,7 @@ export default function Dropzone() {
 
   const onDrop = useCallback(
     acceptedFiles => {
-      // 파일 이름으로 중복 체크하여 이미 있는 파일은 제거하기
+      // 파일 이름과 사이즈로 중복 체크하여 이미 있는 파일은 제거하기
       const newFiles = acceptedFiles.filter(newFile => {
         const isDuplicate = files.some(
           existingFile => existingFile.name === newFile.name && existingFile.size === newFile.size
@@ -27,7 +27,7 @@ export default function Dropzone() {
   );
 
   useEffect(() => {
-    // Revoke the data uris to avoid memory leaks
+    // 메모리 누수를 방지하기 위해 데이터 URL을 해지합니다
     return () => files.forEach(file => URL.revokeObjectURL(file.preview));
   }, [files]);
 
@@ -35,8 +35,8 @@ export default function Dropzone() {
     setFiles(previousFiles => previousFiles.filter(file => file.name !== name));
   };
 
-  const images = files.map((file, idx) => (
-    <PhotoRemove key={file.name + idx}>
+  const images = files.map(file => (
+    <PhotoRemove key={file.name}>
       <Photo src={file.preview} alt={file.name} />
       <Remove onClick={() => removeFile(file.name)}>
         <RxCross2 size="21" />
@@ -95,7 +95,7 @@ const IconBox = styled.div`
 `;
 
 const Drop = styled.div`
-  margin-left: 14px;
+  margin-left: 10px;
   font-weight: 800;
 `;
 
