@@ -55,10 +55,8 @@ dependencies {
 
 	//자바 오브젝트를 Json으로 변환시켜주는 라이브러리
 	implementation 'com.google.code.gson:gson'
-	//AWS 구현(삭제 예정)
-//	implementation 'io.springfox:springfox-swagger2:2.6.1'
-//	implementation 'io.springfox:springfox-swagger-ui:2.6.1'
-//	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+	//AWS 구현
+	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
 	//커미션 검색을 위한 QueryDSL
 	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
 	implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
@@ -82,4 +80,3 @@ sourceSets {
 compileQuerydsl{
 	options.annotationProcessorPath = configurations.querydsl
 }
-
