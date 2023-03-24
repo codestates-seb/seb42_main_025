@@ -77,6 +77,8 @@ public class CommissionService {
 
         verifyCommission.setTitle(commission.getTitle());
         verifyCommission.setContent(commission.getContent());
+        verifyCommission.setSubContent(commission.getSubContent());
+
 
         return commissionRepository.save(verifyCommission);
     }
