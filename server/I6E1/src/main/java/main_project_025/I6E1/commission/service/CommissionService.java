@@ -9,6 +9,7 @@ import main_project_025.I6E1.auth.userdetails.AuthMember;
 import main_project_025.I6E1.commission.dto.CommissionDto;
 import main_project_025.I6E1.commission.entity.Commission;
 import main_project_025.I6E1.commission.repository.CommissionRepository;
+import main_project_025.I6E1.commission.repository.CommissionRepositoryImpl;
 import main_project_025.I6E1.global.exception.BusinessException;
 import main_project_025.I6E1.global.exception.ExceptionCode;
 import main_project_025.I6E1.tag.service.TagService;
@@ -30,7 +31,7 @@ public class CommissionService {
     private CommissionRepository commissionRepository;
     private MemberRepository memberRepository;
     private TagService tagService;//tag test
-//    private CommissionRepositoryImpl commissionRepositoryImpl;
+    private CommissionRepositoryImpl commissionRepositoryImpl;
 
     //CREATE
     public Commission createCommission(Commission commission){
@@ -57,11 +58,11 @@ public class CommissionService {
         return commissionRepository.findAll(pageRequest);
     }
 
-    //검색 기능
-//    public Page<Commission> searchOptions(Pageable pageable, String title, String name, List<String> tags) {
-//        Pageable pageRequest = PageRequest.of(pageable.getPageNumber()-1, pageable.getPageSize(), pageable.getSort());
-//        return commissionRepositoryImpl.findBySearchOption(pageRequest, title, name, tags);
-//    }
+  //검색 기능
+    public Page<Commission> searchOptions(Pageable pageable, String title, String name, List<String> tags) {
+        Pageable pageRequest = PageRequest.of(pageable.getPageNumber()-1, pageable.getPageSize(), pageable.getSort());
+        return commissionRepositoryImpl.findBySearchOption(pageRequest, title, name, tags);
+    }
 
     // UPDATE
     public Commission updateCommission(long commissionId, Commission commission){

@@ -29,7 +29,6 @@ public class ReviewService {
     private ReviewRepository reviewRepository;
     private MemberRepository memberRepository;
     private CommissionRepository commissionRepository;
-    private MemberService memberService;
 
     //CREATE
     public Review createReview(Review review){
