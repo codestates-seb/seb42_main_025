@@ -1,7 +1,16 @@
 import styled, { css } from 'styled-components';
 import { ImSearch } from 'react-icons/im';
 
-const InputComponent = ({ label, placeholder, value, onChange, onBlur, error, type = 'text' }) => {
+const InputComponent = ({
+  label,
+  placeholder,
+  value,
+  onChange,
+  onBlur,
+  error,
+  titleRef,
+  type = 'text',
+}) => {
   return (
     <InputContainer>
       <InputLabel label={label}>{label}</InputLabel>
@@ -17,6 +26,7 @@ const InputComponent = ({ label, placeholder, value, onChange, onBlur, error, ty
           value={value}
           onChange={onChange}
           onBlur={onBlur}
+          ref={titleRef}
         />
       </InputWrapper>
       {error && <ErrorMessage visible={'visible'}>{error}</ErrorMessage>}

@@ -12,7 +12,7 @@ function Home() {
   const [commissions, setCommissions] = useState(null);
   const [carouselBackground, setCarouselBackground] = useState(items[0].url);
 
-  const changeaCarouselImage = target => {
+  const changeCarouselImage = target => {
     setCarouselBackground(target);
   };
 
@@ -31,7 +31,7 @@ function Home() {
       <StyledContainer>
         <Contents>
           <CarouselBox>
-            <Carousel items={commissions} changeaCarouselImage={changeaCarouselImage} />
+            <Carousel items={commissions} changeCarouselImage={changeCarouselImage} />
           </CarouselBox>
           <CarouselBoxBackground url={carouselBackground} />
           <SellContainer>

@@ -3,7 +3,7 @@ import { useDropzone } from 'react-dropzone';
 import styled from 'styled-components';
 import { RxFilePlus, RxCross2, RxCheckCircled } from 'react-icons/rx';
 
-export default function Dropzone() {
+export default function Dropzone({ seFiles }) {
   const [files, setFiles] = useState([]);
 
   const onDrop = useCallback(
@@ -27,9 +27,9 @@ export default function Dropzone() {
   );
 
   useEffect(() => {
-    // 메모리 누수를 방지하기 위해 데이터 URL을 해지합니다
+    // 메모리 누수를 방지하기 위해 데이터 URL을 해지합니
     return () => files.forEach(file => URL.revokeObjectURL(file.preview));
-  }, [files]);
+  }, [seFiles]);
 
   const removeFile = name => {
     setFiles(previousFiles => previousFiles.filter(file => file.name !== name));
@@ -56,6 +56,10 @@ export default function Dropzone() {
     onDrop,
   });
   console.log(images);
+
+  useEffect(() => {
+    seFiles(files);
+  }, [files]);
 
   return (
     <Container>
