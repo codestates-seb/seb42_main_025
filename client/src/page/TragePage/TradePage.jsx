@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import Button from 'component/Button';
-import TradeModule from './Module/TradeModule';
+import TradeModuleBox from './Module/TradeModuleBox';
 import TextEditor from 'component/Editor';
 import { postTrade } from 'apis/api/trade';
 
@@ -48,7 +48,7 @@ function TradePage() {
 
   return (
     <Container>
-      <TradeModule info={info} />
+      <TradeModuleBox info={info} />
       <TitleLabel>제목</TitleLabel>
       <TitleInput
         type="text"

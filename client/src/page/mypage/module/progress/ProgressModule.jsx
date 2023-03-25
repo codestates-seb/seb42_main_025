@@ -1,20 +1,8 @@
 import styled from 'styled-components';
 import ProgressListModule from './ProgressListModule';
 import Typography from 'component/Typography';
-import { getCommissionsFn } from 'useFetch/commissionFetch';
-import { useState } from 'react';
 
-function ProgressModule({ currentMemberInfo }) {
-  const [commissionsFilter, setCommissionsFilter] = useState([]);
-
-  if (getCommissionsFn() !== null) {
-    setCommissionsFilter(
-      getCommissionsFn().filter(el => el.memberEmail === currentMemberInfo.email)
-    );
-  }
-
-  console.log(commissionsFilter);
-
+function ProgressModule() {
   return (
     <StyledContainer>
       <TitleContainer>
@@ -28,7 +16,6 @@ function ProgressModule({ currentMemberInfo }) {
           padding="m"
         />
       </TitleContainer>
-      {currentMemberInfo.map}
       <StyledListContainer>
         <ProgressListModule />
         <ProgressListModule />

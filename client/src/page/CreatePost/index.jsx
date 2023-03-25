@@ -8,9 +8,6 @@ import InputText from './InputText';
 import { postCommission } from 'apis/api/commission';
 import { useRef, useState } from 'react';
 
-import { postCommission } from 'apis/api/commission';
-import { useState } from 'react';
-
 function CreatePost() {
   const [files, seFiles] = useState([]);
   // console.log(commissionId);

@@ -4,20 +4,10 @@ import ProgressModule from './module/Progress/ProgressModule';
 import ProfileModule from './module/Profile/ProfileModule';
 import CommissionsListModule from './module/Commissions/CommissionsListModule';
 import ChatModule from './module/Chat/ChatModule';
-import { getUserInfo } from 'apis/api/user';
-import { useState, useEffect } from 'react';
+import { getMemberInfoFn } from 'useFetch/getMemberInfoFetch';
 
 function Mypage() {
-  const [currentMemberInfo, setCurrentMemberInfo] = useState(null);
-
-  useEffect(() => {
-    const fetch = async () => {
-      const memberId = localStorage.getItem('memberId');
-      const data = await getUserInfo(memberId);
-      setCurrentMemberInfo(data);
-    };
-    fetch();
-  }, [setCurrentMemberInfo]);
+  const currentMemberInfo = getMemberInfoFn();
 
   return (
     <Container>

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import StateComponent from 'component/StateComponent';
 import Typography from 'component/Typography';
 import Button from 'component/Button';
-import ProgressRequestListModule from './ProgressRequestListModule';
+import ProgressTradeListModule from './ProgressTradeListModule';
 import ImageComponent from 'component/ImageComponent';
 import { useState } from 'react';
 import ReviewModal from './ReviewModal';
@@ -31,7 +31,7 @@ function ProgressListSingleModule() {
           </StyledImgContainer>
         </StyledCommissionContainer>
         <StyledCommission>
-          <ProgressRequestListModule
+          <ProgressTradeListModule
             info={{
               title: '신청폼제목',
               content:

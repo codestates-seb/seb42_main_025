@@ -1,6 +1,6 @@
 import Typography from 'component/Typography';
 import styled, { css } from 'styled-components';
-import ChatCommissionRequestModule from './ChatCommissionRequestModule';
+import ChatTradeModule from './ChatTradeModule';
 
 function ChatServeModule({ chat, yourChat, trade }) {
   return (
@@ -10,7 +10,7 @@ function ChatServeModule({ chat, yourChat, trade }) {
           <StyledNameContainer>
             <Typography text={yourChat && '상대 이름'} size="m" margin="xxs" />
           </StyledNameContainer>
-          <ChatCommissionRequestModule info={trade} />
+          <ChatTradeModule info={trade} />
           <Typography size="s" bold="bold" color="gray_3" text="시간" start={yourChat && 'start'} />
         </StyledChatContainer>
       ) : (
