@@ -37,6 +37,7 @@ const Signup = () => {
       navigate('/Login');
     } catch (error) {
       console.log(error.response.data);
+      console.error('Signup failed with error:', error.message);
     }
   };
 

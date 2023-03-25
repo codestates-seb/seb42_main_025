@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Button from 'component/Button';
 import CommissionRequestModule from './Module/CommissionRequestBox';
 import TextEditor from 'component/Editor';
@@ -15,17 +15,22 @@ function CommissionRequest() {
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+
   const editorRef = useRef(null);
+
   const navigate = useNavigate();
+  const params = useParams();
 
   const handleSubmit = async event => {
     event.preventDefault();
+    navigate(`/chat/${params.id}`);
 
     const token = localStorage.getItem('authorization');
 
     const data = {
       title: title.trim(),
       content: content.trim(),
+      commissionId: '1', //테스트용
     };
 
     try {
