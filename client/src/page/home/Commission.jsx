@@ -59,6 +59,7 @@ const SellBox = styled.div`
   background-color: transparent;
   justify-content: start;
   cursor: pointer;
+
   &:hover {
     filter: brightness(90%);
   }

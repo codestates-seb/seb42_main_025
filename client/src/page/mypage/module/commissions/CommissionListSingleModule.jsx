@@ -9,7 +9,7 @@ function CommissionListSingleModule({ info }) {
       <ImageComponent src={info.image} alt={info.title} imgStyle="commission" width="m" />
       <TextContainer>
         <Typography text={info.title} bold="bold" line={1} size="l" variant="h3" />
-        <Typography text={info.content} line={2} size="m" variant="p" lineHeight="xl" />
+        <Typography text={info.content} line={2} size="m" variant="p" lineHeight="l" />
         <TagComponent text="그림" />
       </TextContainer>
     </StyledSummaryBox>

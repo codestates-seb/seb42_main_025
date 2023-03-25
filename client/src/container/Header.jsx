@@ -4,13 +4,20 @@ import InputComponent from 'component/InputComponent';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Button from 'component/Button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function Header() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(null);
 
   const memberId = localStorage.getItem('memberId');
+
+  useEffect(() => {
+    const fetch = () => {
+      localStorage.getItem('authorization') && setIsLoggedIn(true);
+    };
+    fetch();
+  }, [setIsLoggedIn]);
 
   const handleClickLogo = () => {
     navigate('/');

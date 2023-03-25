@@ -9,10 +9,3 @@ export const getCommissions = async () => {
     console.log(err);
   }
 };
-
-// export const postCommissions = async () => {
-//   const token = localStorage.getItem('authorization');
-//   try {
-//     const res = await instance.post('/commission', )
-//   }7
-// }

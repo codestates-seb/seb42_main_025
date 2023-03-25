@@ -5,13 +5,14 @@ import TagComponent from 'component/TagComponent';
 import { useNavigate, useParams } from 'react-router-dom';
 
 function PostDetail({ commission }) {
+  console.log(commission);
+
   const navigate = useNavigate();
   const params = useParams();
 
   const handleClick = () => {
     navigate(`/commissionrequest/${params.id}`);
   };
-
   return (
     <>
       {commission && (

@@ -8,6 +8,9 @@ import InputText from './InputText';
 // import { useRecoilValue } from 'recoil';
 // import { postCommissions } from 'apis/api/commissions';
 
+import { postCommission } from 'apis/api/commission';
+import { useState } from 'react';
+
 function CreatePost() {
   // console.log(commissionId);
 
@@ -26,6 +29,23 @@ function CreatePost() {
 
   //   console.log(data);
   // };
+
+  const [resCommission, setResCommission] = useState(null);
+  const imagee =
+    'https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg';
+
+  const handleSubmit = () => {
+    const data = {
+      title: 'hard',
+      content: 'hardd',
+      subContent: 'subsub',
+      tags: ['dd'],
+      multipartFile: imagee,
+    };
+    setResCommission(postCommission(data));
+  };
+
+  console.log(resCommission);
 
   return (
     <Container>
@@ -46,8 +66,8 @@ function CreatePost() {
         <ButtonBox>
           <Button
             text="등록"
-            path="/commission"
-            // onclick={handleSubmit}
+            buttonType="submit"
+            handleClick={handleSubmit}
             addStyle={{
               width: 'w_xl',
               height: 'h_m',

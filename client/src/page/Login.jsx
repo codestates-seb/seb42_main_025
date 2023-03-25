@@ -22,7 +22,8 @@ const Login = () => {
         email,
         password,
       });
-
+      axios.defaults.headers.Authorization = response.headers.get('authorization');
+      localStorage.setItem('authorization', response.headers.get('authorization'));
       localStorage.setItem('memberId', response.data.memberId);
 
       console.log('로그인 성공!');

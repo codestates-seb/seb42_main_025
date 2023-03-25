@@ -1,32 +1,40 @@
 import styled from 'styled-components';
-import { useEffect } from 'react';
 import { Container } from 'container/Container';
 import ProgressModule from './module/Progress/ProgressModule';
 import ProfileModule from './module/Profile/ProfileModule';
 import CommissionsListModule from './module/Commissions/CommissionsListModule';
 import ChatModule from './module/Chat/ChatModule';
 import { getUserInfo } from 'apis/api/user';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 function Mypage() {
-  const memberId = localStorage.getItem('memberId');
+  const [currentMemberInfo, setCurrentMemberInfo] = useState(null);
+  // const memberId = localStorage.getItem('memberId'); /** login 로직으로 memberId 받아오기 */
+  const params = useParams();
 
   useEffect(() => {
-    setMember(getUserInfo(memberId));
-  }, []);
+    const fetch = async () => {
+      const data = await getUserInfo(params.id);
+      setCurrentMemberInfo(data);
+    };
+    fetch();
+  }, [setCurrentMemberInfo]);
 
-  // 멤버 id와 비교 후
-
+  console.log(currentMemberInfo);
   return (
     <Container>
-      <StyledContents>
-        <ProgressModule />
-        {/* <CommissionsListModule />
+      {currentMemberInfo && (
+        <StyledContents>
+          <ProgressModule currentMemberInfo={currentMemberInfo} />
+          {/* <CommissionsListModule />
         <ProfileModule /> */}
-        {/* 로그인 x */}
-        <ProfileModule />
-        <CommissionsListModule />
-        <ChatModule />
-      </StyledContents>
+          {/* 로그인 x */}
+          <ProfileModule currentMemberInfo={currentMemberInfo} />
+          <CommissionsListModule currentMemberInfo={currentMemberInfo} />
+          <ChatModule currentMemberInfo={currentMemberInfo} />
+        </StyledContents>
+      )}
     </Container>
   );
 }
