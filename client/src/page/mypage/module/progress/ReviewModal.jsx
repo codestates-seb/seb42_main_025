@@ -1,15 +1,35 @@
 import styled from 'styled-components';
 import TextEditor from 'component/Editor';
 import Button from 'component/Button';
+import { useEffect, useRef, useState } from 'react';
 
 function ReviewModal({ openReviewerHandler }) {
+  const [currentWidth, setCurrentWidth] = useState();
+  const ref = useRef(null);
+
+  const toolbarItems =
+    currentWidth < 700
+      ? currentWidth < 500
+        ? [[]]
+        : [['heading', 'bold', 'italic', 'strike']]
+      : [
+          ['heading', 'bold', 'italic', 'strike'],
+          ['hr', 'quote'],
+        ];
+
+  console.log(toolbarItems);
+
+  useEffect(() => {
+    setCurrentWidth(ref.current ? ref.current.offsetWidth : 0);
+  }, [ref.current, setCurrentWidth]);
+
   return (
     <StyledContainer onClick={openReviewerHandler}>
-      <ModalView onClick={e => e.stopPropagation()}>
+      <ModalView onClick={e => e.stopPropagation()} ref={ref}>
         <StyledContent>
           <StyledModalButton onClick={openReviewerHandler}>{'x'}</StyledModalButton>
           <StyledMain>
-            <TextEditor />
+            <TextEditor currentWidth={currentWidth} toolbarItems={toolbarItems} />
           </StyledMain>
           <StyledSubButton>
             <Button
@@ -46,7 +66,9 @@ const ModalView = styled.div`
   align-items: center;
   background-color: #ffffff;
   width: 50%;
+  min-width: 20rem;
   height: 50%;
+  min-height: 20rem;
   flex-direction: column;
   padding: 0.5rem 2rem 1.5rem 2rem;
   border-radius: 0.5rem;

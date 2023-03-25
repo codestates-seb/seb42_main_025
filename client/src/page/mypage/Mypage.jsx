@@ -6,22 +6,19 @@ import CommissionsListModule from './module/Commissions/CommissionsListModule';
 import ChatModule from './module/Chat/ChatModule';
 import { getUserInfo } from 'apis/api/user';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 
 function Mypage() {
   const [currentMemberInfo, setCurrentMemberInfo] = useState(null);
-  // const memberId = localStorage.getItem('memberId'); /** login 로직으로 memberId 받아오기 */
-  const params = useParams();
 
   useEffect(() => {
     const fetch = async () => {
-      const data = await getUserInfo(params.id);
+      const memberId = localStorage.getItem('memberId');
+      const data = await getUserInfo(memberId);
       setCurrentMemberInfo(data);
     };
     fetch();
   }, [setCurrentMemberInfo]);
 
-  console.log(currentMemberInfo);
   return (
     <Container>
       {currentMemberInfo && (
