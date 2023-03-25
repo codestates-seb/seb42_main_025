@@ -31,6 +31,7 @@ function CreatePost() {
   // };
 
   const [resCommission, setResCommission] = useState(null);
+
   const imagee =
     'https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg';
 
@@ -47,6 +48,10 @@ function CreatePost() {
 
   console.log(resCommission);
 
+  const handleChangeTag = e => {
+    console.log(e.target.value);
+  };
+
   return (
     <Container>
       <ContentBox>
@@ -57,7 +62,11 @@ function CreatePost() {
           <PostDetail>
             <InputComponent label="제목" placeholder="제목을 입력하세요." />
             <InputText label="소개글" />
-            <InputComponent label="태그" placeholder="태그를 입력하세요." />
+            <InputComponent
+              label="태그"
+              placeholder="태그를 입력하세요."
+              onChange={handleChangeTag}
+            />
           </PostDetail>
         </Content>
         <Toast>
@@ -110,12 +119,8 @@ const ButtonBox = styled.div`
 `;
 
 const Toast = styled.div`
-  margin-top: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 50px;
-  border: 1px solid #ce8e5b;
+  margin-top: 3rem;
+  padding: 1rem;
   border-radius: 0.25rem;
 `;
 
