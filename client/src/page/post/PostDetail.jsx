@@ -2,8 +2,16 @@ import styled from 'styled-components';
 import Button from 'component/Button';
 import Typography from 'component/Typography';
 import TagComponent from 'component/TagComponent';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function PostDetail({ commission }) {
+  const navigate = useNavigate();
+  const params = useParams();
+
+  const handleClick = () => {
+    navigate(`/commissionrequest/${params.id}`);
+  };
+
   return (
     <>
       {commission && (
@@ -30,12 +38,22 @@ function PostDetail({ commission }) {
             line={9}
           />
           <TagContainer>
-            <TagComponent text="그림" />
-            <TagComponent text="그림" />
+            {commission &&
+              commission.tags.map(tag => {
+                return <TagComponent key={tag} text={tag} />;
+              })}
           </TagContainer>
-          <Typography text="작가" size="l" bold="bold" padding="xs" flex={2} color="tea_2" />
+          <Typography
+            text={commission.memberName}
+            size="l"
+            bold="bold"
+            padding="xs"
+            flex={2}
+            color="tea_2"
+          />
           <Button
             text="신청하기"
+            handleClick={handleClick}
             addStyle={{
               radius: 'base',
               height: 'h_s',

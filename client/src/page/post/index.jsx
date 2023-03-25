@@ -4,12 +4,12 @@ import Button from 'component/Button';
 import PostDetail from './PostDetail';
 import Review from './Review';
 import Commission from 'page/home/Commission';
-import Food from 'assets/1.JPG';
+
 import { Container } from 'container/Container';
-import ImageComponent from 'component/ImageComponent';
 import Typography from 'component/Typography';
 import { getCommission } from 'apis/api/commission';
 import { useParams } from 'react-router-dom';
+import PostImage from './PostImage';
 
 function Post() {
   const [commission, setCommission] = useState(null);
@@ -29,7 +29,7 @@ function Post() {
     <Container>
       <PostDetailBox>
         <ImageWrapper>
-          <ImageComponent src={Food} alt="navExploreLogo" width="xxl" imgStyle="commission" />
+          <PostImage />
         </ImageWrapper>
         <PostDetailWrapper>
           <PostDetail commission={commission} />
@@ -90,21 +90,25 @@ function Post() {
 const PostDetailBox = styled.div`
   display: flex;
   width: 100%;
-  gap: 1rem;
+  gap: 2rem;
   margin: 0 auto;
   position: relative;
 `;
 
 const ImageWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
-  flex: 1;
+  flex: 1.5;
 `;
 
 const PostDetailWrapper = styled.div`
   display: flex;
   width: 100%;
   flex: 1;
+  border: 1px solid #cecece;
+  border-radius: 0.25rem;
+  padding: 2rem;
 `;
 
 const DetailBox = styled.div`
