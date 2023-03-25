@@ -18,45 +18,30 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Where(clause = "deleted=false")
-@SQLDelete(sql = "UPDATE ChatRoom SET deleted = true WHERE room_id=?")
+@Where(clause = "used=false")
 public class ChatRoom {
 
     @Id
     @Column(name = "room_id")
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
-    private String roomId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long roomId;
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", referencedColumnName = "MEMBER_ID")
     private Member user;
     @ManyToOne
-    @JoinColumn(name = "author_id")
+    @JoinColumn(name = "author_id", referencedColumnName = "MEMBER_ID")
     private Member author;
 
+    @Column(name = "user_back")
+    private Long userBack;
+    @Column(name = "author_back")
+    private Long authorBack;
+
     @Builder
-    public ChatRoom(String roomId){
+    public ChatRoom(Long roomId){
         this.roomId = roomId;
     }
 
-    @Column(name = "deleted")
-    private boolean deleted = Boolean.FALSE;
-
-    public void handlerActions(WebSocketSession session, Message message, ChatService chatService){
-        Set<WebSocketSession> sessions = new HashSet<>();
-
-        if (message.getType().equals(Message.MessageType.ENTER)){
-            sessions.add(session);
-            message.setMessage(message.getNickname() + "님이 대화를 시작하였습니다");
-            sendMessage(message, chatService);
-        } else if (message.getType().equals(Message.MessageType.TALK)) {
-            message.setMessage(message.getMessage());
-            sendMessage(message, chatService);
-        }
-    }
-
-    public <T> void sendMessage(T message, ChatService chatService){
-        Set<WebSocketSession> sessions = new HashSet<>();
-        sessions.parallelStream().forEach(session -> chatService.sendMessage(session, message));
-    }
+    @Column(name = "used")
+    private boolean used = Boolean.FALSE;
 }

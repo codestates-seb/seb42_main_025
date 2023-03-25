@@ -5,8 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import main_project_025.I6E1.Member.entity.Member;
+import main_project_025.I6E1.Member.repository.MemberRepository;
+import main_project_025.I6E1.auth.userdetails.AuthMember;
 import main_project_025.I6E1.chat.entity.ChatRoom;
+import main_project_025.I6E1.chat.entity.Message;
 import main_project_025.I6E1.chat.repository.ChatRoomRepository;
+import main_project_025.I6E1.chat.repository.MessageRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -21,27 +26,78 @@ import java.util.List;
 public class ChatService {
     private ObjectMapper objectMapper;
     private ChatRoomRepository chatRoomRepository;
+    private MessageRepository messageRepository;
+    private MemberRepository memberRepository;
 
-    public ChatRoom createRoom(ChatRoom chatRoom, Member user, Member author){
+
+    public ChatRoom createRoom(long authorId){
+
+        // member 가져오기
+        AuthMember loginMember = (AuthMember) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long memberId = loginMember.getMemberId();
+        Member user = getMemberFromId(memberId);
+
+        Member author = getMemberFromId(authorId);
+
+        ChatRoom chatRoom = new ChatRoom();
+        ChatRoom findRoom = chatRoomRepository.findByUserBackAndAuthorBack(user.getMemberId(), author.getMemberId());
+        if (findRoom != null){
+            chatRoom = findRoom;
+        }
+
         chatRoom.setUser(user);
         chatRoom.setAuthor(author);
+        chatRoom.setUserBack(user.getMemberId());
+        chatRoom.setAuthorBack(author.getMemberId());
+
         return chatRoomRepository.save(chatRoom);
     }
 
-    public List<ChatRoom> findChatRoomsByMemberId(Long memberId){
-        return chatRoomRepository.findByMemberId(memberId);
-    }
-
-    public <T> void sendMessage(WebSocketSession session, T message) {
-        try {
-            session.sendMessage(new TextMessage(objectMapper.writeValueAsString(message)));
-        }
-        catch (IOException e) {
-            log.error(e.getMessage(), e);
-        }
+    public List<ChatRoom> findChatRooms(){
+        AuthMember loginMember = (AuthMember) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Member member = getMemberFromId(loginMember.getMemberId());
+        return chatRoomRepository.findByUserOrAuthor(member, member);
     }
 
     public void deleteChatRoom(Long roomId){
-        chatRoomRepository.deleteById(roomId);
+        AuthMember loginMember = (AuthMember) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long memberId = loginMember.getMemberId();
+        Member user = getMemberFromId(memberId);
+
+        ChatRoom chatRoom = chatRoomRepository.findById(roomId).get();
+
+        if (user.getRoles().contains("USER")) {
+            chatRoom.setUser(null);
+        } else if (user.getRoles().contains("AUTHOR")) {
+            chatRoom.setAuthor(null);
+        }
+
+        chatRoomRepository.save(chatRoom);
+    }
+
+    public void useChatRoom(Long roomId){
+        ChatRoom chatRoom = chatRoomRepository.findById(roomId).get();
+        if (chatRoom.isUsed() != true){
+            chatRoom.setUsed(true);
+            chatRoomRepository.save(chatRoom);
+        }
+    }
+
+    private Member getMemberFromId(long memberId){
+        return memberRepository.findById(memberId).get();
+    }
+
+    public Message saveMessage(Message message){
+        // 커밋할땐 주석 풀고
+//        AuthMember loginMember = (AuthMember) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        long memberId = loginMember.getMemberId();
+//        Member user = getMemberFromId(memberId);
+//        message.setMember(user);
+
+        return messageRepository.save(message);
+    }
+
+    public List<Message> findMessageList(long roomId){
+        return messageRepository.findByRoomId(roomId);
     }
 }

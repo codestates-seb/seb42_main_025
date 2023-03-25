@@ -1,6 +1,8 @@
 package main_project_025.I6E1.chat.entity;
 
 import lombok.*;
+import main_project_025.I6E1.Member.entity.Member;
+import main_project_025.I6E1.global.auditable.Auditable;
 
 import javax.persistence.*;
 
@@ -9,7 +11,7 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Message {
+public class Message extends Auditable {
     public enum MessageType{
         ENTER, TALK;
     }
@@ -20,10 +22,8 @@ public class Message {
     private Long roomId;
     private MessageType type;
     private String message;
-    private String nickname;
 
-    public void newConnect() {
-        this.type = MessageType.ENTER;
-    }
-
+    @ManyToOne(targetEntity = Member.class, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
 }

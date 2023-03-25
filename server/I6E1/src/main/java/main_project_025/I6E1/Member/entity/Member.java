@@ -40,9 +40,6 @@ public class Member extends Auditable {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Trade> trades = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<ChatRoom> chatRooms = new ArrayList<>();
-
     public void setTrade(Trade trade) {
         this.getTrades().add(trade);
         if (trade.getMember() != this) {

@@ -12,23 +12,9 @@ import java.util.List;
 
 public class ChatRoomDto {
     @Getter @Setter
-    @AllArgsConstructor
-    public static class Post {
-        private Long userId;
-
-        @ManyToOne
-        @JoinColumn(name = "user_id")
-        private main_project_025.I6E1.Member.entity.Member user;
-        @ManyToOne
-        @JoinColumn(name = "author_id")
-        private Member author;
-    }
-
-    @Getter @Setter
     @NoArgsConstructor
     public static class Response{
-        private String roomId;
-        private String user;
-        private String author;
+        private Long roomId;
+        private Member author;
     }
 }
