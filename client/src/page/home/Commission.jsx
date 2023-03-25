@@ -2,22 +2,35 @@ import styled from 'styled-components';
 import TagComponent from 'component/TagComponent';
 import Typography from 'component/Typography';
 import ImageComponent from 'component/ImageComponent';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import shoes1 from '../../assets/shoes1.jpg';
+import { useEffect, useState } from 'react';
+import { getCommissions } from 'apis/api/commissions';
 
-function commission({ items }) {
+function commission() {
+  const params = useParams();
+  const [commissions, setCommissions] = useState(null);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const data = await getCommissions(params.id);
+      setCommissions(data);
+    };
+    fetch();
+  }, [setCommissions]);
+
   const navigate = useNavigate();
 
   const handleClick = id => {
     navigate(`/commission/${id}`);
   };
 
-  console.log(items);
+  console.log(commissions);
 
   return (
     <CommissionBox>
-      {items &&
-        items.map(item => {
+      {commissions &&
+        commissions.map(item => {
           return (
             <div key={item.commissionId}>
               <TagBox>

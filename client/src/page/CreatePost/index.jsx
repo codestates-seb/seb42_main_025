@@ -7,6 +7,7 @@ import TextEditor from 'component/Editor';
 import InputText from './InputText';
 import { postCommission } from 'apis/api/commission';
 import { useRef, useState } from 'react';
+import CreateTag from './CreateTag';
 
 function CreatePost() {
   const [files, seFiles] = useState([]);
@@ -58,7 +59,7 @@ function CreatePost() {
           <PostDetail>
             <InputComponent label="제목" placeholder="제목을 입력하세요." titleRef={titleRef} />
             <InputText label="소개글" subContentRef={subContentRef} />
-            <InputComponent label="태그" placeholder="태그를 입력하세요." />
+            <CreateTag />
           </PostDetail>
         </Content>
         <Toast>
@@ -83,25 +84,29 @@ function CreatePost() {
 }
 
 const ContentBox = styled.div`
-  min-width: 1280px;
+  max-width: 1280px;
   gap: 1rem;
 `;
 
 const Content = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
 `;
 
 const ImgBox = styled.div`
   display: flex;
   min-height: 650px;
+  flex: 2;
 `;
 
 const PostDetail = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 40%;
+  flex: 1;
+  padding: 30px;
+  border: 1px solid #ce8e5b;
+  border-radius: 0.25rem;
 `;
 
 const ButtonBox = styled.div`
