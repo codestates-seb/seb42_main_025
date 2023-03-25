@@ -10,7 +10,7 @@ export const getCommissionsFn = () => {
       setCommissions(data);
     };
     fetch();
-  }, []);
+  }, [setCommissions]);
 
   return commissions;
 };
