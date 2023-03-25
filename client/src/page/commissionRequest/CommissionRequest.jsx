@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from 'component/Button';
 import CommissionRequestModule from './Module/CommissionRequestBox';
 import TextEditor from 'component/Editor';
-import { getCommissionRequest } from 'apis/api/CommissionRequest';
+import { postCommissionRequest } from 'apis/api/commissionRequest';
 
 function CommissionRequest() {
   const info = {
@@ -29,7 +29,7 @@ function CommissionRequest() {
     };
 
     try {
-      const res = await getCommissionRequest(data, token);
+      const res = await postCommissionRequest(data, token);
       navigate(`/chat/${res.data.id}`);
     } catch (error) {
       console.error(error);
