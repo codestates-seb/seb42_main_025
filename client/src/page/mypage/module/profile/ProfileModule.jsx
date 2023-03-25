@@ -22,7 +22,7 @@ function ProfileModule() {
         alt="프로필 사진"
         width="l"
       />
-      {member && <Typography text={member.nickname} size="xl" bold="bold" />}
+      {/* {member && <Typography text={member.nickname} size="xl" bold="bold" />} */}
       <Typography text="자기소개" line={25} lineHeight="l" />
     </StyledContainer>
   );

@@ -1,13 +1,12 @@
-import { useState, useRef } from 'react';
+import { useRef, useState } from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import Button from 'component/Button';
 import CommissionRequestModule from './Module/CommissionRequestBox';
 import TextEditor from 'component/Editor';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { getCommissionRequest } from 'apis/api/CommissionRequest';
 
 function CommissionRequest() {
-  const editorRef = useRef('');
   const info = {
     image: 'https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg',
     title: 'title',
@@ -15,28 +14,31 @@ function CommissionRequest() {
   };
 
   const [title, setTitle] = useState('');
-
+  const [content, setContent] = useState('');
+  const editorRef = useRef(null);
   const navigate = useNavigate();
 
   const handleSubmit = async event => {
-    let newHtml = editorRef.current?.getInstance().getHTML();
-    let newMarkdown = editorRef.current?.getInstance().getMarkdown();
-    console.log(newHtml, newMarkdown);
     event.preventDefault();
 
-    try {
-      // 입력한 데이터를 서버로 전송
-      const response = await axios.post('http://3.37.139.165/trade', {
-        title,
-        newHtml,
-      });
-      console.log(response.data);
+    const token = localStorage.getItem('authorization');
 
-      // ChatPage로 이동
-      navigate('/chat/chatpage');
+    const data = {
+      title: title.trim(),
+      content: content.trim(),
+    };
+
+    try {
+      const res = await getCommissionRequest(data, token);
+      navigate(`/chat/${res.data.id}`);
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const onEditorChange = () => {
+    const content = editorRef.current.getInstance().getMarkdown().trim();
+    setContent(content);
   };
 
   return (
@@ -49,7 +51,11 @@ function CommissionRequest() {
         value={title}
         onChange={event => setTitle(event.target.value)}
       />
-      <TextEditor editorHeight={'25rem'} editorValue={info.content} editorRef={editorRef} />
+      <TextEditor
+        editorRef={editorRef} // useRef로 생성한 ref 전달
+        editorHeight={'25rem'}
+        onEditorChange={onEditorChange}
+      />
       <FormSpacer />
       <form
         onSubmit={handleSubmit}
