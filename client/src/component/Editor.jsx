@@ -21,7 +21,7 @@ const TextEditor = ({ editorRef, editorValue, editorHeight, onEditorChange, tool
               ['code', 'codeblock'],
             ]
       }
-      initialValue={editorValue}
+      initialValue={editorValue || ' '}
       hideModeSwitch={true}
       onChange={onEditorChange ? onEditorChange : () => {}}
     />

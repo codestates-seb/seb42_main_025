@@ -5,13 +5,11 @@ import Dropzone from './Dropzone';
 import { Container } from 'container/Container';
 import TextEditor from 'component/Editor';
 import InputText from './InputText';
-// import { useRecoilValue } from 'recoil';
-// import { postCommissions } from 'apis/api/commissions';
-
 import { postCommission } from 'apis/api/commission';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 function CreatePost() {
+  const [files, seFiles] = useState([]);
   // console.log(commissionId);
 
   // const handleSubmit = async e => {
@@ -30,38 +28,41 @@ function CreatePost() {
   //   console.log(data);
   // };
 
-  const [resCommission, setResCommission] = useState(null);
-  const imagee =
-    'https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg';
+  const titleRef = useRef(null);
+  const subContentRef = useRef(null);
+  const contentRef = useRef(null);
 
-  const handleSubmit = () => {
+  const handleSubmit = e => {
+    e.preventDefault();
+
     const data = {
-      title: 'hard',
-      content: 'hardd',
-      subContent: 'subsub',
-      tags: ['dd'],
-      multipartFile: imagee,
+      title: titleRef.current.value,
+      subContent: subContentRef.current.value,
+      content: contentRef.current?.getInstance().getMarkdown(),
+      tags: 'zz',
+      multipartFile: files,
     };
-    setResCommission(postCommission(data));
+    const res = postCommission(data);
+    console.log(data);
+    console.log(res);
+    console.log(files);
   };
-
-  console.log(resCommission);
 
   return (
     <Container>
       <ContentBox>
         <Content>
           <ImgBox>
-            <Dropzone />
+            <Dropzone seFiles={seFiles} />
           </ImgBox>
           <PostDetail>
-            <InputComponent label="제목" placeholder="제목을 입력하세요." />
-            <InputText label="소개글" />
+            <InputComponent label="제목" placeholder="제목을 입력하세요." titleRef={titleRef} />
+            <InputText label="소개글" subContentRef={subContentRef} />
             <InputComponent label="태그" placeholder="태그를 입력하세요." />
           </PostDetail>
         </Content>
         <Toast>
-          <TextEditor editorHeight={'30rem'} />
+          <TextEditor editorHeight={'30rem'} editorRef={contentRef} />
         </Toast>
         <ButtonBox>
           <Button
@@ -110,12 +111,8 @@ const ButtonBox = styled.div`
 `;
 
 const Toast = styled.div`
-  margin-top: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 50px;
-  border: 1px solid #ce8e5b;
+  margin-top: 3rem;
+  padding: 1rem;
   border-radius: 0.25rem;
 `;
 

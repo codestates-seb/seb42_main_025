@@ -5,7 +5,7 @@ import 'slick-carousel/slick/slick-theme.css';
 // import { getCommissions } from 'apis/api/commissions';
 // import { useEffect, useState } from 'react';
 
-function Carousel({ items, changeaCarouselImage }) {
+function Carousel({ items, changeCarouselImage }) {
   // const [commissions, setCommissions] = useState(null);
 
   const settings = {
@@ -18,7 +18,7 @@ function Carousel({ items, changeaCarouselImage }) {
     // centerMode: true, // 얘가 문제였음..
     pauseOnHover: true,
     beforeChange: (_current, next) => {
-      changeaCarouselImage(items[next].url);
+      changeCarouselImage(items[next].url);
     },
     // autoplay: true,
     // autoplaySpeed: 1000, //자동으로 슬라이드되게 만들어준다.

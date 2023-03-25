@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components';
 
-export default function inputText({ label }) {
+export default function inputText({ label, subContentRef }) {
   return (
     <InputContainer>
       <InputLabel label={label}>{label}</InputLabel>
       <InputWrapper>
-        <Textarea placeholder="간단한 내용을 입력하세요" />
+        <Textarea ref={subContentRef} placeholder="간단한 내용을 입력하세요" />
       </InputWrapper>
     </InputContainer>
   );

@@ -2,7 +2,7 @@ import ImageComponent from 'component/ImageComponent';
 import styled from 'styled-components';
 import Typography from 'component/Typography';
 
-function ChatCommissionRequestModule({ info }) {
+function ChatTradeModule({ info }) {
   return (
     <StyledSummaryBox>
       <StyledCommissionContainer>
@@ -58,4 +58,4 @@ const StyledTradeContainer = styled.div`
   gap: 0.5rem;
 `;
 
-export default ChatCommissionRequestModule;
+export default ChatTradeModule;

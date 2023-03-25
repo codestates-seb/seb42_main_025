@@ -1,7 +1,7 @@
 import Typography from 'component/Typography';
 import styled from 'styled-components';
 
-function CommissionRequestModule({ info }) {
+function TradeModuleBox({ info }) {
   return (
     <StyledSummaryBox>
       <StyledImg src={info.image} alt={info.title} />
@@ -50,4 +50,4 @@ const StyledContentContainer = styled.div`
   margin-left: 1.5rem;
 `;
 
-export default CommissionRequestModule;
+export default TradeModuleBox;

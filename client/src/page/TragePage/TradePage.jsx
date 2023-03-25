@@ -2,11 +2,11 @@ import { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import Button from 'component/Button';
-import CommissionRequestModule from './Module/CommissionRequestBox';
+import TradeModuleBox from './Module/TradeModuleBox';
 import TextEditor from 'component/Editor';
-import { getCommissionRequest } from 'apis/api/CommissionRequest';
+import { postTrade } from 'apis/api/trade';
 
-function CommissionRequest() {
+function TradePage() {
   const info = {
     image: 'https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg',
     title: 'title',
@@ -34,7 +34,7 @@ function CommissionRequest() {
     };
 
     try {
-      const res = await getCommissionRequest(data, token);
+      const res = await postTrade(data, token);
       navigate(`/chat/${res.data.id}`);
     } catch (error) {
       console.error(error);
@@ -48,7 +48,7 @@ function CommissionRequest() {
 
   return (
     <Container>
-      <CommissionRequestModule info={info} />
+      <TradeModuleBox info={info} />
       <TitleLabel>제목</TitleLabel>
       <TitleInput
         type="text"
@@ -102,4 +102,4 @@ const TitleInput = styled.input`
   margin-top: 1rem;
 `;
 
-export default CommissionRequest;
+export default TradePage;

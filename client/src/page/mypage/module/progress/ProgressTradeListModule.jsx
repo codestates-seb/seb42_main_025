@@ -1,7 +1,7 @@
 import Typography from 'component/Typography';
 import styled from 'styled-components';
 
-function ProgressRequestListModule({ info }) {
+function ProgressTradeListModule({ info }) {
   return (
     <StyledSummaryBox>
       <Typography text={info.title} bold="bold" line={1} size="l" variant="h3" />
@@ -23,4 +23,4 @@ const StyledSummaryBox = styled.div`
   border-left: 1px solid #cecece;
 `;
 
-export default ProgressRequestListModule;
+export default ProgressTradeListModule;
