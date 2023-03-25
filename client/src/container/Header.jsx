@@ -4,20 +4,11 @@ import InputComponent from 'component/InputComponent';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Button from 'component/Button';
-import { useEffect, useState } from 'react';
 
 function Header() {
+  const isLogined = localStorage.getItem('authorization') ? true : false;
+
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(null);
-
-  const memberId = localStorage.getItem('memberId');
-
-  useEffect(() => {
-    const fetch = () => {
-      localStorage.getItem('authorization') && setIsLoggedIn(true);
-    };
-    fetch();
-  }, [setIsLoggedIn]);
 
   const handleClickLogo = () => {
     navigate('/');
@@ -31,6 +22,7 @@ function Header() {
   };
 
   const handledClickMember = () => {
+    const memberId = localStorage.getItem('memberId');
     navigate(`/myPage/${memberId}`);
   };
 
@@ -38,8 +30,7 @@ function Header() {
     try {
       await axios.get('http://3.37.139.165:8080/logout');
       localStorage.removeItem('authorization');
-      localStorage.setItem('isLoggedIn', 'false');
-      setIsLoggedIn(false);
+      localStorage.removeItem('memberId');
       console.log('로그아웃 되었습니다.');
       navigate('/');
     } catch (error) {
@@ -54,7 +45,7 @@ function Header() {
         <StyledInputContainer>
           <InputComponent placeholder="검색" />
         </StyledInputContainer>
-        {isLoggedIn ? (
+        {isLogined ? (
           <>
             <StyledMyPage onClick={handledClickMember}>
               <img

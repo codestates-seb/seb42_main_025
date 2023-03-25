@@ -23,6 +23,7 @@ const Signup = () => {
 
   const handleSignup = async () => {
     userType === 'writer' ? setRoles(['AUTHOR']) : setRoles(['USER']);
+    console.log(roles);
     try {
       const response = await axios.post('http://3.37.139.165:8080/members/sign-up', {
         email,
