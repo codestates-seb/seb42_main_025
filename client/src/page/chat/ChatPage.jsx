@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { Container } from 'container/Container';
 import ChatCommissionInfoModule from './module/ChatCommissionInfoModule';
-import ChatListModule from './module/ChatList/ChatListModule';
-import ChatContentModule from './module/ChatContent/ChatContentModule';
+import ChatListModule from './module/chatList/ChatListModule';
+import ChatContentModule from './module/chatContent/ChatContentModule';
 
 function ChatPage() {
   const info = {

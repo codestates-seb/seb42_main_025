@@ -19,13 +19,13 @@ export const routerList = [
   {
     id: 2,
     path: '/login',
-    isPrivate: true,
+    isPrivate: false, //true
     element: <Login />,
   },
   {
     id: 3,
     path: '/signUp',
-    isPrivate: true,
+    isPrivate: false,
     element: <Signup />,
   },
   {
@@ -55,7 +55,7 @@ export const routerList = [
   {
     id: 8,
     path: '/chat/:id',
-    isPrivate: true,
+    isPrivate: false, //true
     element: <ChatPage />,
   },
   {
