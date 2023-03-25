@@ -18,7 +18,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Where(clause = "used=false")
+@Where(clause = "used=true")
 public class ChatRoom {
 
     @Id
