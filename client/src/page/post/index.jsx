@@ -4,7 +4,7 @@ import Button from 'component/Button';
 import PostDetail from './PostDetail';
 import Review from './Review';
 import Commission from 'page/home/Commission';
-
+import PostMain from './PostMain';
 import { Container } from 'container/Container';
 import Typography from 'component/Typography';
 import { getCommission } from 'apis/api/commission';
@@ -27,62 +27,60 @@ function Post() {
 
   return (
     <Container>
-      <PostDetailBox>
-        <ImageWrapper>
-          <PostImage />
-        </ImageWrapper>
-        <PostDetailWrapper>
-          <PostDetail commission={commission} />
-        </PostDetailWrapper>
-      </PostDetailBox>
-      <DetailBox>
-        <DetailReviewBox>
-          <RemoveDeco href="#상세설명" name="상세설명">
-            상세설명
-          </RemoveDeco>
-          <RemoveDeco href="#리뷰">리뷰</RemoveDeco>
-        </DetailReviewBox>
-        <Detail>상세설명</Detail>
-      </DetailBox>
-      <ReviewBox>
-        <Review />
-      </ReviewBox>
-      <Edit>
-        <EditButton>
-          <Button
-            text="수정"
-            addStyle={{
-              width: 'w_xl',
-              height: 'h_m',
-              radius: 'base',
-              padding: '1rem',
-            }}
-          />
-        </EditButton>
-        <EditButton>
-          <Button
-            text="삭제"
-            addStyle={{
-              width: 'w_xl',
-              height: 'h_m',
-              radius: 'base',
-              padding: '1rem',
-            }}
-          />
-        </EditButton>
-      </Edit>
-      <CommissionBox>
-        <Typography
-          variant="h2"
-          text="비슷한 커미션"
-          size="xl"
-          bold="bold"
-          space="nowrap"
-          color="tea_2"
-          padding="m"
-        />
-        <Commission />
-      </CommissionBox>
+      {commission && (
+        <>
+          <PostDetailBox>
+            <ImageWrapper>
+              <PostImage />
+            </ImageWrapper>
+            <PostDetailWrapper>
+              <PostDetail commission={commission} />
+            </PostDetailWrapper>
+          </PostDetailBox>
+          <DetailBox>
+            <PostMain commission={commission} />
+          </DetailBox>
+          <ReviewBox>
+            <Review commission={commission} />
+          </ReviewBox>
+          <Edit>
+            <EditButton>
+              <Button
+                text="수정"
+                addStyle={{
+                  width: 'w_xl',
+                  height: 'h_m',
+                  radius: 'base',
+                  padding: '1rem',
+                }}
+              />
+            </EditButton>
+            <EditButton>
+              <Button
+                text="삭제"
+                addStyle={{
+                  width: 'w_xl',
+                  height: 'h_m',
+                  radius: 'base',
+                  padding: '1rem',
+                }}
+              />
+            </EditButton>
+          </Edit>
+          <CommissionBox>
+            <Typography
+              variant="h2"
+              text="비슷한 커미션"
+              size="xl"
+              bold="bold"
+              space="nowrap"
+              color="tea_2"
+              padding="m"
+            />
+            <Commission />
+          </CommissionBox>
+        </>
+      )}
     </Container>
   );
 }
@@ -114,32 +112,6 @@ const PostDetailWrapper = styled.div`
 const DetailBox = styled.div`
   width: 100%;
   height: 100%;
-`;
-
-const DetailReviewBox = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background-color: #ddba9d;
-  border-radius: 5px;
-  white-space: nowrap;
-  font-weight: bold;
-  color: #fff;
-  height: 3rem;
-  margin-top: 5rem;
-`;
-
-const RemoveDeco = styled.a`
-  color: #fff;
-  text-decoration: none;
-  outline: none;
-`;
-
-const Detail = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: 1rem 0px;
-  border-bottom: 1px solid gray;
 `;
 
 const Edit = styled.div`

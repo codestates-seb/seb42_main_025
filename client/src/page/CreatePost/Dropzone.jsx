@@ -2,17 +2,38 @@ import { useCallback, useState, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import styled from 'styled-components';
 import { RxFilePlus, RxCross2, RxCheckCircled } from 'react-icons/rx';
+import { Alert } from '@mui/material';
 
 export default function Dropzone({ seFiles }) {
   const [files, setFiles] = useState([]);
+  const [isBigger, setIsBigger] = useState(false);
+  const [isFull, setIsFull] = useState(false);
+  const [isDuplication, setIsDuplication] = useState(false);
 
   const onDrop = useCallback(
-    acceptedFiles => {
+    (acceptedFiles, rejectedFiles) => {
+      //파일 개수가 6개 이상일떄 ondrop 중단
+      if (files.length > 5) {
+        setIsFull(true);
+        return;
+      } else {
+        setIsFull(false);
+      }
+      if (rejectedFiles.length > 0) {
+        setIsBigger(true);
+      } else {
+        setIsBigger(false);
+      }
       // 파일 이름과 사이즈로 중복 체크하여 이미 있는 파일은 제거하기
       const newFiles = acceptedFiles.filter(newFile => {
         const isDuplicate = files.some(
           existingFile => existingFile.name === newFile.name && existingFile.size === newFile.size
         );
+        if (isDuplicate) {
+          setIsDuplication(true);
+        } else {
+          setIsDuplication(false);
+        }
         return !isDuplicate;
       });
 
@@ -22,6 +43,7 @@ export default function Dropzone({ seFiles }) {
           ...newFiles.map(file => Object.assign(file, { preview: URL.createObjectURL(file) })),
         ]);
       }
+      console.log(rejectedFiles);
     },
     [files]
   );
@@ -53,6 +75,7 @@ export default function Dropzone({ seFiles }) {
     addRemoveLinks: true,
     dictRemoveFile: '삭제',
     noDragEventsBubbling: true,
+    maxSize: 1024 * 1000,
     onDrop,
   });
   console.log(images);
@@ -75,6 +98,9 @@ export default function Dropzone({ seFiles }) {
             </div>
           )}
         </IconBox>
+        {isDuplication && <Alert severity="error">중복된 이미지가 있습니다</Alert>}
+        {isFull && <Alert severity="error">이미지는 최대 6개까지만 업로드할 수 있습니다</Alert>}
+        {isBigger && <Alert severity="error">이미지의 크기가 너무 큽니다</Alert>}
       </div>
       <ImgBox>
         <PhotoBox>{images}</PhotoBox>
@@ -83,8 +109,8 @@ export default function Dropzone({ seFiles }) {
   );
 }
 
-const Container = styled.form`
-  display: grid;
+const Container = styled.div`
+  width: 100%;
 `;
 
 const IconBox = styled.div`
@@ -92,7 +118,6 @@ const IconBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
   height: 180px;
   border-radius: 0.25rem;
   border: 1px dotted #ce8e5b;
@@ -106,17 +131,18 @@ const Drop = styled.div`
 const ImgBox = styled.div`
   display: flex;
   min-height: 450px;
-  min-width: 800px;
-  max-width: 800px;
+  /* width: fit-content; */
   border: 1px solid #ce8e5b;
   border-radius: 0.25rem;
   overflow: auto;
+  margin-top: 30px;
 `;
 
 const PhotoBox = styled.div`
   display: flex;
   flex-wrap: wrap;
   height: 230px;
+  width: available;
 `;
 
 const PhotoRemove = styled.div`
@@ -135,8 +161,8 @@ const Remove = styled.button`
 `;
 
 const Photo = styled.img`
-  min-width: 250px;
-  max-width: 250px;
+  min-width: 245px;
+  max-width: 245px;
   min-height: 208px;
   max-height: 208px;
   margin: 10px 0px 5px 10px;
