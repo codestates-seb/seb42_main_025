@@ -1,32 +1,37 @@
 import styled from 'styled-components';
-import { useEffect } from 'react';
 import { Container } from 'container/Container';
-import ProgressModule from './module/progress/ProgressModule';
-import ProfileModule from './module/profile/ProfileModule';
-import CommissionsListModule from './module/commissions/CommissionsListModule';
-import ChatModule from './module/chat/ChatModule';
-// import { getUserInfo } from 'apis/api/user';
+import ProgressModule from './module/Progress/ProgressModule';
+import ProfileModule from './module/Profile/ProfileModule';
+import CommissionsListModule from './module/Commissions/CommissionsListModule';
+import ChatModule from './module/Chat/ChatModule';
+import { getUserInfo } from 'apis/api/user';
+import { useState, useEffect } from 'react';
 
 function Mypage() {
-  // const memberId = localStorage.getItem('memberId');
+  const [currentMemberInfo, setCurrentMemberInfo] = useState(null);
 
   useEffect(() => {
-    // setMember(getUserInfo(memberId));
-  }, []);
-
-  // 멤버 id와 비교 후
+    const fetch = async () => {
+      const memberId = localStorage.getItem('memberId');
+      const data = await getUserInfo(memberId);
+      setCurrentMemberInfo(data);
+    };
+    fetch();
+  }, [setCurrentMemberInfo]);
 
   return (
     <Container>
-      <StyledContents>
-        <ProgressModule />
-        {/* <CommissionsListModule />
+      {currentMemberInfo && (
+        <StyledContents>
+          <ProgressModule currentMemberInfo={currentMemberInfo} />
+          {/* <CommissionsListModule />
         <ProfileModule /> */}
-        {/* 로그인 x */}
-        <ProfileModule />
-        <CommissionsListModule />
-        <ChatModule />
-      </StyledContents>
+          {/* 로그인 x */}
+          <ProfileModule currentMemberInfo={currentMemberInfo} />
+          <CommissionsListModule currentMemberInfo={currentMemberInfo} />
+          <ChatModule currentMemberInfo={currentMemberInfo} />
+        </StyledContents>
+      )}
     </Container>
   );
 }

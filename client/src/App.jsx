@@ -12,7 +12,7 @@ import PrivateRoute from 'utils/PrivateRoute';
 // import UserInfo from 'component/UserInfo';
 
 function App() {
-  const isLogin = localStorage.getItem('isLoggined'); /** 수정 필요 */
+  const isLogin = localStorage.getItem('authorization') ? true : false;
 
   return (
     <React.Fragment>

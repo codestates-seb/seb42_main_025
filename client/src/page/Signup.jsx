@@ -17,16 +17,19 @@ const Signup = () => {
   const [NicknameError, setNicknameError] = useState('');
 
   const [userType, setUserType] = useState('writer');
+  const [roles, setRoles] = useState(['AUTHOR']);
 
   const navigate = useNavigate();
 
   const handleSignup = async () => {
+    userType === 'writer' ? setRoles(['AUTHOR']) : setRoles(['USER']);
+    console.log(roles);
     try {
       const response = await axios.post('http://3.37.139.165:8080/members/sign-up', {
         email,
         password,
         nickname,
-        userType,
+        roles,
       });
       if (response && response.data) {
         console.log(response);

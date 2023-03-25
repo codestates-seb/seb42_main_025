@@ -24,8 +24,8 @@ export const routerList = [
   },
   {
     id: 3,
-    path: '/signup',
-    isPrivate: false, //true
+    path: '/signUp',
+    isPrivate: false,
     element: <Signup />,
   },
   {

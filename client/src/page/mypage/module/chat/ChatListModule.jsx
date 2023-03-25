@@ -5,7 +5,7 @@ import ImageComponent from 'component/ImageComponent';
 function ChatListModule({ info }) {
   return (
     <StyledSummaryBox>
-      <ImageComponent src={info.image} alt={info.title} imgStyle="user" width="s" />
+      <ImageComponent src={info.image} alt={info.title} imgStyle="user" width="xs" />
       <ContentContainer>
         <Typography text={info.writer} margin="xxs" line={1} bold="bold" />
         <Typography text={info.content} margin="xxs" line={1} />

@@ -3,7 +3,8 @@ import ImageComponent from 'component/ImageComponent';
 import Typography from 'component/Typography';
 import styled from 'styled-components';
 
-function ProfileModule() {
+function ProfileModule({ currentMemberInfo }) {
+  console.log(currentMemberInfo);
   return (
     <StyledContainer>
       <Button
@@ -22,8 +23,8 @@ function ProfileModule() {
         alt="프로필 사진"
         width="l"
       />
-      {/* {member && <Typography text={member.nickname} size="xl" bold="bold" />} */}
-      <Typography text="자기소개" line={25} lineHeight="l" />
+      <Typography text={currentMemberInfo.nickname} size="xl" bold="bold" />
+      <Typography text={currentMemberInfo.email} line={25} lineHeight="l" />
     </StyledContainer>
   );
 }
@@ -32,7 +33,7 @@ const StyledContainer = styled.aside`
   display: grid;
   height: fit-content;
   grid-column: 9 / span 4;
-  padding: 1rem;
+  padding: 2rem;
   gap: 2rem;
   background-color: #f5e8dd;
   border-radius: 0.25rem;

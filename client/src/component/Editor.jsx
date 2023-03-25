@@ -1,7 +1,7 @@
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
 
-const TextEditor = ({ editorRef, editorValue, editorHeight, onEditorChange }) => {
+const TextEditor = ({ editorRef, editorValue, editorHeight, onEditorChange, toolbarItems }) => {
   return (
     <Editor
       ref={editorRef} // DOM 선택용 useRef
@@ -10,13 +10,17 @@ const TextEditor = ({ editorRef, editorValue, editorHeight, onEditorChange }) =>
       height={editorHeight} // 에디터 창 높이
       initialEditType="markdown"
       useCommandShortcut={false}
-      toolbarItems={[
-        ['heading', 'bold', 'italic', 'strike'],
-        ['hr', 'quote'],
-        ['ul', 'ol'],
-        ['table', 'link'],
-        ['code', 'codeblock'],
-      ]}
+      toolbarItems={
+        toolbarItems
+          ? toolbarItems
+          : [
+              ['heading', 'bold', 'italic', 'strike'],
+              ['hr', 'quote'],
+              ['ul', 'ol'],
+              ['table', 'link'],
+              ['code', 'codeblock'],
+            ]
+      }
       initialValue={editorValue}
       hideModeSwitch={true}
       onChange={onEditorChange ? onEditorChange : () => {}}

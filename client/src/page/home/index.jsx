@@ -34,7 +34,6 @@ function Home() {
             <Carousel items={commissions} changeaCarouselImage={changeaCarouselImage} />
           </CarouselBox>
           <CarouselBoxBackground url={carouselBackground} />
-
           <SellContainer>
             <Typography
               variant="h2"
