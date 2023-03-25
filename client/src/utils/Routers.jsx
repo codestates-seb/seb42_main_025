@@ -4,7 +4,7 @@ import Signup from 'page/Signup';
 import Post from 'page/post';
 import CreatePost from 'page/CreatePost';
 import Mypage from 'page/mypage/Mypage';
-import CommissionRequest from 'page/commissionRequest/CommissionRequest';
+import TradePage from 'page/TragePage/TradePage';
 import ChatPage from 'page/chat/ChatPage';
 import SearchPage from 'page/SearchPage';
 import NotFoundPage from 'page/NotFoundPage';
@@ -42,9 +42,9 @@ export const routerList = [
   },
   {
     id: 6,
-    path: '/commissionrequest/:id',
+    path: '/tradePage/:id',
     isPrivate: false, //ture
-    element: <CommissionRequest />,
+    element: <TradePage />,
   },
   {
     id: 7,
