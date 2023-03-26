@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import axios from 'axios';
 import mainLogo from 'assets/Main_logo.png';
 import InputComponent from 'component/InputComponent';
 import Button from 'component/Button';
 import { emailValidate, passwordValidate } from '../utils/validata';
+import { login } from '../apis/api/login';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -18,24 +18,17 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://3.37.139.165:8080/login', {
-        email,
-        password,
-      });
-      axios.defaults.headers.Authorization = response.headers.get('authorization');
-      localStorage.setItem('authorization', response.headers.get('authorization'));
-      localStorage.setItem('memberId', response.data.memberId);
-
-      console.log('로그인 성공!');
-      navigate('/');
-    } catch (error) {
-      const response = error.response;
-      if (response) {
-        console.log(response.data);
+      const result = await login({ email, password });
+      if (result.success) {
+        console.log('로그인 성공!');
+        navigate('/');
       } else {
-        console.log(error);
+        console.log('로그인 실패!');
+        console.log(result.message);
       }
+    } catch (error) {
       console.log('로그인 실패!');
+      console.log(error);
     }
   };
 
