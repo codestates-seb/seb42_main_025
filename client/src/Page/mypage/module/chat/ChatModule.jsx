@@ -21,8 +21,6 @@ function ChatModule() {
       />
       <StyledChatListBoxContainer>
         <ChatListModule info={info} />
-        <ChatListModule info={info} />
-        <ChatListModule info={info} />
       </StyledChatListBoxContainer>
     </StyledContainer>
   );
