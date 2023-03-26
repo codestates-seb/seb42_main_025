@@ -7,6 +7,7 @@ import TextEditor from 'component/Editor';
 import InputText from './InputText';
 import { postCommission } from 'apis/api/commission';
 import { useRef, useState } from 'react';
+
 import CreateTag from './CreateTag';
 
 function CreatePost() {
@@ -59,6 +60,7 @@ function CreatePost() {
           <PostDetail>
             <InputComponent label="제목" placeholder="제목을 입력하세요." titleRef={titleRef} />
             <InputText label="소개글" subContentRef={subContentRef} />
+
             <CreateTag />
           </PostDetail>
         </Content>
