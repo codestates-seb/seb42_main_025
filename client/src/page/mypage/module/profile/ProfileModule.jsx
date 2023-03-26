@@ -1,6 +1,6 @@
-import Button from 'component/Button';
-import ImageComponent from 'component/ImageComponent';
-import Typography from 'component/Typography';
+import Button from 'Components/Button';
+import ImageComponent from 'Components/ImageComponent';
+import Typography from 'Components/Typography';
 import styled from 'styled-components';
 
 function ProfileModule({ currentMemberInfo }) {

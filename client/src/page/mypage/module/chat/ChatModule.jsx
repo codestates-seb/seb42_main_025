@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Typography from 'component/Typography';
+import Typography from 'Components/Typography';
 import ChatListModule from './ChatListModule';
 
 function ChatModule() {

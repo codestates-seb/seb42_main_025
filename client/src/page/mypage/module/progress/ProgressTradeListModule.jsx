@@ -1,7 +1,7 @@
-import Typography from 'component/Typography';
+import Typography from 'Components/Typography';
 import styled from 'styled-components';
 
-function ProgressTradeListModule({ info }) {
+export function ProgressTradeListModule({ info }) {
   return (
     <StyledSummaryBox>
       <Typography text={info.title} bold="bold" line={1} size="l" variant="h3" />
