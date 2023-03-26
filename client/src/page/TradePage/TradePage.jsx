@@ -33,7 +33,7 @@ function TradePage() {
 
     try {
       const res = await postTrade(data, token);
-      navigate(`/chat/${res.data.id}`);
+      navigate(`/chat/${res.tradeId}`);
     } catch (error) {
       console.error(error);
     }
