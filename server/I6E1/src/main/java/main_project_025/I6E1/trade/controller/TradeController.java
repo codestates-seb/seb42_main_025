@@ -65,8 +65,8 @@ public class TradeController {
     }
 
     @GetMapping
-    public ResponseEntity readAllTrade(Pageable pageable) {
-        Page<Trade> tradePage = tradeService.readTrades(pageable);
+    public ResponseEntity readAllTrade(Pageable pageable, Long memberId) {
+        Page<Trade> tradePage = tradeService.readTradesUser(pageable, memberId);
         List<Trade> tradeList = tradePage.getContent();
         return new ResponseEntity<>(new PageDto<>(tradeMapper.tradesToResponseDto(tradeList), tradePage), HttpStatus.OK);
     }

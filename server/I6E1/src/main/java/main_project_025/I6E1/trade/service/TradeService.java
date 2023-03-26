@@ -64,9 +64,9 @@ public class TradeService {
         return findTrade;
     }
 
-    public Page<Trade> readTrades(Pageable pageable) {
+    public Page<Trade> readTradesUser(Pageable pageable, Long memberId) {
         Pageable pageRequest = PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize(), pageable.getSort());
-        return tradeRepository.findAll(pageRequest);
+        return tradeRepository.findByMemberId(pageRequest, memberId);
     }
 
     public void deleteTrade(long tradeId) {
