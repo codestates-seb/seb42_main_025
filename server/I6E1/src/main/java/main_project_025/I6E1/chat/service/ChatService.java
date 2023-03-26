@@ -88,11 +88,11 @@ public class ChatService {
     }
 
     public Message saveMessage(Message message){
-        // 커밋할땐 주석 풀고
-//        AuthMember loginMember = (AuthMember) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        long memberId = loginMember.getMemberId();
-//        Member user = getMemberFromId(memberId);
-//        message.setMember(user);
+        
+        AuthMember loginMember = (AuthMember) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long memberId = loginMember.getMemberId();
+        Member user = getMemberFromId(memberId);
+        message.setMember(user);
 
         return messageRepository.save(message);
     }
