@@ -4,7 +4,7 @@ import Signup from 'page/Signup';
 import Post from 'page/post';
 import CreatePost from 'page/CreatePost';
 import Mypage from 'page/mypage/Mypage';
-import TradePage from 'page/TragePage/TradePage';
+import TradePage from 'page/TradePage/TradePage';
 import ChatPage from 'page/chat/ChatPage';
 import SearchPage from 'page/SearchPage';
 import NotFoundPage from 'page/NotFoundPage';
@@ -42,7 +42,7 @@ export const routerList = [
   },
   {
     id: 6,
-    path: '/tradePage/:id',
+    path: '/tradepage/:id',
     isPrivate: false, //ture
     element: <TradePage />,
   },
