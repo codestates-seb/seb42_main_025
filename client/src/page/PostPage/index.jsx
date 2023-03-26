@@ -20,7 +20,6 @@ function Post() {
     };
     fetch();
   }, [setCommission]);
-
   return (
     <Container>
       {commission && (

@@ -1,7 +1,7 @@
-import Typography from 'component/Typography';
-import ImageComponent from 'component/ImageComponent';
+import Typography from 'Components/Typography';
+import ImageComponent from 'Components/ImageComponent';
 import styled from 'styled-components';
-import TagComponent from 'component/TagComponent';
+import TagComponent from 'Components/TagComponent';
 
 function CommissionListSingleModule({ info }) {
   return (

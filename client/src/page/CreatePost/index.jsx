@@ -1,18 +1,16 @@
+import InputComponent from 'Components/InputComponent';
 import styled from 'styled-components';
-import InputComponent from 'component/InputComponent';
-import Button from 'component/Button';
-import Dropzone from './Dropzone';
-import { Container } from 'container/Container';
-import TextEditor from 'component/Editor';
-import InputText from './InputText';
+import Button from 'Components/Button';
+import { Container } from 'Container/Container';
+import TextEditor from 'Components/Editor';
+import { Dropzone, CreateTag, InputText } from './module';
 import { postCommission } from 'apis/api/commission';
 import { useRef, useState } from 'react';
 
-import CreateTag from './CreateTag';
-
 function CreatePost() {
-  const [files, seFiles] = useState([]);
-  // console.log(commissionId);
+  const [isFiles, setIsFiles] = useState([]);
+  const [isTags, setIsTags] = useState([]);
+  console.log(isTags);
 
   // const handleSubmit = async e => {
   //   e.preventDefault();
@@ -37,17 +35,23 @@ function CreatePost() {
   const handleSubmit = e => {
     e.preventDefault();
 
-    const data = {
-      title: titleRef.current.value,
-      subContent: subContentRef.current.value,
-      content: contentRef.current?.getInstance().getMarkdown(),
-      tags: 'zz',
-      multipartFile: files,
-    };
-    const res = postCommission(data);
-    console.log(data);
+    const formData = new FormData();
+
+    isFiles.forEach(file => formData.append('multipartFile', file));
+    // tagRef.forEach(tag => formData.append('tags', [tag]));
+
+    // formData.append('multipartFile', files[0]);
+    // formData.append('multipartFile', files[1]);
+    formData.append('title', titleRef.current.value);
+    formData.append('subContent', subContentRef.current.value);
+    formData.append('content', contentRef.current?.getInstance().getMarkdown());
+    formData.append('tags', ['태그1']);
+    formData.append('tags', ['태그2']);
+
+    const res = postCommission(formData);
+    console.log(formData);
     console.log(res);
-    console.log(files);
+    console.log(isFiles);
   };
 
   return (
@@ -55,13 +59,13 @@ function CreatePost() {
       <ContentBox>
         <Content>
           <ImgBox>
-            <Dropzone seFiles={seFiles} />
+            <Dropzone setIsFiles={setIsFiles} />
           </ImgBox>
           <PostDetail>
             <InputComponent label="제목" placeholder="제목을 입력하세요." titleRef={titleRef} />
             <InputText label="소개글" subContentRef={subContentRef} />
 
-            <CreateTag />
+            <CreateTag setIsTags={setIsTags} />
           </PostDetail>
         </Content>
         <Toast>

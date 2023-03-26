@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import InputComponent from 'component/InputComponent';
-import Button from 'component/Button';
+import InputComponent from 'Components/InputComponent';
+import Button from 'Components/Button';
 import { emailValidate, passwordValidate, nicknameValidate } from '../utils/validata';
 import { signup } from '../apis/api/signup';
 
-const Signup = () => {
+const SignUpPage = () => {
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
 
@@ -20,7 +20,7 @@ const Signup = () => {
 
   const navigate = useNavigate();
 
-  const handleSignup = async () => {
+  const handleSignUp = async () => {
     const roles = userType === 'writer' ? ['AUTHOR'] : ['USER'];
     console.log(roles);
     try {
@@ -48,13 +48,13 @@ const Signup = () => {
       return;
     }
 
-    handleSignup();
+    handleSignUp();
   };
 
   return (
     <StyledContainer>
       <Container>
-        <SignupContainer>
+        <SignUpContainer>
           <OptionContainer>
             <OptionButton active={userType === 'writer'} onClick={() => setUserType('writer')}>
               Writer
@@ -94,7 +94,7 @@ const Signup = () => {
             handleClick={handleSubmit}
             addStyle={{ width: 'w_xxxxl', height: 'h_l', backgroundColor: 'tea_1', color: 'white' }}
           />
-        </SignupContainer>
+        </SignUpContainer>
       </Container>
     </StyledContainer>
   );
@@ -117,7 +117,7 @@ const Container = styled.div`
   overflow-x: hidden;
 `;
 
-const SignupContainer = styled.div`
+const SignUpContainer = styled.div`
   display: grid;
   width: 100%;
   max-width: 420px;
@@ -153,4 +153,4 @@ const OptionButton = styled.button`
   }
 `;
 
-export default Signup;
+export default SignUpPage;
