@@ -43,7 +43,8 @@ dependencies {
     implementation 'org.mapstruct:mapstruct:1.5.1.Final'
 
     runtimeOnly 'com.mysql:mysql-connector-j'
-    //웹소켓
+
+    //websocket
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
     implementation 'org.webjars:stomp-websocket:2.3.3-1'
 
@@ -63,6 +64,9 @@ dependencies {
     //커미션 검색을 위한 QueryDSL
     implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
     implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
+
+
+
 }
 
 // querydsl에서 사용할 경로 설정(현재 지정한 부분은 .gitignore에 포함됨)
