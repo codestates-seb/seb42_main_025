@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import ProgressListSingleModule from './ProgressListSingleModule';
-import Typography from 'component/Typography';
-import Button from 'component/Button';
+import Typography from 'Components/Typography';
+import Button from 'Components/Button';
 import { useState } from 'react';
 
-function ProgressListModule() {
+export function ProgressListModule() {
   const [isMore, setIsMore] = useState(false);
   const moreClicked = () => {
     setIsMore(!isMore);

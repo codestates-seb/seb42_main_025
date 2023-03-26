@@ -1,5 +1,5 @@
-import Button from 'component/Button';
-import Typography from 'component/Typography';
+import Button from 'Components/Button';
+import Typography from 'Components/Typography';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import CommissionListSingleModule from './CommissionListSingleModule';
@@ -11,7 +11,7 @@ function CommissionsListModule() {
   const info = getMemberCommissionFn();
 
   const handleClick = () => {
-    navigate('/createcommission');
+    navigate('/create-commission');
   };
 
   return (

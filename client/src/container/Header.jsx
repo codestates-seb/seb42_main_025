@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import mainLogo from 'assets/Main_logo.png';
-import InputComponent from 'component/InputComponent';
+import InputComponent from 'Components/InputComponent';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Button from 'component/Button';
+import Button from 'Components/Button';
 
 function Header() {
   const isLogined = localStorage.getItem('authorization') ? true : false;
@@ -18,12 +18,12 @@ function Header() {
   };
 
   const handleClickSignUp = () => {
-    navigate('/signUp');
+    navigate('/signup');
   };
 
   const handledClickMember = () => {
     const memberId = localStorage.getItem('memberId');
-    navigate(`/myPage/${memberId}`);
+    navigate(`/mypage/${memberId}`);
   };
 
   const handleLogout = async () => {

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Typography from 'component/Typography';
-import ImageComponent from 'component/ImageComponent';
+import Typography from 'Components/Typography';
+import ImageComponent from 'Components/ImageComponent';
 
 function ChatListModule({ info }) {
   return (
