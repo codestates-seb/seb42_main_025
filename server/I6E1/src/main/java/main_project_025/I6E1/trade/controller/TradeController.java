@@ -65,11 +65,19 @@ public class TradeController {
     }
 
     @GetMapping
-    public ResponseEntity readAllTrade(Pageable pageable) {
-        Page<Trade> tradePage = tradeService.readTrades(pageable);
+    public ResponseEntity readAllTradeUser(Pageable pageable, Long memberId) {
+        Page<Trade> tradePage = tradeService.readTradesUser(pageable, memberId);
         List<Trade> tradeList = tradePage.getContent();
         return new ResponseEntity<>(new PageDto<>(tradeMapper.tradesToResponseDto(tradeList), tradePage), HttpStatus.OK);
     }
+
+    @GetMapping("/author")
+    public ResponseEntity readAllTradeAuthor(Pageable pageable, String authorEmail) {
+        Page<Trade> tradePage = tradeService.readTradesAuthor(pageable, authorEmail);
+        List<Trade> tradeList = tradePage.getContent();
+        return new ResponseEntity<>(new PageDto<>(tradeMapper.tradesToResponseDto(tradeList), tradePage), HttpStatus.OK);
+    }
+
 
     @DeleteMapping("/{tradeId}")
     @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_AUTHOR')")

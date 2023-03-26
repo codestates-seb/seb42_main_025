@@ -40,6 +40,9 @@ public class Trade extends Auditable {
     private String content;
 
     @NotNull
+    private String authorEmail;
+
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private Status status = Status.Waiting_Acceptance;
