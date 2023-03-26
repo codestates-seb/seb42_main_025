@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { Container } from 'Container/Container';
-import ProgressModule from './module/progress/ProgressModule';
-import ProfileModule from './module/profile/ProfileModule';
-import CommissionsListModule from './module/commissions/CommissionsListModule';
-import ChatModule from './module/chat/ChatModule';
+import ProgressModule from './module/Progress/ProgressModule';
+import ProfileModule from './module/Profile/ProfileModule';
+import CommissionsListModule from './module/Commissions/CommissionsListModule';
+import ChatModule from './module/Chat/ChatModule';
 import { getMemberInfoFn } from 'useFetch/getMemberInfoFetch';
 
 function MyPage() {
