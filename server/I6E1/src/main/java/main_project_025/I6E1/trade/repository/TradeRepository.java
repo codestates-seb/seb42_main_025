@@ -12,4 +12,7 @@ public interface TradeRepository extends JpaRepository<Trade, Long> {
 
     @Query(value = "SELECT * FROM trade WHERE member_id = :memberId", nativeQuery = true)
     Page<Trade> findByMemberId(Pageable pageRequest, Long memberId);
+
+    @Query(value = "SELECT * FROM trade WHERE author_email = :authorEmail", nativeQuery = true)
+    Page<Trade> findByAuthorEmail(Pageable pageRequest, String authorEmail);
 }

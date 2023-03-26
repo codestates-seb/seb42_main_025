@@ -17,6 +17,7 @@ public class TradeRespondDto {
     private String title;
     private String content;
     private Status status;
+    private String authorEmail;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 }

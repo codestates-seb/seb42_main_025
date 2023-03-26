@@ -36,8 +36,9 @@ public class TradeService {
         Optional<Member> optionalMember = memberRepository.findByEmail(userEmail);
         Member member = optionalMember.orElseThrow(() -> new RuntimeException("거래 신청 권한이 없습니다."));
 
-        trade.setCommission(commission);
         trade.setMember(member);
+        trade.setAuthorEmail(commission.getMember().getEmail());
+        trade.setCommission(commission);
         return tradeRepository.save(trade);
     }
 
@@ -67,6 +68,11 @@ public class TradeService {
     public Page<Trade> readTradesUser(Pageable pageable, Long memberId) {
         Pageable pageRequest = PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize(), pageable.getSort());
         return tradeRepository.findByMemberId(pageRequest, memberId);
+    }
+
+    public Page<Trade> readTradesAuthor(Pageable pageable, String authorEmail) {
+        Pageable pageRequest = PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize(), pageable.getSort());
+        return tradeRepository.findByAuthorEmail(pageRequest, authorEmail);
     }
 
     public void deleteTrade(long tradeId) {
