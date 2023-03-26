@@ -5,18 +5,17 @@ import ProfileModule from './module/Profile/ProfileModule';
 import CommissionsListModule from './module/Commissions/CommissionsListModule';
 import ChatModule from './module/Chat/ChatModule';
 import { getMemberInfoFn } from 'useFetch/getMemberInfoFetch';
-
+import { getMemberRoleFn } from 'useFetch/getMemberInfoFetch';
 function MyPage() {
   const currentMemberInfo = getMemberInfoFn();
+  const currentMemberRole = getMemberRoleFn();
 
+  console.log(currentMemberRole);
   return (
     <Container>
       {currentMemberInfo && (
         <StyledContents>
           <ProgressModule currentMemberInfo={currentMemberInfo} />
-          {/* <CommissionsListModule />
-        <ProfileModule /> */}
-          {/* 로그인 x */}
           <ProfileModule currentMemberInfo={currentMemberInfo} />
           <CommissionsListModule currentMemberInfo={currentMemberInfo} />
           <ChatModule currentMemberInfo={currentMemberInfo} />
