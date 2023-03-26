@@ -11,7 +11,7 @@ function PostDetail({ commission }) {
   const params = useParams();
 
   const handleClick = () => {
-    navigate(`/trade/${params.id}`);
+    navigate(`/tradepage/${params.id}`);
   };
   return (
     <>

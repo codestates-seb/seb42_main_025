@@ -15,22 +15,20 @@ function TradePage() {
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-
+  const params = useParams();
   const editorRef = useRef(null);
 
   const navigate = useNavigate();
-  const params = useParams();
 
   const handleSubmit = async event => {
     event.preventDefault();
-    navigate(`/chat/${params.id}`);
 
     const token = localStorage.getItem('authorization');
 
     const data = {
       title: title.trim(),
       content: content.trim(),
-      commissionId: '1', //테스트용
+      commissionId: params.id,
     };
 
     try {
