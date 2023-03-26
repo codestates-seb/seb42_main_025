@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import Button from 'Components/Button';
-import TradeModuleBox from './Module/TradeModuleBox';
+import TradeModuleBox from './module/TradeModuleBox';
 import TextEditor from 'Components/Editor';
 import { postTrade } from 'apis/api/trade';
 

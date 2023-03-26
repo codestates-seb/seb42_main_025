@@ -4,6 +4,7 @@ import ProgressModule from './module/Progress/ProgressModule';
 import ProfileModule from './module/Profile/ProfileModule';
 import CommissionsListModule from './module/Commissions/CommissionsListModule';
 import ChatModule from './module/Chat/ChatModule';
+
 import { getMemberInfoFn } from 'useFetch/getMemberInfoFetch';
 
 function MyPage() {
