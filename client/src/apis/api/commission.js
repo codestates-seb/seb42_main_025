@@ -1,5 +1,4 @@
-import { instance } from 'apis/utils';
-import { imgInstance } from 'apis/utils';
+import { instance, imgInstance } from 'apis/utils';
 
 export const getCommission = async id => {
   try {
