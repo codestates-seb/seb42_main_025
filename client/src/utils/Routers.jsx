@@ -1,11 +1,11 @@
-import Home from 'page/home';
-import Login from 'page/Login';
-import Signup from 'page/Signup';
-import Post from 'page/post';
+import Home from 'page/HomePage';
+import Login from 'page/LoginPage';
+import SignUpPage from 'page/SignUpPage';
+import Post from 'page/PostPage';
 import CreatePost from 'page/CreatePost';
-import Mypage from 'page/mypage/Mypage';
-import TradePage from 'page/TradePage/TradePage';
-import ChatPage from 'page/chat/ChatPage';
+import MyPage from 'page/MyPage';
+import TradePage from 'page/TradePage';
+import ChatPage from 'page/ChatPage';
 import SearchPage from 'page/SearchPage';
 import NotFoundPage from 'page/NotFoundPage';
 
@@ -24,13 +24,13 @@ export const routerList = [
   },
   {
     id: 3,
-    path: '/signUp',
+    path: '/signup',
     isPrivate: false,
-    element: <Signup />,
+    element: <SignUpPage />,
   },
   {
     id: 4,
-    path: '/searchpage',
+    path: '/search',
     isPrivate: false,
     element: <SearchPage />,
   },
@@ -42,13 +42,13 @@ export const routerList = [
   },
   {
     id: 6,
-    path: '/tradepage/:id',
-    isPrivate: false, //ture
+    path: '/trade/:id',
+    isPrivate: false, //true
     element: <TradePage />,
   },
   {
     id: 7,
-    path: '/createcommission',
+    path: '/create-commission',
     isPrivate: true,
     element: <CreatePost />,
   },
@@ -62,7 +62,7 @@ export const routerList = [
     id: 9,
     path: '/mypage/:id',
     isPrivate: true,
-    element: <Mypage />,
+    element: <MyPage />,
   },
   {
     id: 10,

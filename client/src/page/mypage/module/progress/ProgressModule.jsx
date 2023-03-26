@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import ProgressListModule from './ProgressListModule';
-import Typography from 'component/Typography';
+import Typography from 'Components/Typography';
 
-function ProgressModule() {
+export function ProgressModule() {
   return (
     <StyledContainer>
       <TitleContainer>

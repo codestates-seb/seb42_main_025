@@ -1,16 +1,14 @@
 import styled from 'styled-components';
-import InputComponent from 'component/InputComponent';
-import Button from 'component/Button';
-import Dropzone from './Dropzone';
-import { Container } from 'container/Container';
-import TextEditor from 'component/Editor';
-import InputText from './InputText';
+import InputComponent from 'Components/InputComponent';
+import Button from 'Components/Button';
+import { Container } from 'Container/Container';
+import TextEditor from 'Components/Editor';
+import { Dropzone, CreateTag, InputText } from './module';
 import { postCommission } from 'apis/api/commission';
 import { useRef, useState } from 'react';
 
-import CreateTag from './CreateTag';
-
 function CreatePost() {
+  const [isTags, setIsTags] = useState([]);
   const [files, seFiles] = useState([]);
   // console.log(commissionId);
 
@@ -41,13 +39,11 @@ function CreatePost() {
       title: titleRef.current.value,
       subContent: subContentRef.current.value,
       content: contentRef.current?.getInstance().getMarkdown(),
-      tags: 'zz',
       multipartFile: files,
     };
     const res = postCommission(data);
-    console.log(data);
     console.log(res);
-    console.log(files);
+    console.log(isTags);
   };
 
   return (
@@ -60,8 +56,7 @@ function CreatePost() {
           <PostDetail>
             <InputComponent label="제목" placeholder="제목을 입력하세요." titleRef={titleRef} />
             <InputText label="소개글" subContentRef={subContentRef} />
-
-            <CreateTag />
+            <CreateTag setIsTags={setIsTags} />
           </PostDetail>
         </Content>
         <Toast>

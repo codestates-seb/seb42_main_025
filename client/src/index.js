@@ -5,7 +5,7 @@ import App from './App';
 import { RecoilRoot } from 'recoil';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import ScrollToTop from 'page/ScrollTop';
+import ScrollToTop from 'utils/ScrollTop';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
