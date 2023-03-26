@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import StateComponent from 'component/StateComponent';
-import Typography from 'component/Typography';
-import Button from 'component/Button';
+import StateComponent from 'Components/StateComponent';
+import Typography from 'Components/Typography';
+import Button from 'Components/Button';
 import ProgressTradeListModule from './ProgressTradeListModule';
-import ImageComponent from 'component/ImageComponent';
+import ImageComponent from 'Components/ImageComponent';
 import { useState } from 'react';
-import ReviewModal from './ReviewModal';
+import { ReviewModal } from './ReviewModal';
 
 function ProgressListSingleModule() {
   const image = [
@@ -57,7 +57,7 @@ function ProgressListSingleModule() {
             color: 'white',
           }}
         />
-        <StyledRigntButtons>
+        <StyledRightButtons>
           <Button
             text="수락"
             addStyle={{
@@ -94,7 +94,7 @@ function ProgressListSingleModule() {
             }}
           />
           {isOpen === true ? <ReviewModal openReviewerHandler={openReviewerHandler} /> : null}
-        </StyledRigntButtons>
+        </StyledRightButtons>
       </StyledButtonContainer>
     </>
   );
@@ -141,7 +141,7 @@ const StyledButtonContainer = styled.div`
   justify-content: space-between;
 `;
 
-const StyledRigntButtons = styled.div`
+const StyledRightButtons = styled.div`
   display: flex;
 `;
 

@@ -1,6 +1,6 @@
-import { Container } from 'container/Container';
+import { Container } from 'Container/Container';
 import styled from 'styled-components';
-import Commission from 'page/home/Commission';
+import Commission from 'Components/Commissions';
 
 function SearchPage() {
   //   const searchList = () => {

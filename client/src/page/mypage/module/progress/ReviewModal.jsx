@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import TextEditor from 'component/Editor';
-import Button from 'component/Button';
+import TextEditor from 'Components/Editor';
+import Button from 'Components/Button';
 import { useEffect, useRef, useState } from 'react';
 
-function ReviewModal({ openReviewerHandler }) {
+export function ReviewModal({ openReviewerHandler }) {
   const [currentWidth, setCurrentWidth] = useState();
   const ref = useRef(null);
 
@@ -104,5 +104,4 @@ const StyledSubButton = styled.div`
   justify-content: center;
   flex: 2;
 `;
-
 export default ReviewModal;

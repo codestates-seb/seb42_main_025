@@ -1,4 +1,4 @@
-import Typography from 'component/Typography';
+import Typography from 'Components/Typography';
 import styled from 'styled-components';
 
 function TradeModuleBox({ info }) {
