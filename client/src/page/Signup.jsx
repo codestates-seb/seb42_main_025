@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import InputComponent from 'component/InputComponent';
 import Button from 'component/Button';
-import axios from 'axios';
 import { emailValidate, passwordValidate, nicknameValidate } from '../utils/validata';
+import { signup } from '../apis/api/signup';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -17,27 +17,24 @@ const Signup = () => {
   const [NicknameError, setNicknameError] = useState('');
 
   const [userType, setUserType] = useState('writer');
-  const [roles, setRoles] = useState(['AUTHOR']);
 
   const navigate = useNavigate();
 
   const handleSignup = async () => {
-    userType === 'writer' ? setRoles(['AUTHOR']) : setRoles(['USER']);
+    const roles = userType === 'writer' ? ['AUTHOR'] : ['USER'];
     console.log(roles);
     try {
-      const response = await axios.post('http://3.37.139.165:8080/members/sign-up', {
-        email,
-        password,
-        nickname,
-        roles,
-      });
-      if (response && response.data) {
-        console.log(response);
+      const result = await signup({ email, password, nickname, roles }); // signup 함수 사용
+      if (result.success) {
+        console.log('회원가입 성공!');
+        navigate('/Login');
+      } else {
+        console.log('회원가입 실패!');
+        console.log(result.message);
       }
-      navigate('/Login');
     } catch (error) {
-      console.log(error.response.data);
-      console.error('Signup failed with error:', error.message);
+      console.log('회원가입 실패!');
+      console.log(error);
     }
   };
 
