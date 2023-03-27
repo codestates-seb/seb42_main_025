@@ -1,17 +1,15 @@
 import { useState } from 'react';
-import Food from '../../../../assets/1.JPG';
-import shoes from '../../../../assets/shoes1.jpg';
 import styled from 'styled-components';
 import ImageComponent from 'Components/ImageComponent';
 
 export const PostImage = () => {
   const eat = [
-    { id: 1, url: Food },
-    { id: 2, url: shoes },
-    { id: 3, url: Food },
-    { id: 4, url: shoes },
-    { id: 5, url: Food },
-    { id: 6, url: shoes },
+    // { id: 1, url: Food },
+    // { id: 2, url: shoes },
+    // { id: 3, url: Food },
+    // { id: 4, url: shoes },
+    // { id: 5, url: Food },
+    // { id: 6, url: shoes },
   ];
 
   const [currItem, setCurrItem] = useState(eat[0]); //선택한 사진 상태설정

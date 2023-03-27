@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import ProgressListModule from './ProgressListModule';
 import Typography from 'Components/Typography';
 
-export function ProgressModule({ info }) {
+export function ProgressModule() {
   return (
     <StyledContainer>
       <TitleContainer>
