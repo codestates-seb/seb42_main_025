@@ -3,7 +3,7 @@ import Login from 'page/LoginPage';
 import SignUpPage from 'page/SignUpPage';
 import Post from 'page/PostPage';
 import CreatePost from 'page/CreatePost';
-import MyPage from 'page/MyPage';
+import MyPage from 'page/mypage';
 import TradePage from 'page/TradePage';
 import ChatPage from 'page/ChatPage';
 import SearchPage from 'page/SearchPage';
