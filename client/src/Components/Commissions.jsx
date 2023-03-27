@@ -3,7 +3,6 @@ import TagComponent from 'Components/TagComponent';
 import Typography from 'Components/Typography';
 import ImageComponent from 'Components/ImageComponent';
 import { useNavigate, useParams } from 'react-router-dom';
-import shoes1 from '../assets/shoes1.jpg';
 import { useEffect, useState } from 'react';
 import { getCommissions } from 'apis/api/commissions';
 
@@ -38,7 +37,12 @@ function commission() {
                   })}
               </TagBox>
               <SellBox onClick={() => handleClick(item.commissionId)}>
-                <ImageComponent src={shoes1} alt={item.imageUrl} imgStyle="commission" width="xl" />
+                <ImageComponent
+                  src={item.imageUrl}
+                  alt={item.imageUrl}
+                  imgStyle="commission"
+                  width="xl"
+                />
                 <Typography text={item.title} bold="bold" />
                 <Typography text={item.memberName} size="s" />
               </SellBox>

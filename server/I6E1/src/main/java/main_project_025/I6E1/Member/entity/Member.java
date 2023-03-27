@@ -1,6 +1,7 @@
 package main_project_025.I6E1.Member.entity;
 
 import lombok.*;
+import main_project_025.I6E1.chat.entity.ChatRoom;
 import main_project_025.I6E1.global.auditable.Auditable;
 import main_project_025.I6E1.trade.entity.Trade;
 
