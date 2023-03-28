@@ -1,59 +1,57 @@
-import InputComponent from 'Components/InputComponent';
 import styled from 'styled-components';
+import InputComponent from 'Components/InputComponent';
 import Button from 'Components/Button';
 import { Container } from 'Container/Container';
 import TextEditor from 'Components/Editor';
 import { Dropzone, CreateTag, InputText } from './module';
-import { postCommission } from 'apis/api/commission';
-import { useRef, useState } from 'react';
+import { postCommission, patchCommission } from 'apis/api/commission';
+import { useState, useRef } from 'react';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Alert } from '@mui/material';
 
 function CreatePost() {
   const [isFiles, setIsFiles] = useState([]);
   const [isTags, setIsTags] = useState([]);
-  console.log(isTags);
-
-  // const handleSubmit = async e => {
-  //   e.preventDefault();
-
-  //   const formData = new FormData();
-  //   files.forEach(file => formData.append('file', file));
-  //   formData.append('upload_preset', 'friendsbook');
-
-  //   const URL = process.env.NEXT_PUBLIC_CLOUDINARY_URL;
-  //   const data = await fetch(URL, {
-  //     method: 'POST',
-  //     body: formData,
-  //   }).then(res => res.json());
-
-  //   console.log(data);
-  // };
-
+  const [isBlank, setIsBlank] = useState(false);
   const titleRef = useRef(null);
   const subContentRef = useRef(null);
   const contentRef = useRef(null);
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  const { commission } = useLocation();
+  console.log(commission);
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (
+      titleRef.current.value === '' ||
+      subContentRef.current.value === '' ||
+      contentRef.current?.getInstance().getMarkdown() === '' ||
+      isFiles.length === 0 ||
+      isTags.length === 0
+    ) {
+      setIsBlank(true);
+    } else {
+      setIsBlank(false);
 
-    const formData = new FormData();
+      const formData = new FormData();
 
-    isFiles.forEach(file => formData.append('multipartFile', file));
-    // tagRef.forEach(tag => formData.append('tags', [tag]));
+      isFiles.forEach(file => formData.append('multipartFile', file));
+      isTags.forEach(tag => formData.append('tags', tag));
 
-    // formData.append('multipartFile', files[0]);
-    // formData.append('multipartFile', files[1]);
-    formData.append('title', titleRef.current.value);
-    formData.append('subContent', subContentRef.current.value);
-    formData.append('content', contentRef.current?.getInstance().getMarkdown());
-    formData.append('tags', ['태그1']);
-    formData.append('tags', ['태그2']);
+      formData.append('title', titleRef.current.value);
+      formData.append('subContent', subContentRef.current.value);
+      formData.append('content', contentRef.current?.getInstance().getMarkdown());
 
-    const res = postCommission(formData);
-    console.log(formData);
-    console.log(res);
-    console.log(isFiles);
+      if (window.location.href.split('/').pop() === 'edit-commission') {
+        patchCommission(formData, id);
+      } else {
+        postCommission(formData);
+      }
+      navigate(`/commission/${id}`);
+    }
   };
-
   return (
     <Container>
       <ContentBox>
@@ -64,13 +62,17 @@ function CreatePost() {
           <PostDetail>
             <InputComponent label="제목" placeholder="제목을 입력하세요." titleRef={titleRef} />
             <InputText label="소개글" subContentRef={subContentRef} />
-
             <CreateTag setIsTags={setIsTags} />
           </PostDetail>
         </Content>
         <Toast>
           <TextEditor editorHeight={'30rem'} editorRef={contentRef} />
         </Toast>
+        {isBlank && (
+          <Alert severity="error">
+            이미지, 제목, 소개글, 본문, 태그 중 하나라도 비어있으면 게시물 등록이 되지않습니다
+          </Alert>
+        )}
         <ButtonBox>
           <Button
             text="등록"
