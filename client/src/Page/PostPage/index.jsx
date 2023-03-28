@@ -6,12 +6,13 @@ import Commission from 'Components/Commissions';
 import { PostDetail, PostMain, PostImage } from './module/Post';
 import { Container } from 'Container/Container';
 import Typography from 'Components/Typography';
-import { getCommission } from 'apis/api/commission';
-import { useParams } from 'react-router-dom';
+import { getCommission, deleteCommission } from 'apis/api/commission';
+import { useParams, useNavigate } from 'react-router-dom';
 
 function Post() {
   const [commission, setCommission] = useState(null);
   const params = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetch = async () => {
@@ -21,13 +22,23 @@ function Post() {
     fetch();
   }, [setCommission]);
 
+  const onclickEdit = () => {
+    navigate(`/edit-commission`, { commission });
+  };
+
+  const onclickDelete = async () => {
+    await deleteCommission(params.id);
+    setCommission(null); // 현재 commission 상태를 업데이트하기 전에 null 값으로 초기화
+    navigate('/');
+  };
+
   return (
     <Container>
       {commission && (
         <>
           <PostDetailBox>
             <ImageWrapper>
-              <PostImage />
+              <PostImage commission={commission} />
             </ImageWrapper>
             <PostDetailWrapper>
               <PostDetail commission={commission} />
@@ -43,6 +54,7 @@ function Post() {
             <EditButton>
               <Button
                 text="수정"
+                handleClick={onclickEdit}
                 addStyle={{
                   width: 'w_xl',
                   height: 'h_m',
@@ -54,6 +66,7 @@ function Post() {
             <EditButton>
               <Button
                 text="삭제"
+                handleClick={onclickDelete}
                 addStyle={{
                   width: 'w_xl',
                   height: 'h_m',
