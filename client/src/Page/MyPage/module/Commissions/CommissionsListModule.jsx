@@ -10,8 +10,6 @@ function CommissionsListModule() {
 
   const info = getMemberCommissionFn();
 
-  console.log(info);
-
   const handleClick = () => {
     navigate('/create-commission');
   };

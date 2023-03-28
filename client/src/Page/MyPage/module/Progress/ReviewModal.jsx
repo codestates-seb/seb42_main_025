@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from 'react';
 export function ReviewModal({ openReviewerHandler }) {
   const [currentWidth, setCurrentWidth] = useState();
   const ref = useRef(null);
-  console.log(ref);
 
   const toolbarItems =
     currentWidth < 700

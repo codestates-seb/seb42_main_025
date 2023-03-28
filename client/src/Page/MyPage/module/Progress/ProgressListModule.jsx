@@ -19,6 +19,7 @@ export function ProgressListModule() {
       </StyledHeaderArea>
       <StyledListBox>
         <ProgressListSingleModule />
+        <ProgressListSingleModule />
       </StyledListBox>
       <StyledButtonArea>
         {isMore ? (

@@ -10,7 +10,7 @@ function CommissionListSingleModule({ info }) {
       <TextContainer>
         <Typography text={info.title} bold="bold" line={1} size="l" variant="h3" />
         <Typography text={info.content} line={2} size="m" variant="p" lineHeight="l" />
-        <TagComponent text={info.tags} />
+        <TagComponent text="그림" />
       </TextContainer>
     </StyledSummaryBox>
   );

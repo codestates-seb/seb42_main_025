@@ -11,6 +11,7 @@ function ProgressListSingleModule() {
   const image = [
     'https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg',
     'https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg',
+    'https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg',
   ];
 
   const [isOpen, setIsOpen] = useState(false);
