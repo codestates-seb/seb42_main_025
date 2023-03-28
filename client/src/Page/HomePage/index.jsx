@@ -3,26 +3,14 @@ import Carousel from 'Components/Carousel';
 import Commissions from '../../Components/Commissions';
 import Typography from 'Components/Typography';
 import AdComponent from 'Components/AdComponent';
-import { useEffect, useState } from 'react';
-import { getCommissions } from 'apis/api/commissions';
-
-const items = [{ id: 'dd', url: 'dd' }];
+import { useState } from 'react';
 
 function Home() {
-  const [commissions, setCommissions] = useState(null);
-  const [carouselBackground, setCarouselBackground] = useState(items[0].url);
+  const [carouselBackground, setCarouselBackground] = useState(null);
 
   const changeCarouselImage = target => {
     setCarouselBackground(target);
   };
-
-  useEffect(() => {
-    const fetch = async () => {
-      const data = await getCommissions();
-      setCommissions(data);
-    };
-    fetch();
-  }, []);
 
   const view = 'view';
 
@@ -31,7 +19,7 @@ function Home() {
       <StyledContainer>
         <Contents>
           <CarouselBox>
-            <Carousel items={commissions} changeCarouselImage={changeCarouselImage} />
+            <Carousel changeCarouselImage={changeCarouselImage} />
           </CarouselBox>
           <CarouselBoxBackground url={carouselBackground} />
           <SellContainer>
