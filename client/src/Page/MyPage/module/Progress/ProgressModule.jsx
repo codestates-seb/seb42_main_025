@@ -34,10 +34,13 @@ export function ProgressModule({ info }) {
           padding="m"
         />
       </TitleContainer>
-      <StyledListContainer>
-        <ProgressListModule />
-        <ProgressListModule />
-      </StyledListContainer>
+      {tradeInfo[0] && (
+        <StyledListContainer>
+          <ProgressListModule infos={tradeInfo[0].pending} />
+          <ProgressListModule infos={tradeInfo[1].proceeding} />
+          <ProgressListModule infos={tradeInfo[2].done} />
+        </StyledListContainer>
+      )}
     </StyledContainer>
   );
 }
