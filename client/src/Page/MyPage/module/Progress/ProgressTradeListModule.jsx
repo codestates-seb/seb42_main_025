@@ -19,7 +19,7 @@ const StyledSummaryBox = styled.div`
   grid-template-rows: repeat(2, 1fr);
   width: 100%;
   max-height: 4rem;
-  padding: 0 0.5rem;
+  padding: 0 1rem;
   gap: 0.5rem;
   white-space: nowrap;
   border-left: 1px solid #cecece;
