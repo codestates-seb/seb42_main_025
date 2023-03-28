@@ -14,7 +14,6 @@ const AdBox = styled.div`
   grid-column: 1 / span 12;
   width: 100%;
   height: 12rem;
-  margin: 1rem 0 3rem 0;
 `;
 
 const AdImage = styled.img`
