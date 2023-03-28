@@ -2,13 +2,18 @@ import styled from 'styled-components';
 import StateComponent from 'Components/StateComponent';
 import Typography from 'Components/Typography';
 import Button from 'Components/Button';
-import ProgressTradeInfoModule from './ProgressTradeInfoModule';
+import ProgressTradeListModule from './ProgressTradeListModule';
 import ImageComponent from 'Components/ImageComponent';
 import { useState } from 'react';
 import { ReviewModal } from './ReviewModal';
-import { getMemberSubInfoFn } from 'customHook/getMemberInfoFetch';
+// import { getMemberSubInfoFn } from 'customHook/getMemberInfoFetch';
 
-function ProgressListSingleModule({ infos }) {
+function ProgressListSingleModule() {
+  const image = [
+    'https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg',
+    'https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg',
+  ];
+
   const [isOpen, setIsOpen] = useState(false);
 
   const openReviewerHandler = () => {
@@ -47,7 +52,7 @@ function ProgressListSingleModule({ infos }) {
               </StyledImgContainer>
             </StyledCommissionContainer>
             <StyledCommission>
-              <ProgressTradeInfoModule info={info} />
+              <ProgressTradeListModule info={info} />
             </StyledCommission>
             <StyledClient>
               <Typography

@@ -23,6 +23,7 @@ function ProfileModule({ currentMemberInfo }) {
         alt="프로필 사진"
         width="l"
       />
+
       {currentMemberInfo && (
         <>
           <Typography text={currentMemberInfo.nickname} size="xl" bold="bold" />

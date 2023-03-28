@@ -70,6 +70,12 @@ export const routerList = [
     isPrivate: false,
     element: <NotFoundPage />,
   },
+  {
+    id: 11,
+    path: '/edit-commission',
+    isPrivate: false,
+    element: <CreatePost />,
+  },
 ];
 
 // 출처: seb39_main_013

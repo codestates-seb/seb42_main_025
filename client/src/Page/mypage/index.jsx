@@ -9,6 +9,8 @@ import { getMemberInfoFn } from 'useFetch/getMemberInfoFetch';
 function MyPage() {
   const currentMemberInfo = getMemberInfoFn();
 
+  console.log(currentMemberInfo);
+
   return (
     <Container>
       {currentMemberInfo && (

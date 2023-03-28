@@ -25,7 +25,6 @@ export function ProgressListModule({ infos }) {
           <ProgressListSingleModule info={info} />;
         </StyledListBox>;
       })}
-
       <StyledButtonArea>
         {isMore ? (
           <Button
