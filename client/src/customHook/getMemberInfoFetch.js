@@ -1,18 +1,21 @@
 import { getUserInfo } from 'apis/api/user';
 import { useState, useEffect } from 'react';
 
-export const getMemberInfoFn = () => {
+export const getMemberInfoFn = id => {
   const [currentMemberInfo, setCurrentMemberInfo] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetch = async () => {
-      const memberId = localStorage.getItem('memberId');
-      const data = await getUserInfo(memberId);
-      setCurrentMemberInfo(data);
+      const { data, status } = await getUserInfo(id);
+      if (status < 300) {
+        setCurrentMemberInfo(data);
+        setLoading(false);
+      }
     };
     fetch();
-  }, [setCurrentMemberInfo]);
-  return currentMemberInfo;
+  }, [setCurrentMemberInfo, id, setLoading, getUserInfo]);
+  return { currentMemberInfo, loading };
 };
 
 export const getMemberRoleFn = () => {

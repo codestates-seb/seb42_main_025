@@ -19,7 +19,7 @@ export const routerList = [
   {
     id: 2,
     path: '/login',
-    isPrivate: false, //true
+    isPrivate: true,
     element: <LoginPage />,
   },
   {
@@ -43,7 +43,7 @@ export const routerList = [
   {
     id: 6,
     path: '/trade/:id',
-    isPrivate: false, //true
+    isPrivate: true, //true
     element: <TradePage />,
   },
   {
@@ -55,7 +55,7 @@ export const routerList = [
   {
     id: 8,
     path: '/chat/:id',
-    isPrivate: false, //true
+    isPrivate: true, //true
     element: <ChatPage />,
   },
   {
