@@ -7,7 +7,6 @@ import { getMemberCommissionFn } from 'useFetch/getMemberCommissionFetch';
 
 function CommissionsListModule() {
   const navigate = useNavigate();
-
   const info = getMemberCommissionFn();
 
   console.log(info);
