@@ -38,13 +38,13 @@ function commission() {
               </TagBox>
               <SellBox onClick={() => handleClick(item.commissionId)}>
                 <ImageComponent
-                  src={item.imageUrl}
-                  alt={item.imageUrl}
+                  src={item.imageUrl[1]}
+                  alt={item.imageUrl[1]}
                   imgStyle="commission"
                   width="xl"
                 />
-                <Typography text={item.title} bold="bold" />
-                <Typography text={item.memberName} size="s" />
+                <Typography text={item.title} bold="bold" size="l" />
+                <Typography text={item.memberName} size="m" />
               </SellBox>
             </div>
           );
@@ -58,6 +58,7 @@ const CommissionBox = styled.div`
   grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
   max-width: 100%;
+  height: 100%;
 `;
 
 const TagBox = styled.div`
@@ -73,6 +74,7 @@ const SellBox = styled.div`
   border: none;
   background-color: transparent;
   justify-content: start;
+  height: 100%;
   cursor: pointer;
 
   &:hover {
