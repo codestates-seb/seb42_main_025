@@ -49,7 +49,7 @@ function CreatePost() {
       } else {
         postCommission(formData);
       }
-      navigate(`/commission/${id}`);
+      navigate(`/mypage/${id}`);
     }
   };
   return (

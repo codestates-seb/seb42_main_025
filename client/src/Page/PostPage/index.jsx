@@ -14,14 +14,6 @@ function Post() {
   const params = useParams();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetch = async () => {
-      const data = await getCommission(params.id);
-      setCommission(data);
-    };
-    fetch();
-  }, [setCommission]);
-
   const onclickEdit = () => {
     navigate(`/edit-commission`, { commission });
   };
@@ -31,6 +23,14 @@ function Post() {
     setCommission(null); // 현재 commission 상태를 업데이트하기 전에 null 값으로 초기화
     navigate('/');
   };
+
+  useEffect(() => {
+    const fetch = async () => {
+      const data = await getCommission(params.id);
+      setCommission(data);
+    };
+    fetch();
+  }, [setCommission]);
 
   return (
     <Container>
