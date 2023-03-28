@@ -23,8 +23,12 @@ function ProfileModule({ currentMemberInfo }) {
         alt="프로필 사진"
         width="l"
       />
-      <Typography text={currentMemberInfo.nickname} size="xl" bold="bold" />
-      <Typography text={currentMemberInfo.email} line={25} lineHeight="l" />
+      {currentMemberInfo && (
+        <>
+          <Typography text={currentMemberInfo.nickname} size="xl" bold="bold" />
+          <Typography text={currentMemberInfo.email} line={25} lineHeight="l" />
+        </>
+      )}
     </StyledContainer>
   );
 }

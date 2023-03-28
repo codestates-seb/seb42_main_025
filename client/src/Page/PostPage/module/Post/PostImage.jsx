@@ -1,33 +1,55 @@
-import { useState } from 'react';
-import Food from '../../../../assets/1.JPG';
-import shoes from '../../../../assets/shoes1.jpg';
+import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import ImageComponent from 'Components/ImageComponent';
 
-export const PostImage = () => {
-  const eat = [
-    { id: 1, url: Food },
-    { id: 2, url: shoes },
-    { id: 3, url: Food },
-    { id: 4, url: shoes },
-    { id: 5, url: Food },
-    { id: 6, url: shoes },
-  ];
+export const PostImage = ({ commission }) => {
+  const image = commission.imageUrl
+    .map((url, index) => ({ url, index }))
+    .filter(item => item.index % 2 === 1);
+  const [currItem, setCurrItem] = useState(image[0]);
+  const canvasRef = useRef(null);
 
-  const [currItem, setCurrItem] = useState(eat[0]); //선택한 사진 상태설정
+  useEffect(() => {
+    // 검색해보기
+    const canvas = canvasRef.current;
+    // 검색해보기
+    const ctx = canvas.getContext('2d');
+    // 검색해보기
+    const img = new Image();
+    img.src = currItem.url;
+    // 검색해보기
+    img.onload = () => {
+      let width = img.width;
+      let height = img.height;
 
-  const onView = id => {
-    //고유번호인 id를 받아서 해당 사진을 찾아라
-    setCurrItem(eat.find(item => item.id === id)); //배열함수중 해당값만 찾아주는 find함수를 쓴다
+      if (width > 700) {
+        height *= 700 / width;
+        width = 700;
+      }
+      if (height > 600) {
+        width *= 600 / height;
+        height = 600;
+      }
+
+      canvas.width = width;
+      canvas.height = height;
+      ctx.drawImage(img, 0, 0, width, height);
+    };
+  }, [currItem]);
+
+  const onView = index => {
+    setCurrItem(image.find(item => item.index === index));
   };
 
   return (
     <>
-      <Thumbnail src={currItem.url} alt={currItem.url} />
+      <ThumbnailBox>
+        <CanvasThumbnail ref={canvasRef} />
+      </ThumbnailBox>
       <ImageBox>
-        {eat.map(item => (
-          <Button key={item.id} onClick={() => onView(item.id)}>
-            <ImageComponent src={item.url} alt={item.title} imgStyle="commission" />
+        {image.map(item => (
+          <Button key={item.index} onClick={() => onView(item.index)}>
+            <ImageComponent src={item.url} alt={item.title} width="m" imgStyle="commission" />
           </Button>
         ))}
       </ImageBox>
@@ -35,8 +57,22 @@ export const PostImage = () => {
   );
 };
 
-const Thumbnail = styled.img`
+const ThumbnailBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+  height: 600px;
+`;
+
+const CanvasThumbnail = styled.canvas`
+  max-width: 700px;
+  max-height: 600px;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border: 1px solid #cecece;
+  border-radius: 0.25rem;
 `;
 
 const ImageBox = styled.div`
@@ -45,10 +81,12 @@ const ImageBox = styled.div`
 `;
 
 const Button = styled.button`
+  height: 100px;
   border: none;
   background-color: #fff;
-  padding: 0px 3px;
-  margin: 6px 0px;
+  margin: 6px 3px;
+  border: 1px solid #cecece;
+  border-radius: 0.25rem;
   cursor: pointer;
 
   &:active {

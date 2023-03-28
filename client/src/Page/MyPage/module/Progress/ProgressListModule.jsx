@@ -4,23 +4,28 @@ import Typography from 'Components/Typography';
 import Button from 'Components/Button';
 import { useState } from 'react';
 
-export function ProgressListModule() {
+export function ProgressListModule({ infos }) {
   const [isMore, setIsMore] = useState(false);
+
   const moreClicked = () => {
     setIsMore(!isMore);
     console.log(isMore);
   };
 
+  console.log(infos);
+
   return (
     <StyledContainer>
       <StyledHeaderArea>
         <Typography text="신청 의뢰" variant="h3" size="l" bold="bold" />
-        <div>{3}</div>
+        {infos && <div>{infos.length}</div>}
       </StyledHeaderArea>
-      <StyledListBox>
-        <ProgressListSingleModule />
-        <ProgressListSingleModule />
-      </StyledListBox>
+      {infos.map(info => {
+        <StyledListBox>
+          <ProgressListSingleModule info={info} />;
+        </StyledListBox>;
+      })}
+
       <StyledButtonArea>
         {isMore ? (
           <Button
@@ -61,7 +66,7 @@ const StyledHeaderArea = styled.div`
   width: 100%;
 `;
 
-const StyledListBox = styled.ul``;
+const StyledListBox = styled.div``;
 
 const StyledButtonArea = styled.div`
   display: grid;

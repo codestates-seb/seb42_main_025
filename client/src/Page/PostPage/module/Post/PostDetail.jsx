@@ -29,7 +29,7 @@ export function PostDetail({ commission }) {
             line={2}
           />
           <Typography
-            text={commission.content}
+            text={commission.subContent}
             variant="p"
             size="l"
             margin="xs"

@@ -2,12 +2,7 @@ import styled from 'styled-components';
 import Typography from 'Components/Typography';
 import ChatListModule from './ChatListModule';
 
-function ChatModule() {
-  const info = {
-    image: 'https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg',
-    content: '채팅 내용',
-    writer: '채팅 상대',
-  };
+function ChatModule({ info }) {
   return (
     <StyledContainer>
       <Typography
