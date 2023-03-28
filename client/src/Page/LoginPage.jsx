@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import mainLogo from 'assets/Main_logo.png';
 import InputComponent from 'Components/InputComponent';
@@ -14,14 +13,13 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
-  const navigate = useNavigate();
-
   const handleLogin = async () => {
     try {
       const result = await login({ email, password });
       if (result.success) {
         console.log('로그인 성공!');
-        navigate('/');
+        console.log();
+        window.location.replace('/');
       } else {
         console.log('로그인 실패!');
         console.log(result.message);
