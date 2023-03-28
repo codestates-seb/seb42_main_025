@@ -18,10 +18,13 @@
   2️⃣ Frontend - 이현동
 
 
+
 ## 기술 스택
 ### Frontend ☺️
+![42기_Team_025_프로젝트메뉴얼”-014](https://user-images.githubusercontent.com/58281884/228263988-018106dc-8f0a-4fd8-965d-0b34e4aebb22.png)
 
-REACT / STYLED-COMPONENT / AXIOS
+
+
 
 ### Backend 😏
 ![42기_Team_025_프로젝트메뉴얼”-015](https://user-images.githubusercontent.com/58281884/228251752-9c7445a6-4c46-4dba-862f-4f3bc479d0fc.png)
