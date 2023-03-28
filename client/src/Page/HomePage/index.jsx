@@ -88,8 +88,8 @@ const StyledContainer = styled.div`
 const Contents = styled.div`
   display: grid;
   grid-template-columns: repeat(12, 1fr); //repeat(6, 1fr)은 1fr 1fr 1fr 1fr 1fr 1fr과 같아요.
-  grid-template-rows: repeat(8, minmax(3.5rem, auto));
-  gap: 1rem;
+  grid-template-rows: repeat(auto, minmax(3.5rem, auto));
+  gap: 8rem 0;
 `;
 
 const CarouselBox = styled.div`

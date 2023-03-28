@@ -58,7 +58,6 @@ const CommissionBox = styled.div`
   grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
   max-width: 100%;
-  height: 100%;
 `;
 
 const TagBox = styled.div`
@@ -66,7 +65,8 @@ const TagBox = styled.div`
 `;
 
 const SellBox = styled.div`
-  display: grid;
+  display: flex;
+  flex-direction: column;
   color: black;
   text-decoration: none;
   outline: none;
@@ -74,7 +74,6 @@ const SellBox = styled.div`
   border: none;
   background-color: transparent;
   justify-content: start;
-  height: 100%;
   cursor: pointer;
 
   &:hover {
