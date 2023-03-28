@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { RxFilePlus, RxCross2, RxCheckCircled } from 'react-icons/rx';
 import { Alert } from '@mui/material';
 
-export function Dropzone({ seFiles }) {
+export function Dropzone({ setIsFiles }) {
   const [files, setFiles] = useState([]);
   const [isBigger, setIsBigger] = useState(false);
   const [isFull, setIsFull] = useState(false);
@@ -51,7 +51,7 @@ export function Dropzone({ seFiles }) {
   useEffect(() => {
     // 메모리 누수를 방지하기 위해 데이터 URL을 해지합니
     return () => files.forEach(file => URL.revokeObjectURL(file.preview));
-  }, [seFiles]);
+  }, [setIsFiles]);
 
   const removeFile = name => {
     setFiles(previousFiles => previousFiles.filter(file => file.name !== name));
@@ -81,7 +81,7 @@ export function Dropzone({ seFiles }) {
   console.log(images);
 
   useEffect(() => {
-    seFiles(files);
+    setIsFiles(files);
   }, [files]);
 
   return (
