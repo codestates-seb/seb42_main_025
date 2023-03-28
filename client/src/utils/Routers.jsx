@@ -72,7 +72,7 @@ export const routerList = [
   },
   {
     id: 11,
-    path: '/edit-commission',
+    path: '/edit-commission/:id',
     isPrivate: false,
     element: <CreatePost />,
   },
