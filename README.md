@@ -24,8 +24,7 @@
 REACT / STYLED-COMPONENT / AXIOS
 
 ### Backend 😏
-
-SPRINGBOOT/ JPA / H2 / NGROK / HIBERNATE
+![42기_Team_025_프로젝트메뉴얼”-015](https://user-images.githubusercontent.com/58281884/228251752-9c7445a6-4c46-4dba-862f-4f3bc479d0fc.png)
 
 
 커밋 메세지 컨벤션
