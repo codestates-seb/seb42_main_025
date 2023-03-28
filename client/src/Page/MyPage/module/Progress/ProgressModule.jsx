@@ -21,6 +21,8 @@ export function ProgressModule({ info }) {
     tradeInfo = getTradeFn(memberData);
   }
 
+  console.log(tradeInfo);
+
   return (
     <StyledContainer>
       <TitleContainer>
