@@ -9,6 +9,10 @@ export const PostImage = ({ commission }) => {
   const [currItem, setCurrItem] = useState(image[0]);
   const canvasRef = useRef(null);
 
+  const onView = index => {
+    setCurrItem(image.find(item => item.index === index));
+  };
+
   useEffect(() => {
     // 검색해보기
     const canvas = canvasRef.current;
@@ -36,10 +40,6 @@ export const PostImage = ({ commission }) => {
       ctx.drawImage(img, 0, 0, width, height);
     };
   }, [currItem]);
-
-  const onView = index => {
-    setCurrItem(image.find(item => item.index === index));
-  };
 
   return (
     <>
