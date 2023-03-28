@@ -4,7 +4,7 @@
 📆 프로젝트 기간
 
 
-💪 팀원
+## 💪 팀원
 
 ⭐ Backend 팀장 - 신은진
 
@@ -18,12 +18,12 @@
   2️⃣ Frontend - 이현동
 
 
-기술 스택
-Frontend ☺️
+## 기술 스택
+### Frontend ☺️
 
 REACT / STYLED-COMPONENT / AXIOS
 
-Backend 😏
+### Backend 😏
 
 SPRINGBOOT/ JPA / H2 / NGROK / HIBERNATE
 
