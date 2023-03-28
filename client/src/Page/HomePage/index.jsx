@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Carousel from 'Components/Carousel';
-import Commission from '../../Components/Commissions';
+import Commissions from '../../Components/Commissions';
 import Typography from 'Components/Typography';
 import AdComponent from 'Components/AdComponent';
 import { useEffect, useState } from 'react';
@@ -24,6 +24,8 @@ function Home() {
     fetch();
   }, []);
 
+  const view = 'view';
+
   return (
     <>
       <StyledContainer>
@@ -42,7 +44,7 @@ function Home() {
               color="tea_2"
               padding="m"
             />
-            <Commission items={commissions} />
+            <Commissions />
           </SellContainer>
           <AdComponent />
           <SellContainer>
@@ -55,11 +57,10 @@ function Home() {
               color="tea_2"
               padding="m"
             />
-            <Commission items={commissions} />
+            <Commissions path={view} />
           </SellContainer>
-
           <SellContainer>
-            <Typography
+            {/* <Typography
               variant="h2"
               text="추천 커미션"
               size="xl"
@@ -68,7 +69,7 @@ function Home() {
               color="tea_2"
               padding="m"
             />
-            <Commission items={commissions} />
+            <Commissions /> */}
           </SellContainer>
         </Contents>
       </StyledContainer>
