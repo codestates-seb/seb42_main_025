@@ -3,12 +3,14 @@ import { useDropzone } from 'react-dropzone';
 import styled from 'styled-components';
 import { RxFilePlus, RxCross2, RxCheckCircled } from 'react-icons/rx';
 import { Alert } from '@mui/material';
+import { imageProcess } from 'utils/imageProcess';
 
-export function Dropzone({ setIsFiles }) {
+export function Dropzone({ setIsFiles, defaultImage }) {
   const [files, setFiles] = useState([]);
   const [isBigger, setIsBigger] = useState(false);
   const [isFull, setIsFull] = useState(false);
   const [isDuplication, setIsDuplication] = useState(false);
+  const defaultImages = defaultImage ? imageProcess(defaultImage) : [];
 
   const onDrop = useCallback(
     (acceptedFiles, rejectedFiles) => {
@@ -65,6 +67,13 @@ export function Dropzone({ setIsFiles }) {
       </Remove>
     </PhotoRemove>
   ));
+  console.log(defaultImages);
+
+  const editImages = defaultImages.map(item => (
+    <PhotoRemove key={item.idx}>
+      <Photo src={item.url} alt={item.url} />
+    </PhotoRemove>
+  ));
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: {
@@ -103,7 +112,10 @@ export function Dropzone({ setIsFiles }) {
         {isBigger && <Alert severity="error">이미지의 크기가 너무 큽니다</Alert>}
       </div>
       <ImgBox>
-        <PhotoBox>{images}</PhotoBox>
+        <PhotoBox>
+          {images}
+          {editImages}
+        </PhotoBox>
       </ImgBox>
     </Container>
   );
