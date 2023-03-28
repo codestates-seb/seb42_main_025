@@ -5,23 +5,20 @@ import ProfileModule from './module/Profile/ProfileModule';
 import CommissionsListModule from './module/Commissions/CommissionsListModule';
 import ChatModule from './module/Chat/ChatModule';
 import { getMemberInfoFn } from 'useFetch/getMemberInfoFetch';
-import { getMemberRoleFn } from 'useFetch/getMemberInfoFetch';
 
 function MyPage() {
   const currentMemberInfo = getMemberInfoFn();
-  const currentMemberRole = getMemberRoleFn();
-
-  console.log(currentMemberRole);
-  console.log(currentMemberInfo);
 
   return (
     <Container>
       {currentMemberInfo && (
         <StyledContents>
-          <ProgressModule currentMemberInfo={currentMemberInfo} />
-          <ProfileModule currentMemberInfo={currentMemberInfo} />
-          <CommissionsListModule currentMemberInfo={currentMemberInfo} />
-          <ChatModule currentMemberInfo={currentMemberInfo} />
+          <ProgressModule info={currentMemberInfo} />
+          <ProfileModule info={currentMemberInfo} />
+          {currentMemberInfo.roles[0] === 'AUTHOR' ? (
+            <CommissionsListModule info={currentMemberInfo} />
+          ) : null}
+          <ChatModule info={currentMemberInfo} />
         </StyledContents>
       )}
     </Container>

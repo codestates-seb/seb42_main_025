@@ -4,13 +4,18 @@ import styled from 'styled-components';
 import TagComponent from 'Components/TagComponent';
 
 function CommissionListSingleModule({ info }) {
+  console.log(info);
   return (
     <StyledSummaryBox>
       <ImageComponent src={info.image} alt={info.title} imgStyle="commission" width="m" />
       <TextContainer>
         <Typography text={info.title} bold="bold" line={1} size="l" variant="h3" />
         <Typography text={info.content} line={2} size="m" variant="p" lineHeight="l" />
-        <TagComponent text="그림" />
+        <StyledTags>
+          {info.tags.map(el => (
+            <TagComponent key={el} text={el} />
+          ))}
+        </StyledTags>
       </TextContainer>
     </StyledSummaryBox>
   );
@@ -35,5 +40,10 @@ const TextContainer = styled.div`
   padding-top: 0.5rem;
   flex-direction: column;
   gap: 0.5rem;
+`;
+
+const StyledTags = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
 export default CommissionListSingleModule;
