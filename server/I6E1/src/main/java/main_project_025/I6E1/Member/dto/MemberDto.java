@@ -3,6 +3,8 @@ package main_project_025.I6E1.Member.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import main_project_025.I6E1.auth.enums.Roles;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class MemberDto {
         private String email;
         private String password;
         private String nickname;
-        private List<String> roles;
+        private List<Roles> roles;
     }
 
     @Getter
@@ -47,6 +49,6 @@ public class MemberDto {
         private String nickname;
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
-        private List<String> roles;
+        private List<Roles> roles;
     }
 }
