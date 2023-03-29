@@ -6,7 +6,7 @@ import TextEditor from 'Components/Editor';
 import { Dropzone, CreateTag, InputText } from './module';
 import { postCommission, patchCommission, getCommission } from 'apis/api/commission';
 import { useEffect, useState, useRef } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams, useNavigate } from 'react-router-dom';
 import { Alert } from '@mui/material';
 
 function CreatePost() {
@@ -20,10 +20,10 @@ function CreatePost() {
   const subContentRef = useRef(null);
   const contentRef = useRef(null);
   const { id } = useParams();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  // const memberId = localStorage.getItem('memberId');
+  const memberId = localStorage.getItem('memberId');
   const handleSubmit = e => {
     e.preventDefault();
     if (
@@ -54,7 +54,7 @@ function CreatePost() {
         formData.append('content', contentRef.current?.getInstance().getMarkdown());
         postCommission(formData);
       }
-      // navigate(`/mypage/${memberId}`);
+      navigate(`/mypage/${memberId}`);
     }
   };
   if (pathname === `/edit-commission/${id}`) {
