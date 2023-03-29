@@ -4,7 +4,7 @@ import Typography from 'Components/Typography';
 import ImageComponent from 'Components/ImageComponent';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getCommissions } from 'apis/api/commissions';
+import { getSortCommissions } from 'apis/api/commissions';
 
 function commissions({ path }) {
   // const params = useParams();
@@ -30,7 +30,7 @@ function commissions({ path }) {
           break;
       }
       console.log(apiPath);
-      const data = await getCommissions(apiPath);
+      const data = await getSortCommissions(apiPath);
       setCommissions(data);
     };
     fetch();
