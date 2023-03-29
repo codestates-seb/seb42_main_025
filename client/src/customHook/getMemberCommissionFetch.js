@@ -1,12 +1,10 @@
 import { getCommissionsFn } from './getCommissionFetch';
-import { getMemberInfoFn } from './getMemberInfoFetch';
 
-export const getMemberCommissionFn = () => {
+export const getMemberCommissionFn = email => {
   const commissions = getCommissionsFn();
-  const memberInfo = getMemberInfoFn();
 
-  if (commissions && memberInfo) {
-    return commissions.filter(el => el.memberEmail === memberInfo.email);
+  if (commissions) {
+    return commissions.filter(el => el.memberEmail === email);
   }
 
   return;
