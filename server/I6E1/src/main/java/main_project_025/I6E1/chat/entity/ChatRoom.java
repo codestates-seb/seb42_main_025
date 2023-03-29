@@ -1,18 +1,10 @@
 package main_project_025.I6E1.chat.entity;
 
 import lombok.*;
-import main_project_025.I6E1.Member.entity.Member;
-import main_project_025.I6E1.chat.service.ChatService;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.SQLDelete;
+import main_project_025.I6E1.member.entity.Member;
 import org.hibernate.annotations.Where;
-import org.springframework.web.socket.WebSocketSession;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @Getter @Setter
 @AllArgsConstructor

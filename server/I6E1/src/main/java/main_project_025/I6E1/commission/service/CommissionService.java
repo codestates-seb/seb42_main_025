@@ -2,12 +2,10 @@ package main_project_025.I6E1.commission.service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import main_project_025.I6E1.Member.entity.Member;
-import main_project_025.I6E1.Member.repository.MemberRepository;
-import main_project_025.I6E1.Member.service.MemberService;
+import main_project_025.I6E1.member.entity.Member;
+import main_project_025.I6E1.member.repository.MemberRepository;
 import main_project_025.I6E1.auth.userdetails.AuthMember;
 import main_project_025.I6E1.aws.AwsS3Service;
-import main_project_025.I6E1.commission.dto.CommissionDto;
 import main_project_025.I6E1.commission.entity.Commission;
 import main_project_025.I6E1.commission.repository.CommissionRepository;
 import main_project_025.I6E1.commission.repository.CommissionRepositoryImpl;

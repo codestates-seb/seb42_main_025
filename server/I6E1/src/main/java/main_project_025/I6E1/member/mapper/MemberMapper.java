@@ -1,7 +1,7 @@
-package main_project_025.I6E1.Member.mapper;
+package main_project_025.I6E1.member.mapper;
 
-import main_project_025.I6E1.Member.dto.MemberDto;
-import main_project_025.I6E1.Member.entity.Member;
+import main_project_025.I6E1.member.dto.MemberDto;
+import main_project_025.I6E1.member.entity.Member;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 

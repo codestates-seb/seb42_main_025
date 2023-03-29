@@ -1,11 +1,9 @@
 package main_project_025.I6E1.commission.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import main_project_025.I6E1.Member.entity.Member;
+import main_project_025.I6E1.member.entity.Member;
 import main_project_025.I6E1.global.auditable.Auditable;
 import main_project_025.I6E1.tag.entity.CommissionTag;
 import main_project_025.I6E1.trade.entity.Trade;

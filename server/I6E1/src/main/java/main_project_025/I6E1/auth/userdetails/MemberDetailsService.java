@@ -2,8 +2,8 @@ package main_project_025.I6E1.auth.userdetails;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import main_project_025.I6E1.Member.entity.Member;
-import main_project_025.I6E1.Member.repository.MemberRepository;
+import main_project_025.I6E1.member.entity.Member;
+import main_project_025.I6E1.member.repository.MemberRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

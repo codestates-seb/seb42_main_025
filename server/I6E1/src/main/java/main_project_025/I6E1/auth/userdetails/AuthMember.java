@@ -1,6 +1,6 @@
 package main_project_025.I6E1.auth.userdetails;
 
-import main_project_025.I6E1.Member.entity.Member;
+import main_project_025.I6E1.member.entity.Member;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
