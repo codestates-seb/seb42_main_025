@@ -8,6 +8,7 @@ import { getMemberInfoFn } from 'customHook/getMemberInfoFetch';
 import { useParams } from 'react-router-dom';
 import LoadingComponent from 'Components/LoadingComponent';
 
+
 function MyPage() {
   const { id } = useParams();
   const { currentMemberInfo, loading } = getMemberInfoFn(id);

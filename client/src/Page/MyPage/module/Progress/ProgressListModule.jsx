@@ -55,7 +55,8 @@ export function ProgressListModule({ infos }) {
           </StyledButtonArea>
         </>
       ) : (
-        <LoadingComponent />
+      <LoadingComponent />
+
       )}
     </StyledContainer>
   );
