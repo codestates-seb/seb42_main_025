@@ -6,7 +6,8 @@ import ProgressTradeListModule from './ProgressTradeListModule';
 import ImageComponent from 'Components/ImageComponent';
 import { useState } from 'react';
 import { ReviewModal } from './ReviewModal';
-import LodaingComponent from 'Components/LodaingComponent';
+import LoadingComponent from 'Components/LoadingComponent';
+
 import { patchTradeStatus } from 'apis/api/trade';
 
 function ProgressListSingleModule({ info }) {
@@ -148,7 +149,7 @@ function ProgressListSingleModule({ info }) {
           ) : null}
         </StyledContainer>
       ) : (
-        <LodaingComponent />
+        <LoadingComponent />
       )}
     </>
   );

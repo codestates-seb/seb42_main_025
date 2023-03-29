@@ -5,7 +5,7 @@ import Button from 'Components/Button';
 import { useState } from 'react';
 // import { getMemberInfoFn } from 'customHook/getMemberInfoFetch';
 import { getTradeSubInfoFn } from 'customHook/getTradeSubInfoFetch';
-import LodaingComponent from 'Components/LodaingComponent';
+import LoadingComponent from 'Components/LoadingComponent';
 
 export function ProgressListModule({ infos }) {
   const [isMore, setIsMore] = useState(false);
@@ -55,7 +55,8 @@ export function ProgressListModule({ infos }) {
           </StyledButtonArea>
         </>
       ) : (
-        <LodaingComponent />
+      <LoadingComponent />
+
       )}
     </StyledContainer>
   );

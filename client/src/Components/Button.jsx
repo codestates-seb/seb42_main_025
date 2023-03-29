@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-function Button({ buttonType, text, handleClick, addStyle = {} }) {
+function Button({ buttonType, text, handleClick, id, addStyle = {} }) {
   return (
-    <StyledButton type={buttonType} onClick={handleClick} addStyle={addStyle}>
+    <StyledButton id={id} type={buttonType} onClick={handleClick} addStyle={addStyle}>
       {text}
     </StyledButton>
   );
