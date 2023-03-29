@@ -7,12 +7,6 @@ import TextEditor from 'Components/Editor';
 import { postTrade } from 'apis/api/trade';
 
 function TradePage() {
-  const info = {
-    image: 'https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg',
-    title: 'title',
-    content: 'content',
-  };
-
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const params = useParams();
@@ -46,7 +40,7 @@ function TradePage() {
 
   return (
     <Container>
-      <TradeModuleBox info={info} />
+      <TradeModuleBox />
       <TitleLabel>제목</TitleLabel>
       <TitleInput
         type="text"
@@ -64,7 +58,7 @@ function TradePage() {
         onSubmit={handleSubmit}
         style={{ position: 'absolute', bottom: '4rem', right: '0.5rem' }}
       >
-        <Button type="submit" text="신청하기" addStyle={{ width: 'w_m', height: 'h_s' }} />
+        <Button type="submit" text="신청하기" addStyle={{ padding: '0.5rem 1rem' }} />
       </form>
     </Container>
   );
