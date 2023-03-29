@@ -1,7 +1,6 @@
 package main_project_025.I6E1.Member.entity;
 
 import lombok.*;
-import main_project_025.I6E1.auth.enums.Roles;
 import main_project_025.I6E1.chat.entity.ChatRoom;
 import main_project_025.I6E1.global.auditable.Auditable;
 import main_project_025.I6E1.trade.entity.Trade;
@@ -22,21 +21,19 @@ public class Member extends Auditable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberId;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @Column
     private String password;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String nickname;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private List<Roles> roles = new ArrayList<>();
+    private List<String> roles = new ArrayList<>();
 
-    public void setRoles(List<Roles> roles) {
+    public void setRoles(List<String> roles) {
         this.roles = roles;
     }
 
