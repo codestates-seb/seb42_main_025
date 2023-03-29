@@ -1,10 +1,9 @@
-package main_project_025.I6E1.Member.dto;
+package main_project_025.I6E1.member.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
-import main_project_025.I6E1.auth.enums.Roles;
 
 import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
@@ -29,7 +28,7 @@ public class MemberDto {
         @NonNull
         @Pattern(regexp = ".{2,}")
         private String nickname;
-        private List<Roles> roles;
+        private List<String> roles;
     }
 
     @Getter
