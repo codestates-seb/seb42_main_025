@@ -1,6 +1,7 @@
 package main_project_025.I6E1.auth.userdetails;
 
 import main_project_025.I6E1.Member.entity.Member;
+import main_project_025.I6E1.auth.enums.Roles;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,7 +13,7 @@ public class AuthMember implements UserDetails {
     private Long memberId;
     private String email;
     private String password;
-    private List<String> roles;
+    private List<Roles> roles;
 
     private AuthMember(Member member) {
         this.memberId = member.getMemberId();
@@ -21,7 +22,7 @@ public class AuthMember implements UserDetails {
         this.roles = member.getRoles();
     }
 
-    private AuthMember(Long id, String email, List<String> roles) {
+    private AuthMember(Long id, String email, List<Roles> roles) {
         this.memberId = id;
         this.email = email;
         this.password = "";
@@ -32,7 +33,7 @@ public class AuthMember implements UserDetails {
         return new AuthMember(member);
     }
 
-    public static AuthMember of(Long id, String email, List<String> roles) {
+    public static AuthMember of(Long id, String email, List<Roles> roles) {
         return new AuthMember(id, email, roles);
     }
 

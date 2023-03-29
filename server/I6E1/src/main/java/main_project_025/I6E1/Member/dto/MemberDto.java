@@ -2,7 +2,11 @@ package main_project_025.I6E1.Member.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
+import main_project_025.I6E1.auth.enums.Roles;
+
+import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -16,10 +20,16 @@ public class MemberDto {
     @Setter
     @AllArgsConstructor
     public static class Post{
+        @NonNull
+        @Pattern(regexp = "^[a-zA-Z0-9+.-]+@[a-zA-Z0-9.-]+$")
         private String email;
+        @NonNull
+        @Pattern(regexp = ".{8,}")
         private String password;
+        @NonNull
+        @Pattern(regexp = ".{2,}")
         private String nickname;
-        private List<String> roles;
+        private List<Roles> roles;
     }
 
     @Getter
@@ -47,6 +57,6 @@ public class MemberDto {
         private String nickname;
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
-        private List<String> roles;
+        private List<Roles> roles;
     }
 }

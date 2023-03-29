@@ -6,11 +6,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.security.SignatureException;
 import lombok.RequiredArgsConstructor;
+import main_project_025.I6E1.auth.enums.Roles;
 import main_project_025.I6E1.auth.jwt.JwtTokenizer;
 import main_project_025.I6E1.auth.userdetails.AuthMember;
 import main_project_025.I6E1.auth.utils.CustomAuthorityUtils;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -20,6 +22,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,19 +69,26 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
     }
 
     private void setAuthenticationToContext(Map<String, Object> claims) throws JsonProcessingException {
-        ObjectMapper objectMapper= new ObjectMapper();
+        ObjectMapper objectMapper = new ObjectMapper();
         Long id = Long.valueOf(String.valueOf(claims.get("memberId")));
         String name = (String) claims.get("username");
-        List<String> roles = ((List<LinkedHashMap<String, String>>) claims.get("roles")).stream()
-                .map(role -> role.get("authority"))
+        List<Roles> roles = ((List<LinkedHashMap<String, String>>) claims.get("roles")).stream()
+                .map(role -> Roles.valueOf(role.get("authority")))
                 .collect(Collectors.toList());
 
-        var authMember = AuthMember.of(id, name, roles);
+        if (roles == null || roles.isEmpty()) {
+            roles = Collections.singletonList(Roles.AUTHOR);
+        }
+
+        var authMember = AuthMember.of(id, name, null);
         Authentication authentication
                 = new UsernamePasswordAuthenticationToken(authMember, null,
-                roles.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+                roles.stream()
+                        .map(role -> new SimpleGrantedAuthority(role.name()))
+                        .collect(Collectors.toList()));
 
     }
+
+
 
 }
