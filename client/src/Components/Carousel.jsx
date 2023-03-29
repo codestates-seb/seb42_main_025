@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { getCommissionFn } from 'customHook/getCommissionFetch';
+// import { getCommissionFn } from 'customHook/getCommissionFetch';
 
 function Carousel({ items, changeCarouselImage }) {
   const settings = {
@@ -20,14 +20,18 @@ function Carousel({ items, changeCarouselImage }) {
     // autoplaySpeed: 1000, //자동으로 슬라이드되게 만들어준다.
   };
 
-  console.log(getCommissionFn());
-  const commissions = getCommissionFn();
-  console.log(commissions);
+  // console.log(getCommissionFn());
+  // const commissions = getCommissionFn();
+  // console.log(commissions);
+  items = [
+    { id: 1, url: 'https://d2v80xjmx68n4w.cloudfront.net/gigs/zTAmB1673606994.jpg' },
+    { id: 2, url: 'https://d2v80xjmx68n4w.cloudfront.net/gigs/zTAmB1673606994.jpg' },
+  ];
 
   return (
     <Container>
       <StyledSlider {...settings}>
-        {commissions.map(item => {
+        {items.map(item => {
           return (
             <div key={item.id}>
               <ImageContainer>
