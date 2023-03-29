@@ -1,6 +1,7 @@
 package main_project_025.I6E1.Member.entity;
 
 import lombok.*;
+import main_project_025.I6E1.auth.enums.Roles;
 import main_project_025.I6E1.chat.entity.ChatRoom;
 import main_project_025.I6E1.global.auditable.Auditable;
 import main_project_025.I6E1.trade.entity.Trade;
@@ -31,9 +32,10 @@ public class Member extends Auditable {
     private String nickname;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> roles = new ArrayList<>();
+    @Enumerated(EnumType.STRING)
+    private List<Roles> roles = new ArrayList<>();
 
-    public void setRoles(List<String> roles) {
+    public void setRoles(List<Roles> roles) {
         this.roles = roles;
     }
 
