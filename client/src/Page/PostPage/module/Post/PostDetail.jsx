@@ -8,10 +8,10 @@ export function PostDetail({ commission }) {
   console.log(commission);
 
   const navigate = useNavigate();
-  const params = useParams();
+  const { id } = useParams();
 
   const handleClick = () => {
-    navigate(`/trade/${params.id}`);
+    navigate(`/trade/${id}`);
   };
   return (
     <>
