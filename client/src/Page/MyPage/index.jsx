@@ -6,7 +6,8 @@ import CommissionsListModule from './module/Commissions/CommissionsListModule';
 import ChatModule from './module/Chat/ChatModule';
 import { getMemberInfoFn } from 'customHook/getMemberInfoFetch';
 import { useParams } from 'react-router-dom';
-import LodaingComponent from 'Components/LodaingComponent';
+import LoadingComponent from 'Components/LoadingComponent';
+
 
 function MyPage() {
   const { id } = useParams();
@@ -15,7 +16,7 @@ function MyPage() {
   return (
     <Container>
       {loading || !currentMemberInfo.data ? (
-        <LodaingComponent />
+        <LoadingComponent />
       ) : (
         <StyledContents>
           <ProgressModule info={currentMemberInfo.data} />
