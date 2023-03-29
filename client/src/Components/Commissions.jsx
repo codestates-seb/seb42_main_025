@@ -69,7 +69,7 @@ function commissions({ path }) {
 const CommissionBox = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  /* gap: 1rem; */
+  gap: 1rem;
   max-width: 100%;
 `;
 

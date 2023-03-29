@@ -3,7 +3,7 @@ import { getCommission } from 'apis/api/commission';
 import { useState, useEffect } from 'react';
 
 export const getTradeSubInfoFn = infos => {
-  const [filteredInfos, setFilteredInfos] = useState();
+  const [filteredInfos, setFilteredInfos] = useState(null);
   useEffect(() => {
     const fetch = async () => {
       for (let i = 0; i < infos.length; i++) {
