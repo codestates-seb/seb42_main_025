@@ -1,8 +1,6 @@
 package main_project_025.I6E1.commission.contoller;
 
 import lombok.AllArgsConstructor;
-import main_project_025.I6E1.Member.entity.Member;
-import main_project_025.I6E1.Member.repository.MemberRepository;
 import main_project_025.I6E1.aws.AwsS3Service;
 import main_project_025.I6E1.commission.dto.CommissionDto;
 import main_project_025.I6E1.commission.entity.Commission;
@@ -12,7 +10,6 @@ import main_project_025.I6E1.commission.service.CommissionService;
 import main_project_025.I6E1.global.exception.BusinessException;
 import main_project_025.I6E1.global.Page.PageDto;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

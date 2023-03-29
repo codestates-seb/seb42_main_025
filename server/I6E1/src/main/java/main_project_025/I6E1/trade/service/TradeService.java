@@ -1,8 +1,8 @@
 package main_project_025.I6E1.trade.service;
 
 import lombok.RequiredArgsConstructor;
-import main_project_025.I6E1.Member.entity.Member;
-import main_project_025.I6E1.Member.repository.MemberRepository;
+import main_project_025.I6E1.member.entity.Member;
+import main_project_025.I6E1.member.repository.MemberRepository;
 import main_project_025.I6E1.auth.userdetails.AuthMember;
 import main_project_025.I6E1.commission.entity.Commission;
 import main_project_025.I6E1.commission.repository.CommissionRepository;

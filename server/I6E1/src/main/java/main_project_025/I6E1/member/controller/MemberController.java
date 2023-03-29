@@ -1,12 +1,12 @@
-package main_project_025.I6E1.Member.controller;
+package main_project_025.I6E1.member.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import main_project_025.I6E1.Member.dto.MemberDto;
-import main_project_025.I6E1.Member.entity.Member;
-import main_project_025.I6E1.Member.mapper.MemberMapper;
+import main_project_025.I6E1.member.dto.MemberDto;
+import main_project_025.I6E1.member.entity.Member;
+import main_project_025.I6E1.member.mapper.MemberMapper;
 import main_project_025.I6E1.global.response.SingleResponseDto;
-import main_project_025.I6E1.Member.service.MemberService;
+import main_project_025.I6E1.member.service.MemberService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

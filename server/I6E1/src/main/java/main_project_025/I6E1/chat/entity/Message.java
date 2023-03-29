@@ -1,7 +1,7 @@
 package main_project_025.I6E1.chat.entity;
 
 import lombok.*;
-import main_project_025.I6E1.Member.entity.Member;
+import main_project_025.I6E1.member.entity.Member;
 import main_project_025.I6E1.global.auditable.Auditable;
 
 import javax.persistence.*;

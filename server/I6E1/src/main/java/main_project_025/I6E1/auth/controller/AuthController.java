@@ -2,8 +2,8 @@ package main_project_025.I6E1.auth.controller;
 
 
 import lombok.RequiredArgsConstructor;
-import main_project_025.I6E1.Member.entity.Member;
-import main_project_025.I6E1.Member.service.MemberService;
+import main_project_025.I6E1.member.entity.Member;
+import main_project_025.I6E1.member.service.MemberService;
 import main_project_025.I6E1.auth.jwt.JwtTokenizer;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
