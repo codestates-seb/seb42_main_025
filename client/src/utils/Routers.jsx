@@ -3,7 +3,7 @@ import LoginPage from 'Page/LoginPage';
 import SignupPage from 'Page/SignupPage';
 import PostPage from 'Page/PostPage';
 import CreatePost from 'Page/CreatePost';
-// import MyPage from 'Page/MyPage';
+import YourPage from 'Page/YourPage';
 import TradePage from 'Page/TradePage';
 import ChatPage from 'Page/ChatPage';
 import SearchPage from 'Page/SearchPage';
@@ -58,12 +58,12 @@ export const routerList = [
     isPrivate: true, //true
     element: <ChatPage />,
   },
-  // {
-  //   id: 9,
-  //   path: '/mypage/:id',
-  //   isPrivate: true,
-  //   element: <MyPage />,
-  // },
+  {
+    id: 9,
+    path: '/mypage/:id',
+    isPrivate: true,
+    element: <YourPage />,
+  },
   {
     id: 10,
     path: '*',
