@@ -48,9 +48,9 @@ function Header() {
         </StyledInputContainer>
         {isLogined ? (
           <>
-            <StyledMyPage onClick={handledClickMember}>
+            <StyledYour onClick={handledClickMember}>
               <AccountCircleIcon sx={{ fontSize: 40 }} />
-            </StyledMyPage>
+            </StyledYour>
             <Button
               text="로그아웃"
               handleClick={handleLogout}
@@ -132,7 +132,7 @@ const StyledInputContainer = styled.div`
   cursor: text;
 `;
 
-const StyledMyPage = styled.button`
+const StyledYour = styled.button`
   display: flex;
   width: 2.5rem;
   height: 2.5rem;
