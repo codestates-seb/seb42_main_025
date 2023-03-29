@@ -21,13 +21,13 @@ public class Member extends Auditable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberId;
 
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column
+    @Column(nullable = false)
     private String password;
 
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
     private String nickname;
 
     @ElementCollection(fetch = FetchType.EAGER)
