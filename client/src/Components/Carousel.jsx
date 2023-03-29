@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { getCommissionFn } from 'customHook/getCommissionFetch';
 
 function Carousel({ items, changeCarouselImage }) {
   const settings = {
@@ -19,8 +20,8 @@ function Carousel({ items, changeCarouselImage }) {
     // autoplaySpeed: 1000, //자동으로 슬라이드되게 만들어준다.
   };
 
-  const commissions = [{ id: 'dd', url: 'dd' }];
-
+  console.log(getCommissionFn());
+  const commissions = getCommissionFn();
   console.log(commissions);
 
   return (

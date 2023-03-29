@@ -4,6 +4,7 @@ import InputComponent from 'Components/InputComponent';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Button from 'Components/Button';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 function Header() {
   const isLogined = localStorage.getItem('authorization') ? true : false;
@@ -11,7 +12,7 @@ function Header() {
   const navigate = useNavigate();
 
   const handleClickLogo = () => {
-    navigate('/');
+    window.location.replace('/');
   };
   const handleClickLogin = () => {
     navigate('/login');
@@ -23,7 +24,7 @@ function Header() {
 
   const handledClickMember = () => {
     const memberId = localStorage.getItem('memberId');
-    navigate(`/mypage/${memberId}`);
+    window.location.href = `/mypage/${memberId}`;
   };
 
   const handleLogout = async () => {
@@ -32,7 +33,7 @@ function Header() {
       localStorage.removeItem('authorization');
       localStorage.removeItem('memberId');
       console.log('로그아웃 되었습니다.');
-      navigate('/');
+      window.location.replace('/');
     } catch (error) {
       console.error(error);
     }
@@ -48,11 +49,7 @@ function Header() {
         {isLogined ? (
           <>
             <StyledMyPage onClick={handledClickMember}>
-              <img
-                src="https://fastly.picsum.photos/id/905/600/600.jpg?hmac=DvIKicBZ45DEZoZFwdZ62VbmaCwkK4Sv7rwYzUvwweU"
-                alt="profile"
-                width={40}
-              />
+              <AccountCircleIcon sx={{ fontSize: 40 }} />
             </StyledMyPage>
             <Button
               text="로그아웃"
@@ -136,10 +133,14 @@ const StyledInputContainer = styled.div`
 `;
 
 const StyledMyPage = styled.button`
+  display: flex;
   width: 2.5rem;
   height: 2.5rem;
   justify-self: center;
+  align-items: center;
+  justify-content: center;
   border: none;
+  background-color: transparent;
 
   cursor: pointer;
   &:hover {

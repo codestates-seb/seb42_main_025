@@ -1,37 +1,25 @@
 import styled from 'styled-components';
-import Carousel from 'Components/Carousel';
-import Commission from '../../Components/Commissions';
+// import Carousel from 'Components/Carousel';
+import Commissions from '../../Components/Commissions';
 import Typography from 'Components/Typography';
 import AdComponent from 'Components/AdComponent';
-import { useEffect, useState } from 'react';
-import { getCommissions } from 'apis/api/commissions';
-
-const items = [{ id: 'dd', url: 'dd' }];
+// import { useState } from 'react';
 
 function Home() {
-  const [commissions, setCommissions] = useState(null);
-  const [carouselBackground, setCarouselBackground] = useState(items[0].url);
+  // const [carouselBackground, setCarouselBackground] = useState(null);
 
-  const changeCarouselImage = target => {
-    setCarouselBackground(target);
-  };
+  // const changeCarouselImage = target => {
+  //   setCarouselBackground(target);
+  // };
 
-  useEffect(() => {
-    const fetch = async () => {
-      const data = await getCommissions();
-      setCommissions(data);
-    };
-    fetch();
-  }, []);
+  const view = 'view';
 
   return (
     <>
       <StyledContainer>
         <Contents>
-          <CarouselBox>
-            <Carousel items={commissions} changeCarouselImage={changeCarouselImage} />
-          </CarouselBox>
-          <CarouselBoxBackground url={carouselBackground} />
+          <CarouselBox>{/* <Carousel changeCarouselImage={changeCarouselImage} /> */}</CarouselBox>
+          {/* <CarouselBoxBackground url={carouselBackground} /> */}
           <SellContainer>
             <Typography
               variant="h2"
@@ -42,7 +30,7 @@ function Home() {
               color="tea_2"
               padding="m"
             />
-            <Commission items={commissions} />
+            <Commissions />
           </SellContainer>
           <AdComponent />
           <SellContainer>
@@ -55,11 +43,10 @@ function Home() {
               color="tea_2"
               padding="m"
             />
-            <Commission items={commissions} />
+            <Commissions path={view} />
           </SellContainer>
-
           <SellContainer>
-            <Typography
+            {/* <Typography
               variant="h2"
               text="추천 커미션"
               size="xl"
@@ -68,7 +55,7 @@ function Home() {
               color="tea_2"
               padding="m"
             />
-            <Commission items={commissions} />
+            <Commissions /> */}
           </SellContainer>
         </Contents>
       </StyledContainer>
@@ -88,8 +75,8 @@ const StyledContainer = styled.div`
 const Contents = styled.div`
   display: grid;
   grid-template-columns: repeat(12, 1fr); //repeat(6, 1fr)은 1fr 1fr 1fr 1fr 1fr 1fr과 같아요.
-  grid-template-rows: repeat(8, minmax(3.5rem, auto));
-  gap: 1rem;
+  grid-template-rows: repeat(auto, minmax(3.5rem, auto));
+  gap: 8rem 0;
 `;
 
 const CarouselBox = styled.div`
@@ -100,18 +87,18 @@ const CarouselBox = styled.div`
   grid-row: 1 / span 1;
 `;
 
-const CarouselBoxBackground = styled.div.attrs(props => ({
-  url: props.url,
-}))`
-  background-image: url(${props => props.url});
-  background-repeat: no-repeat;
-  background-size: cover;
-  grid-column: 1 / span 12;
-  grid-row: 1 / span 1;
-  margin-bottom: 3rem;
-  filter: blur(2rem);
-  z-index: -2;
-`;
+// const CarouselBoxBackground = styled.div.attrs(props => ({
+//   url: props.url,
+// }))`
+//   background-image: url(${props => props.url});
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   grid-column: 1 / span 12;
+//   grid-row: 1 / span 1;
+//   margin-bottom: 3rem;
+//   filter: blur(2rem);
+//   z-index: -2;
+// `;
 
 const SellContainer = styled.div`
   display: flex;

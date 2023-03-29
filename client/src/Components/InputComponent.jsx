@@ -11,6 +11,7 @@ const InputComponent = ({
   titleRef,
   type = 'text',
   onKeyPress,
+  defaultText,
 }) => {
   return (
     <InputContainer>
@@ -24,7 +25,7 @@ const InputComponent = ({
         <InputField
           type={type}
           placeholder={placeholder}
-          value={value}
+          defaultValue={(value, defaultText)}
           onChange={onChange}
           onBlur={onBlur}
           ref={titleRef}

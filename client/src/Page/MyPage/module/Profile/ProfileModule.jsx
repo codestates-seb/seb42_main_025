@@ -1,10 +1,10 @@
 import Button from 'Components/Button';
-import ImageComponent from 'Components/ImageComponent';
 import Typography from 'Components/Typography';
 import styled from 'styled-components';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ImageComponent from 'Components/ImageComponent';
 
-function ProfileModule({ currentMemberInfo }) {
-  console.log(currentMemberInfo);
+function ProfileModule({ info }) {
   return (
     <StyledContainer>
       <Button
@@ -18,15 +18,22 @@ function ProfileModule({ currentMemberInfo }) {
           border: '1px',
         }}
       />
-      <ImageComponent
-        src="https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg"
-        alt="프로필 사진"
-        width="l"
-      />
-      {currentMemberInfo && (
+      <StyledImgContainer>
+        {info.image ? (
+          <ImageComponent src={info.image} alt="프로필 사진" width="l" />
+        ) : (
+          <AccountCircleIcon sx={{ fontSize: 250 }} />
+        )}
+      </StyledImgContainer>
+      {info && (
         <>
-          <Typography text={currentMemberInfo.nickname} size="xl" bold="bold" />
-          <Typography text={currentMemberInfo.email} line={25} lineHeight="l" />
+          <Typography text={info.nickname} size="xxxl" bold="bold" />
+          <Typography
+            text={`since ${info.createdAt.substr(0, 10)}`}
+            color="gray_3"
+            line={25}
+            lineHeight="l"
+          />
         </>
       )}
     </StyledContainer>
@@ -42,6 +49,11 @@ const StyledContainer = styled.aside`
   background-color: #f5e8dd;
   border-radius: 0.25rem;
   margin-top: 6rem;
+`;
+
+const StyledImgContainer = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 export default ProfileModule;

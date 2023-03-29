@@ -7,6 +7,6 @@ export const Container = styled.div`
   min-height: 100vh;
   width: 100%;
   height: 100%;
-  padding: 10rem 0 5rem 0;
-  overflow-x: hidden;
+  padding: 15rem 0;
+  overflow: hidden;
 `;

@@ -3,7 +3,7 @@ import Typography from 'Components/Typography';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import CommissionListSingleModule from './CommissionListSingleModule';
-import { getMemberCommissionFn } from 'customHook/getMemberCommissionFetch';
+import { getMemberCommissionFn } from 'useFetch/getMemberCommissionFetch';
 
 function CommissionsListModule() {
   const navigate = useNavigate();

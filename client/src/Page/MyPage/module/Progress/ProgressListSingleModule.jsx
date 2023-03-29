@@ -2,14 +2,15 @@ import styled from 'styled-components';
 import StateComponent from 'Components/StateComponent';
 import Typography from 'Components/Typography';
 import Button from 'Components/Button';
-import ProgressTradeInfoModule from './ProgressTradeInfoModule';
+import ProgressTradeListModule from './ProgressTradeListModule';
 import ImageComponent from 'Components/ImageComponent';
 import { useState } from 'react';
 import { ReviewModal } from './ReviewModal';
-import { getMemberSubInfoFn } from 'customHook/getMemberInfoFetch';
+import LoadingComponent from 'Components/LoadingComponent';
 
-function ProgressListSingleModule({ infos }) {
+import { patchTradeStatus } from 'apis/api/trade';
 
+function ProgressListSingleModule({ info }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const openReviewerHandler = () => {
@@ -17,30 +18,23 @@ function ProgressListSingleModule({ infos }) {
   };
 
   const clickedStatus = e => {
-    console.log(e);
+    if (e.target.innerText === '수락') {
+      patchTradeStatus({ status: '진행 중' }, e.target.id); // cors
+    } else if (e.target.innerText === '거절') {
+      patchTradeStatus({ status: '거절' }, e.target.id); // cors
+    }
   };
 
-  const newInfos = getMemberSubInfoFn(infos);
-
-  console.log(newInfos);
-
-  console.log(infos);
-  infos.map((info, idx) => {
-    if (
-      info.member !== null &&
-      info.member !== undefined &&
-      info.commission !== null &&
-      info.commission !== undefined
-    ) {
-      console.log(info);
-      return (
-        <StyledContainer key={info.tradeId + idx}>
+  return (
+    <>
+      {info ? (
+        <StyledContainer>
           <StyledComponentContainer>
             <StateComponent state={info.status} />
             <StyledCommissionContainer>
               <Typography text={info.title} bold="bold" line={1} margin="xxs" />
               <StyledImgContainer>
-                {info.commission.imageUrl.map((el, idx) =>
+                {info.commission.data.imageUrl.map((el, idx) =>
                   idx % 2 === 0 && idx < 4 ? (
                     <ImageComponent src={el} key={idx + el} width="s" alt={el} />
                   ) : null
@@ -48,7 +42,7 @@ function ProgressListSingleModule({ infos }) {
               </StyledImgContainer>
             </StyledCommissionContainer>
             <StyledCommission>
-              <ProgressTradeInfoModule info={info} />
+              <ProgressTradeListModule info={info} />
             </StyledCommission>
             <StyledClient>
               <Typography
@@ -84,6 +78,7 @@ function ProgressListSingleModule({ infos }) {
                 <Button
                   text="수락"
                   handleClick={clickedStatus}
+                  id={info.tradeId}
                   addStyle={{
                     borderRadius: 'half',
                     padding: '0.5rem 1rem',
@@ -96,6 +91,7 @@ function ProgressListSingleModule({ infos }) {
                 />
                 <Button
                   text="거절"
+                  handleClick={clickedStatus}
                   addStyle={{
                     borderRadius: 'half',
                     padding: '0.5rem 1rem',
@@ -152,9 +148,11 @@ function ProgressListSingleModule({ infos }) {
             </StyledButtonContainer>
           ) : null}
         </StyledContainer>
-      );
-    }
-  });
+      ) : (
+        <LoadingComponent />
+      )}
+    </>
+  );
 }
 
 const StyledContainer = styled.div``;

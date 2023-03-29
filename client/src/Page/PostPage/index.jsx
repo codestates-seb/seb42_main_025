@@ -14,16 +14,8 @@ function Post() {
   const params = useParams();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetch = async () => {
-      const data = await getCommission(params.id);
-      setCommission(data);
-    };
-    fetch();
-  }, [setCommission]);
-
   const onclickEdit = () => {
-    navigate(`/edit-commission`, { commission });
+    navigate(`/edit-commission/${params.id}`);
   };
 
   const onclickDelete = async () => {
@@ -32,23 +24,31 @@ function Post() {
     navigate('/');
   };
 
+  useEffect(() => {
+    const fetch = async () => {
+      const data = await getCommission(params.id);
+      setCommission(data);
+    };
+    fetch();
+  }, [setCommission]);
+
   return (
     <Container>
       {commission && (
         <>
           <PostDetailBox>
             <ImageWrapper>
-              <PostImage commission={commission} />
+              <PostImage commission={commission.data} />
             </ImageWrapper>
             <PostDetailWrapper>
-              <PostDetail commission={commission} />
+              <PostDetail commission={commission.data} />
             </PostDetailWrapper>
           </PostDetailBox>
           <DetailBox>
-            <PostMain commission={commission} />
+            <PostMain commission={commission.data} />
           </DetailBox>
           <ReviewBox>
-            <Review commission={commission} />
+            <Review commission={commission.data} />
           </ReviewBox>
           <Edit>
             <EditButton>

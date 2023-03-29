@@ -4,7 +4,7 @@ export const getCommission = async id => {
   try {
     const res = await instance.get(`/commission/${id}`);
     console.log(res);
-    return res.data;
+    return res;
   } catch (err) {
     console.log(err);
   }
@@ -27,6 +27,7 @@ export const postCommission = async data => {
 
 export const patchCommission = async (data, id) => {
   const token = localStorage.getItem('authorization');
+  console.log(data, id);
   try {
     const res = await imgInstance.patch(`/commission/${id}`, data, {
       headers: {

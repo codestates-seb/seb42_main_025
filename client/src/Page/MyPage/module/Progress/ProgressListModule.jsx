@@ -3,6 +3,9 @@ import ProgressListSingleModule from './ProgressListSingleModule';
 import Typography from 'Components/Typography';
 import Button from 'Components/Button';
 import { useState } from 'react';
+// import { getMemberInfoFn } from 'customHook/getMemberInfoFetch';
+import { getTradeSubInfoFn } from 'customHook/getTradeSubInfoFetch';
+import LoadingComponent from 'Components/LoadingComponent';
 
 export function ProgressListModule({ infos }) {
   const [isMore, setIsMore] = useState(false);
@@ -12,40 +15,49 @@ export function ProgressListModule({ infos }) {
     console.log(isMore);
   };
 
-  console.log(infos);
+  const filteredInfos = getTradeSubInfoFn(infos);
+
+  console.log(filteredInfos);
 
   return (
     <StyledContainer>
-      <StyledHeaderArea>
-        <Typography text="신청 의뢰" variant="h3" size="l" bold="bold" />
-        {infos && <div>{infos.length}</div>}
-      </StyledHeaderArea>
-      {infos.map(info => {
-        <StyledListBox>
-          <ProgressListSingleModule info={info} />;
-        </StyledListBox>;
-      })}
-      <StyledButtonArea>
-        {isMore ? (
-          <Button
-            text="줄이기"
-            handleClick={moreClicked}
-            addStyle={{
-              backgroundColor: 'transparent',
-              margin: '1.5rem 0 0 0 ',
-            }}
-          />
-        ) : (
-          <Button
-            text="더보기"
-            handleClick={moreClicked}
-            addStyle={{
-              backgroundColor: 'transparent',
-              margin: '1.5rem 0 0 0 ',
-            }}
-          />
-        )}
-      </StyledButtonArea>
+      {filteredInfos && filteredInfos.length === infos.length ? (
+        <>
+          <StyledHeaderArea>
+            <Typography text="신청 의뢰" variant="h3" size="l" bold="bold" />
+            {filteredInfos && <div>{filteredInfos.length}</div>}
+          </StyledHeaderArea>
+          {filteredInfos.map(filteredInfo => (
+            <StyledListBox key={filteredInfo.tradeId}>
+              <ProgressListSingleModule info={filteredInfo} />
+            </StyledListBox>
+          ))}
+          <StyledButtonArea>
+            {isMore ? (
+              <Button
+                text="줄이기"
+                handleClick={moreClicked}
+                addStyle={{
+                  backgroundColor: 'transparent',
+                  margin: '1.5rem 0 0 0 ',
+                }}
+              />
+            ) : (
+              <Button
+                text="더보기"
+                handleClick={moreClicked}
+                addStyle={{
+                  backgroundColor: 'transparent',
+                  margin: '1.5rem 0 0 0 ',
+                }}
+              />
+            )}
+          </StyledButtonArea>
+        </>
+      ) : (
+      <LoadingComponent />
+
+      )}
     </StyledContainer>
   );
 }

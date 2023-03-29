@@ -4,24 +4,27 @@ import ProgressModule from './module/Progress/ProgressModule';
 import ProfileModule from './module/Profile/ProfileModule';
 import CommissionsListModule from './module/Commissions/CommissionsListModule';
 import ChatModule from './module/Chat/ChatModule';
-import { getMemberInfoFn } from 'useFetch/getMemberInfoFetch';
+import { getMemberInfoFn } from 'customHook/getMemberInfoFetch';
+import { useParams } from 'react-router-dom';
+import LoadingComponent from 'Components/LoadingComponent';
 
 
 function MyPage() {
-  const currentMemberInfo = getMemberInfoFn();
-
-  console.log(currentMemberInfo);
+  const { id } = useParams();
+  const { currentMemberInfo, loading } = getMemberInfoFn(id);
 
   return (
     <Container>
-      {currentMemberInfo && (
+      {loading || !currentMemberInfo.data ? (
+        <LoadingComponent />
+      ) : (
         <StyledContents>
-          <ProgressModule info={currentMemberInfo} />
-          <ProfileModule info={currentMemberInfo} />
-          {currentMemberInfo.roles[0] === 'AUTHOR' ? (
-            <CommissionsListModule info={currentMemberInfo} />
+          <ProgressModule info={currentMemberInfo.data} />
+          <ProfileModule info={currentMemberInfo.data} />
+          {currentMemberInfo.data.roles[0] === 'AUTHOR' ? (
+            <CommissionsListModule info={currentMemberInfo.data} />
           ) : null}
-          <ChatModule info={currentMemberInfo} />
+          <ChatModule info={currentMemberInfo.data} />
         </StyledContents>
       )}
     </Container>

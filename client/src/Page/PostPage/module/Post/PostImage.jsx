@@ -1,13 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import ImageComponent from 'Components/ImageComponent';
+import { imageProcess } from 'utils/imageProcess';
 
 export const PostImage = ({ commission }) => {
-  const image = commission.imageUrl
-    .map((url, index) => ({ url, index }))
-    .filter(item => item.index % 2 === 1);
-  const [currItem, setCurrItem] = useState(image[0]);
+  const images = imageProcess(commission.imageUrl);
+
+  const [currItem, setCurrItem] = useState(images[0]);
   const canvasRef = useRef(null);
+
+  const onView = index => {
+    setCurrItem(images.find(item => item.index === index));
+  };
 
   useEffect(() => {
     // 검색해보기
@@ -37,17 +41,13 @@ export const PostImage = ({ commission }) => {
     };
   }, [currItem]);
 
-  const onView = index => {
-    setCurrItem(image.find(item => item.index === index));
-  };
-
   return (
     <>
       <ThumbnailBox>
         <CanvasThumbnail ref={canvasRef} />
       </ThumbnailBox>
       <ImageBox>
-        {image.map(item => (
+        {images.map(item => (
           <Button key={item.index} onClick={() => onView(item.index)}>
             <ImageComponent src={item.url} alt={item.title} width="m" imgStyle="commission" />
           </Button>

@@ -4,24 +4,26 @@ import Button from 'Components/Button';
 import { Container } from 'Container/Container';
 import TextEditor from 'Components/Editor';
 import { Dropzone, CreateTag, InputText } from './module';
-import { postCommission, patchCommission } from 'apis/api/commission';
-import { useState, useRef } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { postCommission, patchCommission, getCommission } from 'apis/api/commission';
+import { useEffect, useState, useRef } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
 import { Alert } from '@mui/material';
 
 function CreatePost() {
   const [isFiles, setIsFiles] = useState([]);
   const [isTags, setIsTags] = useState([]);
   const [isBlank, setIsBlank] = useState(false);
+  const [commission, setCommission] = useState(null);
+  const [loading, setLoading] = useState(true);
+  console.log(loading);
   const titleRef = useRef(null);
   const subContentRef = useRef(null);
   const contentRef = useRef(null);
   const { id } = useParams();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const { pathname } = useLocation();
 
-  const { commission } = useLocation();
-  console.log(commission);
-
+  // const memberId = localStorage.getItem('memberId');
   const handleSubmit = e => {
     e.preventDefault();
     if (
@@ -35,58 +37,97 @@ function CreatePost() {
     } else {
       setIsBlank(false);
 
-      const formData = new FormData();
-
-      isFiles.forEach(file => formData.append('multipartFile', file));
-      isTags.forEach(tag => formData.append('tags', tag));
-
-      formData.append('title', titleRef.current.value);
-      formData.append('subContent', subContentRef.current.value);
-      formData.append('content', contentRef.current?.getInstance().getMarkdown());
-
-      if (window.location.href.split('/').pop() === 'edit-commission') {
-        patchCommission(formData, id);
+      if (window.location.pathname === `/edit-commission/${id}`) {
+        const data = {
+          title: titleRef.current.value,
+          subContent: subContentRef.current.value,
+          content: contentRef.current?.getInstance().getMarkdown(),
+        };
+        console.log(data);
+        patchCommission(data, id);
       } else {
+        const formData = new FormData();
+        isFiles.forEach(file => formData.append('multipartFile', file));
+        isTags.forEach(tag => formData.append('tags', tag));
+        formData.append('title', titleRef.current.value);
+        formData.append('subContent', subContentRef.current.value);
+        formData.append('content', contentRef.current?.getInstance().getMarkdown());
         postCommission(formData);
       }
-      navigate(`/commission/${id}`);
+      // navigate(`/mypage/${memberId}`);
     }
   };
+  if (pathname === `/edit-commission/${id}`) {
+    useEffect(() => {
+      const fetch = async () => {
+        const { data, status } = await getCommission(id);
+        console.log(data, status);
+        if (status < 300) {
+          setCommission(data);
+          setLoading(false);
+        } else {
+          setLoading(false);
+        }
+      };
+      fetch();
+    }, [getCommission, id]);
+  }
+  console.log(pathname);
+
   return (
     <Container>
-      <ContentBox>
-        <Content>
-          <ImgBox>
-            <Dropzone setIsFiles={setIsFiles} />
-          </ImgBox>
-          <PostDetail>
-            <InputComponent label="제목" placeholder="제목을 입력하세요." titleRef={titleRef} />
-            <InputText label="소개글" subContentRef={subContentRef} />
-            <CreateTag setIsTags={setIsTags} />
-          </PostDetail>
-        </Content>
-        <Toast>
-          <TextEditor editorHeight={'30rem'} editorRef={contentRef} />
-        </Toast>
-        {isBlank && (
-          <Alert severity="error">
-            이미지, 제목, 소개글, 본문, 태그 중 하나라도 비어있으면 게시물 등록이 되지않습니다
-          </Alert>
-        )}
-        <ButtonBox>
-          <Button
-            text="등록"
-            buttonType="submit"
-            handleClick={handleSubmit}
-            addStyle={{
-              width: 'w_xl',
-              height: 'h_m',
-              radius: 'base',
-              padding: '1rem',
-            }}
-          />
-        </ButtonBox>
-      </ContentBox>
+      {(commission || pathname === '/create-commission') && (
+        <ContentBox>
+          <Content>
+            <ImgBox>
+              {commission ? (
+                <Dropzone setIsFiles={setIsFiles} defaultImage={commission.imageUrl} />
+              ) : (
+                <Dropzone setIsFiles={setIsFiles} />
+              )}
+            </ImgBox>
+            <PostDetail>
+              <InputComponent
+                label="제목"
+                placeholder="제목을 입력하세요."
+                titleRef={titleRef}
+                defaultText={commission && commission.title}
+              />
+              <InputText
+                label="소개글"
+                subContentRef={subContentRef}
+                defaultText={commission && commission.subContent}
+              />
+              <CreateTag setIsTags={setIsTags} defaultTags={commission && commission.tags} />
+            </PostDetail>
+          </Content>
+          <Toast>
+            <TextEditor
+              editorHeight={'30rem'}
+              editorRef={contentRef}
+              editorValue={commission && commission.content}
+            />
+          </Toast>
+          {isBlank && (
+            <Alert severity="error">
+              이미지, 제목, 소개글, 본문, 태그 중 하나라도 비어있으면 게시물 등록이 되지않습니다
+            </Alert>
+          )}
+          <ButtonBox>
+            <Button
+              text="등록"
+              buttonType="submit"
+              handleClick={handleSubmit}
+              addStyle={{
+                width: 'w_xl',
+                height: 'h_m',
+                radius: 'base',
+                padding: '1rem',
+              }}
+            />
+          </ButtonBox>
+        </ContentBox>
+      )}
     </Container>
   );
 }
