@@ -1,16 +1,16 @@
 import styled from 'styled-components';
-import Carousel from 'Components/Carousel';
+// import Carousel from 'Components/Carousel';
 import Commissions from '../../Components/Commissions';
 import Typography from 'Components/Typography';
 import AdComponent from 'Components/AdComponent';
-import { useState } from 'react';
+// import { useState } from 'react';
 
 function Home() {
-  const [carouselBackground, setCarouselBackground] = useState(null);
+  // const [carouselBackground, setCarouselBackground] = useState(null);
 
-  const changeCarouselImage = target => {
-    setCarouselBackground(target);
-  };
+  // const changeCarouselImage = target => {
+  //   setCarouselBackground(target);
+  // };
 
   const view = 'view';
 
@@ -18,10 +18,8 @@ function Home() {
     <>
       <StyledContainer>
         <Contents>
-          <CarouselBox>
-            <Carousel changeCarouselImage={changeCarouselImage} />
-          </CarouselBox>
-          <CarouselBoxBackground url={carouselBackground} />
+          <CarouselBox>{/* <Carousel changeCarouselImage={changeCarouselImage} /> */}</CarouselBox>
+          {/* <CarouselBoxBackground url={carouselBackground} /> */}
           <SellContainer>
             <Typography
               variant="h2"
@@ -89,18 +87,18 @@ const CarouselBox = styled.div`
   grid-row: 1 / span 1;
 `;
 
-const CarouselBoxBackground = styled.div.attrs(props => ({
-  url: props.url,
-}))`
-  background-image: url(${props => props.url});
-  background-repeat: no-repeat;
-  background-size: cover;
-  grid-column: 1 / span 12;
-  grid-row: 1 / span 1;
-  margin-bottom: 3rem;
-  filter: blur(2rem);
-  z-index: -2;
-`;
+// const CarouselBoxBackground = styled.div.attrs(props => ({
+//   url: props.url,
+// }))`
+//   background-image: url(${props => props.url});
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   grid-column: 1 / span 12;
+//   grid-row: 1 / span 1;
+//   margin-bottom: 3rem;
+//   filter: blur(2rem);
+//   z-index: -2;
+// `;
 
 const SellContainer = styled.div`
   display: flex;
