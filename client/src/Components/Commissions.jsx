@@ -2,27 +2,40 @@ import styled from 'styled-components';
 import TagComponent from 'Components/TagComponent';
 import Typography from 'Components/Typography';
 import ImageComponent from 'Components/ImageComponent';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getCommissions } from 'apis/api/commissions';
+import { getSortCommissions } from 'apis/api/commissions';
 
-function commission() {
-  const params = useParams();
+function commissions({ path }) {
+  // const params = useParams();
   const [commissions, setCommissions] = useState(null);
-
-  useEffect(() => {
-    const fetch = async () => {
-      const data = await getCommissions(params.id);
-      setCommissions(data);
-    };
-    fetch();
-  }, [setCommissions]);
+  console.log(path);
 
   const navigate = useNavigate();
 
   const handleClick = id => {
     navigate(`/commission/${id}`);
+    window.location.reload();
   };
+
+  useEffect(() => {
+    const fetch = async () => {
+      let apiPath = '';
+      switch (path) {
+        case 'view':
+          apiPath = '/commission?page=1&size=10&sort=viewCount,desc';
+          break;
+        default:
+          apiPath = '/commission?page=1&size=10&sort=commissionId,desc';
+          break;
+      }
+      console.log(apiPath);
+      const data = await getSortCommissions(apiPath);
+      setCommissions(data);
+    };
+    fetch();
+  }, [path, setCommissions]);
+  console.log(commissions);
 
   return (
     <CommissionBox>
@@ -56,7 +69,7 @@ function commission() {
 const CommissionBox = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 1rem;
+  /* gap: 1rem; */
   max-width: 100%;
 `;
 
@@ -85,4 +98,4 @@ const SellBox = styled.div`
   }
 `;
 
-export default commission;
+export default commissions;

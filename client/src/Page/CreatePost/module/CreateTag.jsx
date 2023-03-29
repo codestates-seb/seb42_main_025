@@ -4,7 +4,7 @@ import TagComponent from 'Components/TagComponent';
 import styled from 'styled-components';
 import { Alert } from '@mui/material';
 
-export function CreateTag({ setIsTags }) {
+export function CreateTag({ setIsTags, defaultTags }) {
   const [tagItem, setTagItem] = useState('');
   const [tagList, setTagList] = useState([]);
   const [isDuplication, setIsDuplication] = useState(false);
@@ -12,6 +12,7 @@ export function CreateTag({ setIsTags }) {
   const onKeyPress = e => {
     if (e.target.value.length !== 0 && e.key === 'Enter') {
       submitTagItem();
+      e.target.value = '';
     }
   };
 
@@ -36,7 +37,6 @@ export function CreateTag({ setIsTags }) {
     setIsTags(filteredTagList);
   };
 
-  // console.log(tagList);
   return (
     <div>
       <InputComponent
@@ -53,6 +53,14 @@ export function CreateTag({ setIsTags }) {
             return (
               <div key={tag}>
                 <TagComponent text={tag} createTag="createTag" deleteTagItem={deleteTagItem} />
+              </div>
+            );
+          })}
+        {defaultTags &&
+          defaultTags.map(tag => {
+            return (
+              <div key={tag}>
+                <TagComponent text={tag} createTag="createTag" />
               </div>
             );
           })}

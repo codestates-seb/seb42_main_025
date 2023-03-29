@@ -27,6 +27,7 @@ export const postCommission = async data => {
 
 export const patchCommission = async (data, id) => {
   const token = localStorage.getItem('authorization');
+  console.log(data, id);
   try {
     const res = await imgInstance.patch(`/commission/${id}`, data, {
       headers: {

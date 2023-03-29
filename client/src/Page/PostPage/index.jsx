@@ -15,7 +15,7 @@ function Post() {
   const navigate = useNavigate();
 
   const onclickEdit = () => {
-    navigate(`/edit-commission`, { commission });
+    navigate(`/edit-commission/${params.id}`);
   };
 
   const onclickDelete = async () => {
@@ -38,17 +38,17 @@ function Post() {
         <>
           <PostDetailBox>
             <ImageWrapper>
-              <PostImage commission={commission} />
+              <PostImage commission={commission.data} />
             </ImageWrapper>
             <PostDetailWrapper>
-              <PostDetail commission={commission} />
+              <PostDetail commission={commission.data} />
             </PostDetailWrapper>
           </PostDetailBox>
           <DetailBox>
-            <PostMain commission={commission} />
+            <PostMain commission={commission.data} />
           </DetailBox>
           <ReviewBox>
-            <Review commission={commission} />
+            <Review commission={commission.data} />
           </ReviewBox>
           <Edit>
             <EditButton>
