@@ -11,5 +11,8 @@
         <module name="I6E1.main" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="I6E1.querydsl" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
