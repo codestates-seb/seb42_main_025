@@ -2,12 +2,12 @@ import styled from 'styled-components';
 import StateComponent from 'Components/StateComponent';
 import Typography from 'Components/Typography';
 import Button from 'Components/Button';
-import ProgressTradeInfoModule from './ProgressTradeInfoModule';
-import ImageComponent from 'Components/ImageComponent';
+import ProgressTradeListModule from './ProgressTradeListModule';
+// import ImageComponent from 'Components/ImageComponent';
 import { useState } from 'react';
 import { ReviewModal } from './ReviewModal';
 
-function ProgressListSingleModule({ infos }) {
+function ProgressListSingleModule() {
   const [isOpen, setIsOpen] = useState(false);
 
   const openReviewerHandler = () => {
@@ -15,14 +15,14 @@ function ProgressListSingleModule({ infos }) {
   };
   return (
     <>
-      <StyledContainer>
+      <StyledComponentContainer>
         <StateComponent state="red" />
         <StyledCommissionContainer>
           <Typography text="커미션 제목커미션 제목제목" bold="bold" line={1} margin="xxs" />
           <StyledImgContainer>
-            {image.map((el, idx) =>
+            {/* {image.map((el, idx) =>
               idx < 2 ? <ImageComponent src={el} key={idx} width="s" alt={el} /> : null
-            )}
+            )} */}
           </StyledImgContainer>
         </StyledCommissionContainer>
         <StyledCommission>
@@ -38,7 +38,7 @@ function ProgressListSingleModule({ infos }) {
           <Typography text="신청자" bold="bold" line={1} padding="xxs" space="nowrap" />
           <Typography text="2023-03-15" size="m" color="gray_3" space="nowrap" />
         </StyledClient>
-      </StyledContainer>
+      </StyledComponentContainer>
       <StyledButtonContainer>
         <Button
           text="채팅"
