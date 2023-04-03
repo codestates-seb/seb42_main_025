@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface ChatRoomRepository extends JpaRepository<ChatRoom, Long> {
-    List<ChatRoom> findByUserOrAuthor(Member user, Member author);
+    List<ChatRoom> findByUserAndUsedOrAuthorAndUsed(Member user,boolean used1, Member author, boolean used2);
     ChatRoom findByUserBackAndAuthorBack(long userBack, long authorBack);
 }

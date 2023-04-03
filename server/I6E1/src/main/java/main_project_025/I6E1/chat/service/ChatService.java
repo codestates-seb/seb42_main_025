@@ -53,7 +53,7 @@ public class ChatService {
     public List<ChatRoom> findChatRooms(){
         AuthMember loginMember = (AuthMember) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Member member = getMemberFromId(loginMember.getMemberId());
-        return chatRoomRepository.findByUserOrAuthor(member, member);
+        return chatRoomRepository.findByUserAndUsedOrAuthorAndUsed(member,true, member,true);
     }
 
     public void deleteChatRoom(Long roomId){

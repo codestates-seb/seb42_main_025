@@ -10,7 +10,6 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Where(clause = "used=true")
 public class ChatRoom {
 
     @Id
