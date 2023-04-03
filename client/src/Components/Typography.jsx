@@ -16,6 +16,7 @@ function Typography({
   space,
   lineHeight,
   margin,
+  textShadow,
 }) {
   return (
     <StyledFont
@@ -33,6 +34,7 @@ function Typography({
       space={space}
       lineHeight={lineHeight}
       margin={margin}
+      textShadow={textShadow}
     >
       {text}
     </StyledFont>
@@ -53,11 +55,14 @@ const StyledFont = styled.span.attrs(props => ({
   space: props.space || 'normal',
   width: props.width,
   lineHeight: props.lineHeight,
+  textShadow: props.textShadow,
 }))`
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
+  word-wrap: break-word;
+  width: 100%;
   line-height: ${props => props.theme.fontSizes[props.lineHeight]};
   white-space: ${props => props.space};
   -webkit-line-clamp: ${props => props.line};
@@ -71,8 +76,7 @@ const StyledFont = styled.span.attrs(props => ({
   grid-column: ${props => props.column};
   grid-row: ${props => props.row};
   flex: ${props => props.flex};
-  word-wrap: break-word;
-  width: 100%;
+  text-shadow: ${props => props.textShadow};
 `;
 
 export default Typography;

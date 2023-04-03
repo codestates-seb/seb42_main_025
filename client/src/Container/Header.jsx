@@ -5,11 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Button from 'Components/Button';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { useState } from 'react';
 
 function Header() {
-  const isLogined = localStorage.getItem('authorization') ? true : false;
-
+  const [search, setSearch] = useState('');
   const navigate = useNavigate();
+  const isLogined = localStorage.getItem('authorization') ? true : false;
 
   const handleClickLogo = () => {
     window.location.replace('/');
@@ -39,12 +40,30 @@ function Header() {
     }
   };
 
+  const handleSummit = async e => {
+    e.preventDefault();
+    if (search === null || search === '') {
+      window.location.replace('/');
+    } else {
+      navigate(`/search/${search}`);
+    }
+    setSearch('');
+  };
+
+  const onChangeSearch = e => {
+    setSearch(e.target.value);
+  };
+
   return (
     <StyledHeaderArea>
       <StyledContainer>
         <StyledLogo src={mainLogo} width={110} alt="logo" onClick={handleClickLogo} />
         <StyledInputContainer>
-          <InputComponent placeholder="검색" />
+          <InputComponent
+            placeholder="태그 검색"
+            onSubmit={handleSummit}
+            onChange={onChangeSearch}
+          />
         </StyledInputContainer>
         {isLogined ? (
           <>

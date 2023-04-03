@@ -1,19 +1,51 @@
 import { useEffect, useState } from 'react';
 import { getCommissions } from 'apis/api/commissions';
 import { getCommission } from 'apis/api/commission';
+import { getTags, getTagsSearch } from 'apis/api/tags';
 
-export const getCommissionsFn = () => {
-  const [commissions, setCommissions] = useState(null);
+export const getCommissionsFn = filter => {
+  const [commissions, setCommissions] = useState([]);
 
   useEffect(() => {
     const fetch = async () => {
-      const data = await getCommissions();
+      const data = await getCommissions(filter);
       setCommissions(data);
     };
     fetch();
-  }, [setCommissions, getCommissions]);
+  }, [setCommissions]);
 
   return commissions;
+};
+
+export const getTagsCommissionsFn = () => {
+  const [tag, setTag] = useState('그림');
+  const [tagsCommissions, setTagsCommissions] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const randomNum = Math.floor(Math.random() * 10 + 1);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const { data, status } = await getTags();
+      if (status < 300) {
+        const tagName = data.data[randomNum].tagName;
+        setTag(tagName);
+      }
+    };
+    fetch();
+  }, [setTag]);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const { data, status } = await getTagsSearch(tag);
+      if (status < 300) {
+        setTagsCommissions(data.data);
+        setLoading(false);
+      }
+    };
+    fetch();
+  }, [setTagsCommissions, setLoading, setTag, tag]);
+  return { tagsCommissions, loading };
 };
 
 export const getCommissionFn = id => {
@@ -29,7 +61,7 @@ export const getCommissionFn = id => {
       }
     };
     fetch();
-  }, [setCommission, setLoading, id, getCommission]);
+  }, [setCommission, setLoading]);
 
   return { commission, loading };
 };

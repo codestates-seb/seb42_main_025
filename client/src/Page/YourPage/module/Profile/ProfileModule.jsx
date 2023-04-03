@@ -44,6 +44,7 @@ const StyledContainer = styled.aside`
   display: grid;
   height: fit-content;
   grid-column: 9 / span 4;
+  grid-row: 1 / span 1;
   padding: 2rem;
   gap: 2rem;
   background-color: #f5e8dd;

@@ -45,7 +45,6 @@ export function Dropzone({ setIsFiles, defaultImage }) {
           ...newFiles.map(file => Object.assign(file, { preview: URL.createObjectURL(file) })),
         ]);
       }
-      console.log(rejectedFiles);
     },
     [files]
   );
@@ -67,7 +66,6 @@ export function Dropzone({ setIsFiles, defaultImage }) {
       </Remove>
     </PhotoRemove>
   ));
-  console.log(defaultImages);
 
   const editImages = defaultImages.map(item => (
     <PhotoRemove key={item.idx}>
@@ -87,7 +85,6 @@ export function Dropzone({ setIsFiles, defaultImage }) {
     maxSize: 1024 * 1000,
     onDrop,
   });
-  console.log(images);
 
   useEffect(() => {
     setIsFiles(files);

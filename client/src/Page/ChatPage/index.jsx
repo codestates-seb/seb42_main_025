@@ -6,9 +6,8 @@ import ChatContentModule from './module/ChatContent/ChatContentModule';
 function ChatPage() {
   const info = {
     image: 'https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg',
-    title: '커미션 제목커미션 제목커미션 제목커미션 제목커미션 제목커미션 제목커미션 제목',
-    content:
-      '커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용커미션 내용',
+    title: '커미션 정말 마음에 들었습니다',
+    content: '커미션 정말 마음에 들었습니다',
   };
   return (
     <Container>

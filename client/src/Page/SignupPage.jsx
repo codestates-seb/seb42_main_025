@@ -22,7 +22,6 @@ const SignUpPage = () => {
 
   const handleSignUp = async () => {
     const roles = userType === 'writer' ? ['AUTHOR'] : ['USER'];
-    console.log(roles);
     try {
       const result = await signup({ email, password, nickname, roles }); // signup 함수 사용
       if (result.success) {

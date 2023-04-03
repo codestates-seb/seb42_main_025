@@ -14,7 +14,7 @@ export const getMemberInfoFn = id => {
       }
     };
     fetch();
-  }, [setCurrentMemberInfo, id, setLoading, getUserInfo]);
+  }, [setCurrentMemberInfo, id, setLoading]);
   return { currentMemberInfo, loading };
 };
 

@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import Carousel from 'Components/Carousel';
-import Commissions from '../../Components/Commissions';
+import Commissions from 'Components/Commissions';
 import Typography from 'Components/Typography';
 import AdComponent from 'Components/AdComponent';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getCommissionsFn, getTagsCommissionsFn } from 'customHook/getCommissionFetch';
+import { getCommissions } from 'apis/api/commissions';
 
 function Home() {
   const [carouselBackground, setCarouselBackground] = useState(null);
@@ -12,55 +14,77 @@ function Home() {
     setCarouselBackground(target);
   };
 
-  const view = 'view';
+  const commissionsFilterdCommissionId = getCommissionsFn('commissionId');
+  const commissionsFilterdViewCount = getCommissionsFn('viewCount');
+  const commissionsFilterdTags = getTagsCommissionsFn();
+
+  useEffect(() => {
+    const fetch = async () => {
+      const data = await getCommissions('commissionId');
+      setCarouselBackground(data[0].imageUrl[1]);
+    };
+    fetch();
+  }, [setCarouselBackground]);
 
   return (
     <>
-      <StyledContainer>
-        <Contents>
-          <CarouselBox>
-            <Carousel changeCarouselImage={changeCarouselImage} />
-          </CarouselBox>
-          <CarouselBoxBackground url={carouselBackground} />
-          <SellContainer>
-            <Typography
-              variant="h2"
-              text="새로운 커미션"
-              size="xl"
-              bold="bold"
-              space="nowrap"
-              color="tea_2"
-              padding="m"
-            />
-            <Commissions />
-          </SellContainer>
-          <AdComponent />
-          <SellContainer>
-            <Typography
-              variant="h2"
-              text="인기 커미션"
-              size="xl"
-              bold="bold"
-              space="nowrap"
-              color="tea_2"
-              padding="m"
-            />
-            <Commissions path={view} />
-          </SellContainer>
-          <SellContainer>
-            {/* <Typography
-              variant="h2"
-              text="추천 커미션"
-              size="xl"
-              bold="bold"
-              space="nowrap"
-              color="tea_2"
-              padding="m"
-            />
-            <Commissions /> */}
-          </SellContainer>
-        </Contents>
-      </StyledContainer>
+      {commissionsFilterdViewCount[0] &&
+        commissionsFilterdCommissionId[0] &&
+        commissionsFilterdTags.tagsCommissions[0] &&
+        carouselBackground && (
+          <StyledContainer>
+            <Contents>
+              <CarouselBox>
+                <Carousel
+                  items={[
+                    commissionsFilterdCommissionId[0],
+                    commissionsFilterdViewCount[0],
+                    commissionsFilterdTags.tagsCommissions[0],
+                  ]}
+                  changeCarouselImage={changeCarouselImage}
+                />
+              </CarouselBox>
+              <CarouselBoxBackground url={carouselBackground} />
+              <SellContainer>
+                <Typography
+                  variant="h2"
+                  text="새로운 커미션"
+                  size="xl"
+                  bold="bold"
+                  space="nowrap"
+                  color="tea_2"
+                  padding="m"
+                />
+                <Commissions commissions={commissionsFilterdCommissionId} />
+              </SellContainer>
+              <AdComponent />
+              <SellContainer>
+                <Typography
+                  variant="h2"
+                  text="인기 커미션"
+                  size="xl"
+                  bold="bold"
+                  space="nowrap"
+                  color="tea_2"
+                  padding="m"
+                />
+                <Commissions commissions={commissionsFilterdViewCount} />
+              </SellContainer>
+              <SellContainer>
+                <Typography
+                  variant="h2"
+                  text="추천 태그 커미션"
+                  size="xl"
+                  bold="bold"
+                  space="nowrap"
+                  color="tea_2"
+                  padding="m"
+                />
+                <Commissions commissions={commissionsFilterdTags.tagsCommissions} />
+              </SellContainer>
+            </Contents>
+          </StyledContainer>
+        )}
     </>
   );
 }
@@ -76,15 +100,17 @@ const StyledContainer = styled.div`
 
 const Contents = styled.div`
   display: grid;
-  grid-template-columns: repeat(12, 1fr); //repeat(6, 1fr)은 1fr 1fr 1fr 1fr 1fr 1fr과 같아요.
+  width: 100%;
+  justify-items: center;
+  grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(auto, minmax(3.5rem, auto));
-  gap: 8rem 0;
+  gap: 5rem 0;
 `;
 
 const CarouselBox = styled.div`
   display: grid;
   justify-content: center;
-  padding: 5rem 0 3rem 0;
+  padding: 10rem 0 7rem 0;
   grid-column: 1 / span 12;
   grid-row: 1 / span 1;
 `;
@@ -92,12 +118,12 @@ const CarouselBox = styled.div`
 const CarouselBoxBackground = styled.div.attrs(props => ({
   url: props.url,
 }))`
+  width: 90%;
   background-image: url(${props => props.url});
   background-repeat: no-repeat;
   background-size: cover;
   grid-column: 1 / span 12;
   grid-row: 1 / span 1;
-  margin-bottom: 3rem;
   filter: blur(2rem);
   z-index: -2;
 `;

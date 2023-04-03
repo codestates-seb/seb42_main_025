@@ -17,8 +17,6 @@ export function ReviewModal({ openReviewerHandler }) {
           ['hr', 'quote'],
         ];
 
-  console.log(toolbarItems);
-
   useEffect(() => {
     setCurrentWidth(ref.current ? ref.current.offsetWidth : 0);
   }, [ref.current, setCurrentWidth]);

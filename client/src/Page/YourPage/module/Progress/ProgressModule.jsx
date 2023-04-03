@@ -2,16 +2,14 @@ import styled from 'styled-components';
 import ProgressListModule from './ProgressListModule';
 import Typography from 'Components/Typography';
 import { getTradeFn } from 'customHook/getTradeFetch';
-// import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 export function ProgressModule({ info }) {
   const isPage = 1;
-
-  const params = useParams();
+  const { id } = useParams();
 
   const authorData = { email: info.email, page: isPage };
-  const memberData = { memberId: params.id, page: isPage };
+  const memberData = { memberId: id, page: isPage };
 
   let tradeInfo;
 
@@ -47,6 +45,7 @@ export function ProgressModule({ info }) {
 
 const StyledContainer = styled.div`
   grid-column: 1 / span 8;
+  grid-row: 1 / span 2;
   padding-bottom: 5rem;
   border-bottom: 1px solid #cecece;
 `;

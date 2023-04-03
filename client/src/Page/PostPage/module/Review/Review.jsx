@@ -3,10 +3,9 @@ import { ReviewListModule } from '.';
 
 const info = {
   image: 'https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg',
-  content:
-    'contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent',
-  writer: 'writer',
-  date: 'date',
+  content: '정말 마음에 들었습니다.',
+  writer: '디디디',
+  date: '2023-03-25',
 };
 
 export function Review() {

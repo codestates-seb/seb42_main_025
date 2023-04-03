@@ -4,7 +4,7 @@ import ChatListModule from './ChatListModule';
 
 function ChatModule({ info }) {
   return (
-    <StyledContainer>
+    <StyledContainer role={info.roles[0]}>
       <Typography
         variant="h2"
         text="채팅목록"
@@ -21,10 +21,13 @@ function ChatModule({ info }) {
   );
 }
 
-const StyledContainer = styled.aside`
+const StyledContainer = styled.aside.attrs(props => ({
+  role: props.role,
+}))`
   display: flex;
   flex-direction: column;
-  grid-column: 8 / span 5;
+  grid-column: ${props => (props.role === 'AUTHOR' ? '8 / span 5' : '9 / span 4')};
+  grid-row: ${props => (props.role === 'AUTHOR' ? null : '2 / span 1')};
 `;
 
 const StyledChatListBoxContainer = styled.div`

@@ -22,7 +22,6 @@ const fontSizes = {
   xl: calcRem(24),
   xxl: calcRem(28),
   xxxl: calcRem(32),
-  titleSize: calcRem(50),
 };
 
 const paddings = {
@@ -52,8 +51,9 @@ const imgSizes = {
   s: calcRem(64),
   m: calcRem(128),
   xl: calcRem(240),
-  xxl: calcRem(640),
-  xxxl: calcRem(800),
+  xxl: calcRem(400),
+  xxxl: calcRem(640),
+  xxxxl: calcRem(800),
 };
 
 const sizes = {
@@ -105,12 +105,7 @@ const radiuses = {
   l: '1rem',
 };
 
-const fontStyles = {
-  title: { 'font-size': '1.5rem' },
-};
-
 const theme = {
-  fontStyles,
   fontSizes,
   paddings,
   margins,

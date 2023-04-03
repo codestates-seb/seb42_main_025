@@ -2,36 +2,35 @@ import styled from 'styled-components';
 
 function ImageComponent({ src, alt, imgStyle, width }) {
   return (
-    <StyledContainer width={width}>
-      <StyledImg src={src} alt={alt} imgStyle={imgStyle} />
+    <StyledContainer>
+      <StyledImg src={src} alt={alt} imgStyle={imgStyle} width={width} />
     </StyledContainer>
   );
 }
 
 const StyledContainer = styled.div.attrs(props => ({
-  width: props.width,
-  margin: props.margin,
   imgStyle: props.imgStyle,
-  column: props.column,
-  flex: props.flex,
 }))`
   display: flex;
   align-items: center;
   grid-column: ${props => props.column};
-  max-width: ${props => props.theme.imgSizes[props.width]};
   margin: ${props => props.theme.margins[props.margin]};
   aspect-ratio: ${props => props.theme.imgStyles[props.imgStyle]};
   flex: ${props => props.flex};
   height: auto;
+  object-fit: cover;
 `;
 
 const StyledImg = styled.img.attrs(props => ({
   imgStyle: props.imgStyle,
+  width: props.width,
 }))`
   display: flex;
-  width: 100%;
+  width: ${props => props.theme.imgSizes[props.width]};
   height: auto;
   aspect-ratio: ${props => props.theme.imgStyles[props.imgStyle]};
+  object-fit: cover;
+  border-radius: 0.5rem;
 `;
 
 export default ImageComponent;

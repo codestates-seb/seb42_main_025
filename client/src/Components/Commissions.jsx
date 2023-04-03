@@ -3,65 +3,46 @@ import TagComponent from 'Components/TagComponent';
 import Typography from 'Components/Typography';
 import ImageComponent from 'Components/ImageComponent';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { getSortCommissions } from 'apis/api/commissions';
 
-function commissions({ path }) {
-  // const params = useParams();
-  const [commissions, setCommissions] = useState(null);
-  console.log(path);
-
+function Commissions({ commissions }) {
   const navigate = useNavigate();
 
   const handleClick = id => {
     navigate(`/commission/${id}`);
-    window.location.reload();
+    window.location.reload('/');
   };
 
-  useEffect(() => {
-    const fetch = async () => {
-      let apiPath = '';
-      switch (path) {
-        case 'view':
-          apiPath = '/commission?page=1&size=10&sort=viewCount,desc';
-          break;
-        default:
-          apiPath = '/commission?page=1&size=10&sort=commissionId,desc';
-          break;
-      }
-      console.log(apiPath);
-      const data = await getSortCommissions(apiPath);
-      setCommissions(data);
-    };
-    fetch();
-  }, [path, setCommissions]);
-  console.log(commissions);
+  const handleClickTag = e => {
+    const tag = e.target.innerText;
+    navigate(`/search/${tag}`);
+  };
 
   return (
     <CommissionBox>
-      {commissions &&
-        commissions.map(item => {
-          return (
-            <div key={item.commissionId}>
-              <TagBox>
-                {item &&
-                  item.tags.map(tag => {
-                    return <TagComponent key={tag} text={tag} />;
-                  })}
-              </TagBox>
-              <SellBox onClick={() => handleClick(item.commissionId)}>
-                <ImageComponent
-                  src={item.imageUrl[1]}
-                  alt={item.imageUrl[1]}
-                  imgStyle="commission"
-                  width="xl"
-                />
-                <Typography text={item.title} bold="bold" size="l" />
-                <Typography text={item.memberName} size="m" />
-              </SellBox>
-            </div>
-          );
-        })}
+      {commissions.map(item => {
+        return (
+          <div key={item.commissionId}>
+            <TagBox>
+              {item &&
+                item.tags.map((tag, idx) => {
+                  return (
+                    <TagComponent key={(tag, idx)} text={tag} handleClickTag={handleClickTag} />
+                  );
+                })}
+            </TagBox>
+            <SellBox onClick={() => handleClick(item.commissionId)}>
+              <ImageComponent
+                src={item.imageUrl[1]}
+                alt={item.imageUrl[1]}
+                imgStyle="commission"
+                width="xl"
+              />
+              <Typography text={item.title} bold="bold" size="l" />
+              <Typography text={item.memberName} size="m" />
+            </SellBox>
+          </div>
+        );
+      })}
     </CommissionBox>
   );
 }
@@ -98,4 +79,4 @@ const SellBox = styled.div`
   }
 `;
 
-export default commissions;
+export default Commissions;

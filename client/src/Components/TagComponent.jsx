@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
-function TagComponent({ text, createTag, deleteTagItem }) {
+function TagComponent({ text, createTag, deleteTagItem, handleClickTag }) {
   return (
-    <StyledContainer>
+    <StyledContainer onClick={createTag ? null : handleClickTag}>
       <StyledTag>{text}</StyledTag>
       {createTag && <StyledButton onClick={deleteTagItem}>X</StyledButton>}
     </StyledContainer>
   );
 }
 
-const StyledContainer = styled.div`
+const StyledContainer = styled.button`
   display: flex;
   height: fit-content;
   width: fit-content;
@@ -20,8 +20,19 @@ const StyledContainer = styled.div`
   font-size: 1rem;
   font-weight: bold;
   color: #606060;
+  background-color: transparent;
   white-space: nowrap;
   gap: 0.25rem;
+
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(90%);
+  }
+  &:active {
+    filter: brightness(70%);
+    transform: translate(0, 1px);
+  }
 `;
 
 const StyledTag = styled.div`

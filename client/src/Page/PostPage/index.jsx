@@ -2,31 +2,31 @@ import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import Button from 'Components/Button';
 import { Review } from './module/Review';
-import Commission from 'Components/Commissions';
+// import Commission from 'Components/Commissions';
 import { PostDetail, PostMain, PostImage } from './module/Post';
 import { Container } from 'Container/Container';
-import Typography from 'Components/Typography';
+// import Typography from 'Components/Typography';
 import { getCommission, deleteCommission } from 'apis/api/commission';
 import { useParams, useNavigate } from 'react-router-dom';
 
 function Post() {
   const [commission, setCommission] = useState(null);
-  const params = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const onclickEdit = () => {
-    navigate(`/edit-commission/${params.id}`);
+    navigate(`/edit-commission/${id}`);
   };
 
   const onclickDelete = async () => {
-    await deleteCommission(params.id);
+    await deleteCommission(id);
     setCommission(null); // 현재 commission 상태를 업데이트하기 전에 null 값으로 초기화
     navigate('/');
   };
 
   useEffect(() => {
     const fetch = async () => {
-      const data = await getCommission(params.id);
+      const data = await getCommission(id);
       setCommission(data);
     };
     fetch();
@@ -76,7 +76,7 @@ function Post() {
               />
             </EditButton>
           </Edit>
-          <CommissionBox>
+          {/* <CommissionBox>
             <Typography
               variant="h2"
               text="비슷한 커미션"
@@ -86,8 +86,8 @@ function Post() {
               color="tea_2"
               padding="m"
             />
-            <Commission />
-          </CommissionBox>
+            <Commission commissions={commission} />
+          </CommissionBox> */}
         </>
       )}
     </Container>
@@ -139,11 +139,11 @@ const ReviewBox = styled.div`
   line-height: 1.6;
 `;
 
-const CommissionBox = styled.div`
-  width: 100%;
-  margin-top: 5rem;
-  flex-wrap: wrap;
-  line-height: 1.7;
-`;
+// const CommissionBox = styled.div`
+//   width: 100%;
+//   margin-top: 5rem;
+//   flex-wrap: wrap;
+//   line-height: 1.7;
+// `;
 
 export default Post;

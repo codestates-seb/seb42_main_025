@@ -31,9 +31,15 @@ function ProgressListSingleModule({ info }) {
           <StyledComponentContainer>
             <StateComponent state={info.status} />
             <StyledCommissionContainer>
-              <Typography text={info.title} bold="bold" line={1} margin="xxs" />
+              <Typography
+                text={info.commission.title}
+                bold="bold"
+                line={1}
+                height="h_xs"
+                margin="xxs"
+              />
               <StyledImgContainer>
-                {info.commission.data.imageUrl.map((el, idx) =>
+                {info.commission.imageUrl.map((el, idx) =>
                   idx % 2 === 0 && idx < 4 ? (
                     <ImageComponent src={el} key={idx + el} width="s" alt={el} />
                   ) : null

@@ -1,82 +1,66 @@
 import { Container } from 'Container/Container';
 import styled from 'styled-components';
 import Commission from 'Components/Commissions';
+import { useParams } from 'react-router-dom';
+import { getSearchFn } from 'customHook/getSearchFetch';
+import Typography from 'Components/Typography';
 
 function SearchPage() {
-  //   const searchList = () => {
-  //     const filtered = sampleData.filter(itemList => {
-  //       return itemList.name.toUpperCase().includes(userInput.toUpperCase());
-  //     });
-  //   };
+  const { result } = useParams();
+  const tagCommissions = getSearchFn(result);
 
   return (
     <Container>
-      <Content>
-        <SearchResult>
-          <div>어떤 것 검색결과</div>
-          <div>20 result</div>
-        </SearchResult>
-        <Commission1>
-          <Commission>1</Commission>
-        </Commission1>
-        <Banner>광고배너</Banner>
-        <Commission2>
-          <Commission>2</Commission>
-        </Commission2>
-        <Commission3>
-          <Commission>3</Commission>
-        </Commission3>
-      </Content>
+      {tagCommissions.tagSearchCommissions && (
+        <Content>
+          <SearchResult>
+            <StyledTitleContainer>
+              <Typography
+                text={result}
+                variant="h2"
+                size="xxxl"
+                color="tea_2"
+                space="nowrap"
+                bold="bold"
+              />
+              <Typography text="에 대한 검색 결과" variant="p" color="gray_3" space="nowrap" />
+            </StyledTitleContainer>
+          </SearchResult>
+          <CommissionBox>
+            <Commission commissions={tagCommissions.tagSearchCommissions.data} />
+          </CommissionBox>
+        </Content>
+      )}
     </Container>
   );
 }
 
 const Content = styled.div`
-  max-width: 1280px;
-  width: 100%;
   display: grid;
-  grid-template-columns: repeat(12, 1fr); //repeat(6, 1fr)은 1fr 1fr 1fr 1fr 1fr 1fr과 같아요.
-  grid-template-rows: repeat(5, minmax(50px, auto));
-  gap: 1rem;
+  width: 100%;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(auto, minmax(3.5rem, auto));
+  gap: 5rem 0;
 `;
 
 const SearchResult = styled.div`
   display: flex;
-  justify-content: space-between;
+  width: 100%;
   grid-column: 1 / span 12;
-  grid-row: 1 / span 1;
+  gap: 2rem;
 `;
 
-const Commission1 = styled.div`
+const StyledTitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
+
+const CommissionBox = styled.div`
   display: grid;
   justify-content: center;
   grid-column: 1 / span 12;
   grid-row: 2 / span 1;
-`;
-
-const Banner = styled.div`
-  display: grid;
-  justify-content: center;
-  grid-column: 1 / span 12;
-  grid-row: 3 / span 1;
-  height: 100px;
-  align-items: center;
-  background-color: coral;
-`;
-
-const Commission2 = styled.div`
-  display: grid;
-  justify-content: center;
-  grid-column: 1 / span 12;
-  grid-row: 4 / span 1;
-`;
-
-const Commission3 = styled.div`
-  display: grid;
-  justify-content: center;
-  margin-top: -1rem;
-  grid-column: 1 / span 12;
-  grid-row: 5 / span 1;
 `;
 
 export default SearchPage;

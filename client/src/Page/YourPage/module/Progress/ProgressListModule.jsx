@@ -11,12 +11,9 @@ export function ProgressListModule({ infos }) {
 
   const moreClicked = () => {
     setIsMore(!isMore);
-    console.log(isMore);
   };
 
   const filteredInfos = getTradeSubInfoFn(infos);
-
-  console.log(filteredInfos);
 
   return (
     <StyledContainer>

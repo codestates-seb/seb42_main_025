@@ -10,15 +10,16 @@ export const getTradeSubInfoFn = infos => {
         const member = await getUserInfo(infos[i].memberId);
         const commission = await getCommission(infos[i].commissionId);
         if (member) {
-          infos[i].member = member;
+          infos[i].member = member.data.data;
         }
         if (commission) {
-          infos[i].commission = commission;
+          infos[i].commission = commission.data;
         }
       }
       setFilteredInfos(infos);
     };
     fetch();
   }, [setFilteredInfos]);
+  console.log(filteredInfos);
   return filteredInfos;
 };

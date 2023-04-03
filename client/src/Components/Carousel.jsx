@@ -3,8 +3,12 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 // import { getCommissionFn } from 'customHook/getCommissionFetch';
+import ImageComponent from './ImageComponent';
+import Typography from './Typography';
+import { useState } from 'react';
 
 function Carousel({ items, changeCarouselImage }) {
+  const [img, setImg] = useState(0);
   const settings = {
     dots: true, // 캐러셀이미지가 몇번째인지 알려주는 점을 보여줄지 정한다.
     infinite: true, // loop를 만들지(마지막 이미지-처음 이미지-중간 이미지들-마지막 이미지)
@@ -14,30 +18,33 @@ function Carousel({ items, changeCarouselImage }) {
     arrows: true,
     pauseOnHover: true,
     beforeChange: (_current, next) => {
-      changeCarouselImage(items[next].url);
+      changeCarouselImage(items[next].imageUrl[1]);
+      setImg(next);
     },
     // autoplay: true,
-    // autoplaySpeed: 1000, //자동으로 슬라이드되게 만들어준다.
+    // autoplaySpeed: 3000, //자동으로 슬라이드되게 만들어준다.
   };
-
-  // console.log(getCommissionFn());
-  // const commissions = getCommissionFn();
-  // console.log(commissions);
-  items = [
-    { id: 1, url: 'https://d2v80xjmx68n4w.cloudfront.net/gigs/zTAmB1673606994.jpg' },
-    { id: 2, url: 'https://d2v80xjmx68n4w.cloudfront.net/gigs/zTAmB1673606994.jpg' },
-  ];
 
   return (
     <Container>
+      <Typography
+        text={
+          (img === 0 && '새로운 커미션') ||
+          (img === 1 && '인기 커미션') ||
+          (img === 2 && `${items[2].tags[0]} 태그 커미션`)
+        }
+        size="xxxl"
+        color="tea_2"
+        bold="bold"
+        textShadow=" -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white"
+      />
+
       <StyledSlider {...settings}>
         {items.map(item => {
           return (
-            <div key={item.id}>
-              <ImageContainer>
-                <Image src={item.url} />
-              </ImageContainer>
-            </div>
+            <ImageContainer key={item.commissionId}>
+              <ImageComponent src={item.imageUrl[1]} imgStyle="commission" width="xxxl" />
+            </ImageContainer>
           );
         })}
       </StyledSlider>
@@ -46,44 +53,45 @@ function Carousel({ items, changeCarouselImage }) {
 }
 
 const Container = styled.div`
-  padding-bottom: 2rem;
-  width: 25rem;
-  margin-bottom: 3rem;
+  max-width: 40rem;
+  margin-bottom: 5rem;
 `;
 
 const StyledSlider = styled(Slider)`
+  margin-top: 1rem;
   .slick-slide {
     display: flex;
-    border-radius: 0.25rem;
+    align-items: center;
+    max-height: 20rem;
   }
 
   .slick-prev {
     top: 8.5rem;
-    left: -1.5rem;
+    left: -2rem;
     z-index: 2;
   }
 
   .slick-prev:before {
-    font-size: 3rem;
+    font-size: 4rem;
+    color: #ce8e5b;
   }
 
   .slick-next {
     top: 8.5rem;
-    right: 0.25rem;
+    right: 0.7rem;
     z-index: 2;
   }
 
   .slick-next:before {
-    font-size: 3rem;
+    font-size: 4rem;
+    color: #ce8e5b;
   }
 `;
 
-const ImageContainer = styled.div``;
-
-const Image = styled.img`
+const ImageContainer = styled.div`
+  display: flex;
+  flex-direction: row;
   width: 100%;
-  border-radius: 0.5rem;
-  object-fit: cover;
 `;
 
 export default Carousel;

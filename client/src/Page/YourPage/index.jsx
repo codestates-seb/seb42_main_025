@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Container } from 'Container/Container';
-import ProgressModule from './module/Progress/ProgressListModule.jsx';
+import ProgressModule from './module/Progress/ProgressModule';
 import ProfileModule from './module/Profile/ProfileModule';
 import CommissionsListModule from './module/Commissions/CommissionsListModule';
 import ChatModule from './module/Chat/ChatModule';

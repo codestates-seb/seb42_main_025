@@ -6,9 +6,7 @@ import LoadingComponent from 'Components/LoadingComponent';
 
 function TradeModuleBox() {
   const { id } = useParams();
-  console.log(id);
   const info = getCommissionFn(id);
-  console.log(info);
 
   return (
     <StyledSummaryBox>

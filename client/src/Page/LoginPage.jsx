@@ -18,7 +18,6 @@ const Login = () => {
       const result = await login({ email, password });
       if (result.success) {
         console.log('로그인 성공!');
-        console.log();
         window.location.replace('/');
       } else {
         console.log('로그인 실패!');

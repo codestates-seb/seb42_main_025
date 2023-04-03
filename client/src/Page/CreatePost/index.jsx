@@ -43,7 +43,6 @@ function CreatePost() {
           subContent: subContentRef.current.value,
           content: contentRef.current?.getInstance().getMarkdown(),
         };
-        console.log(data);
         patchCommission(data, id);
       } else {
         const formData = new FormData();
@@ -61,7 +60,6 @@ function CreatePost() {
     useEffect(() => {
       const fetch = async () => {
         const { data, status } = await getCommission(id);
-        console.log(data, status);
         if (status < 300) {
           setCommission(data);
           setLoading(false);
@@ -72,7 +70,6 @@ function CreatePost() {
       fetch();
     }, [getCommission, id]);
   }
-  console.log(pathname);
 
   return (
     <Container>

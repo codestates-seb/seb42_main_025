@@ -2,8 +2,6 @@ import Typography from 'Components/Typography';
 import styled from 'styled-components';
 
 export function ProgressTradeListModule({ info }) {
-  console.log(info);
-
   return (
     <StyledSummaryBox>
       <Typography text={info.title} bold="bold" line={1} size="l" variant="h3" />

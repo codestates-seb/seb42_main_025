@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { ImSearch } from 'react-icons/im';
 
-const InputComponent = ({
+function InputComponent({
   label,
   placeholder,
   value,
@@ -12,12 +12,13 @@ const InputComponent = ({
   type = 'text',
   onKeyPress,
   defaultText,
-}) => {
+  onSubmit,
+}) {
   return (
-    <InputContainer>
+    <InputContainer onSubmit={onSubmit}>
       <InputLabel label={label}>{label}</InputLabel>
       <InputWrapper error={error}>
-        {placeholder === '검색' ? (
+        {placeholder === '태그 검색' ? (
           <IconWrapper>
             <ImSearch />
           </IconWrapper>
@@ -35,9 +36,9 @@ const InputComponent = ({
       {error && <ErrorMessage visible={'visible'}>{error}</ErrorMessage>}
     </InputContainer>
   );
-};
+}
 
-const InputContainer = styled.div`
+const InputContainer = styled.form`
   display: flex;
   flex-direction: column;
   height: fit-content;
@@ -98,6 +99,7 @@ const InputField = styled.input`
 `;
 
 const IconWrapper = styled.div`
+  display: flex;
   margin-right: 0.5rem;
 `;
 

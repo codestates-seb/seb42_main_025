@@ -7,10 +7,9 @@ import Typography from 'Components/Typography';
 function ChatContentModule() {
   const info = {
     image: 'https://cdn.pixabay.com/photo/2020/01/01/00/15/one-address-based-4732816_960_720.jpg',
-    title: 'titletitletitletitletitletitletitletitle',
-    content:
-      'contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent',
-    subtitle: 'subtitlesubtitlesubtitlesubtitlesubtitlesubtitlesubtitlesubtitle',
+    title: '다양한 컨셉 디자인',
+    content: '2번 신청하려고 합니다만..',
+    subtitle: '2번 신청합니다.',
   };
   return (
     <StyledContainer>

@@ -7,14 +7,11 @@ import { useNavigate } from 'react-router-dom';
 function CommissionListSingleModule({ info }) {
   const navigate = useNavigate();
 
-  console.log(info);
-
   const handleCommission = e => {
     const id = e.target.id;
     navigate(`/commission/${id}`);
   };
 
-  console.log(info);
   return (
     <StyledSummaryBox id={info.commissionId} onClick={handleCommission}>
       {info && (
@@ -22,7 +19,7 @@ function CommissionListSingleModule({ info }) {
           <ImageComponent src={info.imageUrl[1]} alt={info.title} imgStyle="commission" width="m" />
           <TextContainer>
             <Typography text={info.title} bold="bold" line={1} size="l" variant="h3" />
-            <Typography text={info.content} line={2} size="m" variant="p" lineHeight="l" />
+            <Typography text={info.content} line={2} size="m" lineHeight="l" variant="p" />
             <StyledTags>
               {info.tags.map(el => (
                 <TagComponent key={el} text={el} />
@@ -42,10 +39,10 @@ const StyledSummaryBox = styled.button`
   max-height: 8.5rem;
   padding: 0.5rem 1rem;
   gap: 1rem;
-  white-space: nowrap;
   background-color: #fff;
   border-radius: 0.25rem;
   box-shadow: 0 0 0.5rem 0 #999999;
+
   cursor: pointer;
 
   &:hover {
@@ -58,10 +55,9 @@ const StyledSummaryBox = styled.button`
 `;
 
 const TextContainer = styled.div`
-  display: flex;
-  height: 100%;
+  display: grid;
+  width: 100%;
   padding-top: 0.5rem;
-  flex-direction: column;
   gap: 0.5rem;
 `;
 

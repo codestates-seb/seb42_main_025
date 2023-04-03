@@ -9,8 +9,8 @@ export const PostImage = ({ commission }) => {
   const [currItem, setCurrItem] = useState(images[0]);
   const canvasRef = useRef(null);
 
-  const onView = index => {
-    setCurrItem(images.find(item => item.index === index));
+  const onView = idx => {
+    setCurrItem(images[idx]);
   };
 
   useEffect(() => {
@@ -47,9 +47,9 @@ export const PostImage = ({ commission }) => {
         <CanvasThumbnail ref={canvasRef} />
       </ThumbnailBox>
       <ImageBox>
-        {images.map(item => (
-          <Button key={item.index} onClick={() => onView(item.index)}>
-            <ImageComponent src={item.url} alt={item.title} width="m" imgStyle="commission" />
+        {images.map((item, idx) => (
+          <Button key={item.url + idx} onClick={() => onView(idx)}>
+            <ImageComponent src={item.url} alt={item.url} width="m" imgStyle="commission" />
           </Button>
         ))}
       </ImageBox>
