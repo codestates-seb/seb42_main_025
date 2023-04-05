@@ -9,6 +9,8 @@
 
 배포링크 : http://milkbubbletea.s3-website.ap-northeast-2.amazonaws.com/
 
+팀 페이지 : https://codestates.notion.site/d418ff9a279b4cde94d229984e3aca7d
+
 ## 💪 팀원
 
 ⭐ Backend 팀장 - 신은진
