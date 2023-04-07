@@ -68,6 +68,7 @@ const sizes = {
   w_xxxxl: calcRem(400),
   w_xxxxxl: calcRem(640),
   h_xxs: calcRem(16),
+  h_zzx: calcRem(20),
   h_xs: calcRem(24),
   h_s: calcRem(32),
   h_m: calcRem(40),

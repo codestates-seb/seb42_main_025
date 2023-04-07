@@ -35,7 +35,7 @@ function ProgressListSingleModule({ info }) {
                 text={info.commission.title}
                 bold="bold"
                 line={1}
-                height="h_xs"
+                height="h_zzx"
                 margin="xxs"
               />
               <StyledImgContainer>
