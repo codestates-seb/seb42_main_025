@@ -7,7 +7,9 @@
 
 📆 프로젝트 기간 : 2023.03.06 ~ 2023.03.29
 
+배포링크 : http://milkbubbletea.s3-website.ap-northeast-2.amazonaws.com/
 
+팀 페이지 : https://codestates.notion.site/d418ff9a279b4cde94d229984e3aca7d
 
 ## 💪 팀원
 
