@@ -8,7 +8,6 @@ import TradePage from 'Page/TradePage';
 import ChatPage from 'Page/ChatPage';
 import SearchPage from 'Page/SearchPage';
 import NotFoundPage from 'Page/NotFoundPage';
-import ChatSocket from 'Page/ChatPage/ChatSocket';
 
 export const routerList = [
   {
@@ -76,12 +75,6 @@ export const routerList = [
     path: '/edit-commission/:id',
     isPrivate: true,
     element: <CreatePost />,
-  },
-  {
-    id: 12,
-    path: '/chat-socket',
-    isPrivate: false,
-    element: <ChatSocket />,
   },
 ];
 
