@@ -20,6 +20,5 @@ export const getTradeSubInfoFn = infos => {
     };
     fetch();
   }, [setFilteredInfos]);
-  console.log(filteredInfos);
   return filteredInfos;
 };

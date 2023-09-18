@@ -30,7 +30,7 @@ function Header() {
 
   const handleLogout = async () => {
     try {
-      await axios.get('http://3.37.139.165:8080/logout');
+      await axios.get('http://52.79.154.227:8080/logout');
       localStorage.removeItem('authorization');
       localStorage.removeItem('memberId');
       console.log('로그아웃 되었습니다.');

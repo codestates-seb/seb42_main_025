@@ -1,29 +1,83 @@
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
-function TagComponent({ text, createTag, deleteTagItem, handleClickTag }) {
+function TagComponent({ tags, deleteTagItem, varient, where }) {
+  const [isHovered, setIsHovered] = useState(null);
+
+  const navigate = useNavigate();
+
+  const handleClickTag = e => {
+    e.stopPropagation();
+    const tag = e.target.innerText;
+    navigate(`/search/${tag}`);
+  };
+
+  const handleHover = idx => {
+    setIsHovered(idx);
+  };
+
+  const handleLeave = () => {
+    setIsHovered(null);
+  };
+
   return (
-    <StyledContainer onClick={createTag ? null : handleClickTag}>
-      <StyledTag>{text}</StyledTag>
-      {createTag && <StyledButton onClick={deleteTagItem}>X</StyledButton>}
-    </StyledContainer>
+    <StyledTagContainer where={where}>
+      {tags.map((el, idx) => (
+        <div key={el}>
+          {varient === 'div' ? (
+            <StyledButton
+              as={varient}
+              onMouseEnter={() => handleHover(idx)}
+              onMouseLeave={handleLeave}
+            >
+              {el}
+              <StyledDelete
+                onClick={e => {
+                  deleteTagItem(e);
+                  handleLeave();
+                }}
+                id={el}
+                hidden={idx === isHovered}
+              >
+                X
+              </StyledDelete>
+            </StyledButton>
+          ) : varient === 'span' ? (
+            <StyledButton as={varient}>{el}</StyledButton>
+          ) : (
+            <StyledContainer onClick={handleClickTag}>{el}</StyledContainer>
+          )}
+        </div>
+      ))}
+    </StyledTagContainer>
   );
 }
 
-const StyledContainer = styled.button`
+const StyledTagContainer = styled.div`
   display: flex;
-  height: fit-content;
-  width: fit-content;
-  padding: 0.1rem 0.25rem;
-  margin: 0.25rem;
-  border-radius: 0.25rem;
-  border: 2px solid #cccccc;
-  font-size: 1rem;
-  font-weight: bold;
-  color: #606060;
-  background-color: transparent;
-  white-space: nowrap;
-  gap: 0.25rem;
+  flex-wrap: wrap;
+  margin-top: ${props => (props.where === 'creat' ? '0.5rem' : 'none')};
+  height: ${props => (props.where === 'post' || props.where === 'creat' ? 'none' : '1.5rem')};
+  gap: 0.5rem 0.25rem;
+  overflow: ${props => (props.where === 'list' ? 'hidden' : 'none')};
+`;
 
+const StyledButton = styled.button`
+  display: flex;
+  position: relative;
+  align-items: center;
+  padding: 0.1rem 0.25rem 0.2rem 0.25rem;
+  border-radius: 0.25rem;
+  border: 1px solid #cccccc;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #666666;
+  background-color: #fff;
+  white-space: nowrap;
+`;
+
+const StyledContainer = styled(StyledButton)`
   cursor: pointer;
 
   &:hover {
@@ -35,18 +89,21 @@ const StyledContainer = styled.button`
   }
 `;
 
-const StyledTag = styled.div`
-  display: flex;
-`;
-
-const StyledButton = styled.button`
-  width: 20px;
-  height: 20px;
-  padding-bottom: 0.6px;
-  border-radius: 50px;
+const StyledDelete = styled.button`
+  display: ${({ hidden }) => (hidden ? 'flex' : 'none')};
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1rem;
+  color: red;
+  justify-content: center;
+  border-radius: 1rem;
   border: none;
-  background-color: #ddba9d;
-  color: white;
+  background-color: transparent;
+  z-index: 10;
+
+  cursor: pointer;
 `;
 
 export default TagComponent;

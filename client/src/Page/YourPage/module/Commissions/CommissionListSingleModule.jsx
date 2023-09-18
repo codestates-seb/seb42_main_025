@@ -20,11 +20,8 @@ function CommissionListSingleModule({ info }) {
           <TextContainer>
             <Typography text={info.title} bold="bold" line={1} size="l" variant="h3" />
             <Typography text={info.content} line={2} size="m" lineHeight="l" variant="p" />
-            <StyledTags>
-              {info.tags.map(el => (
-                <TagComponent key={el} text={el} />
-              ))}
-            </StyledTags>
+
+            <TagComponent tags={info.tags} />
           </TextContainer>
         </>
       )}
@@ -32,7 +29,7 @@ function CommissionListSingleModule({ info }) {
   );
 }
 
-const StyledSummaryBox = styled.button`
+const StyledSummaryBox = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
@@ -61,8 +58,8 @@ const TextContainer = styled.div`
   gap: 0.5rem;
 `;
 
-const StyledTags = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
+// const StyledTags = styled.div`
+//   display: flex;
+//   flex-direction: row;
+// `;
 export default CommissionListSingleModule;

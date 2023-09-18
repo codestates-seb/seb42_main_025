@@ -12,24 +12,12 @@ function Commissions({ commissions }) {
     window.location.reload('/');
   };
 
-  const handleClickTag = e => {
-    const tag = e.target.innerText;
-    navigate(`/search/${tag}`);
-  };
-
   return (
     <CommissionBox>
       {commissions.map(item => {
         return (
           <div key={item.commissionId}>
-            <TagBox>
-              {item &&
-                item.tags.map((tag, idx) => {
-                  return (
-                    <TagComponent key={(tag, idx)} text={tag} handleClickTag={handleClickTag} />
-                  );
-                })}
-            </TagBox>
+            <TagComponent tags={item.tags} />
             <SellBox onClick={() => handleClick(item.commissionId)}>
               <ImageComponent
                 src={item.imageUrl[1]}
@@ -54,9 +42,9 @@ const CommissionBox = styled.div`
   max-width: 100%;
 `;
 
-const TagBox = styled.div`
-  display: flex;
-`;
+// const TagBox = styled.div`
+//   display: flex;
+// `;
 
 const SellBox = styled.div`
   display: flex;

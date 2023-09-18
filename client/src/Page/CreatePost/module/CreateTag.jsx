@@ -14,6 +14,7 @@ export function CreateTag({ setIsTags, defaultTags }) {
       submitTagItem();
       e.target.value = '';
     }
+    e.preventDefault();
   };
 
   const submitTagItem = () => {
@@ -48,22 +49,12 @@ export function CreateTag({ setIsTags, defaultTags }) {
       />
       {isDuplication && <Alert severity="error">이미 사용된 태그입니다</Alert>}
       <TagContainer>
-        {tagList &&
-          tagList.map(tag => {
-            return (
-              <div key={tag}>
-                <TagComponent text={tag} createTag="createTag" deleteTagItem={deleteTagItem} />
-              </div>
-            );
-          })}
-        {defaultTags &&
-          defaultTags.map(tag => {
-            return (
-              <div key={tag}>
-                <TagComponent text={tag} createTag="createTag" />
-              </div>
-            );
-          })}
+        {tagList && (
+          <TagComponent tags={tagList} deleteTagItem={deleteTagItem} varient="div" where="creat" />
+        )}
+        {defaultTags && (
+          <TagComponent tags={defaultTags} deleteTagItem={deleteTagItem} varient="span" />
+        )}
       </TagContainer>
     </div>
   );

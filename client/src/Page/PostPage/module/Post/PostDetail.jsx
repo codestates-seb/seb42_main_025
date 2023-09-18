@@ -36,12 +36,7 @@ export function PostDetail({ commission }) {
             lineHeight="xxl"
             line={9}
           />
-          <TagContainer>
-            {commission &&
-              commission.tags.map(tag => {
-                return <TagComponent key={tag} text={tag} />;
-              })}
-          </TagContainer>
+          <TagComponent tags={commission.tags} />
           <Typography
             text={commission.memberName}
             size="l"
@@ -73,9 +68,9 @@ const Summary = styled.div`
   margin: 0 auto;
 `;
 
-const TagContainer = styled.div`
-  display: flex;
-  flex: 2;
-  align-items: center;
-  overflow: hidden;
-`;
+// const TagContainer = styled.div`
+//   display: flex;
+//   flex: 2;
+//   align-items: center;
+//   overflow: hidden;
+// `;
